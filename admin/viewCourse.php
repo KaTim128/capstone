@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Courses</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        h3 {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <h3 class="text-center text-success mt-3">All Courses</h3>
+    <table class="table table-bordered mt-3">
+        <thead class="bg-info">
+            <tr class="text-center">
+                <th>S.No</th>
+                <th>Course Title</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody class="bg-secondary text-light">
+            <?php
+                $select_courses = "SELECT * FROM `courses`";
+                $result = mysqli_query($conn, $select_courses);
+                $row_count = mysqli_num_rows($result); // Get row count
+
+                if ($row_count == 0) {
+                    echo "<tr><td colspan='4' class='text-center'>No courses available.</td></tr>";
+                } else {
+                    $number = 0;
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $course_id = $row['course_id'];
+                        $course_title = $row['course_title'];
+                        $number++;
+            ?>
+            <tr class="text-center">
+                <td><?php echo $number; ?></td>
+                <td><?php echo $course_title; ?></td>
+                <td><a href='adminPanel.php?editCourse=<?php echo $course_id ?>' class='text-light'><i class='fa-solid fa-pen-to-square'></i></a></td>
+                <td><a href="#" class="text-light" data-toggle="modal" data-target="#deleteModal" onclick="setCourseId(<?php echo $course_id; ?>)"><i class='fa-solid fa-trash'></i></a></td>
+            </tr>
+            <?php
+                    }
+                }
+            ?>
+        </tbody>
+    </table>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h6>Are you sure you would like to delete this Course?</h6>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-danger" id="confirmDelete">Yes, Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Store course ID for deletion
+        let courseId = null;
+
+        function setCourseId(id) {
+            courseId = id; // Store the course ID when delete button is clicked
+        }
+
+        // Handle delete confirmation
+        document.getElementById('confirmDelete').addEventListener('click', function() {
+            if (courseId) {
+                // Redirect to PHP delete action with the course_id
+                window.location.href = `adminPanel.php?deleteCourse=${courseId}`;
+            }
+        });
+    </script>
+</body>
+</html>
