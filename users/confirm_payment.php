@@ -55,7 +55,7 @@ if (isset($_POST['confirm_payment'])) {
         }
 
         .btn {
-            background-color: #17a2b8; /* Default button colour */
+            background-color: #17a2b8; /* Default button color */
             color: #ffffff; /* Text color */
             border: none; /* No border */
             cursor: pointer; /* Pointer cursor on hover */
