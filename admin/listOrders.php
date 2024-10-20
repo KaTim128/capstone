@@ -15,9 +15,9 @@
         $row_count = mysqli_num_rows($result);
         
         if ($row_count == 0) {
-            echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There are no orders yet.</div>";
+            echo "<div class='alert alert-warning text-center mt-5' style='margin: 0 auto; width: fit-content;'>There are no orders yet.</div>";
         } else {
-            echo "<tr>
+            echo "<tr class='text-center'>
             <th>S1 no</th>
             <th>Due Amount</th>
             <th>Total Products</th>
@@ -27,7 +27,7 @@
             <th>Delete</th>
         </tr>
         </thead>
-        <tbody class='bg-secondary text-light'>";
+        <tbody class='bg-secondary text-light text-center'>";
             $number = 0;
             while ($row_data = mysqli_fetch_assoc($result)) {
                 $order_id = $row_data['order_id'];

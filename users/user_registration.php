@@ -4,83 +4,217 @@ include('../functions/common_function.php');
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
-    <!-- bootstrap CSS link -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #7BA17B; /* Green background color */
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent page overflow */
+        }
+
+        .registration-container {
+            background-color: #ffffff; /* White background for the form */
+            border-radius: 15px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: row;
+            max-width: 90vw; /* Use more width if needed */
+            max-height: 90vh; /* Ensure container fits within viewport */
+            width: 100%;
+            overflow: hidden; /* Hide overflow */
+        }
+
+        .logo-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa; /* Light background for logo area */
+            padding: 20px;
+            max-height: 100%;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+            max-width: 450px; /* Increase max-width to make logo bigger */
+            max-height: 80vh; /* Constrain height so it doesn’t overflow */
+        }
+
+        .form-container {
+            flex: 1.2;
+            padding: 20px;
+            background-color: #ffffff; /* White background for the form */
+            overflow-y: auto; /* Scroll form if necessary */
+            max-height: 100%; /* Prevent overflow */
+        }
+
+        .form-container h3 {
+            color: #495057;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.7rem; /* Slightly increase the size */
+        }
+
+        label {
+            color: #000; /* Black label text */
+            font-size: 0.85rem;
+        }
+
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for inputs */
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            padding: 8px;
+            font-size: 0.85rem;
+        }
+
+        .btn-register {
+            background-color: #C2D6C2; /* Light green button */
+            color: #000; /* Black text */
+            border: none;
+            padding: 12px;
+            font-size: 0.9rem;
+            width: 50%; /* Set button width */
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+            margin: 10px auto; /* Use margin auto to center the button */
+            display: block; /* Make the button a block element to allow margin auto to work */
+            text-align: center; /* Ensure text inside the button is centered */
+        }
+
+        .btn-register:hover {
+            background-color: #b0c9b0; /* Darker on hover */
+        }
+
+        .text-login {
+            text-align: center;
+            margin-top: 10px;
+            color: #495057;
+        }
+
+        .text-login a {
+            color: #000; /* Black link */
+            text-decoration: none;
+        }
+
+        .text-login a:hover {
+            color: #333; /* Darker on hover */
+        }
+
+        /* Mobile view adjustments */
+        @media (max-width: 768px) {
+            .registration-container {
+                flex-direction: column; /* Stack vertically on mobile */
+                height: auto; /* Allow height to grow as needed */
+                max-width: 100%;
+            }
+
+            .logo-container {
+                padding: 10px;
+                
+            }
+
+            .logo-container img {
+                width: 100%;
+                max-width: 600px; /* Increase width for mobile view */
+                max-height: 50vh; /* Adjust max-height to fit in mobile view */
+                border-radius:10px;
+            }
+
+            .form-container {
+                padding: 15px;
+                max-height: 50vh; /* Prevent form from causing overflow */
+            }
+
+            .form-container h3 {
+                font-size: 1.5rem;
+            }
+
+            .form-control {
+                padding: 6px;
+                font-size: 0.85rem;
+            }
+
+            .btn-register {
+                font-size: 0.85rem;
+                padding: 10px;
+            }
+        }
+    </style>
+
 </head>
+
 <body>
-    <div class="container-fluid">
-        <h2 class="text-center my-3">
-            New User Registration
-        </h2>
-        <div class="row d-flex align-items-center justify-content-center">
-            <div class="col-lg-12 col-xl-6">
-                <form action="" method="post" enctype="multipart/form-data">
-                    <div class="form-outline mb-4">
-                        <label for="user_username" class="form-label">Username</label>
-                        <input type="text" id="user_username" class="form-control" 
-                        placeholder="Enter your username" autocomplete="off" 
-                        required="required" name="user_username"/>
-                    </div>
-
-                    <div class="form-outline mb-4">
-                    <label for="user_email" class="form-label">Email</label>
-                        <input type="email" id="user_email" class="form-control" 
-                        placeholder="Enter new email" autocomplete="off" 
-                        required="required" name="user_email"/>
-                    </div>
-
-                    
-                    <div class="form-outline mb-4">
-                    <label for="user_image" class="form-label">Image</label>
-                        <input type="file" id="user_image" class="form-control" 
-                        placeholder="Enter your image" autocomplete="off" 
-                        required="required" name="user_image"/>
-                    </div>
-
-                    <div class="form-outline mb-4">
-                    <label for="user_password" class="form-label">Password</label>
-                        <input type="password" id="user_password" class="form-control" 
-                        placeholder="Enter your password" autocomplete="off" 
-                        required="required" name="user_password"/>
-                    </div>
-
-                    <div class="form-outline mb-4">
-                    <label for="user_password" class="form-label">Confirm Password</label>
-                        <input type="password" id="conf_user_password" class="form-control" 
-                        placeholder="Confirm your password" autocomplete="off" 
-                        required="required" name="conf_user_password"/>
-                    </div>
-
-                    <div class="form-outline mb-4">
-                        <!-- address -->
-                        <label for="user_address" class="form-label">Address</label>
-                        <input type="text" id="user_address" class="form-control" 
-                        placeholder="Enter your address" autocomplete="off" 
-                        required="required" name="user_address"/>
-                    </div>
-
-                    <div class="form-outline mb-4">
-                        <!-- contact -->
-                        <label for="user_contact" class="form-label">Contact</label>
-                        <input type="text" id="user_address" class="form-control" 
-                        placeholder="Enter your mobile number" autocomplete="off" 
-                        required="required" name="user_contact"/>
-                    </div>
-
-                    <div class="mt-4 pt-2 mb-0">
-                        <input type="submit" value="Register" class="bg-info py-2 px-3 border-0" name="user_register"/>
-                        <p class="small fw-bold mt-2 pt-1">Already have an account? <a href="user_login.php" class="text-danger">Login</a></p>
-                    </div>
-                    </form>
-            </div>
+    <div class="registration-container">
+        <div class="logo-container" >
+            <img src="../images/logo_new.png" alt="Logo" style="border-radius:10px;">
         </div>
-    </div> 
+        <div class="form-container">
+            <h3>New User Registration</h3>
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="user_username">Username</label>
+                    <input type="text" id="user_username" class="form-control" placeholder="Enter your username"
+                        name="user_username" required>
+                </div>
+                <div class="form-group">
+                    <label for="user_email">Email</label>
+                    <input type="email" id="user_email" class="form-control" placeholder="Enter your email"
+                        name="user_email" required>
+                </div>
+                <div class="form-group">
+                    <label for="user_image">Image</label>
+                    <input type="file" id="user_image" class="form-control" name="user_image" required>
+                </div>
+                <div class="form-group">
+                    <label for="user_password">Password</label>
+                    <input type="password" id="user_password" class="form-control" placeholder="Enter your password"
+                        name="user_password" required>
+                </div>
+                <div class="form-group">
+                    <label for="conf_user_password">Confirm Password</label>
+                    <input type="password" id="conf_user_password" class="form-control"
+                        placeholder="Confirm your password" name="conf_user_password" required>
+                </div>
+                <div class="form-group">
+                    <label for="user_address">Address</label>
+                    <input type="text" id="user_address" class="form-control" placeholder="Enter your address"
+                        name="user_address" required>
+                </div>
+                <div class="form-group">
+                    <label for="user_contact">Contact</label>
+                    <input type="text" id="user_contact" class="form-control" placeholder="Enter your mobile number"
+                        name="user_contact" required>
+                </div>
+                <input type="submit" value="Register" class="btn btn-register mt-4 mb-2" name="user_register">
+                <p class="mt-2 text-login">
+                    Already have an account? <a href="user_login.php">Login</a>
+                </p>
+            </form>
+        </div>
+    </div>
 </body>
+
 </html>
+
+
 
 <?php
 if(isset($_POST['user_register'])){

@@ -340,68 +340,68 @@ function getIPAddress() {
    return $ip;  
 } 
 
-  function manageCart() { 
-    global $conn;
-    if (isset($_GET['cart'])) {
-        $ip = getIPAddress();
-        $get_product_id = $_GET['cart'];
-        $booktype = isset($_POST['booktype']) ? $_POST['booktype'] : 'digital';
+function manageCart() { 
+  global $conn;
+  if (isset($_GET['cart'])) {
+      $ip = getIPAddress();
+      $get_product_id = $_GET['cart'];
+      $booktype = isset($_POST['booktype']) ? $_POST['booktype'] : 'digital';
 
-        $prefix = substr($get_product_id, 0, 1);
-        $id = intval(substr($get_product_id, 1));
+      $prefix = substr($get_product_id, 0, 1);
+      $id = intval(substr($get_product_id, 1));
 
-        // Initialize query result variables
-        $result_query_b = null;
-        $result_query_t = null;
+      // Initialize query result variables
+      $result_query_b = null;
+      $result_query_t = null;
 
-        // Check if the item already exists in the cart
-        if ($prefix == 'b') {
-            $result_query_b = mysqli_query($conn, "SELECT * FROM `cart` WHERE ip_address='$ip' AND book_id='$id'");
-        } elseif ($prefix == 't') {
-            $result_query_t = mysqli_query($conn, "SELECT * FROM `cart` WHERE ip_address='$ip' AND tool_id='$id'");
-        }
+      // Check if the item already exists in the cart
+      if ($prefix == 'b') {
+          $result_query_b = mysqli_query($conn, "SELECT * FROM `cart` WHERE ip_address='$ip' AND book_id='$id'");
+      } elseif ($prefix == 't') {
+          $result_query_t = mysqli_query($conn, "SELECT * FROM `cart` WHERE ip_address='$ip' AND tool_id='$id'");
+      }
 
-        // Initialize alert message variable
-        $alertMessage = '';
+      // Initialize alert message variable
+      $alertMessage = '';
 
-        // Check if the item exists and set the alert message accordingly
-        if ($prefix == 'b' && mysqli_num_rows($result_query_b) > 0) {
-            $alertMessage = 'This book is already in your cart!';
-        } elseif ($prefix == 't' && mysqli_num_rows($result_query_t) > 0) {
-            $alertMessage = 'This tool is already in your cart!';
-        } else {
-            // Insert the item into the cart with default or selected booktype
-            $insert_query = "";
+      // Check if the item exists and set the alert message accordingly
+      if ($prefix == 'b' && mysqli_num_rows($result_query_b) > 0) {
+          $alertMessage = 'This book is already in your cart!';
+      } elseif ($prefix == 't' && mysqli_num_rows($result_query_t) > 0) {
+          $alertMessage = 'This tool is already in your cart!';
+      } else {
+          // Insert the item into the cart with default or selected booktype
+          $insert_query = "";
 
-            if ($prefix == 'b') {
-                // Insert books with booktype
-                $insert_query = "INSERT INTO `cart` (book_id, ip_address, quantity, booktype) VALUES ('$id', '$ip', 1, '$booktype')";
-            } elseif ($prefix == 't') {
-                // Insert tools without booktype
-                $insert_query = "INSERT INTO `cart` (tool_id, ip_address, quantity) VALUES ('$id', '$ip', 1)";
-            }
+          if ($prefix == 'b') {
+              // Insert books with booktype
+              $insert_query = "INSERT INTO `cart` (book_id, ip_address, quantity, booktype) VALUES ('$id', '$ip', 1, '$booktype')";
+          } elseif ($prefix == 't') {
+              // Insert tools without booktype
+              $insert_query = "INSERT INTO `cart` (tool_id, ip_address, quantity) VALUES ('$id', '$ip', 1)";
+          }
 
-            // Execute the query and set alert message if successful
-            if (!empty($insert_query)) {
-                mysqli_query($conn, $insert_query);
-                $alertMessage = 'Item added to cart!';
-            } else {
-                $alertMessage = 'Failed to add item to cart.';
-            }
-        }
+          // Execute the query and set alert message if successful
+          if (!empty($insert_query)) {
+              mysqli_query($conn, $insert_query);
+              $alertMessage = 'Item added to cart!';
+          } else {
+              $alertMessage = 'Failed to add item to cart.';
+          }
+      }
 
-        // Store the alert message in the session
-        $_SESSION['alert'] = $alertMessage;
+      // Store the alert message in the session
+      $_SESSION['alert'] = $alertMessage;
 
-        // Redirect to the previous page
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit();
-    }
+      // Redirect to the previous page
+      header('Location: ' . $_SERVER['HTTP_REFERER']);
+      exit();
+  }
 }
+
 
 // Function to display alert messages from the session
 function displayAlert() {
-    session_start();
     if (isset($_SESSION['alert'])) {
         echo "<script>alert('" . $_SESSION['alert'] . "');</script>";
         unset($_SESSION['alert']); // Clear the alert after displaying it

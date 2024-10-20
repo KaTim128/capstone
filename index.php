@@ -68,7 +68,10 @@ session_start();
       </nav>
 
       <!-- call cart function -->
-      <?php manageCart(); ?>
+      <?php 
+      manageCart(); 
+      displayAlert(); 
+      ?>
 
       <!-- second child -->
       <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
