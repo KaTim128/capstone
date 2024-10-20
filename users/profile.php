@@ -197,7 +197,9 @@ session_start();
           </ul>
         </div>
         <div class="col-md-10">
-          <?php orderDetails(); ?>
+          
+          <?php 
+          orderDetails(); ?>
         </div>
       </div>
 
