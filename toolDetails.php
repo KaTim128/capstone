@@ -105,6 +105,7 @@ session_start();
     <!-- calling fetch function-->
     <?php
     viewToolDetails();
+    displayAlert(); 
     getUniqueCourses();
     getUniqueTools();
     ?>

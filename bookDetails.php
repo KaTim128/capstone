@@ -105,8 +105,10 @@ session_start();
     <!-- calling fetch function-->
     <?php
     viewBookDetails();
+    displayAlert(); 
     getUniqueCourses();
     getUniqueTools();
+
     ?>
 
   <!-- row end -->
