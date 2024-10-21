@@ -180,4 +180,17 @@ if (!$retval) {
     die('Could not create table user_payments: ' . mysqli_error($conn));
 }
 
+
+$sql_admin_table = 'CREATE TABLE IF NOT EXISTS admin_table (
+    admin_id INT AUTO_INCREMENT PRIMARY KEY,
+    admin_name VARCHAR(100) NOT NULL,
+    admin_email VARCHAR(200) NOT NULL,
+    admin_password VARCHAR(255) NOT NULL
+)';
+
+$retval = mysqli_query($conn, $sql_admin_table);
+if (!$retval) {
+    die('Could not create table user_payments: ' . mysqli_error($conn));
+}
+
 ?>

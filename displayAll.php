@@ -105,6 +105,7 @@ session_start();
     <!-- calling fetch books function-->
     <?php
     getbooks();
+    displayAlert();
     getUniqueCourses();
     getUniqueTools();
     ?>

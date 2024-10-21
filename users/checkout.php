@@ -17,88 +17,84 @@ session_start();
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- navbar -->
-  <div class="container-fluid p-0">
-    <!-- first child  -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+
+<?php
+  // Only display the navbar and footer if the user is logged in or on a different page
+  if(isset($_SESSION['user_username'])) {
+?>
+
+<!-- navbar -->
+<div class="container-fluid p-0">
+  <!-- first child -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
     <div class="container-fluid">
-   <img src="../images/logo_new.png" alt="" style="width: 6%; height: 7%; margin-right: 15px; border-radius:5px">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+      <img src="../images/logo_new.png" alt="" style="width: 6%; height: 7%; margin-right: 15px; border-radius:5px">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="../index.php">Home<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="../displayAll.php">Products</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="registration.php">Register</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contact</a>
-      </li>
-    </ul>
-    <form class="d-flex form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
-      <input type="submit" value="search" class="btn btn-outline-light" name="search_data_product">
-    </form>
-  </div>
-</nav>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="../index.php">Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../displayAll.php">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="registration.php">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+        <form class="d-flex form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
+          <input type="submit" value="search" class="btn btn-outline-light" name="search_data_product">
+        </form>
+      </div>
+    </nav>
 
-<!-- second child -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-  <ul class="navbar-nav me-auto">
-      <?php
-      if(isset($_SESSION['user_username'])){
-        echo "<li class='nav-item'>
-        <a class='nav-link' href='#'>Welcome ".$_SESSION['user_username']."</a>
-      </li>";
-      } else {
-        echo "<li class='nav-item'>
-        <a class='nav-link' href='#'>Welcome guest</a>
-      </li>";
-      }
-        if(!isset($_SESSION['user_username'])){
-          echo "<li class='nav-item'>
-          <a class='nav-link' href='./user_login.php'>Login</a>
-        </li>";
-        }else{
-          echo "<li class='nav-item'>
-          <a class='nav-link' href='logout.php'>Logout</a>
-        </li>";
-        }        
-      ?>
-  </ul>
-</nav>
+    <!-- second child -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+      <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Welcome <?php echo $_SESSION['user_username']; ?></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="logout.php">Logout</a>
+          </li>
+      </ul>
+    </nav>
 
-<!-- third child -->
-<div class="bg-light">
-  <h3 class="text-center">Course Store - Checkout Page</h3>
-  <p class="text-center">Online bookstore for students</p>
-</div>
+    <!-- third child -->
+    <div class="bg-light">
+      <h3 class="text-center">Course Store - Checkout Page</h3>
+      <p class="text-center">Online bookstore for students</p>
+    </div>
+
+<?php } ?> <!-- End of navbar and header content -->
 
 <!-- fourth child -->
-
-  <div class="col-md-12">
-    <div class="row">
-        <?php
-        if(!isset($_SESSION['user_username'])){
-        include('user_login.php');
-        }else{
-            include('payment.php');
-        }
-        ?>
-    </div>       
-  </div>
-
-
-<!-- last child -->
-<?php getFooter(); ?>
+<div class="col-md-12">
+  <div class="row">
+      <?php
+      if(!isset($_SESSION['user_username'])){
+          include('user_login.php');
+      } else {
+          include('payment.php');
+      }
+      ?>
+  </div>       
 </div>
+
+<?php
+// Display footer only if user is logged in
+if(isset($_SESSION['user_username'])) {
+?>
+  <!-- last child -->
+  <?php getFooter(); ?>
+<?php } ?> <!-- End of footer -->
 
 <!-- bootstrap link-->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

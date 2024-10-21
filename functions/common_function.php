@@ -181,9 +181,7 @@ function searchProducts() {
 
       // If no products are found
       if ($num_of_rows == 0) {
-          echo "<div class='col-12 text-center'>
-                  <h2 class='text-danger'>No products found!</h2>
-                </div>";
+          echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>Product searched is unavailable</div>";
       }
 
       // Display results from both books and tools
@@ -195,7 +193,7 @@ function searchProducts() {
           $type = $row['type']; // Either 'book' or 'tool'
 
           // Depending on the product type, create the correct URL for details
-          $details_url = $type === 'book' ? "bookDetails.php?book_id=$id" : "toolDetails.php?tool_id=$id";
+          $details_url = $type === 'book' ? "bookDetails.php?book_id=b$id" : "toolDetails.php?tool_id=t$id";
           $cart_url = $type === 'book' ? "index.php?cart=b$id" : "index.php?cart=t$id";
 
           echo "<div class='col-md-4 mb-2'>
@@ -257,8 +255,9 @@ function viewBookDetails(){
                 </div>
                 <h6 class='mb-5'>$description</h6>
                 <div class='d-flex'>
-                  <a href='index.php?cart=$book_id' class='btn btn-info me-2 mr-4 mb-3'>Add to Cart</a>
-                  <a href='add_to_wishlist.php?book_id=<?php echo $book_id; ?>' class='btn btn-info me-2 mr-4 mb-3'>Add to Wishlist</a>
+                  <a href='index.php' class='btn btn-info me-2 mr-2 mb-3'>Back</a>
+                  <a href='index.php?cart=$book_id' class='btn btn-info me-2 mr-2 mb-3'>Add to Cart</a>
+                  <a href='add_to_wishlist.php?book_id=<?php echo $book_id; ?>' class='btn btn-info me-2 mr-2 mb-3'>Add to Wishlist</a>
                   <a href='reviews.php?book_id=<?php echo $book_id; ?>' class='btn btn-info mb-3'>Reviews</a>
                 </div>
             </div>
@@ -309,8 +308,9 @@ function viewBookDetails(){
                 <h5 class='mr-5 mb-5 text'>Price: RM$price/-</h5>
                 <h6 class='mb-5'>$description</h6>
                 <div class='d-flex'>
-                  <a href='index.php?cart=$tool_id' class='btn btn-info me-2 mr-4 mb-3'>Add to Cart</a>
-                  <a href='add_to_wishlist.php?book_id=<?php echo $tool_id; ?>' class='btn btn-info me-2 mr-4 mb-3'>Add to Wishlist</a>
+                  <a href='index.php' class='btn btn-info me-2 mr-2 mb-3'>Back</a>
+                  <a href='index.php?cart=$tool_id' class='btn btn-info me-2 mr-2 mb-3'>Add to Cart</a>
+                  <a href='add_to_wishlist.php?book_id=<?php echo $tool_id; ?>' class='btn btn-info me-2 mr-2 mb-3'>Add to Wishlist</a>
                   <a href='reviews.php?book_id=<?php echo $tool_id; ?>' class='btn btn-info mb-3'>Reviews</a>
                 </div>
             </div>
@@ -472,9 +472,13 @@ function cartItem() {
         if (isset($_GET['edit_account'])) {
             include('edit_acc.php');
         } elseif (isset($_GET['my_orders'])) {
-            include('user_orders.php');
+            include('pending_orders.php');
             return;
-        } elseif (isset($_GET['delete_account'])) {
+        }elseif (isset($_GET['paid_orders'])) {
+          include('paid_orders.php');
+          return;
+      } 
+        elseif (isset($_GET['delete_account'])) {
           include('delete_acc.php');
         } else {
             // Query for pending orders only if neither edit nor my orders are selected

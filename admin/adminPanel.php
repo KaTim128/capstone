@@ -97,7 +97,12 @@ body {
                 <nav class="navbar navbar-expand-lg">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="" class="nav-link">Welcome guest</a>
+                            <?php
+                        if (isset($_SESSION['user_username'])) {
+                            echo "<li class='nav-item'>
+                                    <a class='nav-link'>Welcome " . htmlspecialchars($_SESSION['user_username']) . "</a>
+                                </li>";
+                        } ?>
                         </li>
                     </ul>
                 </nav>

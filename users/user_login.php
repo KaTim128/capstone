@@ -219,7 +219,8 @@ if(isset($_POST['user_login'])){
 
         // Verify password
         if(password_verify($user_password, $row_data['user_password'])){
-            $_SESSION['user_username'] = $row_data['user_username']; // Store the username in session
+            $_SESSION['user_id'] = $row_data['user_id'];
+            $_SESSION['user_username'] = $row_data['user_username']; 
 
             // Check for items in cart
             $select_query_cart = "SELECT * FROM `cart` WHERE ip_address = '$user_ip'";

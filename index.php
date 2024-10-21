@@ -48,9 +48,6 @@ session_start();
             }
             ?>   
             <li class="nav-item">
-              <a class="nav-link" href="admin/adminpanel.php">Admin</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="#">Contact</a>
             </li>
             <li class="nav-item">
@@ -79,7 +76,7 @@ session_start();
           <?php
           if (isset($_SESSION['user_username'])) {
             echo "<li class='nav-item'>
-                    <a class='nav-link' href='./users/profile.php'>Welcome " . htmlspecialchars($_SESSION['user_username']) . "</a>
+                    <a class='nav-link'>Welcome " . htmlspecialchars($_SESSION['user_username']) . "</a>
                   </li>";
           } else {
             echo "<li class='nav-item'>

@@ -105,6 +105,7 @@ session_start();
     <!-- calling fetch products function-->
     <?php
     searchProducts();
+    displayAlert();
     getUniqueCourses();
     getUniqueTools();
     ?>

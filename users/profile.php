@@ -180,14 +180,17 @@ session_start();
             </li>";
             ?>
             <li>
-              <a class="nav-link text-light" href="profile.php"><h6 style="overflow:hidden;">Pending Orders</h6></a>
+              <a class="nav-link text-light" href="profile.php"><h6 style="overflow:hidden;">My Orders</h6></a>
             </li>
             <li>
               <a class="nav-link text-light" href="profile.php?edit_account"><h6 style="overflow:hidden;">Edit Account</h6></a>
             </li> 
             <li>
-              <a class="nav-link text-light" href="profile.php?my_orders"><h6 style="overflow:hidden;">My Orders</h6></a>
-            </li>  
+              <a class="nav-link text-light" href="profile.php?my_orders"><h6 style="overflow:hidden;">Pending Orders</h6></a>
+            </li>
+            <li>
+              <a class="nav-link text-light" href="profile.php?paid_orders"><h6 style="overflow:hidden;">Paid Orders</h6></a>
+            </li>    
             <li>
               <a class="nav-link text-light" href="profile.php?delete_account"><h6 style="overflow:hidden;">Delete Account</h6></a>
             </li>
