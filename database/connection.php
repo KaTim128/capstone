@@ -177,7 +177,7 @@ $sql_confirm_payment = 'CREATE TABLE IF NOT EXISTS user_payments (
 
 $retval = mysqli_query($conn, $sql_confirm_payment);
 if (!$retval) {
-    die('Could not create table user_payments: ' . mysqli_error($conn));
+    die('Could not create table confirm_payment: ' . mysqli_error($conn));
 }
 
 
@@ -190,7 +190,17 @@ $sql_admin_table = 'CREATE TABLE IF NOT EXISTS admin_table (
 
 $retval = mysqli_query($conn, $sql_admin_table);
 if (!$retval) {
-    die('Could not create table user_payments: ' . mysqli_error($conn));
+    die('Could not create table admin_table: ' . mysqli_error($conn));
 }
 
+$sql_contacts = 'CREATE TABLE IF NOT EXISTS contacts (
+    contact_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(200) NOT NULL,
+    message TEXT NOT NULL
+)';
+$retval = mysqli_query($conn, $sql_contacts);
+if (!$retval) {
+    die('Could not create table contacts: ' . mysqli_error($conn));
+}
 ?>

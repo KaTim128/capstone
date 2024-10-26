@@ -80,6 +80,9 @@ if (isset($_POST['admin_registration'])) {
                         <input type="submit" class="bg-info py-2 px-3 border-0 mb-3" name="admin_registration" value="Login">
                         <p class="link-danger">Don't have an account? <a href="adminRegistration.php">Register</a></p>
                     </div>
+                    <div>
+                    <p class="link-danger">Leave admin page? <a href="../users/user_login.php">Back</a></p>
+                    </div>
                 </form>
             </div>
         </div>

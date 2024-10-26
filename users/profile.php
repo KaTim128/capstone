@@ -110,7 +110,7 @@ session_start();
             }
             ?>   
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="../contact_page.php">Contact</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><sup><?php cartItem();?></sup></a>

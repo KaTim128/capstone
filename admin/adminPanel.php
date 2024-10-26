@@ -133,7 +133,7 @@ body {
                     <button><a href="adminPanel.php?listOrders" class="nav-link text-light bg-info">All Orders</a></button>
                     <button><a href="adminPanel.php?listPayments" class="nav-link text-light bg-info">All Payments</a></button>
                     <button><a href="adminPanel.php?listUsers" class="nav-link text-light bg-info">List Users</a></button>
-                    <button><a href="../index.php" class="nav-link text-light bg-info">Logout</a></button>
+                    <button><a href="../users/user_login.php" class="nav-link text-light bg-info">Logout</a></button>
                 </div>
             </div>
         </div>

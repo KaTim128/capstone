@@ -42,3 +42,22 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.alert-container {
+  position: relative; /* Change to relative */
+  left: 50%; /* Center horizontally */
+  text-align: center;
+  margin: 20px 10px;
+  transform: translateX(-50%); /* Adjust to keep it centered */
+  z-index: 1050; /* Ensure it's above other elements */
+  width: 40%; /* Adjust width as needed */
+  transition: opacity 0.5s ease; /* Fade-in/out animation */
+  opacity: 0; /* Start with an invisible alert */
+  visibility: hidden; /* Start with an invisible alert */
+}
+
+/* Class to make the alert visible */
+.alert-visible {
+  opacity: 1; /* Fully visible */
+  visibility: visible; /* Set to visible */
+}
