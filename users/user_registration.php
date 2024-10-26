@@ -26,7 +26,7 @@ include('../functions/common_function.php');
         </div>
         <div class="form-container">
             <h3>New User Registration</h3>
-            <div id="alertContainer" class="alert-container"></div>
+            <div id="alertContainer"></div>
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="user_username">Username</label>

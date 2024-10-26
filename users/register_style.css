@@ -149,19 +149,4 @@ label {
   }
 }
 
-.alert-container {
-  position: fixed; /* Use fixed positioning to stay in view */
-  top: -80px; /* Start off-screen */
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%);
-  z-index: 1000; /* High z-index to appear on top of other elements */
-  width: 90%; /* Adjust width as needed */
-  white-space: nowrap; /* Prevent line breaks */
-  overflow: hidden; /* Hides overflow content */
-  transition: top 0.5s ease; /* Smooth slide-down animation */
-  text-align: center; /* Center the alert text */
-}
 
-.alert-visible {
-  top: 0px; /* Adjust this position to move it into view */
-}
