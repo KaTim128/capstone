@@ -1,0 +1,212 @@
+<?php
+// Corrected include file name
+include('../database/connection.php');
+include('../functions/common_function.php');
+session_start();
+
+if (isset($_POST['add_to_wishlist'])) {
+    if (isset($_SESSION['user_id'])) {
+        $user_id = $_SESSION['user_id'];
+        $book_title = $_POST['book_title'];
+        $book_image = $_POST['book_image'];
+        $book_price = $_POST['book_price'];
+
+        // Check if the book is already in the wishlist
+        $check_query = "SELECT * FROM wishlist WHERE user_id='$user_id' AND name='$book_title'";
+        $check_result = mysqli_query($conn, $check_query);
+
+        if (mysqli_num_rows($check_result) > 0) {
+            echo "<script>alert('This book is already in your wishlist.'); window.location.href='./wishlist.php';</script>";
+        } else {
+            // Insert the book into the wishlist
+            $insert_query = "INSERT INTO wishlist (user_id, name, image, price) VALUES ('$user_id', '$book_title', '$book_image', '$book_price')";
+            if (mysqli_query($conn, $insert_query)) {
+                echo "<script>alert('Book added to wishlist successfully!'); window.location.href='./wishlist.php';</script>";
+            } else {
+                echo "<script>alert('Error adding book to wishlist.'); window.location.href='../index.php';</script>";
+            }
+        }
+    } else {
+        echo "<script>alert('Please log in to add items to your wishlist.'); window.location.href='login.php';</script>";
+    }
+}
+
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ecommerce Website using Php and Mysqli</title>
+  <!-- bootstrap CSS link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- font awesome link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- css file -->
+  <link rel="stylesheet" href="style.css">
+  <style>
+    th {
+    text-align: center;
+    }
+
+    td{
+        text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- navbar -->
+  <div class="container-fluid p-0">
+    <!-- first child  -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+      <div class="container-fluid">
+        <img src="../images/logo_new.png" alt="" style="width: 6%; height: 7%; margin-right: 15px; border-radius:5px">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="../index.php">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../displayAll.php">Products</a>
+            </li>
+            <?php
+            if (isset($_SESSION['user_username'])) {
+              echo "<li class='nav-item'>
+                      <a class='nav-link' href='./users/profile.php'>My Account</a>
+                    </li>";
+            } else {
+              echo "<li class='nav-item'>
+                      <a class='nav-link' href='./users/user_registration.php'>Register</a>
+                    </li>";
+            }
+            ?>   
+            <li class="nav-item">
+              <a class="nav-link" href="../contact_page.php">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><sup><?php cartItem(); ?></sup></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
+            </li>
+          </ul>
+          <form class="d-flex form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
+            <input type="submit" value="search" class="btn btn-outline-light" name="search_data_product">
+          </form>
+        </div>
+      </nav>
+
+      <!-- call cart function -->
+      <?php 
+      manageCart(); 
+      displayAlert(); 
+      ?>
+
+      <!-- second child -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+        <ul class="navbar-nav me-auto">
+          <?php
+          if (isset($_SESSION['user_username'])) {
+            echo "<li class='nav-item'>
+                    <a class='nav-link'>Welcome " . htmlspecialchars($_SESSION['user_username']) . "</a>
+                  </li>";
+          } else {
+            echo "<li class='nav-item'>
+                    <a class='nav-link' href='#'>Welcome guest</a>
+                  </li>";
+          }
+          if (isset($_SESSION['user_username'])) {
+            echo "<li class='nav-item'>
+                    <a class='nav-link' href='./users/logout.php'>Logout</a>
+                  </li>";
+          } else {
+            echo "<li class='nav-item'>
+                    <a class='nav-link' href='./users/user_login.php'>Login</a>
+                  </li>";
+          }
+          ?>
+        </ul>
+      </nav>
+
+      <!-- third child -->
+      <div class="bg-light">
+        <h3 class="text-center" style="overflow: hidden;">Course Store</h3>
+        <p class="text-center">Online bookstore for students</p>
+      </div>
+
+
+      <div class="container mt-4">
+      <h4 class="mt-4 mb-4 text-center text-success" style="overflow:hidden">Your Wishlist</h4>
+    <table class="table table-bordered table-striped center-table mt-5">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+        // Check if the user is logged in
+        if (isset($_SESSION['user_id'])) {
+            $user_id = $_SESSION['user_id'];
+            
+            // Query to retrieve items from the wishlist (books and tools)
+            $wishlist_query = "SELECT * FROM wishlist WHERE user_id = '$user_id'";
+            $result = mysqli_query($conn, $wishlist_query);
+            
+            // Check if there are results
+            if (mysqli_num_rows($result) > 0) {
+                // Loop through each item in the wishlist
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $product_type = $row['type']; // Assuming 'type' column indicates whether it's a book or tool
+                    $product_image = $row['image'];
+                    $product_title = $row['name'];
+                    $product_price = $row['price'];
+
+                    $product_type = strpos($product_title, 'Tool') !== false ? 'tool' : 'book';
+
+                    echo "<tr>
+                            <td><img src='../admin/bookImages/$product_image' style='width: 50px; height: 50px;'></td>
+                            <td>$product_title</td>
+                            <td>RM$product_price</td>
+                            <td></td>
+                            <td></td>
+                        </tr>";
+                }
+            } else {
+                echo "<tr><td colspan='4' class='text-center'>No items in your wishlist.</td></tr>";
+            }
+        } else {
+            echo "<tr><td colspan='4' class='text-center'>Please log in to view your wishlist.</td></tr>";
+        }
+        ?>
+        </tbody>
+    </table>
+</div>
+
+<script>
+function removeFromWishlist(itemId) {
+    if(confirm('Are you sure you want to remove this item from your wishlist?')) {
+        window.location.href = 'removeFromWishlist.php?id=' + itemId; // Redirect to a remove script
+    }
+}
+</script>
+
+
+  <!-- Footer -->
+  <?php getFooter(); ?>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

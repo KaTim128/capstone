@@ -137,8 +137,7 @@ $sql_orders = 'CREATE TABLE IF NOT EXISTS orders (
     user_id INT NOT NULL,
     amount_due INT(255) NOT NULL,
     total_products INT NOT NULL,
-    invoice_number INT(255) NOT NULL,
-    
+    invoice_number INT(255) NOT NULL,   
     order_date TIMESTAMP NOT NULL,
     order_status VARCHAR(255) NOT NULL
 )';
@@ -203,4 +202,19 @@ $retval = mysqli_query($conn, $sql_contacts);
 if (!$retval) {
     die('Could not create table contacts: ' . mysqli_error($conn));
 }
+
+$sql_wishlist = 'CREATE TABLE IF NOT EXISTS wishlist (
+    wishlist_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    image VARCHAR(255) DEFAULT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    type ENUM("book", "tool") NOT NULL  
+)';
+
+$retval = mysqli_query($conn, $sql_wishlist);
+if (!$retval) {
+    die('Could not create table wishlist: ' . mysqli_error($conn));
+}
 ?>
+

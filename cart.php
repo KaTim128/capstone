@@ -74,7 +74,6 @@ if (isset($_POST['remove_cart'])) {
   <!-- font awesome link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- css file -->
-  <link rel="stylesheet" href="style.css">
   <style>
     th {
     text-align: center;
@@ -93,6 +92,42 @@ if (isset($_POST['remove_cart'])) {
         margin:0 auto;
         width:70%;
     }
+
+    .table {
+    width: 100%;
+    table-layout: auto; /* Ensures that the table expands to fit the content */
+}
+
+@media (max-width: 768px) {
+    .table thead {
+        display: none; /* Hide the table headers on small screens */
+    }
+
+    .table, .table tbody, .table tr, .table td {
+        display: block; /* Makes each row a block element */
+        width: 100%; /* Full width for each row */
+    }
+
+    .table tr {
+        margin-bottom: 15px; /* Adds spacing between rows */
+    }
+
+    .table td {
+        text-align: left; /* Aligns text to the left for better readability */
+        position: relative; /* Required for pseudo-element */
+        padding: 10px; /* Adds padding for better spacing */
+        border: 1px solid #dee2e6; /* Optional: borders for clarity */
+    }
+
+    .table td::before {
+        content: attr(data-label); /* Use the data-label attribute for headers */
+        position: absolute;
+        left: 10px; /* Spacing from the left */
+        top: 10px; /* Spacing from the top */
+        font-weight: bold; /* Makes the label bold */
+    }
+}
+
   </style>
 </head>
 <body>
@@ -225,7 +260,7 @@ manageCart();
                   ?>
                   <tr>
                     <td><?php echo $book_title; ?></td>
-                    <td><img src="./images/<?php echo $book_image; ?>" alt="" class="cart-img img-fluid"></td>
+                    <td><img src="./admin/bookImages/<?php echo $book_image; ?>" alt="" class="cart-img img-fluid"></td>
                     <td><input type="number" name="qty[b<?php echo $book_id; ?>]" value="<?php echo $quantity; ?>" class="form-input w-70" min="1" max="10" oninput="this.value = Math.max(this.value, 1)"></td>
                     <td>RM<?php echo $book_price * $quantity; ?>/-</td>
                     <td>
@@ -255,7 +290,7 @@ manageCart();
                   ?>
                   <tr>
                       <td><?php echo $tool_title; ?></td>
-                      <td><img src="./images/<?php echo $tool_image; ?>" alt="" class="cart-img img-fluid"></td>
+                      <td><img src="./admin/toolImages/<?php echo $tool_image; ?>" alt="" class="cart-img img-fluid"></td>
                       <td><input type="number" name="qty[t<?php echo $tool_id; ?>]" value="<?php echo $quantity; ?>" class="form-input w-70" min="1" max="10" oninput="this.value = Math.max(this.value, 1)"></td>
                       <td>RM<?php echo $tool_price * $quantity; ?>/-</td>
                       <td></td>

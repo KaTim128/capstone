@@ -94,32 +94,52 @@ if (isset($_POST['user_register'])) {
     // Check if passwords match
     if ($user_password !== $conf_user_password) {
         echo '<script>document.getElementById("alertContainer").setAttribute("data-alert-message", "Passwords do not match."); document.getElementById("alertContainer").setAttribute("data-alert-type", "danger");</script>';
+    }  
+    
+    // Improved regex to validate typical street address format
+    $address_regex = '/^[\s\S]{5,}$/';
+    
+    if (!preg_match($address_regex, $user_address)) {
+        echo '<script>document.getElementById("alertContainer").setAttribute("data-alert-message", "Invalid address. Please enter a valid address."); document.getElementById("alertContainer").setAttribute("data-alert-type", "danger");</script>';
+        exit;
+    }
+
+    $justNums = preg_replace("/[^0-9]/", '', $user_contact);
+
+    // Validate if it’s a typical Malaysian mobile number
+    if (!preg_match("/^01[0-9]{8,9}$/", $justNums)) {
+        echo '<script>document.getElementById("alertContainer").setAttribute("data-alert-message", "Invalid phone number. Please enter a valid Malaysian mobile number."); document.getElementById("alertContainer").setAttribute("data-alert-type", "danger");</script>';
+        exit;  
+    }
+
+    
+    // Check if username or email already exists
+    $select_username_query = "SELECT * FROM `user` WHERE user_username='$user_username'";
+    $username_result = mysqli_query($conn, $select_username_query);
+    $username_count = mysqli_num_rows($username_result);
+    
+    $select_email_query = "SELECT * FROM `user` WHERE user_email='$user_email'";
+    $email_result = mysqli_query($conn, $select_email_query);
+    $email_count = mysqli_num_rows($email_result);
+    
+    if ($username_count > 0) {
+        echo '<script>document.getElementById("alertContainer").setAttribute("data-alert-message", "Username already exists."); document.getElementById("alertContainer").setAttribute("data-alert-type", "danger");</script>';
+    } elseif ($email_count > 0) {
+        echo '<script>document.getElementById("alertContainer").setAttribute("data-alert-message", "Email already exists."); document.getElementById("alertContainer").setAttribute("data-alert-type", "danger");</script>';
     } else {
-        $select_username_query = "SELECT * FROM `user` WHERE user_username='$user_username'";
-        $username_result = mysqli_query($conn, $select_username_query);
-        $username_count = mysqli_num_rows($username_result);
-
-        $select_email_query = "SELECT * FROM `user` WHERE user_email='$user_email'";
-        $email_result = mysqli_query($conn, $select_email_query);
-        $email_count = mysqli_num_rows($email_result);
-
-        if ($username_count > 0) {
-            echo '<script>document.getElementById("alertContainer").setAttribute("data-alert-message", "Username already exists."); document.getElementById("alertContainer").setAttribute("data-alert-type", "danger");</script>';
-        } elseif ($email_count > 0) {
-            echo '<script>document.getElementById("alertContainer").setAttribute("data-alert-message", "Email already exists."); document.getElementById("alertContainer").setAttribute("data-alert-type", "danger");</script>';
+        move_uploaded_file($user_image_temp, "./user_images/$user_image");
+    
+        $insert_query = "INSERT INTO `user` (user_username, user_email, user_password, user_image, user_address, user_contact, user_ip) VALUES ('$user_username', '$user_email', '$hash_password', '$user_image', '$user_address', '$user_contact', '$user_ip')";
+        $result = mysqli_query($conn, $insert_query);
+    
+        if ($result) {
+            echo '<script>document.getElementById("alertContainer").setAttribute("data-alert-message", "Registration successful!"); document.getElementById("alertContainer").setAttribute("data-alert-type", "success");</script>';
         } else {
-            move_uploaded_file($user_image_temp, "./user_images/$user_image");
-
-            $insert_query = "INSERT INTO `user` (user_username, user_email, user_password, user_image, user_address, user_contact, user_ip) VALUES ('$user_username', '$user_email', '$hash_password', '$user_image', '$user_address', '$user_contact', '$user_ip')";
-            $result = mysqli_query($conn, $insert_query);
-
-            if ($result) {
-                echo '<script>document.getElementById("alertContainer").setAttribute("data-alert-message", "Registration successful!"); document.getElementById("alertContainer").setAttribute("data-alert-type", "success");</script>';
-            } else {
-                echo '<script>document.getElementById("alertContainer").setAttribute("data-alert-message", "Error during registration. Please try again."); document.getElementById("alertContainer").setAttribute("data-alert-type", "danger");</script>';
-            }
+            echo '<script>document.getElementById("alertContainer").setAttribute("data-alert-message", "Error during registration. Please try again."); document.getElementById("alertContainer").setAttribute("data-alert-type", "danger");</script>';
         }
     }
-}
+    
+    }
+
 ?>
 

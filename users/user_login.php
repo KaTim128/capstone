@@ -84,6 +84,9 @@ if(isset($_POST['user_login'])){
                 </div>
                 <input type="submit" value="Login" class="btn btn-login mt-4 mb-4" name="user_login">
                 <p class="mt-2 text-register">
+                    Login as guest? <a href="../index.php">Click Here</a>
+                </p>
+                <p class="mt-2 text-register">
                     Don't have an account? <a href="user_registration.php">Register</a>
                 </p>
             </form>

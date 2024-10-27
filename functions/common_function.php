@@ -257,17 +257,22 @@ function viewBookDetails(){
                 <div class='d-flex'>
                   <a href='index.php' class='btn btn-info me-2 mr-2 mb-3'>Back</a>
                   <a href='index.php?cart=$book_id' class='btn btn-info me-2 mr-2 mb-3'>Add to Cart</a>
-                  <a href='add_to_wishlist.php?book_id=<?php echo $book_id; ?>' class='btn btn-info me-2 mr-2 mb-3'>Add to Wishlist</a>
-                  <a href='reviews.php?book_id=<?php echo $book_id; ?>' class='btn btn-info mb-3'>Reviews</a>
-                </div>
-            </div>
-
-         </div>
-    </div>";
+                  <form method='post' action='users/wishlist.php' class='me-2 mr-2 mb-3'>
+                                      <input type='hidden' name='book_id' value='$book_id_with_prefix'>
+                                      <input type='hidden' name='book_title' value='$book_title'>
+                                      <input type='hidden' name='book_image' value='$image'>
+                                      <input type='hidden' name='book_price' value='$price'>
+                                      <input type='submit' class='btn btn-info' name='add_to_wishlist' value='Add to Wishlist'>
+                                  </form>
+                                  <a href='users/reviews.php?book_id=$book_id' class='btn btn-info mb-3'>Reviews</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>";
             }
         }
-      }
     }
+}
 
 
     function viewToolDetails(){
@@ -310,17 +315,22 @@ function viewBookDetails(){
                 <div class='d-flex'>
                   <a href='index.php' class='btn btn-info me-2 mr-2 mb-3'>Back</a>
                   <a href='index.php?cart=$tool_id' class='btn btn-info me-2 mr-2 mb-3'>Add to Cart</a>
-                  <a href='add_to_wishlist.php?book_id=<?php echo $tool_id; ?>' class='btn btn-info me-2 mr-2 mb-3'>Add to Wishlist</a>
-                  <a href='reviews.php?book_id=<?php echo $tool_id; ?>' class='btn btn-info mb-3'>Reviews</a>
-                </div>
-            </div>
-
-         </div>
-    </div>";
+                                <form method='post' action='users/wishlist.php' class='me-2 mr-2 mb-3'>
+                                    <input type='hidden' name='book_id' value='$tool_id_with_prefix'>
+                                    <input type='hidden' name='book_title' value='$tool_title'>
+                                    <input type='hidden' name='book_image' value='$image'>
+                                    <input type='hidden' name='book_price' value='$price'>
+                                    <input type='submit' class='btn btn-info' name='add_to_wishlist' value='Add to Wishlist'>
+                                </form>
+                                <a href='users/reviews.php?tool_id=$tool_id' class='btn btn-info mb-3'>Reviews</a>
+                              </div>
+                          </div>
+                        </div>
+                    </div>";
             }
         }
-      }
     }
+}
 
 
 //get ip function
@@ -495,5 +505,7 @@ function cartItem() {
         }
     }
 }
+
+
 
 ?>
