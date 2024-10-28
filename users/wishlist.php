@@ -27,8 +27,20 @@ if (isset($_POST['add_to_wishlist'])) {
             }
         }
     } else {
-        echo "<script>alert('Please log in to add items to your wishlist.'); window.location.href='login.php';</script>";
+        echo "<script>alert('Please log in to add items to your wishlist.'); window.location.href='user_login.php';</script>";
     }
+}
+
+if (isset($_POST['remove_item'])) {
+  $wishlist_id = $_POST['wishlist_id'];
+
+  // Query to delete item from wishlist based on the wishlist_id
+  $delete_query = "DELETE FROM wishlist WHERE wishlist_id = '$wishlist_id'";
+  if (mysqli_query($conn, $delete_query)) {
+      echo "<script>alert('Item removed from wishlist successfully!'); window.location.href='./wishlist.php';</script>";
+  } else {
+      echo "<script>alert('Error removing item from wishlist.'); window.location.href='./wishlist.php';</script>";
+  }
 }
 
 
@@ -149,56 +161,46 @@ if (isset($_POST['add_to_wishlist'])) {
                 <th>Product</th>
                 <th>Title</th>
                 <th>Price</th>
-                <th></th>
+                <th>Operations</th>
             </tr>
         </thead>
         <tbody>
-        <?php
-        // Check if the user is logged in
-        if (isset($_SESSION['user_id'])) {
-            $user_id = $_SESSION['user_id'];
+<?php
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $wishlist_query = "SELECT * FROM wishlist WHERE user_id = '$user_id'";
+    $result = mysqli_query($conn, $wishlist_query);
+    
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $wishlist_id = $row['wishlist_id'];
+            $product_image = $row['image'];
+            $product_title = $row['name'];
+            $product_price = $row['price'];
             
-            // Query to retrieve items from the wishlist (books and tools)
-            $wishlist_query = "SELECT * FROM wishlist WHERE user_id = '$user_id'";
-            $result = mysqli_query($conn, $wishlist_query);
-            
-            // Check if there are results
-            if (mysqli_num_rows($result) > 0) {
-                // Loop through each item in the wishlist
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $product_type = $row['type']; // Assuming 'type' column indicates whether it's a book or tool
-                    $product_image = $row['image'];
-                    $product_title = $row['name'];
-                    $product_price = $row['price'];
-
-                    $product_type = strpos($product_title, 'Tool') !== false ? 'tool' : 'book';
-
-                    echo "<tr>
-                            <td><img src='../admin/bookImages/$product_image' style='width: 50px; height: 50px;'></td>
-                            <td>$product_title</td>
-                            <td>RM$product_price</td>
-                            <td></td>
-                            <td></td>
-                        </tr>";
-                }
-            } else {
-                echo "<tr><td colspan='4' class='text-center'>No items in your wishlist.</td></tr>";
-            }
-        } else {
-            echo "<tr><td colspan='4' class='text-center'>Please log in to view your wishlist.</td></tr>";
+            echo "<tr>
+                    <td><img src='../admin/bookImages/$product_image' style='width: 50px; height: 50px;'></td>
+                    <td>$product_title</td>
+                    <td>RM$product_price</td>
+                    <td>
+                        <form method='POST' action=''>
+                            <input type='hidden' name='wishlist_id' value='$wishlist_id'>
+                            <input type='submit' value='Remove' class='bg-danger px-3 py-1 mb-3 border-0' name='remove_item'>
+                        </form>
+                    </td>
+                  </tr>";
         }
-        ?>
-        </tbody>
+    } else {
+        echo "<tr><td colspan='4' class='text-center'>No items in your wishlist.</td></tr>";
+    }
+} else {
+    echo "<tr><td colspan='4' class='text-center'>Please log in to view your wishlist.</td></tr>";
+}
+?>
+</tbody>
+
     </table>
 </div>
-
-<script>
-function removeFromWishlist(itemId) {
-    if(confirm('Are you sure you want to remove this item from your wishlist?')) {
-        window.location.href = 'removeFromWishlist.php?id=' + itemId; // Redirect to a remove script
-    }
-}
-</script>
 
 
   <!-- Footer -->

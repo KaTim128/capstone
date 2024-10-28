@@ -209,7 +209,7 @@ $sql_wishlist = 'CREATE TABLE IF NOT EXISTS wishlist (
     name VARCHAR(100) NOT NULL,
     image VARCHAR(255) DEFAULT NULL,
     price DECIMAL(10,2) NOT NULL,
-    type ENUM("book", "tool") NOT NULL  
+    type ENUM("book", "tool") NOT NULL
 )';
 
 $retval = mysqli_query($conn, $sql_wishlist);
