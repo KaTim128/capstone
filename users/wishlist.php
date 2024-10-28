@@ -5,30 +5,36 @@ include('../functions/common_function.php');
 session_start();
 
 if (isset($_POST['add_to_wishlist'])) {
-    if (isset($_SESSION['user_id'])) {
-        $user_id = $_SESSION['user_id'];
-        $book_title = $_POST['book_title'];
-        $book_image = $_POST['book_image'];
-        $book_price = $_POST['book_price'];
+  if (isset($_SESSION['user_id'])) {
+      $user_id = $_SESSION['user_id'];
+      $book_id = isset($_POST['book_id']) ? str_replace('b', '', $_POST['book_id']) : null;
+      $tool_id = isset($_POST['tool_id']) ? str_replace('t', '', $_POST['tool_id']) : null;
+      $item_name = $_POST['book_title'];
+      $item_image = $_POST['book_image'];
+      $item_price = $_POST['book_price'];
 
-        // Check if the book is already in the wishlist
-        $check_query = "SELECT * FROM wishlist WHERE user_id='$user_id' AND name='$book_title'";
-        $check_result = mysqli_query($conn, $check_query);
+      // Check if the item is already in the wishlist
+      $check_query = "SELECT * FROM wishlist WHERE user_id='$user_id' AND name='$item_name'";
+      $check_result = mysqli_query($conn, $check_query);
 
-        if (mysqli_num_rows($check_result) > 0) {
-            echo "<script>alert('This book is already in your wishlist.'); window.location.href='./wishlist.php';</script>";
-        } else {
-            // Insert the book into the wishlist
-            $insert_query = "INSERT INTO wishlist (user_id, name, image, price) VALUES ('$user_id', '$book_title', '$book_image', '$book_price')";
-            if (mysqli_query($conn, $insert_query)) {
-                echo "<script>alert('Book added to wishlist successfully!'); window.location.href='./wishlist.php';</script>";
-            } else {
-                echo "<script>alert('Error adding book to wishlist.'); window.location.href='../index.php';</script>";
-            }
-        }
-    } else {
-        echo "<script>alert('Please log in to add items to your wishlist.'); window.location.href='user_login.php';</script>";
-    }
+      if (mysqli_num_rows($check_result) > 0) {
+          echo "<script>alert('This item is already in your wishlist.'); window.location.href='./wishlist.php';</script>";
+      } else {
+          // Insert item with numeric book_id/tool_id after prefix removal
+          $insert_query = "INSERT INTO wishlist (user_id, name, image, price, book_id, tool_id) 
+                           VALUES ('$user_id', '$item_name', '$item_image', '$item_price', " . 
+                           ($book_id ? "'$book_id'" : 'NULL') . ", " . 
+                           ($tool_id ? "'$tool_id'" : 'NULL') . ")";
+
+          if (mysqli_query($conn, $insert_query)) {
+              echo "<script>alert('Item added to wishlist successfully!'); window.location.href='./wishlist.php';</script>";
+          } else {
+              echo "<script>alert('Error adding item to wishlist.'); window.location.href='../index.php';</script>";
+          }
+      }
+  } else {
+      echo "<script>alert('Please log in to add items to your wishlist.'); window.location.href='user_login.php';</script>";
+  }
 }
 
 if (isset($_POST['remove_item'])) {
@@ -151,10 +157,19 @@ if (isset($_POST['remove_item'])) {
         <h3 class="text-center" style="overflow: hidden;">Course Store</h3>
         <p class="text-center">Online bookstore for students</p>
       </div>
-
+      <?php
+      // Get items from wishlist
+      $wishlist_query = "SELECT * FROM `wishlist`";
+      $result = mysqli_query($conn, $wishlist_query);
+      $num_of_rows = mysqli_num_rows($result);
+      if ($num_of_rows == 0) {      
+          echo "<div class='alert alert-warning text-center my-5' style='margin: 0 auto; width: fit-content;'>
+          There are no items in the wishlist.</div>";
+      } else {
+      ?>
 
       <div class="container mt-4">
-      <h4 class="mt-4 mb-4 text-center text-success" style="overflow:hidden">Your Wishlist</h4>
+      <h4 class="mt-4  text-center text-success" style="overflow:hidden">Your Wishlist</h4>
     <table class="table table-bordered table-striped center-table mt-5">
         <thead>
             <tr>
@@ -172,24 +187,30 @@ if (isset($_SESSION['user_id'])) {
     $result = mysqli_query($conn, $wishlist_query);
     
     if (mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            $wishlist_id = $row['wishlist_id'];
-            $product_image = $row['image'];
-            $product_title = $row['name'];
-            $product_price = $row['price'];
-            
-            echo "<tr>
-                    <td><img src='../admin/bookImages/$product_image' style='width: 50px; height: 50px;'></td>
-                    <td>$product_title</td>
-                    <td>RM$product_price</td>
-                    <td>
-                        <form method='POST' action=''>
-                            <input type='hidden' name='wishlist_id' value='$wishlist_id'>
-                            <input type='submit' value='Remove' class='bg-danger px-3 py-1 mb-3 border-0' name='remove_item'>
-                        </form>
-                    </td>
-                  </tr>";
-        }
+      while ($row = mysqli_fetch_assoc($result)) {
+        $item_id = $row['book_id'] ?? $row['tool_id'];
+        $item_type = $row['book_id'] ? 'book' : 'tool';
+        $item_image = $row['image'];
+        $item_title = $row['name'];
+        $item_price = $row['price'];
+    
+        // Adjust the link to point to the appropriate details page
+        $details_link = $item_type === 'book' ? "../bookDetails.php?book_id=b$item_id" : "../toolDetails.php?tool_id=t$item_id";
+    
+        echo "<tr>
+                <td><img src='../admin/toolImages/$item_image' style='width: 50px; height: 50px;'></td>
+                <td>$item_title</td>
+                <td>RM$item_price</td>
+                <td>
+                    <a href='$details_link' class='btn btn-info'>View Details</a>
+                    <form method='POST' action='' style='display:inline;'>
+                        <input type='hidden' name='wishlist_id' value='{$row['wishlist_id']}'>
+                        <button type='submit' name='remove_item' class='btn btn-danger'>Remove</button>
+                    </form>
+                </td>
+            </tr>";
+    }
+    
     } else {
         echo "<tr><td colspan='4' class='text-center'>No items in your wishlist.</td></tr>";
     }
@@ -201,7 +222,7 @@ if (isset($_SESSION['user_id'])) {
 
     </table>
 </div>
-
+<?php } ?>
 
   <!-- Footer -->
   <?php getFooter(); ?>

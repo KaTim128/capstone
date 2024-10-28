@@ -133,31 +133,31 @@ function getStationeries(){
       }
     }
 
-    function getFooter(){
-      global $conn;
+    function getFooter() {
       echo "
-        <style>
-          body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-          }
-          .main-content {
-            flex: 1;
-          }
-          .footer {
-            margin-top: auto;
-            background-color: #17a2b8;
-            padding: 1rem;
-            text-align: center;
-            width:100%;
-          }
-        </style>
-
-        <div class='footer'>
-          <p>Website, Designed by Ho Ka Tim © 2024.</p>
-        </div>";
-    }
+          <style>
+            body {
+              display: flex;
+              flex-direction: column;
+              min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+              margin: 0; /* Remove default body margin */
+            }
+            .main-content {
+              flex: 1; /* Allow main content to grow and take up space */
+              padding: 1rem; /* Optional: Add some padding */
+            }
+            .footer {
+              background-color: #17a2b8; /* Footer background color */
+              padding: 1rem; /* Padding for footer */
+              text-align: center; /* Center text in footer */
+              width: 100%; /* Full width footer */
+            }
+          </style>
+          <div class='footer'>
+            <p>Website, Designed by Ho Ka Tim © 2024.</p>
+          </div>";
+  }
+  
     
 
 
@@ -230,7 +230,7 @@ function viewBookDetails(){
       $result_query = mysqli_query($conn, $select_query);
 
       while ($row = mysqli_fetch_assoc($result_query)) {
-        $book_id_with_prefix = 'b' . $row['book_id']; // Re-adding the prefix for display and links
+        $book_id_with_prefix = 'b' . $row['book_id'];
         $book_title = $row['book_title'];
         $author = $row['author'];
         $description = $row['description'];
@@ -316,7 +316,7 @@ function viewBookDetails(){
                   <a href='index.php' class='btn btn-info me-2 mr-2 mb-3'>Back</a>
                   <a href='index.php?cart=$tool_id' class='btn btn-info me-2 mr-2 mb-3'>Add to Cart</a>
                                 <form method='post' action='users/wishlist.php' class='me-2 mr-2 mb-3'>
-                                    <input type='hidden' name='book_id' value='$tool_id_with_prefix'>
+                                    <input type='hidden' name='tool_id' value='$tool_id_with_prefix'>
                                     <input type='hidden' name='book_title' value='$tool_title'>
                                     <input type='hidden' name='book_image' value='$image'>
                                     <input type='hidden' name='book_price' value='$price'>
