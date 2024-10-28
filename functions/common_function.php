@@ -133,31 +133,31 @@ function getStationeries(){
       }
     }
 
-    function getFooter() {
+    function getFooter(){
+      global $conn;
       echo "
-          <style>
-            body {
-              display: flex;
-              flex-direction: column;
-              min-height: 100vh; /* Ensure the body takes at least the full viewport height */
-              margin: 0; /* Remove default body margin */
-            }
-            .main-content {
-              flex: 1; /* Allow main content to grow and take up space */
-              padding: 1rem; /* Optional: Add some padding */
-            }
-            .footer {
-              background-color: #17a2b8; /* Footer background color */
-              padding: 1rem; /* Padding for footer */
-              text-align: center; /* Center text in footer */
-              width: 100%; /* Full width footer */
-            }
-          </style>
-          <div class='footer'>
-            <p>Website, Designed by Ho Ka Tim © 2024.</p>
-          </div>";
-  }
-  
+        <style>
+          body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+          }
+          .main-content {
+            flex: 1;
+          }
+          .footer {
+            margin-top: auto;
+            background-color: #17a2b8;
+            padding: 1rem;
+            text-align: center;
+            width:100%;
+          }
+        </style>
+
+        <div class='footer'>
+          <p>Website, Designed by Ho Ka Tim © 2024.</p>
+        </div>";
+    }
     
 
 
@@ -181,7 +181,7 @@ function searchProducts() {
 
       // If no products are found
       if ($num_of_rows == 0) {
-          echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>Product searched is unavailable</div>";
+          echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>Product searched is not found.</div>";
       }
 
       // Display results from both books and tools

@@ -82,6 +82,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li class="nav-item">
               <a class="nav-link" href="displayAll.php">Products</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./users/wishlist.php">Wishlist</a>
+            </li>
             <?php
             if (isset($_SESSION['user_username'])) {
               echo "<li class='nav-item'>
@@ -169,7 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <label for="message">Message</label>
                   <textarea class="form-control" id="message" name="message" rows="3" placeholder="Enter your message"><?php echo htmlspecialchars($message); ?></textarea>
               </div>
-              <div class="d-flex justify-content-center">
+              <div class="d-flex mb-2 justify-content-center">
                   <button type="submit" class="btn btn-primary">Submit</button>
               </div>
           </form>

@@ -98,6 +98,9 @@ session_start();
             <li class="nav-item">
               <a class="nav-link" href="../displayAll.php">Products</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./wishlist.php">Wishlist</a>
+            </li>
             <?php
             if(isset($_SESSION['user_username'])){
               echo"<li class='nav-item'>
@@ -184,7 +187,7 @@ session_start();
             </li>
             <li>
               <a class="nav-link text-light" href="profile.php?edit_account"><h6 style="overflow:hidden;">Edit Account</h6></a>
-            </li> 
+            </li>
             <li>
               <a class="nav-link text-light" href="profile.php?my_orders"><h6 style="overflow:hidden;">Pending Orders</h6></a>
             </li>
