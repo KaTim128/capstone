@@ -144,10 +144,7 @@ if (isset($_POST['remove_cart'])) {
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="displayAll.php">Products</a>
+        <a class="nav-link" href="index.php">Products<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
               <a class="nav-link" href="./users/wishlist.php">Wishlist</a>
@@ -216,7 +213,7 @@ manageCart();
   <h3 class="text-center" style="overflow: hidden;">Course Store</h3>
   <p class="text-center">Online bookstore for students</p>
 </div>
-
+<h3 class="text-center mt-5" style="overflow:hidden">Your Cart</h3>
 <!-- Cart Table -->
 <div class="container">
   <div class="table-responsive">
@@ -232,7 +229,7 @@ manageCart();
       } else {
           // Only display the table if there are items in the cart
           ?>
-          <table class="table table-bordered table-striped center-table mt-5">
+          <table class="table table-bordered table-striped center-table mt-3">
             <thead>
               <tr>
                 <th>Product Title</th>
@@ -274,8 +271,8 @@ manageCart();
                     </td>
                     <td><input type="checkbox" name="remove[]" value="b<?php echo $book_id; ?>"></td>
                     <td colspan="2">
-                        <input type="submit" value="Update Cart" class="bg-info px-3 py-1 mx-3 mb-3 mt-3 border-0" name="update_cart">
-                        <input type="submit" value="Remove" class="bg-danger px-3 py-1 mb-3 border-0" name="remove_cart">
+                    <button type="submit" class="btn btn-info px-3 py-1 mx-3 mb-3 border-0" name="update_cart">Update Cart</button>
+                    <button type="submit" class="btn btn-danger px-3 py-1 mb-3 border-0" name="remove_cart">Remove</button>
                     </td>
                   </tr>
                   <?php

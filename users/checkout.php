@@ -36,16 +36,16 @@ session_start();
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="../index.php">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="../index.php">Products<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../displayAll.php">Products</a>
+              <a class="nav-link" href="./wishlist.php">Wishlist</a>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./user_registration.php">Register</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="registration.php">Register</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="../contact_page.php">Contact</a>
           </li>
         </ul>
         <form class="d-flex form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">

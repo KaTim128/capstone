@@ -71,6 +71,18 @@ if (isset($_POST['remove_item'])) {
     td{
         text-align: center;
     }
+
+    .item-img{
+        width:80px;
+        height:70px;
+    }
+
+    .btn{
+      margin-right:15px;
+    }
+    .operations {
+      white-space: nowrap; 
+    }
   </style>
 </head>
 <body>
@@ -87,10 +99,7 @@ if (isset($_POST['remove_item'])) {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="../index.php">Home<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../displayAll.php">Products</a>
+              <a class="nav-link" href="../index.php">Products<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Wishlist</a>
@@ -102,7 +111,7 @@ if (isset($_POST['remove_item'])) {
                     </li>";
             } else {
               echo "<li class='nav-item'>
-                      <a class='nav-link' href='./users/user_registration.php'>Register</a>
+                      <a class='nav-link' href='./user_registration.php'>Register</a>
                     </li>";
             }
             ?>   
@@ -148,7 +157,7 @@ if (isset($_POST['remove_item'])) {
                   </li>";
           } else {
             echo "<li class='nav-item'>
-                    <a class='nav-link' href='./users/user_login.php'>Login</a>
+                    <a class='nav-link' href='./user_login.php'>Login</a>
                   </li>";
           }
           ?>
@@ -172,8 +181,8 @@ if (isset($_POST['remove_item'])) {
       ?>
 
       <div class="container mt-4">
-      <h4 class="mt-4 mb-4 text-center text-success" style="overflow:hidden">Your Wishlist</h4>
-    <table class="table table-bordered table-striped center-table mt-5">
+      <h3 class="text-center mt-5" style="overflow:hidden">Your Wishlist</h3>
+    <table class="table table-bordered table-striped center-table mt-4 mb-5">
         <thead>
             <tr>
                 <th>Product</th>
@@ -201,12 +210,12 @@ if (isset($_SESSION['user_id'])) {
         $details_link = $item_type === 'book' ? "../bookDetails.php?book_id=b$item_id" : "../toolDetails.php?tool_id=t$item_id";
     
         echo "<tr>
-                <td><img src='../admin/toolImages/$item_image' style='width: 50px; height: 50px;'></td>
+                <td class='item-img'><img src='../admin/toolImages/$item_image' class='item-img'></td>
                 <td>$item_title</td>
                 <td>RM$item_price</td>
-                <td>
+                <td class='operations'>
                     <a href='$details_link' class='btn btn-info'>View Details</a>
-                    <form method='POST' action='' style='display:inline;'>
+                    <form method='POST' style='display:inline;'>
                         <input type='hidden' name='wishlist_id' value='{$row['wishlist_id']}'>
                         <button type='submit' name='remove_item' class='btn btn-danger'>Remove</button>
                     </form>
