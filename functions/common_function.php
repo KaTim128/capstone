@@ -35,6 +35,64 @@ function getBooks(){
   }
 }
 
+
+// getting books and tools
+function getBooksAndTools() {
+  global $conn;
+
+  // Query to select books
+  $select_books_query = "SELECT * FROM `books` ORDER BY RAND() LIMIT 0, 9";
+  $result_books_query = mysqli_query($conn, $select_books_query);
+
+  // Displaying books
+  while ($row = mysqli_fetch_assoc($result_books_query)) {
+      $book_id = 'b' . $row['book_id'];
+      $book_title = $row['book_title'];
+      $author = $row['author'];
+      $description = $row['description'];
+      $image = $row['image'];
+      $price = $row['price'];
+      $course_id = $row['course_id'];
+      
+      echo "<div class='col-md-4 mb-2'>
+              <div class='card'>
+                  <img src='admin/bookImages/$image' class='card-img-top' alt='Book Image'>
+                  <div class='card-body'>
+                      <h5 class='card-title'>$book_title</h5>
+                      <p class='card-text'><b>RM$price/-</b></p>
+                      <a href='index.php?cart=$book_id' class='btn btn-info mb-1'>Add to Cart</a>
+                      <a href='bookDetails.php?book_id=$book_id' class='btn btn-secondary mb-1'>Details</a>
+                  </div>
+              </div>
+            </div>";
+  }
+
+  $select_tools_query = "SELECT * FROM `tools` ORDER BY RAND() LIMIT 0, 9";
+  $result_tools_query = mysqli_query($conn, $select_tools_query);
+
+  // Displaying tools
+  while ($row = mysqli_fetch_assoc($result_tools_query)) {
+      $tool_id = 't' . $row['tool_id'];
+      $tool_title = $row['tool_title'];
+      $tool_description = $row['description'];
+      $tool_image = $row['image'];
+      $tool_price = $row['price'];
+
+      echo "<div class='col-md-4 mb-2'>
+              <div class='card'>
+                  <img src='admin/toolImages/$tool_image' class='card-img-top' alt='Tool Image'>
+                  <div class='card-body'>
+                      <h5 class='card-title'>$tool_title</h5>
+                      <p class='card-text'><b>RM$tool_price/-</b></p>
+                      <a href='index.php?cart=$tool_id' class='btn btn-info mb-1'>Add to Cart</a>
+                      <a href='toolDetails.php?tool_id=$tool_id' class='btn btn-secondary mb-1'>Details</a>
+                  </div>
+              </div>
+            </div>";
+  }
+}
+
+
 // Updated getUniqueCourses function.
 function getUniqueCourses(){
   global $conn;
