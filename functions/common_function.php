@@ -322,7 +322,7 @@ function viewBookDetails(){
                                       <input type='hidden' name='book_price' value='$price'>
                                       <input type='submit' class='btn btn-info' name='add_to_wishlist' value='Add to Wishlist'>
                                   </form>
-                                  <a href='users/reviews.php?book_id=$book_id' class='btn btn-info mb-3'>Reviews</a>
+                                  <a href='reviews.php?book_id=$book_id' class='btn btn-info mb-3'>Reviews</a>
                                 </div>
                             </div>
                         </div>
@@ -380,7 +380,7 @@ function viewBookDetails(){
                                     <input type='hidden' name='book_price' value='$price'>
                                     <input type='submit' class='btn btn-info' name='add_to_wishlist' value='Add to Wishlist'>
                                 </form>
-                                <a href='users/reviews.php?tool_id=$tool_id' class='btn btn-info mb-3'>Reviews</a>
+                                <a href='reviews.php?tool_id=$tool_id' class='btn btn-info mb-3'>Reviews</a>
                               </div>
                           </div>
                         </div>

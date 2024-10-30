@@ -28,11 +28,8 @@
                     $get_order_details = "SELECT * FROM `orders` WHERE user_id=$user_id AND order_status='pending'";
                     $result_orders = mysqli_query($conn, $get_order_details);
 
-                    if (mysqli_num_rows($result_orders) == 0) {
-                        // If no pending orders, show the alert message
-                        
+                    if (mysqli_num_rows($result_orders) == 0) {                
                         echo "
-                        <td>$user_id</td>
                         <div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>No pending orders available</div>";
                     } else {
 

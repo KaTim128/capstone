@@ -129,6 +129,19 @@ if (isset($_POST['remove_cart'])) {
 }
 
   </style>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const removeButton = document.querySelector('button[name="remove_cart"]');
+
+    removeButton.addEventListener('click', function(event) {
+      const checkboxes = document.querySelectorAll('input[name="remove[]"]:checked');
+      if (checkboxes.length === 0) {
+        event.preventDefault(); // Prevent form submission
+        alert('Please select at least one item to remove from your cart.');
+      }
+    });
+  });
+</script>
 </head>
 <body>
   <!-- navbar -->
@@ -170,10 +183,10 @@ if (isset($_POST['remove_cart'])) {
         <a class="nav-link" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
       </li>
     </ul>
-    <form class="d-flex form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
-      <input type="submit" value="search" class="btn btn-outline-light" name="search_data_product">
-    </form>
+    <form class="form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
+          <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
+          <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
+        </form>
   </div>
 </nav>
 
@@ -296,8 +309,8 @@ manageCart();
                       <td></td>
                       <td><input type="checkbox" name="remove[]" value="t<?php echo $tool_id; ?>"></td>
                       <td colspan="2">
-                          <input type="submit" value="Update Cart" class="bg-info px-3 py-1 mx-3 mb-3 mt-3 border-0" name="update_cart">
-                          <input type="submit" value="Remove" class="bg-danger px-3 py-1 mb-3 border-0" name="remove_cart">
+                      <button type="submit" class="btn btn-info px-3 py-1 mx-3 mb-3 border-0" name="update_cart">Update Cart</button>
+                      <button type="submit" class="btn btn-danger px-3 py-1 mb-3 border-0" name="remove_cart">Remove</button>
                       </td>
                   </tr>
                   <?php
@@ -333,3 +346,4 @@ manageCart();
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
+

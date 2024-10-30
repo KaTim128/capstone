@@ -33,10 +33,6 @@ session_start();
       <li class="nav-item active">
         <a class="nav-link" href="index.php">Products<span class="sr-only">(current)</span></a>
       </li>
-
-      <li class="nav-item">
-              <a class="nav-link" href="./wishlist.php">Wishlist</a>
-            </li>
       <li class="nav-item">
               <a class="nav-link" href="./users/wishlist.php">Wishlist</a>
             </li>
@@ -61,10 +57,10 @@ session_start();
         <a class="nav-link" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
       </li>
     </ul>
-    <form class="d-flex form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
-      <input type="submit" value="search" class="btn btn-outline-light" name="search_data_product">
-    </form>
+    <form class="form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
+          <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
+          <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
+        </form>
   </div>
 </nav>
 

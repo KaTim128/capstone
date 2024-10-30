@@ -101,7 +101,7 @@ session_start();
             <?php
             if(isset($_SESSION['user_username'])){
               echo"<li class='nav-item'>
-              <a class='nav-link' href='profile.php'>My Account</a>
+              <a class='nav-link' href='#'>My Account</a>
             </li>";
             }else{
               echo"<li class='nav-item'>
@@ -119,10 +119,10 @@ session_start();
               <a class="nav-link" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
             </li>
           </ul>
-          <form class="d-flex form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
-            <input type="submit" value="search" class="btn btn-outline-light" name="search_data_product">
-          </form>
+          <form class="form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
+          <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
+          <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
+        </form>
         </div>
     </div>
 </nav>

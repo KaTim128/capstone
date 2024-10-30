@@ -62,3 +62,6 @@
   visibility: visible; /* Set to visible */
 }
 
+.search-input {
+  width: 400px; /* Default width for small screens */
+}
