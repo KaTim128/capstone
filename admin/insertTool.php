@@ -120,7 +120,7 @@ if (isset($_POST['insert_tool'])) {
             <!-- Tool Price -->
             <div class="form-outline w-100">
                 <label for="price" class="form-label">Tool Price</label>
-                <input type="text" name="price" id="price" class="form-control" placeholder="Enter Tool Price" autocomplete="off" required>
+                <input type="number" name="price" id="price" class="form-control" placeholder="Enter Tool Price" autocomplete="off" required>
             </div>
 
             <!-- Submit Button -->

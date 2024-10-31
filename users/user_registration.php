@@ -106,8 +106,11 @@ if (isset($_POST['user_register'])) {
 
     $justNums = preg_replace("/[^0-9]/", '', $user_contact);
 
+    // Format the phone number to the standard format used for Malaysian numbers
+    $formatted_phone = preg_replace('~^(?:0?1|601)~', '+601', $justNums);
+
     // Validate if it’s a typical Malaysian mobile number
-    if (!preg_match("/^01[0-9]{8,9}$/", $justNums)) {
+    if (!preg_match('/^\+601[0-9]{8,10}$/', $formatted_phone)) {
         echo '<script>document.getElementById("alertContainer").setAttribute("data-alert-message", "Invalid phone number. Please enter a valid Malaysian mobile number."); document.getElementById("alertContainer").setAttribute("data-alert-type", "danger");</script>';
         exit;  
     }

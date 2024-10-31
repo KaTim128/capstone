@@ -7,11 +7,26 @@ session_start();
 if (isset($_POST['add_to_wishlist'])) {
   if (isset($_SESSION['user_id'])) {
       $user_id = $_SESSION['user_id'];
-      $book_id = isset($_POST['book_id']) ? str_replace('b', '', $_POST['book_id']) : null;
-      $tool_id = isset($_POST['tool_id']) ? str_replace('t', '', $_POST['tool_id']) : null;
-      $item_name = $_POST['book_title'];
-      $item_image = $_POST['book_image'];
-      $item_price = $_POST['book_price'];
+      
+      // Check if it's a book or a tool and assign appropriate variables
+      if (isset($_POST['book_id'])) {
+          // It's a book
+          $book_id = str_replace('b', '', $_POST['book_id']);
+          $tool_id = null; // Set tool_id to null because it's a book
+          $item_name = $_POST['book_title'];
+          $item_image = $_POST['book_image'];
+          $item_price = $_POST['book_price'];
+      } elseif (isset($_POST['tool_id'])) {
+          // It's a tool
+          $tool_id = str_replace('t', '', $_POST['tool_id']);
+          $book_id = null; // Set book_id to null because it's a tool
+          $item_name = $_POST['tool_title'];
+          $item_image = $_POST['tool_image'];
+          $item_price = $_POST['tool_price'];
+      } else {
+          // Handle the case where neither 'book_id' nor 'tool_id' is set
+          die('Error: Item type not specified.');
+      }
 
       // Check if the item is already in the wishlist
       $check_query = "SELECT * FROM wishlist WHERE user_id='$user_id' AND name='$item_name'";
@@ -181,53 +196,64 @@ if (isset($_POST['remove_item'])) {
       ?>
 
       <div class="container mt-4">
-      <h3 class="text-center mt-5" style="overflow:hidden">Your Wishlist</h3>
-    <table class="table table-bordered table-striped center-table mt-4 mb-5">
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>Title</th>
-                <th>Price</th>
-                <th>Operations</th>
-            </tr>
-        </thead>
         <tbody>
-<?php
+        <?php
+// Get items from wishlist for the logged-in user
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
     $wishlist_query = "SELECT * FROM wishlist WHERE user_id = '$user_id'";
     $result = mysqli_query($conn, $wishlist_query);
-    
-    if (mysqli_num_rows($result) > 0) {
-      while ($row = mysqli_fetch_assoc($result)) {
-        $item_id = $row['book_id'] ?? $row['tool_id'];
-        $item_type = $row['book_id'] ? 'book' : 'tool';
-        $item_image = $row['image'];
-        $item_title = $row['name'];
-        $item_price = $row['price'];
-    
-        // Adjust the link to point to the appropriate details page
-        $details_link = $item_type === 'book' ? "../bookDetails.php?book_id=b$item_id" : "../toolDetails.php?tool_id=t$item_id";
-    
-        echo "<tr>
-                <td class='item-img'><img src='../admin/toolImages/$item_image' class='item-img'></td>
-                <td>$item_title</td>
-                <td>RM$item_price</td>
-                <td class='operations'>
-                    <a href='$details_link' class='btn btn-info'>View Details</a>
-                    <form method='POST' style='display:inline;'>
-                        <input type='hidden' name='wishlist_id' value='{$row['wishlist_id']}'>
-                        <button type='submit' name='remove_item' class='btn btn-danger'>Remove</button>
-                    </form>
-                </td>
-            </tr>";
-    }
-    
+
+    // Check the number of items in the wishlist
+    if (mysqli_num_rows($result) == 0) {      
+        echo "<div class='alert alert-warning text-center my-5' style='margin: 0 auto; width: fit-content;'>
+        There are no items in the wishlist.</div>";
     } else {
-        echo "<tr><td colspan='4' class='text-center'>No items in your wishlist.</td></tr>";
+        // Display the wishlist if there are items
+        echo '<div class="container mt-4">
+                <h3 class="text-center mt-5" style="overflow:hidden">Your Wishlist</h3>
+                <table class="table table-bordered table-striped center-table mt-4 mb-5">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Title</th>
+                            <th>Price</th>
+                            <th>Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            $item_id = $row['book_id'] ?? $row['tool_id'];
+            $item_type = $row['book_id'] ? 'book' : 'tool';
+            $item_image = $row['image'];
+            $item_title = $row['name'];
+            $item_price = $row['price'];
+
+            // Adjust the link to point to the appropriate details page
+            $details_link = $item_type === 'book' ? "../bookDetails.php?book_id=b$item_id" : "../toolDetails.php?tool_id=t$item_id";
+
+            echo "<tr>
+                    <td class='item-img'><img src='../admin/toolImages/$item_image' class='item-img'></td>
+                    <td>$item_title</td>
+                    <td>RM$item_price</td>
+                    <td class='operations'>
+                        <a href='$details_link' class='btn btn-info'>View Details</a>
+                        <form method='POST' style='display:inline;'>
+                            <input type='hidden' name='wishlist_id' value='{$row['wishlist_id']}'>
+                            <button type='submit' name='remove_item' class='btn btn-danger'>Remove</button>
+                        </form>
+                    </td>
+                </tr>";
+        }
+
+        echo '</tbody>
+              </table>
+              </div>';
     }
 } else {
-    echo "<tr><td colspan='4' class='text-center'>Please log in to view your wishlist.</td></tr>";
+    echo "<div class='alert alert-info text-center my-5' style='margin: 0 auto; width: fit-content;'>
+    Please log in to view your wishlist.</div>";
 }
 ?>
 </tbody>
