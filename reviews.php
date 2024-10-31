@@ -1,37 +1,11 @@
 <?php
-// Corrected include file name
+// Start the session and include necessary files
+session_start();
 include('./database/connection.php');
 include('./functions/common_function.php');
-session_start();
-
-$username = $_SESSION['user_username']; 
-$get_user = "SELECT * FROM `user` WHERE user_username='$username'";
-$result = mysqli_query($conn, $get_user);
-$row_fetch = mysqli_fetch_assoc($result);
-$user_id = $row_fetch['user_id'];
-$username = $row_fetch['user_username'];
-
-if(isset($_POST['rating']) && isset($_POST['review'])) {
-    $rating = $_POST['rating'];
-    $review = mysqli_real_escape_string($conn, $_POST['review']);
-
-    $sql = "INSERT INTO review (user_id, name, content, rating) VALUES ('$user_id', '$username', '$review', '$rating')";
-
-    if(mysqli_query($conn, $sql)) {
-        echo "Review submitted successfully!";
-    } else {
-        echo "Error: " . mysqli_error($conn);
-    }
-} else {
-    echo "All fields are required.";
-}
-
-
 
 // Fetching average rating and total reviews from the database
-$query = "SELECT AVG(rating) AS average_rating, COUNT(review_id) AS total_review 
-          FROM review"; // Make sure the table name and fields are correct
-
+$query = "SELECT AVG(rating) AS average_rating, COUNT(review_id) AS total_review FROM review";
 $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_assoc($result);
 
@@ -46,7 +20,6 @@ $star_count_query = "SELECT
     SUM(CASE WHEN rating = 2 THEN 1 ELSE 0 END) AS total_two_star_review,
     SUM(CASE WHEN rating = 1 THEN 1 ELSE 0 END) AS total_one_star_review
     FROM review";
-
 $star_count_result = mysqli_query($conn, $star_count_query);
 $star_count_row = mysqli_fetch_assoc($star_count_result);
 
@@ -56,7 +29,7 @@ $total_three_star_review = $star_count_row['total_three_star_review'];
 $total_two_star_review = $star_count_row['total_two_star_review'];
 $total_one_star_review = $star_count_row['total_one_star_review'];
 
-// Calculate progress for star ratings
+// Calculate total reviews and progress for star ratings
 $total_reviews = $total_five_star_review + $total_four_star_review + $total_three_star_review + $total_two_star_review + $total_one_star_review;
 
 $five_star_progress = $total_reviews > 0 ? ($total_five_star_review / $total_reviews) * 100 : 0;
@@ -65,7 +38,31 @@ $three_star_progress = $total_reviews > 0 ? ($total_three_star_review / $total_r
 $two_star_progress = $total_reviews > 0 ? ($total_two_star_review / $total_reviews) * 100 : 0;
 $one_star_progress = $total_reviews > 0 ? ($total_one_star_review / $total_reviews) * 100 : 0;
 
+// Initialize user details from the session
+$username = $_SESSION['user_username'];
+$get_user = "SELECT * FROM `user` WHERE user_username='$username'";
+$result = mysqli_query($conn, $get_user);
+$row_fetch = mysqli_fetch_assoc($result);
+$user_id = $row_fetch['user_id'];
+$username = $row_fetch['user_username'];
 
+// Retrieve reviews in order by date
+$fetch_reviews = "SELECT * FROM review ORDER BY date DESC"; // Make sure to have a date column for ordering
+$reviews_result = mysqli_query($conn, $fetch_reviews);
+
+// Process form submission for reviews
+if (isset($_POST['rating']) && isset($_POST['review'])) {
+    $rating = $_POST['rating'];
+    $review = mysqli_real_escape_string($conn, $_POST['review']);
+
+    $sql = "INSERT INTO review (user_id, name, content, rating) VALUES ('$user_id', '$username', '$review', '$rating')";
+
+    if (mysqli_query($conn, $sql)) {
+        // Redirect to the same page after successful submission
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
+    }
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -170,220 +167,111 @@ $one_star_progress = $total_reviews > 0 ? ($total_one_star_review / $total_revie
       </div>
 
       <!-- forth child -->
-    <div class="container">
-        <div class="card">
-            <div class="card-header"></div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-4 text-center">
-                        <h1 class="text-warning mt-4 mb-4">
-                            <b><span id="average_rating"><?php echo $average_rating; ?></span> / 5</b>
-                        </h1>
-                        <div class="mb-3">
-                            <i class="fas fa-star star-light mr-1 main_star" id="star_1"></i>
-                            <i class="fas fa-star star-light mr-1 main_star" id="star_2"></i>
-                            <i class="fas fa-star star-light mr-1 main_star" id="star_3"></i>
-                            <i class="fas fa-star star-light mr-1 main_star" id="star_4"></i>
-                            <i class="fas fa-star star-light mr-1 main_star" id="star_5"></i>
+      <div class="container">
+    <div class="card">
+        <div class="card-header"></div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-4 text-center">
+                    <h1 class="text-warning mt-4 mb-4">
+                        <b><span id="average_rating"><?php echo $average_rating; ?></span> / 5</b>
+                    </h1>
+                    <div class="mb-3">
+                        <i class="fas fa-star star-light mr-1 main_star" id="star_1"></i>
+                        <i class="fas fa-star star-light mr-1 main_star" id="star_2"></i>
+                        <i class="fas fa-star star-light mr-1 main_star" id="star_3"></i>
+                        <i class="fas fa-star star-light mr-1 main_star" id="star_4"></i>
+                        <i class="fas fa-star star-light mr-1 main_star" id="star_5"></i>
+                    </div>
+                    <h3><span id="total_review"><?php echo $total_review; ?></span> Reviews</h3>
+                </div>
+                <div class="col-sm-4">
+                    <p>
+                        <div class="progress-label-left"><b>5</b> <i class="fas fa-star text-warning"></i></div>
+                        <div class="progress-label-right">(<span id="total_five_star_review"><?php echo $total_five_star_review; ?></span>)</div>
+                        <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="<?php echo $five_star_progress; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $five_star_progress; ?>%;"><?php echo number_format($five_star_progress, 2); ?>%</div>
                         </div>
-                        <h3><span id="total_review"><?php echo $total_review; ?></span> Reviews</h3>
-                    </div>
-                    <div class="col-sm-4">
-                        <p>
-                            <div class="progress-label-left"><b>5</b> <i class="fas fa-star text-warning"></i></div>
-                            <div class="progress-label-right">(<span id="total_five_star_review"><?php echo $total_five_star_review; ?></span>)</div>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="<?php echo $five_star_progress; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $five_star_progress; ?>%;"><?php echo number_format($five_star_progress, 2); ?>%</div>
+                    </p>
+                    <p>
+                        <div class="progress-label-left"><b>4</b> <i class="fas fa-star text-warning"></i></div>
+                        <div class="progress-label-right">(<span id="total_four_star_review"><?php echo $total_four_star_review; ?></span>)</div>
+                        <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="<?php echo $four_star_progress; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $four_star_progress; ?>%;"><?php echo number_format($four_star_progress, 2); ?>%</div>
+                        </div>
+                    </p>
+                    <p>
+                        <div class="progress-label-left"><b>3</b> <i class="fas fa-star text-warning"></i></div>
+                        <div class="progress-label-right">(<span id="total_three_star_review"><?php echo $total_three_star_review; ?></span>)</div>
+                        <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="<?php echo $three_star_progress; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $three_star_progress; ?>%;"><?php echo number_format($three_star_progress, 2); ?>%</div>
+                        </div>
+                    </p>
+                    <p>
+                        <div class="progress-label-left"><b>2</b> <i class="fas fa-star text-warning"></i></div>
+                        <div class="progress-label-right">(<span id="total_two_star_review"><?php echo $total_two_star_review; ?></span>)</div>
+                        <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="<?php echo $two_star_progress; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $two_star_progress; ?>%;"><?php echo number_format($two_star_progress, 2); ?>%</div>
+                        </div>
+                    </p>
+                    <p>
+                        <div class="progress-label-left"><b>1</b> <i class="fas fa-star text-warning"></i></div>
+                        <div class="progress-label-right">(<span id="total_one_star_review"><?php echo $total_one_star_review; ?></span>)</div>
+                        <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="<?php echo $one_star_progress; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $one_star_progress; ?>%;"><?php echo number_format($one_star_progress, 2); ?>%</div>
+                        </div>
+                    </p>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <!-- Place the review form here -->
+                    <div class="review-form">
+                        <h4>Submit Your Review</h4>
+                        <form method="POST" action="">
+                            <div class="form-group">
+                                <label for="rating">Rating:</label>
+                                <select name="rating" id="rating" required>
+                                    <option value="">Select Rating</option>
+                                    <option value="1">1 Star</option>
+                                    <option value="2">2 Stars</option>
+                                    <option value="3">3 Stars</option>
+                                    <option value="4">4 Stars</option>
+                                    <option value="5">5 Stars</option>
+                                </select>
                             </div>
-                        </p>
-                        <p>
-                            <div class="progress-label-left"><b>4</b> <i class="fas fa-star text-warning"></i></div>
-                            <div class="progress-label-right">(<span id="total_four_star_review"><?php echo $total_four_star_review; ?></span>)</div>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="<?php echo $four_star_progress; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $four_star_progress; ?>%;"><?php echo number_format($four_star_progress, 2); ?>%</div>
+                            <div class="form-group">
+                                <label for="review">Review:</label>
+                                <textarea name="review" id="review" required></textarea>
                             </div>
-                        </p>
-                        <p>
-                            <div class="progress-label-left"><b>3</b> <i class="fas fa-star text-warning"></i></div>
-                            <div class="progress-label-right">(<span id="total_three_star_review"><?php echo $total_three_star_review; ?></span>)</div>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="<?php echo $three_star_progress; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $three_star_progress; ?>%;"><?php echo number_format($three_star_progress, 2); ?>%</div>
-                            </div>
-                        </p>
-                        <p>
-                            <div class="progress-label-left"><b>2</b> <i class="fas fa-star text-warning"></i></div>
-                            <div class="progress-label-right">(<span id="total_two_star_review"><?php echo $total_two_star_review; ?></span>)</div>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="<?php echo $two_star_progress; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $two_star_progress; ?>%;"><?php echo number_format($two_star_progress, 2); ?>%</div>
-                            </div>
-                        </p>
-                        <p>
-                            <div class="progress-label-left"><b>1</b> <i class="fas fa-star text-warning"></i></div>
-                            <div class="progress-label-right">(<span id="total_one_star_review"><?php echo $total_one_star_review; ?></span>)</div>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="<?php echo $one_star_progress; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $one_star_progress; ?>%;"><?php echo number_format($one_star_progress, 2); ?>%</div>
-                            </div>
-                        </p>
+                            <button type="submit" class="btn btn-primary">Submit Review</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-  </div>
-
-  <div id="review_modal" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Submit Your Review</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="rating">Rating</label>
-                    <div class="mb-2">
-                        <i class="fas fa-star star-light mr-1 submit_star" data-rating="1" id="submit_star_1"></i>
-                        <i class="fas fa-star star-light mr-1 submit_star" data-rating="2" id="submit_star_2"></i>
-                        <i class="fas fa-star star-light mr-1 submit_star" data-rating="3" id="submit_star_3"></i>
-                        <i class="fas fa-star star-light mr-1 submit_star" data-rating="4" id="submit_star_4"></i>
-                        <i class="fas fa-star star-light mr-1 submit_star" data-rating="5" id="submit_star_5"></i>
-                    </div>
-                    <input type="hidden" id="rating" value="0" />
-                </div>
-                <div class="form-group">
-                    <label for="review_text">Review</label>
-                    <textarea id="review_text" class="form-control" rows="4" placeholder="Write your review here..."></textarea>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="submit_review">Submit Review</button>
-            </div>
-        </div>
-    </div>
 </div>
-
-<!-- Button to open the review modal -->
-<div class="text-center">
-    <button type="button" class="btn btn-warning" id="add_review">Add Review</button>
-</div>
-
-<script>
-    $(document).on('click', '.submit_star', function() {
-        var rating = $(this).data('rating');
-        $('#rating').val(rating);
-        reset_background();
-        
-        for (var count = 1; count <= rating; count++) {
-            $('#submit_star_' + count).addClass('star-warning');
-        }
-    });
-
-    $('#submit_review').click(function() {
-        var rating = $('#rating').val();
-        var review_text = $('#review_text').val();
-
-        if (rating === '0' || review_text === '') {
-            alert('Please select a rating and enter your review.');
-            return;
-        }
-
-        // Ajax call to submit the review
-        $.ajax({
-            url: 'submit_review.php', // Change this to the correct URL for processing the review
-            method: 'POST',
-            data: {rating: rating, review: review_text},
-            success: function(data) {
-                alert('Review submitted successfully.');
-                $('#review_modal').modal('hide');
-                // Optionally refresh the page or update the review section dynamically
-                location.reload(); // Refresh the page to see the new review
-            }
-        });
-    });
-
+    <script>
     function reset_background() {
         $('.submit_star').addClass('star-light').removeClass('star-warning');
     }
+
+    document.addEventListener("DOMContentLoaded", function() {
+    const averageRating = parseFloat(document.getElementById("average_rating").innerText);
+    const stars = document.querySelectorAll(".main_star");
+
+    // Loop through each star element
+    stars.forEach((star, index) => {
+        // Change color to 'star-warning' for stars that fall within the average rating
+        if (index < Math.floor(averageRating)) {
+            star.classList.add("star-warning");
+        } else if (index < averageRating) { // Handles partial stars for ratings with decimals
+            star.classList.add("star-warning");
+            star.style.clipPath = `polygon(0 0, ${((averageRating - index) * 100)}% 0, ${((averageRating - index) * 100)}% 100%, 0% 100%)`;
+        } else {
+            star.classList.remove("star-warning");
+        }
+    });
+});
 </script>
-
-
-    <script>
-        var rating_data = 0;
-
-        $('#add_review').click(function() {
-            $('#review_modal').modal('show');
-        });
-
-        $(document).on('mouseenter', '.submit_star', function() {
-            var rating = $(this).data('rating');
-            reset_background();
-
-            for (var count = 1; count <= rating; count++) {
-                $('#submit_star_' + count).addClass('star-warning');
-            }
-        });
-
-        $(document).on('mouseleave', '.submit_star', function() {
-            reset_background();
-
-            for (var count = 1; count <= rating_data; count++) {
-                $('#submit_star_' + count).addClass('star-warning');
-            }
-        });
-
-        $(document).on('click', '.submit_star', function() {
-            rating_data = $(this).data('rating');
-        });
-
-        function reset_background() {
-            for (var count = 1; count <= 5; count++) {
-                $('#submit_star_' + count).addClass('star-light').removeClass('star-warning');
-            }
-        }
-
-        $('#save_review').click(function() {
-            
-            var user_review = $('#user_review').val();
-
-            if(user_review == '') {
-                alert('Please fill all fields');
-                return false;
-            } else {
-                console.log('Sending data:', { rating: rating_data, review: user_review }); // Log data being sent
-        $.ajax({
-            url: "submitReview.php",
-            method: "POST",
-            data: { rating: rating_data, review: user_review },
-            success: function(data) {
-                console.log('Response data:', data); // Log the response to check for errors
-                $('#review_modal').modal('hide');
-                load_review();
-                reset_background();
-            },
-            error: function(xhr, status, error) {
-                console.error("AJAX Error: " + status + error); // Log the error
-            }
-                });
-            }
-        });
-
-        function load_review() {
-            $.ajax({
-                url: "fetchReviews.php",
-                method: "POST",
-                success: function(data) {
-                    $('#review_content').html(data);
-                }
-            });
-        }
-
-        $(document).ready(function() {
-            load_review();
-        });
-
-    </script>
 </body>
 </html>
