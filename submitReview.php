@@ -4,6 +4,8 @@ session_start();
 
 $username = $_SESSION['user_username']; 
     $get_user = "SELECT * FROM `user` WHERE user_username='$username'";
+    //$get_book_id = "SELECT * FROM `tools` WHERE tool_id='$tool_id'";
+    //$get_tool_id = "SELECT * FROM `tools` WHERE tool_id='$tool_id'";
     $result = mysqli_query($conn, $get_user);
     $row_fetch = mysqli_fetch_assoc($result);
     $user_id = $row_fetch['user_id'];

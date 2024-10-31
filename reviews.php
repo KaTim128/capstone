@@ -113,7 +113,7 @@ session_start();
       <!-- forth child -->
     <div class="container">
         <div class="card">
-            <div class="card-header">Sample Product</div>
+            <div class="card-header"></div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-4 text-center">
@@ -240,18 +240,18 @@ session_start();
         }
 
         $('#save_review').click(function() {
-            var user_name = $('#user_name').val();
+            
             var user_review = $('#user_review').val();
 
-            if(user_name == '' || user_review == '') {
+            if(user_review == '') {
                 alert('Please fill all fields');
                 return false;
             } else {
-                console.log('Sending data:', { rating: rating_data, name: user_name, review: user_review }); // Log data being sent
+                console.log('Sending data:', { rating: rating_data, review: user_review }); // Log data being sent
         $.ajax({
             url: "submitReview.php",
             method: "POST",
-            data: { rating: rating_data, name: user_name, review: user_review },
+            data: { rating: rating_data, review: user_review },
             success: function(data) {
                 console.log('Response data:', data); // Log the response to check for errors
                 $('#review_modal').modal('hide');
@@ -267,7 +267,7 @@ session_start();
 
         function load_review() {
             $.ajax({
-                url: "fetchReview.php",
+                url: "fetchReviews.php",
                 method: "POST",
                 success: function(data) {
                     $('#review_content').html(data);

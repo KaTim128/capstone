@@ -8,7 +8,6 @@ $result = $connect->query($query);
 
 $output = '';
 if ($result->num_rows > 0) {
-    // Initialize counters
     $total_rating = 0;
     $total_review = 0;
     $five_star_review = 0;
@@ -22,8 +21,7 @@ if ($result->num_rows > 0) {
         <div class="border mb-2 p-2">
             <strong>' . htmlspecialchars($row['name']) . '</strong>
             <div class="text-warning">';
-        
-        // Display stars
+
         for ($count = 0; $count < $row['rating']; $count++) {
             $output .= '<i class="fas fa-star"></i>';
         }
@@ -31,7 +29,7 @@ if ($result->num_rows > 0) {
             <p>' . htmlspecialchars($row['content']) . '</p>
         </div>';
         
-        // Count ratings
+        // Count each rating type
         switch ($row['rating']) {
             case 5: $five_star_review++; break;
             case 4: $four_star_review++; break;
@@ -43,9 +41,10 @@ if ($result->num_rows > 0) {
         $total_review++;
     }
 
+    // Calculate average rating
     $average_rating = $total_review > 0 ? number_format($total_rating / $total_review, 1) : 0;
 
-    // JavaScript for displaying ratings
+    // Pass calculated values to JavaScript for display
     $output .= '
     <script>
         document.getElementById("average_rating").textContent = "' . $average_rating . '";
@@ -56,11 +55,12 @@ if ($result->num_rows > 0) {
         document.getElementById("total_two_star_review").textContent = "' . $two_star_review . '";
         document.getElementById("total_one_star_review").textContent = "' . $one_star_review . '";
 
-        document.getElementById("five_star_progress").style.width = ($five_star_review / $total_review * 100) + "%";
-        document.getElementById("four_star_progress").style.width = ($four_star_review / $total_review * 100) + "%";
-        document.getElementById("three_star_progress").style.width = ($three_star_review / $total_review * 100) + "%";
-        document.getElementById("two_star_progress").style.width = ($two_star_review / $total_review * 100) + "%";
-        document.getElementById("one_star_progress").style.width = ($one_star_review / $total_review * 100) + "%";
+        // Calculate progress bars as percentages
+        document.getElementById("five_star_progress").style.width = "' . (($five_star_review / $total_review) * 100) . '%";
+        document.getElementById("four_star_progress").style.width = "' . (($four_star_review / $total_review) * 100) . '%";
+        document.getElementById("three_star_progress").style.width = "' . (($three_star_review / $total_review) * 100) . '%";
+        document.getElementById("two_star_progress").style.width = "' . (($two_star_review / $total_review) * 100) . '%";
+        document.getElementById("one_star_progress").style.width = "' . (($one_star_review / $total_review) * 100) . '%";
     </script>';
 } else {
     $output .= '<h4 class="text-danger">No Reviews Found</h4>';
