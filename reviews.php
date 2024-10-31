@@ -4,7 +4,6 @@ session_start();
 include('./database/connection.php');
 include('./functions/common_function.php');
 
-
 // Determine product_id from URL (either book_id or tool_id)
 if (isset($_GET['book_id'])) {
     $product_id = $_GET['book_id'];
@@ -14,6 +13,20 @@ if (isset($_GET['book_id'])) {
     echo "No product ID provided.";
     exit();
 }
+
+// Initialize user details from the session
+$username = $_SESSION['user_username'];
+$get_user = "SELECT * FROM `user` WHERE user_username='$username'";
+$result = mysqli_query($conn, $get_user);
+$row_fetch = mysqli_fetch_assoc($result);
+$user_id = $row_fetch['user_id'];
+$username = $row_fetch['user_username'];
+$user_image = $row_fetch['user_image'];
+
+// Check if the user has already submitted a review for this product
+$review_check_query = "SELECT * FROM reviews WHERE user_id='$user_id' AND product_id='$product_id'";
+$review_check_result = mysqli_query($conn, $review_check_query);
+$review_exists = mysqli_num_rows($review_check_result) > 0;
 
 // Fetching average rating and total reviews for the specific product
 $query = "SELECT AVG(rating) AS average_rating, COUNT(review_id) AS total_review 
@@ -32,6 +45,7 @@ $star_count_query = "SELECT
     SUM(CASE WHEN rating = 2 THEN 1 ELSE 0 END) AS total_two_star_review,
     SUM(CASE WHEN rating = 1 THEN 1 ELSE 0 END) AS total_one_star_review
     FROM reviews WHERE product_id='$product_id'";
+
 $star_count_result = mysqli_query($conn, $star_count_query);
 $star_count_row = mysqli_fetch_assoc($star_count_result);
 
@@ -49,15 +63,6 @@ $four_star_progress = $total_reviews > 0 ? ($total_four_star_review / $total_rev
 $three_star_progress = $total_reviews > 0 ? ($total_three_star_review / $total_reviews) * 100 : 0;
 $two_star_progress = $total_reviews > 0 ? ($total_two_star_review / $total_reviews) * 100 : 0;
 $one_star_progress = $total_reviews > 0 ? ($total_one_star_review / $total_reviews) * 100 : 0;
-
-// Initialize user details from the session
-$username = $_SESSION['user_username'];
-$get_user = "SELECT * FROM `user` WHERE user_username='$username'";
-$result = mysqli_query($conn, $get_user);
-$row_fetch = mysqli_fetch_assoc($result);
-$user_id = $row_fetch['user_id'];
-$username = $row_fetch['user_username'];
-$user_image = $row_fetch['user_image'];
 
 $product_id = isset($_GET['book_id']) ? $_GET['book_id'] : (isset($_GET['tool_id']) ? $_GET['tool_id'] : '');
 
@@ -82,7 +87,8 @@ $image_result = mysqli_query($conn, $image_query);
 
 // Fetch the image
 $image_row = mysqli_fetch_assoc($image_result);
-$product_image = $image_row['image'] ?? 'default.jpg';
+
+$product_image = $image_row['image'];
 
 if (strpos($product_id, 'b') === 0) { 
     $image_path = 'admin/bookImages/';
@@ -279,6 +285,11 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
             </div>
             </div>
                 <hr/>
+                <?php if ($review_exists): ?>
+              <div class="alert alert-success text-center" role="alert">
+                  Thank you for your review!
+              </div>
+          <?php else: ?>
                 <h4 class="text-center">Submit Your Review</h4>
                 <form method="post">
                     <div class="form-group">
@@ -298,6 +309,7 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
                     </div>
                     <input type="submit" class="btn btn-primary" value="Submit Review">
                 </form>
+                <?php endif; ?>
             </div>
         </div>
         <?php
@@ -340,7 +352,7 @@ if (mysqli_num_rows($reviews_result) > 0) {
         echo '</div>'; // End of review
     }
 } else {
-    echo '<p class="text-muted text-center">No reviews yet.</p>';
+    echo '<p class="text-muted text-center my-3">No reviews yet.</p>';
 }
 ?>
         <?php while ($review = mysqli_fetch_assoc($reviews_result)): ?>
