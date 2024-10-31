@@ -4,22 +4,33 @@ session_start();
 include('./database/connection.php');
 include('./functions/common_function.php');
 
-// Fetching average rating and total reviews from the database
-$query = "SELECT AVG(rating) AS average_rating, COUNT(review_id) AS total_review FROM review";
+// Determine product_id from URL (either book_id or tool_id)
+if (isset($_GET['book_id'])) {
+    $product_id = $_GET['book_id'];
+} elseif (isset($_GET['tool_id'])) {
+    $product_id = $_GET['tool_id'];
+} else {
+    echo "No product ID provided.";
+    exit();
+}
+
+// Fetching average rating and total reviews for the specific product
+$query = "SELECT AVG(rating) AS average_rating, COUNT(review_id) AS total_review 
+          FROM reviews WHERE product_id='$product_id'";
 $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_assoc($result);
 
 $average_rating = round($row['average_rating'], 1); // Round to 1 decimal
 $total_review = $row['total_review'];
 
-// Fetching total reviews by star rating
+// Fetching total reviews by star rating for the specific product
 $star_count_query = "SELECT 
     SUM(CASE WHEN rating = 5 THEN 1 ELSE 0 END) AS total_five_star_review,
     SUM(CASE WHEN rating = 4 THEN 1 ELSE 0 END) AS total_four_star_review,
     SUM(CASE WHEN rating = 3 THEN 1 ELSE 0 END) AS total_three_star_review,
     SUM(CASE WHEN rating = 2 THEN 1 ELSE 0 END) AS total_two_star_review,
     SUM(CASE WHEN rating = 1 THEN 1 ELSE 0 END) AS total_one_star_review
-    FROM review";
+    FROM reviews WHERE product_id='$product_id'";
 $star_count_result = mysqli_query($conn, $star_count_query);
 $star_count_row = mysqli_fetch_assoc($star_count_result);
 
@@ -46,8 +57,8 @@ $row_fetch = mysqli_fetch_assoc($result);
 $user_id = $row_fetch['user_id'];
 $username = $row_fetch['user_username'];
 
-// Retrieve reviews in order by date
-$fetch_reviews = "SELECT * FROM review ORDER BY date DESC"; // Make sure to have a date column for ordering
+// Retrieve reviews for the specific product ID
+$fetch_reviews = "SELECT * FROM reviews WHERE product_id='$product_id' ORDER BY review_date DESC";
 $reviews_result = mysqli_query($conn, $fetch_reviews);
 
 // Process form submission for reviews
@@ -55,11 +66,13 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
     $rating = $_POST['rating'];
     $review = mysqli_real_escape_string($conn, $_POST['review']);
 
-    $sql = "INSERT INTO review (user_id, name, content, rating) VALUES ('$user_id', '$username', '$review', '$rating')";
+    // Insert review into the database for the specific product
+    $sql = "INSERT INTO reviews (user_id, product_id, review_text, rating) 
+            VALUES ('$user_id', '$product_id', '$review', '$rating')";
 
     if (mysqli_query($conn, $sql)) {
         // Redirect to the same page after successful submission
-        header("Location: " . $_SERVER['PHP_SELF']);
+        header("Location: " . $_SERVER['PHP_SELF'] . "?book_id=" . $product_id); // Assuming book_id is used for redirection
         exit();
     }
 }
@@ -168,110 +181,84 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
 
       <!-- forth child -->
       <div class="container">
-    <div class="card">
-        <div class="card-header"></div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-sm-4 text-center">
-                    <h1 class="text-warning mt-4 mb-4">
-                        <b><span id="average_rating"><?php echo $average_rating; ?></span> / 5</b>
-                    </h1>
-                    <div class="mb-3">
-                        <i class="fas fa-star star-light mr-1 main_star" id="star_1"></i>
-                        <i class="fas fa-star star-light mr-1 main_star" id="star_2"></i>
-                        <i class="fas fa-star star-light mr-1 main_star" id="star_3"></i>
-                        <i class="fas fa-star star-light mr-1 main_star" id="star_4"></i>
-                        <i class="fas fa-star star-light mr-1 main_star" id="star_5"></i>
-                    </div>
-                    <h3><span id="total_review"><?php echo $total_review; ?></span> Reviews</h3>
-                </div>
-                <div class="col-sm-4">
-                    <p>
-                        <div class="progress-label-left"><b>5</b> <i class="fas fa-star text-warning"></i></div>
-                        <div class="progress-label-right">(<span id="total_five_star_review"><?php echo $total_five_star_review; ?></span>)</div>
-                        <div class="progress">
-                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="<?php echo $five_star_progress; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $five_star_progress; ?>%;"><?php echo number_format($five_star_progress, 2); ?>%</div>
-                        </div>
-                    </p>
-                    <p>
-                        <div class="progress-label-left"><b>4</b> <i class="fas fa-star text-warning"></i></div>
-                        <div class="progress-label-right">(<span id="total_four_star_review"><?php echo $total_four_star_review; ?></span>)</div>
-                        <div class="progress">
-                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="<?php echo $four_star_progress; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $four_star_progress; ?>%;"><?php echo number_format($four_star_progress, 2); ?>%</div>
-                        </div>
-                    </p>
-                    <p>
-                        <div class="progress-label-left"><b>3</b> <i class="fas fa-star text-warning"></i></div>
-                        <div class="progress-label-right">(<span id="total_three_star_review"><?php echo $total_three_star_review; ?></span>)</div>
-                        <div class="progress">
-                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="<?php echo $three_star_progress; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $three_star_progress; ?>%;"><?php echo number_format($three_star_progress, 2); ?>%</div>
-                        </div>
-                    </p>
-                    <p>
-                        <div class="progress-label-left"><b>2</b> <i class="fas fa-star text-warning"></i></div>
-                        <div class="progress-label-right">(<span id="total_two_star_review"><?php echo $total_two_star_review; ?></span>)</div>
-                        <div class="progress">
-                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="<?php echo $two_star_progress; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $two_star_progress; ?>%;"><?php echo number_format($two_star_progress, 2); ?>%</div>
-                        </div>
-                    </p>
-                    <p>
-                        <div class="progress-label-left"><b>1</b> <i class="fas fa-star text-warning"></i></div>
-                        <div class="progress-label-right">(<span id="total_one_star_review"><?php echo $total_one_star_review; ?></span>)</div>
-                        <div class="progress">
-                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="<?php echo $one_star_progress; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $one_star_progress; ?>%;"><?php echo number_format($one_star_progress, 2); ?>%</div>
-                        </div>
-                    </p>
-                </div>
-                <div class="col-sm-4 text-center">
-                    <!-- Place the review form here -->
-                    <div class="review-form">
-                        <h4>Submit Your Review</h4>
-                        <form method="POST" action="">
-                            <div class="form-group">
-                                <label for="rating">Rating:</label>
-                                <select name="rating" id="rating" required>
-                                    <option value="">Select Rating</option>
-                                    <option value="1">1 Star</option>
-                                    <option value="2">2 Stars</option>
-                                    <option value="3">3 Stars</option>
-                                    <option value="4">4 Stars</option>
-                                    <option value="5">5 Stars</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="review">Review:</label>
-                                <textarea name="review" id="review" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit Review</button>
-                        </form>
-                    </div>
+        <div class="card">
+            <div class="card-header text-center">
+                <h4>Rating: 
+                    <span class="text-warning"><?php echo $average_rating; ?></span>
+                    <span class="float-right"><?php echo $total_review; ?> Reviews</span>
+                </h4>
+                <div class="mb-2">
+                    <span class="text-warning">
+                        <?php for ($i = 1; $i <= 5; $i++): ?>
+                            <i class="fas fa-star <?php echo $i <= $average_rating ? 'star-warning' : 'star-light'; ?>"></i>
+                        <?php endfor; ?>
+                    </span>
                 </div>
             </div>
+
+            <div class="card-body">
+                <div class="progress">
+                    <div class="progress-bar bg-warning" style="width: <?php echo $five_star_progress; ?>%;" role="progressbar" aria-valuenow="<?php echo $five_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
+                        <?php echo $total_five_star_review; ?> (5 Star)
+                    </div>
+                    <div class="progress-bar bg-warning" style="width: <?php echo $four_star_progress; ?>%;" role="progressbar" aria-valuenow="<?php echo $four_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
+                        <?php echo $total_four_star_review; ?> (4 Star)
+                    </div>
+                    <div class="progress-bar bg-warning" style="width: <?php echo $three_star_progress; ?>%;" role="progressbar" aria-valuenow="<?php echo $three_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
+                        <?php echo $total_three_star_review; ?> (3 Star)
+                    </div>
+                    <div class="progress-bar bg-warning" style="width: <?php echo $two_star_progress; ?>%;" role="progressbar" aria-valuenow="<?php echo $two_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
+                        <?php echo $total_two_star_review; ?> (2 Star)
+                    </div>
+                    <div class="progress-bar bg-warning" style="width: <?php echo $one_star_progress; ?>%;" role="progressbar" aria-valuenow="<?php echo $one_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
+                        <?php echo $total_one_star_review; ?> (1 Star)
+                    </div>
+                </div>
+
+                <hr />
+                <h4 class="text-center">Submit Your Review</h4>
+                <form method="post">
+                    <div class="form-group">
+                        <label for="rating">Rating</label>
+                        <select name="rating" class="form-control" required>
+                            <option value="">Select Rating</option>
+                            <option value="5">5 Star</option>
+                            <option value="4">4 Star</option>
+                            <option value="3">3 Star</option>
+                            <option value="2">2 Star</option>
+                            <option value="1">1 Star</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="review">Review</label>
+                        <textarea name="review" class="form-control" required></textarea>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Submit Review">
+                </form>
+            </div>
         </div>
+
+        <h3 class="mt-5">User Reviews</h3>
+        <?php while ($review = mysqli_fetch_assoc($reviews_result)): ?>
+            <div class="media mb-4">
+                <img src="https://via.placeholder.com/64" class="mr-3 rounded-circle" alt="User Image">
+                <div class="media-body">
+                    <h5 class="mt-0"><?php echo htmlspecialchars($review['user_id']); ?> 
+                        <small class="text-muted"><?php echo date('F j, Y', strtotime($review['review_date'])); ?></small>
+                    </h5>
+                    <span class="text-warning">
+                        <?php for ($i = 1; $i <= $review['rating']; $i++): ?>
+                            <i class="fas fa-star star-warning"></i>
+                        <?php endfor; ?>
+                    </span>
+                    <p><?php echo htmlspecialchars($review['review_text']); ?></p>
+                </div>
+            </div>
+        <?php endwhile; ?>
+      </div>
     </div>
-</div>
-    <script>
-    function reset_background() {
-        $('.submit_star').addClass('star-light').removeClass('star-warning');
-    }
 
-    document.addEventListener("DOMContentLoaded", function() {
-    const averageRating = parseFloat(document.getElementById("average_rating").innerText);
-    const stars = document.querySelectorAll(".main_star");
-
-    // Loop through each star element
-    stars.forEach((star, index) => {
-        // Change color to 'star-warning' for stars that fall within the average rating
-        if (index < Math.floor(averageRating)) {
-            star.classList.add("star-warning");
-        } else if (index < averageRating) { // Handles partial stars for ratings with decimals
-            star.classList.add("star-warning");
-            star.style.clipPath = `polygon(0 0, ${((averageRating - index) * 100)}% 0, ${((averageRating - index) * 100)}% 100%, 0% 100%)`;
-        } else {
-            star.classList.remove("star-warning");
-        }
-    });
-});
-</script>
+    <!-- Footer -->
+    <?php getFooter() ?>
 </body>
 </html>

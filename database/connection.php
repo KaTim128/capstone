@@ -219,17 +219,14 @@ if (!$retval) {
     die('Could not create table wishlist: ' . mysqli_error($conn));
 }
 
-$sql_review = 'CREATE TABLE IF NOT EXISTS review (
+$sql_review = 'CREATE TABLE IF NOT EXISTS reviews (
     review_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT DEFAULT NULL, -- Allow NULL values for user_id
-    name VARCHAR(100) NOT NULL,
-    content TEXT NOT NULL,
-    rating INT(1) NOT NULL CHECK (rating >= 1 AND rating <= 5), -- Rating should be between 1 and 5
-    date DATETIME DEFAULT CURRENT_TIMESTAMP, -- Automatically set the date to the current timestamp
-    book_id VARCHAR(10) DEFAULT NULL,
-    tool_id VARCHAR(10) DEFAULT NULL
+    user_id INT NOT NULL,
+    product_id VARCHAR(10) NOT NULL,  -- Use either book_id or tool_id here
+    review_text TEXT NOT NULL,
+    rating INT NOT NULL CHECK (rating BETWEEN 1 AND 5),
+    review_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )';
-
 
 $retval = mysqli_query($conn, $sql_review);
 if (!$retval) {

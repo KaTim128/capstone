@@ -288,49 +288,50 @@ function viewBookDetails(){
       $result_query = mysqli_query($conn, $select_query);
 
       while ($row = mysqli_fetch_assoc($result_query)) {
-        $book_id_with_prefix = 'b' . $row['book_id'];
+        $book_id_with_prefix = 'b' . $row['book_id']; // Use this for the wishlist
         $book_title = $row['book_title'];
         $author = $row['author'];
         $description = $row['description'];
         $image = $row['image'];
         $price = $row['price'];
-        $course_id = $row['course_id'];
-        
+        // Prepare the correct book_id for the reviews button
+        $book_id_for_reviews = $row['book_id']; // Use the actual book_id from the database
 
-      echo "<div class='col-md-4 mb-2'>
-            <div class='card mt-4'>
-              <img src='admin/bookImages/$image' class='' alt='Book Image'>
-            </div>
-          </div>
-          
-          <div class='col-md-8'>
-         <div class='row'>
-            <div class='col-md-12'>
-                <h2 class='text-info mb-4 mt-4 text'>$book_title</h2>
-                <div class='d-flex justify-content-between mb-4'>
-                  <h5 class='mb-0 text'>Author: $author</h5>
-                  <h5 class='mr-5 mb-4 text'>Price: RM$price/-</h5>
+        echo "<div class='col-md-4 mb-2'>
+                <div class='card mt-4'>
+                  <img src='admin/bookImages/$image' class='' alt='Book Image'>
                 </div>
-                <h6 class='mb-5'>$description</h6>
-                <div class='d-flex'>
-                  <a href='index.php' class='btn btn-info me-2 mr-2 mb-3'>Back</a>
-                  <a href='index.php?cart=$book_id' class='btn btn-info me-2 mr-2 mb-3'>Add to Cart</a>
-                  <form method='post' action='users/wishlist.php' class='me-2 mr-2 mb-3'>
-                                      <input type='hidden' name='book_id' value='$book_id_with_prefix'>
-                                      <input type='hidden' name='book_title' value='$book_title'>
-                                      <input type='hidden' name='book_image' value='$image'>
-                                      <input type='hidden' name='book_price' value='$price'>
-                                      <input type='submit' class='btn btn-info' name='add_to_wishlist' value='Add to Wishlist'>
-                                  </form>
-                                  <a href='reviews.php?book_id=$book_id' class='btn btn-info mb-3'>Reviews</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>";
-            }
-        }
+              </div>
+              
+              <div class='col-md-8'>
+              <div class='row'>
+                <div class='col-md-12'>
+                    <h2 class='text-info mb-4 mt-4 text'>$book_title</h2>
+                    <div class='d-flex justify-content-between mb-4'>
+                      <h5 class='mb-0 text'>Author: $author</h5>
+                      <h5 class='mr-5 mb-4 text'>Price: RM$price/-</h5>
+                    </div>
+                    <h6 class='mb-5'>$description</h6>
+                    <div class='d-flex'>
+                      <a href='index.php' class='btn btn-info me-2 mr-2 mb-3'>Back</a>
+                      <a href='index.php?cart=$book_id' class='btn btn-info me-2 mr-2 mb-3'>Add to Cart</a>
+                      <form method='post' action='users/wishlist.php' class='me-2 mr-2 mb-3'>
+                        <input type='hidden' name='book_id' value='$book_id_with_prefix'>
+                        <input type='hidden' name='book_title' value='$book_title'>
+                        <input type='hidden' name='book_image' value='$image'>
+                        <input type='hidden' name='book_price' value='$price'>
+                        <input type='submit' class='btn btn-info' name='add_to_wishlist' value='Add to Wishlist'>
+                      </form>
+                      <a href='reviews.php?book_id=b$book_id_for_reviews' class='btn btn-info mb-3'>Reviews</a>
+                    </div>
+                </div>
+            </div>
+          </div>";
+      }
     }
+  }
 }
+
 
 
     function viewToolDetails(){
