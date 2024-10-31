@@ -9,7 +9,7 @@ function getBooks(){
   //when course or tool id is not present in URL
   if(!isset($_GET['course'])){
       if(!isset($_GET['stationery'])){
-          $select_query = "SELECT * FROM `books` order by rand() limit 0,9";
+          $select_query = "SELECT * FROM `books` order by rand() limit 0,6";
           $result_query=mysqli_query($conn,$select_query);
           while ($row = mysqli_fetch_assoc($result_query)) {
               $book_id = 'b' . $row['book_id'];

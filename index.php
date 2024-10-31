@@ -17,6 +17,24 @@ session_start();
   <!-- css file -->
   <link rel="stylesheet" href="style.css">
 </head>
+<style>
+  .card-img-top {
+    width: 100%; /* Fixed width */
+    height: auto; /* Default height */
+    max-height: 330.13px;
+    object-fit: cover; /* Maintain aspect ratio */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .card-img-top {
+      width: 100%; /* Fixed width */
+      height: auto; /* Default height */
+      max-height: 330px;
+      object-fit: cover; 
+    }
+}
+</style>
 <body>
   <!-- navbar -->
   <div class="container-fluid p-0">

@@ -16,8 +16,24 @@
 }
 
 .card-img-top {
-  width: 100%;
-  height: auto;
+  width: 100px;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .card-img-top {
+    width: 80px; /* Adjusted width for smaller screens */
+    height: 150px; /* Reduced height for smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .card-img-top {
+    width: 60px; /* Further adjusted width */
+    height: 100px; /* Further reduced height */
+  }
 }
 
 .card-body {
