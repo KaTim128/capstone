@@ -153,7 +153,7 @@ if (isset($_POST['remove_item'])) {
           }
           if (isset($_SESSION['user_username'])) {
             echo "<li class='nav-item'>
-                    <a class='nav-link' href='./users/logout.php'>Logout</a>
+                    <a class='nav-link' href='./logout.php'>Logout</a>
                   </li>";
           } else {
             echo "<li class='nav-item'>

@@ -334,62 +334,63 @@ function viewBookDetails(){
 
 
 
-    function viewToolDetails(){
-      global $conn;
-    
-      if (isset($_GET['tool_id'])) {
-        if (!isset($_GET['books'])) {
+function viewToolDetails() {
+  global $conn;
+
+  if (isset($_GET['tool_id'])) {
+      if (!isset($_GET['books'])) {
           
           // Handle tool_id with prefix "t"
           $tool_id = $_GET['tool_id'];
-    
+
           // Remove prefix "t" to query the database (assuming the database doesn't store the prefix)
           $actual_tool_id = str_replace('t', '', $tool_id);
-    
+
           // Fetch tool details
           $select_query = "SELECT * FROM `tools` WHERE tool_id='$actual_tool_id'";
           $result_query = mysqli_query($conn, $select_query);
-    
-          while ($row = mysqli_fetch_assoc($result_query)) {
-            $tool_id_with_prefix = 't' . $row['tool_id']; // Re-adding the prefix for display and links
-            $tool_title = $row['tool_title'];
-            $description = $row['description'];
-            $image = $row['image'];
-            $price = $row['price'];
-            $stationery_id = $row['stationery_id'];
 
-      echo "<div class='col-md-4 mb-2'>
-            <div class='card'>
-              <img src='admin/toolImages/$image' class='' alt='Tool Image'>
-            </div>
-          </div>
-          
-          <div class='col-md-8'>
-        <!-- related images -->
-         <div class='row mt-4'>
-            <div class='col-md-12'>
-                <h2 class='text-info mb-4 mt-4 text'>$tool_title</h2>
-                <h5 class='mr-5 mb-5 text'>Price: RM$price/-</h5>
-                <h6 class='mb-5'>$description</h6>
-                <div class='d-flex'>
-                  <a href='index.php' class='btn btn-info me-2 mr-2 mb-3'>Back</a>
-                  <a href='index.php?cart=$tool_id' class='btn btn-info me-2 mr-2 mb-3'>Add to Cart</a>
-                                <form method='post' action='users/wishlist.php' class='me-2 mr-2 mb-3'>
-                                    <input type='hidden' name='tool_id' value='$tool_id_with_prefix'>
-                                    <input type='hidden' name='book_title' value='$tool_title'>
-                                    <input type='hidden' name='book_image' value='$image'>
-                                    <input type='hidden' name='book_price' value='$price'>
-                                    <input type='submit' class='btn btn-info' name='add_to_wishlist' value='Add to Wishlist'>
-                                </form>
-                                <a href='reviews.php?tool_id=$tool_id' class='btn btn-info mb-3'>Reviews</a>
-                              </div>
-                          </div>
+          while ($row = mysqli_fetch_assoc($result_query)) {
+              $tool_id_with_prefix = 't' . $row['tool_id']; // Re-adding the prefix for display and links
+              $tool_title = $row['tool_title'];
+              $description = $row['description'];
+              $image = $row['image'];
+              $price = $row['price'];
+              // Prepare the correct tool_id for the reviews button
+              $tool_id_for_reviews = $row['tool_id']; // Use the actual tool_id from the database
+
+              echo "<div class='col-md-4 mb-2'>
+                      <div class='card'>
+                        <img src='admin/toolImages/$image' class='' alt='Tool Image'>
+                      </div>
+                    </div>
+                    
+                    <div class='col-md-8'>
+                      <div class='row mt-4'>
+                        <div class='col-md-12'>
+                            <h2 class='text-info mb-4 mt-4 text'>$tool_title</h2>
+                            <h5 class='mr-5 mb-5 text'>Price: RM$price/-</h5>
+                            <h6 class='mb-5'>$description</h6>
+                            <div class='d-flex'>
+                              <a href='index.php' class='btn btn-info me-2 mr-2 mb-3'>Back</a>
+                              <a href='index.php?cart=$tool_id' class='btn btn-info me-2 mr-2 mb-3'>Add to Cart</a>
+                              <form method='post' action='users/wishlist.php' class='me-2 mr-2 mb-3'>
+                                  <input type='hidden' name='tool_id' value='$tool_id_with_prefix'>
+                                  <input type='hidden' name='tool_title' value='$tool_title'>
+                                  <input type='hidden' name='tool_image' value='$image'>
+                                  <input type='hidden' name='tool_price' value='$price'>
+                                  <input type='submit' class='btn btn-info' name='add_to_wishlist' value='Add to Wishlist'>
+                              </form>
+                              <a href='reviews.php?tool_id=t$tool_id_for_reviews' class='btn btn-info mb-3'>Reviews</a>
+                            </div>
                         </div>
-                    </div>";
-            }
-        }
-    }
+                    </div>
+                </div>";
+          }
+      }
+  }
 }
+
 
 
 //get ip function

@@ -4,6 +4,7 @@ session_start();
 include('./database/connection.php');
 include('./functions/common_function.php');
 
+
 // Determine product_id from URL (either book_id or tool_id)
 if (isset($_GET['book_id'])) {
     $product_id = $_GET['book_id'];
@@ -56,6 +57,40 @@ $result = mysqli_query($conn, $get_user);
 $row_fetch = mysqli_fetch_assoc($result);
 $user_id = $row_fetch['user_id'];
 $username = $row_fetch['user_username'];
+$user_image = $row_fetch['user_image'];
+
+$product_id = isset($_GET['book_id']) ? $_GET['book_id'] : (isset($_GET['tool_id']) ? $_GET['tool_id'] : '');
+
+if (isset($_GET['book_id'])) {
+    $product_id = $_GET['book_id'];
+    $id = substr($product_id, 1); // Remove the 'b' prefix
+    $table = 'books'; // Define the table for books
+    $id_column = 'book_id'; // Set the column name for books
+} elseif (isset($_GET['tool_id'])) {
+    $product_id = $_GET['tool_id'];
+    $id = substr($product_id, 1); // Remove the 't' prefix
+    $table = 'tools'; // Define the table for tools
+    $id_column = 'tool_id'; // Set the column name for tools
+} else {
+    echo "No product ID provided.";
+    exit();
+}
+
+// Use the dynamic column name for the query
+$image_query = "SELECT image FROM $table WHERE $id_column = '$id'";
+$image_result = mysqli_query($conn, $image_query);
+
+// Fetch the image
+$image_row = mysqli_fetch_assoc($image_result);
+$product_image = $image_row['image'] ?? 'default.jpg';
+
+if (strpos($product_id, 'b') === 0) { 
+    $image_path = 'admin/bookImages/';
+} elseif (strpos($product_id, 't') === 0) { 
+    $image_path = 'admin/toolImages/';
+} else {
+    $image_path = 'admin/defaultImages/';
+}
 
 // Retrieve reviews for the specific product ID
 $fetch_reviews = "SELECT * FROM reviews WHERE product_id='$product_id' ORDER BY review_date DESC";
@@ -90,9 +125,32 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <style>
-        .star-light { color: #ddd; }
-        .star-warning { color: #ffcc00; }
-    </style>
+    .star-light { 
+        color: #ddd; 
+    }
+    .star-warning { 
+        color: #ffcc00; 
+    }
+    .progress-bar {
+        transition: width 0.5s ease, opacity 0.5s ease;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .round-circle {
+        border-radius: 50px;
+        width: 50px; /* Adjust the width to make the image smaller */
+        height: 50px; /* Maintain aspect ratio */
+        object-fit: cover; /* Ensures the image covers the dimensions without distortion */
+    }
+
+    .product-img {
+        border-radius: 10px;
+        width: 50px; /* Adjust the width to make the image smaller */
+        height: 50px; /* Maintain aspect ratio */
+        object-fit: cover; /* Ensures the image covers the dimensions without distortion */
+    }
+</style>
+
 </head>
 <body>
   <!-- navbar -->
@@ -182,10 +240,12 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
       <!-- forth child -->
       <div class="container">
         <div class="card">
-            <div class="card-header text-center">
-                <h4>Rating: 
+        <div class="card-header d-flex align-items-center">
+            <img src="<?php echo $image_path . $product_image; ?>" class="mr-3 product-img" alt="Product Image" style="width: 100px; height: 100px;">
+            <div class="flex-grow-1 text-center">
+                <h4>
+                    Rating: 
                     <span class="text-warning"><?php echo $average_rating; ?></span>
-                    <span class="float-right"><?php echo $total_review; ?> Reviews</span>
                 </h4>
                 <div class="mb-2">
                     <span class="text-warning">
@@ -194,28 +254,31 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
                         <?php endfor; ?>
                     </span>
                 </div>
+                <span class="float-center"><?php echo $total_review; ?> Reviews</span>
             </div>
+        </div>
+
 
             <div class="card-body">
-                <div class="progress">
-                    <div class="progress-bar bg-warning" style="width: <?php echo $five_star_progress; ?>%;" role="progressbar" aria-valuenow="<?php echo $five_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
-                        <?php echo $total_five_star_review; ?> (5 Star)
-                    </div>
-                    <div class="progress-bar bg-warning" style="width: <?php echo $four_star_progress; ?>%;" role="progressbar" aria-valuenow="<?php echo $four_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
-                        <?php echo $total_four_star_review; ?> (4 Star)
-                    </div>
-                    <div class="progress-bar bg-warning" style="width: <?php echo $three_star_progress; ?>%;" role="progressbar" aria-valuenow="<?php echo $three_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
-                        <?php echo $total_three_star_review; ?> (3 Star)
-                    </div>
-                    <div class="progress-bar bg-warning" style="width: <?php echo $two_star_progress; ?>%;" role="progressbar" aria-valuenow="<?php echo $two_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
-                        <?php echo $total_two_star_review; ?> (2 Star)
-                    </div>
-                    <div class="progress-bar bg-warning" style="width: <?php echo $one_star_progress; ?>%;" role="progressbar" aria-valuenow="<?php echo $one_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
-                        <?php echo $total_one_star_review; ?> (1 Star)
-                    </div>
-                </div>
-
-                <hr />
+            <div class="progress">
+            <div class="progress-bar bg-warning" style="width: <?php echo $one_star_progress; ?>%; opacity: <?php echo $one_star_progress > 0 ? 0.2 : 0; ?>" role="progressbar" aria-valuenow="<?php echo $one_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
+                <?php echo $total_one_star_review; ?> (1 Star)
+            </div>
+            <div class="progress-bar bg-warning" style="width: <?php echo $two_star_progress; ?>%; opacity: <?php echo $two_star_progress > 0 ? 0.4 : 0; ?>" role="progressbar" aria-valuenow="<?php echo $two_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
+                <?php echo $total_two_star_review; ?> (2 Star)
+            </div>
+            <div class="progress-bar bg-warning" style="width: <?php echo $three_star_progress; ?>%; opacity: <?php echo $three_star_progress > 0 ? 0.6 : 0; ?>" role="progressbar" aria-valuenow="<?php echo $three_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
+                <?php echo $total_three_star_review; ?> (3 Star)
+            </div>
+            <div class="progress-bar bg-warning" style="width: <?php echo $four_star_progress; ?>%; opacity: <?php echo $four_star_progress > 0 ? 0.8 : 0; ?>" role="progressbar" aria-valuenow="<?php echo $four_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
+                <?php echo $total_four_star_review; ?> (4 Star)
+            </div>
+            
+            <div class="progress-bar bg-warning" style="width: <?php echo $five_star_progress; ?>%; opacity: <?php echo $five_star_progress > 0 ? 1 : 0; ?>" role="progressbar" aria-valuenow="<?php echo $five_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
+                <?php echo $total_five_star_review; ?> (5 Star)
+            </div>
+            </div>
+                <hr/>
                 <h4 class="text-center">Submit Your Review</h4>
                 <form method="post">
                     <div class="form-group">
@@ -231,19 +294,60 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
                     </div>
                     <div class="form-group">
                         <label for="review">Review</label>
-                        <textarea name="review" class="form-control" required></textarea>
+                        <textarea name="review" class="form-control"></textarea>
                     </div>
                     <input type="submit" class="btn btn-primary" value="Submit Review">
                 </form>
             </div>
         </div>
+        <?php
+$fetch_reviews = "SELECT r.*, u.user_username, u.user_image 
+                  FROM reviews r 
+                  JOIN user u ON r.user_id = u.user_id 
+                  WHERE r.product_id = '$product_id' 
+                  ORDER BY r.review_date DESC";
 
-        <h3 class="mt-5">User Reviews</h3>
+$reviews_result = mysqli_query($conn, $fetch_reviews);
+
+// Check if there are reviews to display
+if (mysqli_num_rows($reviews_result) > 0) {
+    echo '<h3 class="mt-5 mb-4 text-center">User Reviews</h3>';
+    while ($review = mysqli_fetch_assoc($reviews_result)) {
+        // Extract data from the review and user
+        $review_text = htmlspecialchars($review['review_text']);
+        $review_rating = $review['rating'];
+        $review_date = date("F j, Y", strtotime($review['review_date'])); // Format date
+        $review_user_image = $review['user_image'] ?? 'default.jpg'; // Fallback image
+        $review_user_name = htmlspecialchars($review['user_username']);
+
+        // Display review
+        echo '<div class="review p-3 mb-3 border rounded shadow-sm">';
+        echo '<div class="d-flex align-items-center mb-2">';
+        echo '<img src="users/user_images/' . $review_user_image . '" class="rounded-circle mr-2" alt="User Image" width="50" height="50">';
+        echo '<div>';
+        echo '<strong class="font-weight-bold">' . $review_user_name . '</strong>';
+        echo '<span class="text-muted d-block">' . $review_date . '</span>';
+        echo '</div>';
+        echo '</div>'; // End of user info
+        echo '<p class="mb-2">' . $review_text . '</p>';
+
+        // Display star rating
+        echo '<span class="text-warning">';
+        for ($i = 1; $i <= 5; $i++) {
+            echo '<i class="fas fa-star ' . ($i <= $review_rating ? 'star-warning' : 'star-light') . '"></i>';
+        }
+        echo '</span>';
+        echo '</div>'; // End of review
+    }
+} else {
+    echo '<p class="text-muted text-center">No reviews yet.</p>';
+}
+?>
         <?php while ($review = mysqli_fetch_assoc($reviews_result)): ?>
             <div class="media mb-4">
-                <img src="https://via.placeholder.com/64" class="mr-3 rounded-circle" alt="User Image">
+            <img src="users/user_images/<?php echo $user_image ?>" class="mr-3 round-circle" alt="User Image">
                 <div class="media-body">
-                    <h5 class="mt-0"><?php echo htmlspecialchars($review['user_id']); ?> 
+                    <h5 class="mt-0"><?php echo "$username"?> 
                         <small class="text-muted"><?php echo date('F j, Y', strtotime($review['review_date'])); ?></small>
                     </h5>
                     <span class="text-warning">
