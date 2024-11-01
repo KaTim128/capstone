@@ -2,6 +2,7 @@
 include('../database/connection.php');
 include('../functions/common_function.php');
 session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,13 +36,32 @@ session_start();
             gap: 15px; 
             width: 100%;
             box-sizing: border-box;
-            margin: 0 auto;
+            margin: 5 auto;
             padding: 5px 15px;
             margin-bottom: 5px;
+            margin-right:10px;
+        }
+
+        /* Media query for mobile devices */
+        @media (max-width: 768px) {
+            .panel {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+            }
+        }
+
+        @media (max-width: 420px) {
+            .panel {
+                grid-template-columns: 1fr; /* 1 column on small screens */
+                padding: 5px; /* Adjust padding for smaller screens */
+            }
+            .btn-responsive {
+                font-size: 14px; /* Maintain readability on smaller screens */
+                padding: 10px; /* Padding for buttons */
+            }
         }
 
         .panel button {
-            background-color: #17a2b8; 
+            background-color: #74b05c; 
             border: none; 
             border-radius: 5px;
             padding: 5px; 
@@ -59,7 +79,7 @@ session_start();
         }
 
         .panel button:hover {
-            background-color: #138496; 
+            background-color: #4a7439; 
         }
 
         .footer {
@@ -88,10 +108,9 @@ body {
     </style>
 </head>
 <body>
-    <!-- navbar -->
-    <div class="container-fluid p-0">
+    
         <!-- first child -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-info">
+        <nav class="navbar navbar-expand-lg navbar-light dark-green">
             <div class="container-fluid">
                 
                 <nav class="navbar navbar-expand-lg">
@@ -111,29 +130,28 @@ body {
 
         <!-- second child -->
         <div class="bg-light">
-            <h3 class="text-center p-2">Manage Details</h3>
+            <h3 class="text-center p-2 mt-2">Manage Details</h3>
         </div>
 
         <!-- third child -->
         <div class="row">
             <div class="col-md-12 bg-secondary d-flex align-items-center">
-                <div class="p-1 mt-3" >
-                    <a href="#"><img src="../images/logo_new.png" alt="" class="admin-image mb-2"></a>
-                    <p class="text-light text-center">Admin Name</p>
+                <div class="my-4 " >
+                    <a href="#"><img src="../images/logo_new.png" alt="" class="admin-image"></a>
                 </div>
                 <div class="panel text-center">
-                    <button><a href="adminPanel.php?insertBook" class="nav-link text-light bg-info">Insert Book</a></button>
-                    <button><a href="adminPanel.php?viewBook" class="nav-link text-light bg-info">View Books</a></button>
-                    <button><a href="adminPanel.php?insertCourse" class="nav-link text-light bg-info">Insert Courses</a></button>
-                    <button><a href="adminPanel.php?viewCourse" class="nav-link text-light bg-info my-1">View Courses</a></button>
-                    <button><a href="adminPanel.php?insertTool" class="nav-link text-light bg-info">Insert Tool</a></button>
-                    <button><a href="adminPanel.php?viewTool" class="nav-link text-light bg-info my-1 mr-1">View Tools</a></button>
-                    <button><a href="adminPanel.php?insertStationery" class="nav-link text-light bg-info">Insert Stationery</a></button>
-                    <button><a href="adminPanel.php?viewStationery" class="nav-link text-light bg-info">View Stationery</a></button>
-                    <button><a href="adminPanel.php?listOrders" class="nav-link text-light bg-info">All Orders</a></button>
-                    <button><a href="adminPanel.php?listPayments" class="nav-link text-light bg-info">All Payments</a></button>
-                    <button><a href="adminPanel.php?listUsers" class="nav-link text-light bg-info">List Users</a></button>
-                    <button><a href="../users/user_login.php" class="nav-link text-light bg-info">Logout</a></button>
+                <button><a href="adminPanel.php?insertBook" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">Insert Book</a></button>
+                <button><a href="adminPanel.php?viewBook" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">View Books</a></button>
+                <button><a href="adminPanel.php?insertCourse" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">Insert Courses</a></button>
+                <button><a href="adminPanel.php?viewCourse" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">View Courses</a></button>
+                <button><a href="adminPanel.php?insertTool" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">Insert Tool</a></button>
+                <button><a href="adminPanel.php?viewTool" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">View Tools</a></button>
+                <button><a href="adminPanel.php?insertStationery" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">Insert Stationery</a></button>
+                <button><a href="adminPanel.php?viewStationery" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">View Stationery</a></button>
+                <button><a href="adminPanel.php?listOrders" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">All Orders</a></button>
+                <button><a href="adminPanel.php?listPayments" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">All Payments</a></button>
+                <button><a href="adminPanel.php?listUsers" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">List Users</a></button>
+                <button><a href="../users/user_login.php" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">Logout</a></button>
                 </div>
             </div>
         </div>

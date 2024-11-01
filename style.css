@@ -12,27 +12,23 @@
 }
 
 .card {
-  margin-bottom: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .card-img-top {
-  width: 100px;
-  height: 200px;
+  width: 100%;
+  height: auto;
+  max-height: 330.13px;
   object-fit: cover;
 }
 
-/* Media query for smaller screens */
 @media (max-width: 768px) {
   .card-img-top {
-    width: 80px; /* Adjusted width for smaller screens */
-    height: 150px; /* Reduced height for smaller screens */
-  }
-}
-
-@media (max-width: 576px) {
-  .card-img-top {
-    width: 60px; /* Further adjusted width */
-    height: 100px; /* Further reduced height */
+    width: 100%;
+    height: auto;
+    max-height: 330px;
+    object-fit: cover;
   }
 }
 
@@ -80,4 +76,37 @@
 
 .search-input {
   width: 400px; /* Default width for small screens */
+}
+
+.green {
+  background: linear-gradient(
+    to right,
+    #c1e899,
+    #a3d59f
+  ); /* Gradient from light green to a soft green */
+}
+
+.light-green {
+  background: linear-gradient(
+    to right,
+    #e6f0dc,
+    #c1e899
+  ); /* Gradient from a light color to a fresh light green */
+}
+
+.dark-green {
+  background: linear-gradient(
+    
+    #7ba17b,
+    #7ba17b
+  ); 
+}
+
+.gradient-background {
+  background: linear-gradient(
+    #e4f4c7,
+    #f4faf2,
+    #d0e8c6,
+    #ffffff
+  ); /* Soft gradient for a gentle background */
 }

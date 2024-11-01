@@ -15,31 +15,13 @@ session_start();
   <!-- font awesome link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- css file -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
-<style>
-  .card-img-top {
-    width: 100%; /* Fixed width */
-    height: auto; /* Default height */
-    max-height: 330.13px;
-    object-fit: cover; /* Maintain aspect ratio */
-}
-
-/* Media query for smaller screens */
-@media (max-width: 768px) {
-    .card-img-top {
-      width: 100%; /* Fixed width */
-      height: auto; /* Default height */
-      max-height: 330px;
-      object-fit: cover; 
-    }
-}
-</style>
 <body>
   <!-- navbar -->
-  <div class="container-fluid p-0">
+  <div class="container-fluid p-0 gradient-background">
     <!-- first child  -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark dark-green">
       <div class="container-fluid">
         <img src="./images/logo_new.png" alt="" style="width: 6%; height: 7%; margin-right: 15px; border-radius:5px">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,8 +30,8 @@ session_start();
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.php">Products<span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+              <a class="nav-link" href="index.php">Products</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="./users/wishlist.php">Wishlist</a>
@@ -89,34 +71,34 @@ session_start();
       ?>
 
       <!-- second child -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+      <nav class="navbar navbar-expand-lg navbar-dark green">
         <ul class="navbar-nav me-auto">
-          <?php
-          if (isset($_SESSION['user_username'])) {
+        <?php
+        if (isset($_SESSION['user_username'])) {
             echo "<li class='nav-item'>
-                    <a class='nav-link'>Welcome " . htmlspecialchars($_SESSION['user_username']) . "</a>
+                    <a class='nav-link text-dark'>Welcome " . htmlspecialchars($_SESSION['user_username']) . "</a>
                   </li>";
-          } else {
+        } else {
             echo "<li class='nav-item'>
-                    <a class='nav-link' href='#'>Welcome guest</a>
+                    <a class='nav-link text-dark' href='#'>Welcome guest</a>
                   </li>";
-          }
-          if (isset($_SESSION['user_username'])) {
+        }
+        if (isset($_SESSION['user_username'])) {
             echo "<li class='nav-item'>
-                    <a class='nav-link' href='./users/logout.php'>Logout</a>
+                    <a class='nav-link text-dark' href='./users/logout.php'>Logout</a>
                   </li>";
-          } else {
+        } else {
             echo "<li class='nav-item'>
-                    <a class='nav-link' href='./users/user_login.php'>Login</a>
+                    <a class='nav-link text-dark' href='./users/user_login.php'>Login</a>
                   </li>";
-          }
-          ?>
+        }
+        ?>
         </ul>
       </nav>
 
       <!-- third child -->
-      <div class="bg-light">
-        <h3 class="text-center" style="overflow: hidden;">Course Store</h3>
+      <div class="light-green">
+        <h3 class="text-center mt-3" style="overflow: hidden;">Course Store</h3>
         <p class="text-center">Online bookstore for students</p>
       </div>
 
@@ -136,19 +118,19 @@ session_start();
           <!-- column end -->
         </div>          
 
-        <div class="col-md-2 bg-secondary p-0">
+        <div class="col-md-2 light-green p-0">
           <!-- courses to be displayed -->
           <ul class="navbar-nav me-auto text-center">
-            <li class="nav-item bg-info">
-              <a href="#" class="nav-link text-light"><h4 style="overflow:hidden;">Courses</h4></a>
+            <li class="nav-item green">
+              <a href="#" class="nav-link text-dark"><h4 style="overflow:hidden;">Courses</h4></a>
             </li>
             <?php getCourses(); ?> 
           </ul>
 
           <!-- stationaries to be displayed -->
           <ul class="navbar-nav me-auto text-center">
-            <li class="nav-item bg-info">
-              <a href="#" class="nav-link text-light"><h4 style="overflow:hidden;">Stationaries</h4></a>
+            <li class="nav-item green">
+              <a href="#" class="nav-link text-dark"><h4 style="overflow:hidden;">Stationaries</h4></a>
             </li>
             <?php getStationeries(); ?>
           </ul>

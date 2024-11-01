@@ -20,7 +20,7 @@ function getBooks(){
               $price = $row['price'];
               $course_id = $row['course_id'];
               echo "<div class='col-md-4 mb-2'>
-                  <div class='card'>
+                  <div class='card light-green'>
                     <img src='admin/bookImages/$image' class='card-img-top' alt='Book Image'>
                     <div class='card-body'>
                       <h5 class='card-title' >$book_title</h5>
@@ -171,7 +171,7 @@ function getCourses(){
         $course_title=$row_data['course_title'];
         $course_id=$row_data['course_id'];
         echo "<li class='nav-item'>
-        <a href='index.php?course=$course_id' class='nav-link text-light'>$course_title</a>
+        <a href='index.php?course=$course_id' class='nav-link text-dark'>$course_title</a>
         </li>";
       }
     }
@@ -186,7 +186,7 @@ function getStationeries(){
         $stationery_title=$row_data['stationery_title'];
         $stationery_id=$row_data['stationery_id'];
         echo "<li class='nav-item'>
-        <a href='index.php?stationery=$stationery_id' class='nav-link text-light'>$stationery_title</a>
+        <a href='index.php?stationery=$stationery_id' class='nav-link text-dark'>$stationery_title</a>
         </li>";
       }
     }
@@ -210,10 +210,17 @@ function getStationeries(){
             text-align: center;
             width:100%;
           }
+          .dark-green {
+          background: linear-gradient(
+            to right,
+            #4c7a3a,
+            #5b9e4c
+          );
+        }
         </style>
 
-        <div class='footer'>
-          <p>Website, Designed by Ho Ka Tim © 2024.</p>
+        <div class='footer dark-green'>
+          <p class='mt-3'>Website, Designed by Ho Ka Tim © 2024.</p>
         </div>";
     }
     

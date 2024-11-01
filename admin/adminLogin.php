@@ -14,9 +14,11 @@ if (isset($_POST['admin_registration'])) {
         
         // Verify the password
         if (password_verify($admin_password, $admin_data['admin_password'])) {
-            // Password is correct; start session and redirect to admin panel
+            // Password is correct; start session
             session_start();
+            $_SESSION['admin_name'] = $admin_data['admin_name'];
             $_SESSION['admin_email'] = $admin_email;
+            $_SESSION['admin_id'] = $admin_data['admin_id']; // Store admin_id in session
             header("Location: adminPanel.php");
             exit();
         } else {
@@ -27,6 +29,7 @@ if (isset($_POST['admin_registration'])) {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
