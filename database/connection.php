@@ -99,6 +99,7 @@ if (!$retval) {
 
 $sql_cart = 'CREATE TABLE IF NOT EXISTS cart (
     cart_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
     book_id INT(10) DEFAULT NULL,
     tool_id INT(10) DEFAULT NULL,
     ip_address VARCHAR(255),

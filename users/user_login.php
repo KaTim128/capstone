@@ -26,8 +26,8 @@ if(isset($_POST['user_login'])){
             if(password_verify($user_password, $row_data['user_password'])){
                 $_SESSION['user_id'] = $row_data['user_id'];
                 $_SESSION['user_username'] = $row_data['user_username']; 
-
-                $select_query_cart = "SELECT * FROM `cart` WHERE ip_address = '$user_ip'";
+                $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+                $select_query_cart = "SELECT * FROM `cart` WHERE user_id='$user_id'";
                 $select_cart = mysqli_query($conn, $select_query_cart);
                 $row_count_cart = mysqli_num_rows($select_cart);
 

@@ -391,8 +391,6 @@ function viewToolDetails() {
   }
 }
 
-
-
 //get ip function
 function getIPAddress() {  
   //whether ip is from the share internet  
@@ -413,7 +411,8 @@ function getIPAddress() {
 function manageCart() { 
   global $conn;
   if (isset($_GET['cart'])) {
-      $ip = getIPAddress();
+      $user_id = $_SESSION['user_id']; // Retrieve the user ID from the session
+      $ip = getIPAddress(); // Use IP address if required for other parts of the system
       $get_product_id = $_GET['cart'];
       $booktype = isset($_POST['booktype']) ? $_POST['booktype'] : 'digital';
 
@@ -424,11 +423,11 @@ function manageCart() {
       $result_query_b = null;
       $result_query_t = null;
 
-      // Check if the item already exists in the cart
+      // Check if the item already exists in the cart for this user_id
       if ($prefix == 'b') {
-          $result_query_b = mysqli_query($conn, "SELECT * FROM `cart` WHERE ip_address='$ip' AND book_id='$id'");
+          $result_query_b = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id='$user_id' AND book_id='$id'");
       } elseif ($prefix == 't') {
-          $result_query_t = mysqli_query($conn, "SELECT * FROM `cart` WHERE ip_address='$ip' AND tool_id='$id'");
+          $result_query_t = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id='$user_id' AND tool_id='$id'");
       }
 
       // Initialize alert message variable
@@ -440,15 +439,15 @@ function manageCart() {
       } elseif ($prefix == 't' && mysqli_num_rows($result_query_t) > 0) {
           $alertMessage = 'This tool is already in your cart!';
       } else {
-          // Insert the item into the cart with default or selected booktype
+          // Insert the item into the cart with user_id, default or selected booktype, and quantity
           $insert_query = "";
 
           if ($prefix == 'b') {
-              // Insert books with booktype
-              $insert_query = "INSERT INTO `cart` (book_id, ip_address, quantity, booktype) VALUES ('$id', '$ip', 1, '$booktype')";
+              // Insert books with booktype and user_id
+              $insert_query = "INSERT INTO `cart` (book_id, user_id, ip_address, quantity, booktype) VALUES ('$id', '$user_id', '$ip', 1, '$booktype')";
           } elseif ($prefix == 't') {
-              // Insert tools without booktype
-              $insert_query = "INSERT INTO `cart` (tool_id, ip_address, quantity) VALUES ('$id', '$ip', 1)";
+              // Insert tools with user_id (no booktype)
+              $insert_query = "INSERT INTO `cart` (tool_id, user_id, ip_address, quantity) VALUES ('$id', '$user_id', '$ip', 1)";
           }
 
           // Execute the query and set alert message if successful
@@ -470,6 +469,7 @@ function manageCart() {
 }
 
 
+
 // Function to display alert messages from the session
 function displayAlert() {
     if (isset($_SESSION['alert'])) {
@@ -480,9 +480,10 @@ function displayAlert() {
 
 // Function to get cart item numbers
 function cartItem() {
+    $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
     global $conn;
     $ip = getIPAddress(); 
-    $select_query = "SELECT * FROM `cart` WHERE ip_address='$ip'";
+    $select_query = "SELECT * FROM `cart` WHERE ip_address='$ip' AND user_id = '$user_id'";
     $result_query = mysqli_query($conn, $select_query);
     $count_cart_items = mysqli_num_rows($result_query);
     echo $count_cart_items;

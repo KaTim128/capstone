@@ -4,7 +4,7 @@ include('./database/connection.php');
 include('./functions/common_function.php');
 session_start();
 
-// Include the connection and common functions
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 $get_ip_add = getIPAddress();
 $total_price = 0;
 
@@ -233,7 +233,7 @@ manageCart();
     <form action="cart.php" method="post">
       <?php
       // Get items from cart
-      $cart_query = "SELECT * FROM `cart` WHERE ip_address='$get_ip_add'";
+      $cart_query = "SELECT * FROM `cart` WHERE user_id='$user_id'";
       $result = mysqli_query($conn, $cart_query);
       $num_of_rows = mysqli_num_rows($result);
       if ($num_of_rows == 0) {      
