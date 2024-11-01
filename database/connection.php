@@ -154,8 +154,7 @@ $sql_pend_orders = 'CREATE TABLE IF NOT EXISTS pending_orders (
     order_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     amount_due INT NOT NULL,
-    invoice_number INT(255) NOT NULL,
-    total_products INT(255) NOT NULL, 
+    invoice_number INT(255) NOT NULL, 
     book_id VARCHAR(2) NULL,
     tool_id VARCHAR(2) NULL,
     order_status VARCHAR(255) NOT NULL
@@ -171,10 +170,12 @@ $sql_confirm_payment = 'CREATE TABLE IF NOT EXISTS user_payments (
     payment_id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT NOT NULL,
     user_id INT NOT NULL,
+    book_id VARCHAR(2) NULL,
+    tool_id VARCHAR(2) NULL,
     invoice_number INT NOT NULL,
     amount INT NOT NULL,
     payment_mode VARCHAR(255) NOT NULL,
-    date TIMESTAMP NOT NULL
+    payment_date TIMESTAMP NOT NULL
 )';
 
 

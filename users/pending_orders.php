@@ -23,20 +23,7 @@
     <h4 class="mt-4 text-center text-success" style="overflow:hidden">Pending Orders</h4>
     <div class="table-container mr-3">
         <table class="table-bordered mt-2 table text-center">
-            <thead class="bg-info">
-                <tr>
-                    <th>S1 no</th>
-                    <th>Product Name</th>
-                    <th>Image</th>
-                    <th>Quantity</th>
-                    <th>Amount Due</th>
-                    <th>Invoice Number</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody class="bg-secondary text-light">
+            
                 <?php          
                 // Fetch only pending (incomplete) orders
                 $get_order_details = "SELECT * FROM `orders` WHERE user_id=$user_id AND order_status='pending'";
@@ -45,6 +32,22 @@
                 if (mysqli_num_rows($result_orders) == 0) {                
                     echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>No pending orders available</div>";
                 } else {
+                    echo "
+                    <table class='table-bordered mt-2 table text-center'>
+                        <thead class='bg-info'>
+                            <tr>
+                                <th>S1 no</th>
+                                <th>Product Name</th>
+                                <th>Image</th>
+                                <th>Quantity</th>
+                                <th>Amount Due</th>
+                                <th>Invoice Number</th>
+                                <th>Order Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class='bg-secondary text-light'>";
                     $number = 1;
                     while ($row_orders = mysqli_fetch_assoc($result_orders)) {
                         $order_id = $row_orders['order_id'];
@@ -79,13 +82,13 @@
                             $tool_result = mysqli_query($conn, $tool_query);
                             if ($tool_result && mysqli_num_rows($tool_result) > 0) {
                                 $tool_data = mysqli_fetch_assoc($tool_result);
-                                $product_name = $tool_data['name'];
+                                $product_name = $tool_data['tool_title'];
                                 $image_path = "../admin/toolImages/" . $tool_data['image'];
                             }
                         }
 
                         // Display order details
-                        $order_status_display = ($order_status == 'pending') ? 'Incomplete' : 'Paid';
+                        $order_status_display = ($order_status == 'pending') ? 'Incomplete' : 'Complete';
                         echo "<tr class='pending-order'>
                                 <td>$number</td>
                                 <td>$product_name</td>

@@ -117,6 +117,29 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
         exit();
     }
 }
+
+$order_check_query = "SELECT * FROM orders 
+                      WHERE user_id='$user_id' 
+                      AND (book_id='$product_id' OR tool_id='$product_id') 
+                      AND order_status='complete'";
+$order_check_result = mysqli_query($conn, $order_check_query);
+$order_exists = mysqli_num_rows($order_check_result) > 0;
+
+// Process form submission for reviews
+if (isset($_POST['rating']) && isset($_POST['review'])) {
+    $rating = $_POST['rating'];
+    $review = mysqli_real_escape_string($conn, $_POST['review']);
+
+    // Insert review into the database for the specific product
+    $sql = "INSERT INTO reviews (user_id, product_id, review_text, rating) 
+            VALUES ('$user_id', '$product_id', '$review', '$rating')";
+
+    if (mysqli_query($conn, $sql)) {
+        // Redirect to the same page after successful submission
+        header("Location: " . $_SERVER['PHP_SELF'] . "?book_id=" . $product_id); // Assuming book_id is used for redirection
+        exit();
+    }
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -285,32 +308,37 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
             </div>
             </div>
                 <hr/>
-                <?php if ($review_exists): ?>
-              <div class="alert alert-success text-center" role="alert">
-                  Thank you for your review!
-              </div>
-          <?php else: ?>
-                <h4 class="text-center">Submit Your Review</h4>
-                <form method="post">
-                    <div class="form-group">
-                        <label for="rating">Rating</label>
-                        <select name="rating" class="form-control" required>
-                            <option value="">Select Rating</option>
-                            <option value="5">5 Star</option>
-                            <option value="4">4 Star</option>
-                            <option value="3">3 Star</option>
-                            <option value="2">2 Star</option>
-                            <option value="1">1 Star</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="review">Review</label>
-                        <textarea name="review" class="form-control"></textarea>
-                    </div>
-                    <input type="submit" class="btn btn-primary" value="Submit Review">
-                </form>
-                <?php endif; ?>
-            </div>
+                <?php if ($order_exists && !$review_exists): ?>
+    <h4 class="text-center">Submit Your Review</h4>
+    <form method="post">
+        <div class="form-group">
+            <label for="rating">Rating</label>
+            <select name="rating" class="form-control" required>
+                <option value="">Select Rating</option>
+                <option value="5">5 Star</option>
+                <option value="4">4 Star</option>
+                <option value="3">3 Star</option>
+                <option value="2">2 Star</option>
+                <option value="1">1 Star</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="review">Review:</label>
+            <textarea name="review" class="form-control" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Review</button>
+    </form>
+<?php else: ?>
+    <div class="alert alert-success text-center" role="alert">
+        <?php if (!$order_exists): ?>
+            You need to complete a purchase before leaving a review.
+        <?php elseif ($review_exists): ?>
+            Thank you for your review! You have already submitted a review for this product.
+        <?php endif; ?>
+    </div>
+<?php endif; ?>
+
+    </div>
         </div>
         <?php
 $fetch_reviews = "SELECT r.*, u.user_username, u.user_image 
@@ -354,6 +382,8 @@ if (mysqli_num_rows($reviews_result) > 0) {
 } else {
     echo '<p class="text-muted text-center my-3">No reviews yet.</p>';
 }
+
+
 ?>
         <?php while ($review = mysqli_fetch_assoc($reviews_result)): ?>
             <div class="media mb-4">

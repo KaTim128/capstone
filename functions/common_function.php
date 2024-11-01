@@ -46,7 +46,7 @@ function getBooksAndTools() {
 
   // Displaying books
   while ($row = mysqli_fetch_assoc($result_books_query)) {
-      $book_id = 'b' . $row['book_id'];
+      $book_id = $row['book_id'];
       $book_title = $row['book_title'];
       $author = $row['author'];
       $description = $row['description'];
@@ -314,7 +314,7 @@ function viewBookDetails(){
                     <h6 class='mb-5'>$description</h6>
                     <div class='d-flex'>
                       <a href='index.php' class='btn btn-info me-2 mr-2 mb-3'>Back</a>
-                      <a href='index.php?cart=b$book_id' class='btn btn-info me-2 mr-2 mb-3'>Add to Cart</a>
+                      <a href='index.php?cart=$book_id' class='btn btn-info me-2 mr-2 mb-3'>Add to Cart</a>
                       <form method='post' action='users/wishlist.php' class='me-2 mr-2 mb-3'>
                         <input type='hidden' name='book_id' value='$book_id_with_prefix'>
                         <input type='hidden' name='book_title' value='$book_title'>
