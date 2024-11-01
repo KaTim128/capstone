@@ -41,7 +41,7 @@
                                     <th>Invoice Number</th>
                                     <th>Date</th>
                                     <th>Order Status</th>
-                                    <th>Status</th>
+                                    <th>Status</th>                                
                                 </tr>
                               </thead>
                               <tbody>";
@@ -67,7 +67,7 @@
                                 <td>$invoice_number</td>
                                 <td>$order_date</td>
                                 <td>$order_status</td>
-                                <td>Paid</td>
+                                <td>Paid</td>                               
                             </tr>";
 
                             $number++; 

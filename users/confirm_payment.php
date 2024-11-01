@@ -1,6 +1,9 @@
 <?php
 include('../database/connection.php');
 session_start();
+
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+
 if(isset($_GET['order_id'])){
     $order_id=$_GET['order_id'];
     $select_data="SELECT * FROM `orders` WHERE order_id=$order_id";
@@ -16,7 +19,7 @@ if (isset($_POST['confirm_payment'])) {
     $payment_mode = $_POST['payment_mode'];
 
     // Insert payment details into user_payments table
-    $insert_query = "INSERT INTO `user_payments` (order_id, invoice_number, amount, payment_mode) VALUES ($order_id, '$invoice', $amount, '$payment_mode')";
+    $insert_query = "INSERT INTO `user_payments` (order_id, user_id, invoice_number, amount, payment_mode) VALUES ($order_id, $user_id, '$invoice', $amount, '$payment_mode')";
     $result = mysqli_query($conn, $insert_query);
 
     if ($result) {

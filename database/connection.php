@@ -137,10 +137,12 @@ $sql_orders = 'CREATE TABLE IF NOT EXISTS orders (
     order_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     amount_due INT(255) NOT NULL,
-    total_products INT NOT NULL,
     invoice_number INT(255) NOT NULL,   
     order_date TIMESTAMP NOT NULL,
-    order_status VARCHAR(255) NOT NULL
+    order_status VARCHAR(255) NOT NULL,
+    book_id VARCHAR(2) NULL,
+    tool_id VARCHAR(2) NULL,
+    quantity INT(11) NOT NULL
 )';
 
 $retval = mysqli_query($conn, $sql_orders);
@@ -154,8 +156,8 @@ $sql_pend_orders = 'CREATE TABLE IF NOT EXISTS pending_orders (
     amount_due INT NOT NULL,
     invoice_number INT(255) NOT NULL,
     total_products INT(255) NOT NULL, 
-    book_id INT NULL,
-    tool_id INT NULL,
+    book_id VARCHAR(2) NULL,
+    tool_id VARCHAR(2) NULL,
     order_status VARCHAR(255) NOT NULL
 )';
 
@@ -168,6 +170,7 @@ if (!$retval) {
 $sql_confirm_payment = 'CREATE TABLE IF NOT EXISTS user_payments (
     payment_id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT NOT NULL,
+    user_id INT NOT NULL,
     invoice_number INT NOT NULL,
     amount INT NOT NULL,
     payment_mode VARCHAR(255) NOT NULL,

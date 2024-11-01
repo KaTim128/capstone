@@ -8,10 +8,9 @@ if (isset($_GET['user_id'])) {
 
 $get_ip_address = getIPAddress();
 $total_price = 0;
-$total_products = 0;  // New variable to accumulate total number of both books and tools
 
-// Query for cart items based on IP address
-$cart_query_price = "SELECT * FROM `cart` WHERE ip_address='$get_ip_address'";
+// Query for cart items based on user ID
+$cart_query_price = "SELECT * FROM `cart` WHERE user_id='$user_id'";
 $result_cart_price = mysqli_query($conn, $cart_query_price);
 $invoice_num = mt_rand();
 $status = 'pending';
@@ -31,12 +30,11 @@ while ($row_price = mysqli_fetch_array($result_cart_price)) {
         while ($row_book_price = mysqli_fetch_array($run_price)) {
             $book_price = $row_book_price['price'];
             $total_price += $book_price * $quantity;    
-            $total_products += $quantity;
 
-            // Insert book into pending_orders
-            $insert_orders_pending = "INSERT INTO `pending_orders` 
-            (user_id, amount_due, invoice_number, total_products, book_id, order_status) 
-            VALUES ($user_id, $total_price, $invoice_num, $total_products, '$book_id', '$status')";
+            // Insert book into orders
+            $insert_orders_pending = "INSERT INTO `orders` 
+            (user_id, amount_due, invoice_number, order_date, order_status, book_id, quantity) 
+            VALUES ($user_id, $book_price * $quantity, $invoice_num, NOW(), '$status', 'b$book_id', $quantity)";
             $result_pending_query = mysqli_query($conn, $insert_orders_pending);
         }
     }
@@ -50,30 +48,25 @@ while ($row_price = mysqli_fetch_array($result_cart_price)) {
         while ($row_tool_price = mysqli_fetch_array($run_price)) {
             $tool_price = $row_tool_price['price'];
             $total_price += $tool_price * $quantity;  
-            $total_products += $quantity;
 
-            // Insert tool into pending_orders
-            $insert_orders_pending = "INSERT INTO `pending_orders` 
-            (user_id, amount_due, invoice_number, total_products, tool_id, order_status) 
-            VALUES ($user_id, $total_price, $invoice_num, $total_products, '$tool_id', '$status')";
+            // Insert tool into orders
+            $insert_orders_pending = "INSERT INTO `orders` 
+            (user_id, amount_due, invoice_number, order_date, order_status, tool_id, quantity) 
+            VALUES ($user_id, $tool_price * $quantity, $invoice_num, NOW(), '$status', 't$tool_id', $quantity)";
             $result_pending_query = mysqli_query($conn, $insert_orders_pending);
         }
     }
 }
 
-// Insert into the `orders` table
-$insert_orders = "INSERT INTO `orders` 
-(user_id, amount_due, total_products, invoice_number, order_date, order_status) 
-VALUES ($user_id, $total_price, $total_products, $invoice_num, NOW(), '$status')";
-$result_query = mysqli_query($conn, $insert_orders);
+// Optionally, if you want to keep a summary order record (e.g., for user reference), you can add that here.
+// But since we are focusing on each product having its own row, this part can be omitted or modified as needed.
 
-if ($result_query) {
-    echo "<script>alert('Orders submitted successfully')</script>";
-    echo "<script>window.open('profile.php', '_self')</script>";
-}
-
-// Delete items from cart
-$empty_cart = "DELETE FROM `cart` WHERE ip_address='$get_ip_address'";
+// Clear items from the cart
+$empty_cart = "DELETE FROM `cart` WHERE user_id='$user_id'";
 $result_delete = mysqli_query($conn, $empty_cart);
+
+// Confirm submission
+echo "<script>alert('Orders submitted successfully')</script>";
+echo "<script>window.open('profile.php', '_self')</script>";
 
 ?>
