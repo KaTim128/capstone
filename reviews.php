@@ -142,50 +142,30 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
 }
 ?>
 
-<!DOCTYPE HTML>
-<html>
+<?php
+// Corrected include file name
+include('./database/connection.php');
+include('./functions/common_function.php');
+session_start();
+?>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title>Review & Rating System in PHP & MySQL using Ajax</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <style>
-    .star-light { 
-        color: #ddd; 
-    }
-    .star-warning { 
-        color: #ffcc00; 
-    }
-    .progress-bar {
-        transition: width 0.5s ease, opacity 0.5s ease;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    }
-
-    .round-circle {
-        border-radius: 50px;
-        width: 50px; /* Adjust the width to make the image smaller */
-        height: 50px; /* Maintain aspect ratio */
-        object-fit: cover; /* Ensures the image covers the dimensions without distortion */
-    }
-
-    .product-img {
-        border-radius: 10px;
-        width: 50px; /* Adjust the width to make the image smaller */
-        height: 50px; /* Maintain aspect ratio */
-        object-fit: cover; /* Ensures the image covers the dimensions without distortion */
-    }
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ecommerce Website using Php and Mysqli</title>
+  <!-- bootstrap CSS link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- font awesome link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- css file -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <!-- navbar -->
-  <div class="container-fluid p-0">
+  <div class="container-fluid p-0 gradient-background">
     <!-- first child  -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-color">
       <div class="container-fluid">
         <img src="./images/logo_new.png" alt="" style="width: 6%; height: 7%; margin-right: 15px; border-radius:5px">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -194,28 +174,28 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.php">Products<span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+              <a class="nav-link nav-zoom" href="index.php">Products</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./users/wishlist.php">Wishlist</a>
+              <a class="nav-link nav-zoom" href="./users/wishlist.php">Wishlist</a>
             </li>
             <?php
             if (isset($_SESSION['user_username'])) {
               echo "<li class='nav-item'>
-                      <a class='nav-link' href='./users/profile.php'>My Account</a>
+                      <a class='nav-link nav-zoom' href='./users/profile.php'>My Account</a>
                     </li>";
             } else {
               echo "<li class='nav-item'>
-                      <a class='nav-link' href='./users/user_registration.php'>Register</a>
+                      <a class='nav-link nav-zoom' href='./users/user_registration.php'>Register</a>
                     </li>";
             }
             ?>   
             <li class="nav-item">
-              <a class="nav-link" href="contact_page.php">Contact</a>
+              <a class="nav-link nav-zoom" href="contact_page.php">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><sup><?php cartItem(); ?></sup></a>
+              <a class="nav-link nav-zoom" href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><sup><?php cartItem(); ?></sup></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
@@ -235,35 +215,35 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
       ?>
 
       <!-- second child -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+      <nav class="navbar navbar-expand-lg navbar-dark green">
         <ul class="navbar-nav me-auto">
-          <?php
-          if (isset($_SESSION['user_username'])) {
+        <?php
+        if (isset($_SESSION['user_username'])) {
             echo "<li class='nav-item'>
-                    <a class='nav-link'>Welcome " . htmlspecialchars($_SESSION['user_username']) . "</a>
+                    <a class='nav-link text-dark'><b>Welcome " . htmlspecialchars($_SESSION['user_username']) . "</b></a>
                   </li>";
-          } else {
+        } else {
             echo "<li class='nav-item'>
-                    <a class='nav-link' href='#'>Welcome guest</a>
+                    <a class='nav-link text-dark' href='#'><b>Welcome guest</b></a>
                   </li>";
-          }
-          if (isset($_SESSION['user_username'])) {
+        }
+        if (isset($_SESSION['user_username'])) {
             echo "<li class='nav-item'>
-                    <a class='nav-link' href='./users/logout.php'>Logout</a>
+                    <a class='nav-link nav-zoom text-dark' href='./users/logout.php'><b>Logout</b></a>
                   </li>";
-          } else {
+        } else {
             echo "<li class='nav-item'>
-                    <a class='nav-link' href='./users/user_login.php'>Login</a>
+                    <a class='nav-link nav-zoom text-dark' href='./users/user_login.php'><b>Login</b></a>
                   </li>";
-          }
-          ?>
+        }
+        ?>
         </ul>
       </nav>
 
       <!-- third child -->
-      <div class="bg-light">
-        <h3 class="text-center" style="overflow: hidden;">Course Store</h3>
-        <p class="text-center">Online bookstore for students</p>
+      <div class="light-green">
+        <h3 class="text-center mt-3" style="overflow: hidden;">Print N Pixel</h3>
+        <p class="text-center">Where stories come alive in every format</p>
       </div>
 
       <!-- forth child -->

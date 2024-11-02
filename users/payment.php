@@ -28,14 +28,16 @@ if (isset($_SESSION['user_id'])) {
 <style>
     .paypal-img {
         width: 100%;
+        
     }
 
     .offline-img {
         width: 32%;
+        transition: transform 0.2s ease; /* Smooth transition */
     }
 
     .zoom-out-image {
-        transition: transform 0.3s ease; /* Smooth transition */
+        transition: transform 0.2s ease; /* Smooth transition */
     }
 
     .zoom-out-image:hover {
@@ -44,22 +46,25 @@ if (isset($_SESSION['user_id'])) {
 </style>
 <body>
     <div class="container">
-        <h2 class="text-center text-info">Payment Options</h2>
+        <h2 class="text-center text-dark mt-5" style="overflow:hidden">Payment Options</h2>
         <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-md-6 text-center"> <!-- Center text and image -->
-                <a href="https://www.paypal.com" target="_blank">
-                    <img src="../images/paypal.png" class="paypal-img zoom-out-image" alt="">
+            
+            <div class="col-md-6 text-center" style="overflow:hidden">
+                <a href="https://www.paypal.com"  target="_blank">
+                <img src="../images/paypal.png" class="paypal-img zoom-out-image" alt="">
                 </a>
             </div>
+
             <div class="col-md-6 text-center zoom-out-image"> <!-- Center text and image -->
                 <a href="orders.php?user_id=<?php echo $user_id; ?>" style="text-decoration: none;">
                     <img src="../images/offline4.png" class="offline-img" alt="">
-                    <h4 class="text-dark"><b>Offline</b></h4>
+                    <h4 class="text-dark" style="overflow:hidden"><b>Offline</b></h4>
                 </a>
             </div>
         </div>
     </div>
 </body>
+
 </html>
 <?php
 

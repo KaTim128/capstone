@@ -78,35 +78,65 @@
   width: 400px; /* Default width for small screens */
 }
 
+/*styling color and buttons */
 .green {
   background: linear-gradient(
     to right,
-    #c1e899,
-    #a3d59f
+    #519c4b,
+    #a7d678
   ); /* Gradient from light green to a soft green */
 }
 
 .light-green {
   background: linear-gradient(
     to right,
-    #e6f0dc,
-    #c1e899
+    #c1e899,
+    #e6f0dc
   ); /* Gradient from a light color to a fresh light green */
 }
 
-.dark-green {
-  background: linear-gradient(
-    
-    #7ba17b,
-    #7ba17b
-  ); 
+.navbar-color {
+  background: linear-gradient(to right, #336a29, #498428, #80b155);
 }
 
 .gradient-background {
-  background: linear-gradient(
-    #e4f4c7,
-    #f4faf2,
-    #d0e8c6,
-    #ffffff
-  ); /* Soft gradient for a gentle background */
+  background: #ffffff;
+}
+
+.card-background {
+  background: linear-gradient(to right, #e6f0dc, #c1e899);
+  border: 1px solid #7ba17b;
+}
+
+.btn-style {
+  padding: 10px 20px; /* Adjust padding */
+  margin-right: 10px; /* Add right margin for spacing */
+  background: linear-gradient(to right, #336a29, #498428);
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none; /* Remove underline */
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+}
+
+.btn-style:hover {
+  background: linear-gradient(to right, #4e8c3a, #5aa843);
+  transform: scale(1.05); /* Slightly enlarge on hover */
+  color: #ffffff;
+}
+
+.btn-details {
+  background-color: #649364;
+}
+.borders {
+  border-radius: 15px;
+}
+
+.nav-zoom {
+  transition: transform 0.3s ease; /* Smooth transition for zoom effect */
+}
+
+.nav-zoom:hover {
+  transform: scale(0.93); /* Scale down to 95% on hover */
 }

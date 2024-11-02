@@ -30,7 +30,6 @@ if (isset($_POST['admin_registration'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,32 +38,12 @@ if (isset($_POST['admin_registration'])) {
     <title>Admin Login</title>
     <!-- Bootstrap CSS link -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-    <style>
-        body {
-            overflow-x: hidden;
-        }
+    <link rel="stylesheet" href="admin_style.css">
 
-        /* Adjust spacing between image and form */
-        .form-container {
-            display: flex;
-            align-items: center;
-            gap: 20px; /* Adjusts space between the input and the image */
-        }
-
-        /* Reduce input width */
-        .custom-input {
-            width: 80%; /* Smaller width for the input field */
-            padding: 10px;
-        }
-        
-        .img-logo {
-            max-width: 90%; /* Ensures the logo scales properly */
-        }
-    </style>
 </head>
-<body>
-    <div class="container-fluid m-3">
-        <h2 class="text-center mb-5">Admin Login</h2>
+<body class="front-background">
+    <div class="container-fluid m-3 front-background">
+        <h2 class="text-center my-5">Admin Login</h2>
         <div class="row d-flex justify-content-center align-items-center form-container">
             <div class="col-lg-5 col-md-5">
                 <img src="../images/logo_new.png" alt="Admin Registration" class="img-fluid img-logo">
@@ -80,11 +59,11 @@ if (isset($_POST['admin_registration'])) {
                         <input type="password" id="password" name="password" class="form-control custom-input" placeholder="Enter your password" required>
                     </div>
                     <div>
-                        <input type="submit" class="bg-info py-2 px-3 border-0 mb-3" name="admin_registration" value="Login">
-                        <p class="link-danger">Don't have an account? <a href="adminRegistration.php">Register</a></p>
+                        <button type="submit" name="admin_registration" class="btn-style mb-3">Login</button>
+                        <p>Don't have an account? <a href="adminRegistration.php" class="link-style"> Register</a></p>
                     </div>
                     <div>
-                    <p class="link-danger">Leave admin page? <a href="../users/user_login.php">Back</a></p>
+                        <p>Leave admin page? <a href="../users/user_login.php" class="link-style"> Back</a></p>
                     </div>
                 </form>
             </div>
@@ -97,4 +76,3 @@ if (isset($_POST['admin_registration'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
-

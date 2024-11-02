@@ -26,61 +26,63 @@
 </head>
 <body>
     <h4 class="text-center text-success">All Tools</h4>
-    <table class="table table-bordered mt-2">
-        <?php
-        $get_tools = "SELECT * FROM `tools`";
-        $result = mysqli_query($conn, $get_tools);
-        $row_count = mysqli_num_rows($result); // Set the row count
-        
-        if ($row_count == 0) {
-            echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There are no tools yet.</div>";
-        } else {
-            echo "<thead class='bg-info'>
-                    <tr class='text-center'>
-                        <th>Tool ID</th>
-                        <th>Tool Title</th>
-                        <th>Tool Image</th>
-                        <th>Tool Price</th>
-                        <th>Total Sold</th>
-                        <th>Status</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
-                  </thead>
-                  <tbody class='bg-secondary text-light'>";
+    <div class="table-responsive mt-2"> <!-- Add this div for responsiveness -->
+        <table class="table table-bordered">
+            <?php
+            $get_tools = "SELECT * FROM `tools`";
+            $result = mysqli_query($conn, $get_tools);
+            $row_count = mysqli_num_rows($result); // Set the row count
             
-            $number = 0;
-            while ($row = mysqli_fetch_assoc($result)) {
-                $tool_id = $row['tool_id'];
-                $tool_title = $row['tool_title'];
-                $tool_image = $row['image'];
-                $tool_price = $row['price'];
-                $tool_status = $row['status'];
-                $number++;
-                ?>
-                <tr class='text-center'>
-                    <td><?php echo $number; ?></td>
-                    <td><?php echo $tool_title; ?></td>
-                    <td><img src='./toolImages/<?php echo $tool_image; ?>' class='tool_img' /></td>
-                    <td>RM<?php echo $tool_price; ?></td>
-                    <td>
-                        <?php
-                        $get_count = "SELECT * FROM `pending_orders` WHERE tool_id=$tool_id";
-                        $result_count = mysqli_query($conn, $get_count);
-                        $rows_count = mysqli_num_rows($result_count);
-                        echo $rows_count;
-                        ?>
-                    </td>
-                    <td><?php echo $tool_status; ?></td>
-                    <td><a href='adminPanel.php?editTool=<?php echo $tool_id ?>' class='text-light'><i class='fa-solid fa-pen-to-square'></i></a></td>
-                    <td><a href="#" class="text-light" data-toggle="modal" data-target="#deleteModal" onclick="setToolId(<?php echo $tool_id; ?>)"><i class='fa-solid fa-trash'></i></a></td>
-                </tr>
-                <?php
+            if ($row_count == 0) {
+                echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There are no tools yet.</div>";
+            } else {
+                echo "<thead class='bg-info'>
+                        <tr class='text-center'>
+                            <th>Tool ID</th>
+                            <th>Tool Title</th>
+                            <th>Tool Image</th>
+                            <th>Tool Price</th>
+                            <th>Total Sold</th>
+                            <th>Status</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody class='bg-secondary text-light'>";
+                
+                $number = 0;
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $tool_id = $row['tool_id'];
+                    $tool_title = $row['tool_title'];
+                    $tool_image = $row['image'];
+                    $tool_price = $row['price'];
+                    $tool_status = $row['status'];
+                    $number++;
+                    ?>
+                    <tr class='text-center'>
+                        <td><?php echo $number; ?></td>
+                        <td><?php echo $tool_title; ?></td>
+                        <td><img src='./toolImages/<?php echo $tool_image; ?>' class='tool_img' /></td>
+                        <td>RM<?php echo $tool_price; ?></td>
+                        <td>
+                            <?php
+                            $get_count = "SELECT * FROM `pending_orders` WHERE tool_id=$tool_id";
+                            $result_count = mysqli_query($conn, $get_count);
+                            $rows_count = mysqli_num_rows($result_count);
+                            echo $rows_count;
+                            ?>
+                        </td>
+                        <td><?php echo $tool_status; ?></td>
+                        <td><a href='adminPanel.php?editTool=<?php echo $tool_id ?>' class='text-light'><i class='fa-solid fa-pen-to-square'></i></a></td>
+                        <td><a href="#" class="text-light" data-toggle="modal" data-target="#deleteModal" onclick="setToolId(<?php echo $tool_id; ?>)"><i class='fa-solid fa-trash'></i></a></td>
+                    </tr>
+                    <?php
+                }
+                echo "</tbody>";
             }
-            echo "</tbody>";
-        }
-        ?>
-    </table>
+            ?>
+        </table>
+    </div> <!-- Close the table-responsive div -->
 
     <!-- Delete Confirmation Modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">

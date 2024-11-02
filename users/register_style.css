@@ -18,7 +18,7 @@ body {
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: row;
-  max-width: 900px; /* Set a max width */
+  max-width: 1000px; /* Match max width of login container */
   max-height: 90vh;
   width: 90vw;
   overflow: hidden;
@@ -38,113 +38,120 @@ body {
 .logo-container img {
   width: 100%;
   height: auto;
-  max-width: 350px;
-  max-height: 80vh;
-  border-radius: 10px;
+  max-width: 450px; /* Ensure logo size is similar to login */
+  max-height: 80vh; /* Constrain height so it doesn’t overflow */
 }
 
 /* Form container */
 .form-container {
-  flex: 1.5;
-  padding: 30px 40px;
+  flex: 1.2;
+  padding: 20px; /* Adjust padding to match login form */
   background-color: #ffffff;
   overflow-y: auto;
   max-height: 100%;
 }
 
+/* Form title styling */
 .form-container h3 {
   color: #495057;
   text-align: center;
-  margin-bottom: 25px;
-  font-size: 1.8rem;
-  font-weight: bold;
-}
-
-/* Alert box styling */
-.alert {
-  display: none; /* Hidden by default */
+  margin-bottom: 20px; /* Match spacing with login form */
+  font-size: 1.7rem; /* Match font size with login form */
 }
 
 /* Label styling */
 label {
-  color: #495057;
+  color: #000; /* Black label text */
   font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 5px;
   display: block;
+  margin-bottom: 5px; /* Add space below labels */
 }
 
 /* Form control input styling */
 .form-control {
-  background-color: rgba(255, 255, 255, 0.9); /* Light background */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Semi-transparent white background for inputs */
   border: 1px solid #ced4da;
-  border-radius: 8px;
-  padding: 10px;
-  font-size: 0.9rem;
-  margin-bottom: 15px;
-  color: #495057;
+  width: 100%; /* Set width for input fields */
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 15px; /* Add margin below each input */
 }
 
 /* Submit button styling */
 .btn-register {
-  background-color: #c2d6c2;
-  color: #495057;
+  padding: 10px 100px; /* Match padding of the admin button */
+  background-color: #c2d6c2; /* Light green button */
+  color: #000; /* Black text */
   border: none;
-  padding: 12px 0;
-  font-size: 0.95rem;
-  width: 90%;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
-  margin: 10px auto;
-  display: block;
+  border-radius: 5px; /* Match border radius */
+  cursor: pointer; /* Pointer cursor */
+  transition: all 0.3s ease; /* Transition for hover effect */
+  margin: 10px auto; /* Center the button */
+  display: block; /* Make it a block element for centering */
   text-align: center;
 }
 
 .btn-register:hover {
-  background-color: #b0c9b0;
-  color: #333;
+  background-color: #a8c0a8; /* Darker on hover */
+  box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+  transform: scale(0.98); /* Slightly scale down on hover */
 }
 
 /* Login link styling */
-.text-login {
+.text-register {
   text-align: center;
   margin-top: 10px;
   color: #495057;
   font-size: 0.9rem;
 }
 
-.text-login a {
+.text-register a {
   color: #000;
-  text-decoration: none;
-  font-weight: bold;
+  text-decoration: underline;
 }
 
-.text-login a:hover {
-  color: #333;
+.text-register a:hover {
+  color: rgb(123, 123, 123);
 }
 
 /* Adjustments for smaller screens */
 @media (max-width: 768px) {
   .registration-container {
-    flex-direction: column;
-    max-width: 100%;
+    flex-direction: column; /* Stack vertically on mobile */
+    max-width: 100%; /* Full width for mobile */
+  }
+
+  .logo-container {
+    padding: 10px;
   }
 
   .logo-container img {
-    max-width: 300px;
-    max-height: 60vh;
+    max-width: 300px; /* Decrease logo size for mobile */
+    max-height: 60vh; /* Adjust max-height */
   }
 
   .form-container {
-    padding: 20px;
+    padding: 15px; /* Adjust padding */
+    max-height: 50vh; /* Prevent form from causing overflow */
   }
 
   .form-container h3 {
-    font-size: 1.6rem;
+    font-size: 1.5rem; /* Decrease font size */
   }
 
   .btn-register {
     font-size: 0.85rem;
-    padding: 10px;
+    padding: 10px; /* Decrease padding */
   }
+}
+
+/* Alert box styling */
+.alert {
+  display: none; /* Hidden by default */
 }

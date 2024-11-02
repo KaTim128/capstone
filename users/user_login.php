@@ -62,7 +62,7 @@ if(isset($_POST['user_login'])){
         href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="login_style.css">
+        <link rel="stylesheet" href="login_style.css">
 </head>
 <body>
     <div class="login-container">
@@ -82,11 +82,11 @@ if(isset($_POST['user_login'])){
                     <label for="user_password">Password</label>
                     <input type="password" id="user_password" class="form-control" placeholder="Enter your password" name="user_password" required>
                 </div>
-                <input type="submit" value="Login" class="btn btn-login mt-4 mb-4" name="user_login">
-                <p class="mt-2 text-register">
+                <input type="submit" value="Login" class="btn btn-btns mt-4 mb-4" name="user_login">
+                <p class="mt-2 text-register text-center">
                     Login as guest? <a href="../index.php">Click Here</a>
                 </p>
-                <p class="mt-2 text-register">
+                <p class="mt-2 text-register text-center">
                     Don't have an account? <a href="user_registration.php">Register</a>
                 </p>
             </form>

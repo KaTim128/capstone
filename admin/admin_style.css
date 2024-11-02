@@ -1,0 +1,72 @@
+/* General styling */
+body {
+  overflow-x: hidden;
+  background: #7ba17b; /* Consistent background color for both pages */
+}
+
+/* Input fields */
+.custom-input {
+  width: 80%; /* Reduced width */
+  padding: 10px;
+  border-radius: 5px; /* Rounded corners */
+}
+
+/* Logo styling */
+.form-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Image styling for consistent placement and size */
+.img-logo {
+  max-width: 85%; /* Adjust this for a suitable size on fullscreen */
+  height: auto;
+}
+
+/* Adjustments to maintain consistent image positioning */
+@media (min-width: 992px) {
+  .img-logo {
+    max-width: 75%; /* Smaller on large screens */
+  }
+}
+
+@media (max-width: 991px) {
+  .img-logo {
+    max-width: 90%; /* Larger on smaller screens for readability */
+  }
+}
+
+@media (max-width: 576px) {
+  .text-center {
+    margin-right: 10%;
+  }
+}
+
+/* Link styling */
+.link-style {
+  color: black;
+  text-decoration: underline;
+  transition: color 0.3s ease; /* Smooth hover transition */
+}
+
+.link-style:hover {
+  color: white; /* Turns link white on hover */
+}
+
+/* Button styling */
+.btn-style {
+  padding: 10px 20px;
+  background-color: #c2d6c2;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Button hover effect */
+.btn-style:hover {
+  background-color: #a8c0a8;
+  box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.2);
+  transform: scale(0.98);
+}

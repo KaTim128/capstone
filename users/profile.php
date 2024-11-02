@@ -80,94 +80,96 @@ session_start();
   
 </head>
 <body>
-    <!-- navbar -->
-    <div class="container-fluid p-0">
+  <!-- navbar -->
+  <div class="container-fluid p-0 gradient-background">
     <!-- first child  -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-    <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-color">
+      <div class="container-fluid">
         <img src="../images/logo_new.png" alt="" style="width: 6%; height: 7%; margin-right: 15px; border-radius:5px">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="../index.php">Products<span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+              <a class="nav-link nav-zoom" href="../index.php">Products</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./wishlist.php">Wishlist</a>
+              <a class="nav-link nav-zoom" href="./wishlist.php">Wishlist</a>
             </li>
             <?php
-            if(isset($_SESSION['user_username'])){
-              echo"<li class='nav-item'>
-              <a class='nav-link' href='#'>My Account</a>
-            </li>";
-            }else{
-              echo"<li class='nav-item'>
-              <a class='nav-link' href='./users/user_registration.php'>Register</a>
-            </li>";
+            if (isset($_SESSION['user_username'])) {
+              echo "<li class='nav-item'>
+                      <a class='nav-link nav-zoom' href='./profile.php'>My Account</a>
+                    </li>";
+            } else {
+              echo "<li class='nav-item'>
+                      <a class='nav-link nav-zoom' href='./user_registration.php'>Register</a>
+                    </li>";
             }
             ?>   
             <li class="nav-item">
-              <a class="nav-link" href="../contact_page.php">Contact</a>
+              <a class="nav-link nav-zoom" href="../contact_page.php">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><sup><?php cartItem();?></sup></a>
+              <a class="nav-link nav-zoom" href="../cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><sup><?php cartItem(); ?></sup></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
+        <form class="form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
           <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
           <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
         </form>
         </div>
-    </div>
-</nav>
+      </nav>
 
       <!-- call cart function -->
-      <?php manageCart(); ?>
+      <?php 
+      manageCart(); 
+      displayAlert(); 
+      ?>
 
       <!-- second child -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+      <nav class="navbar navbar-expand-lg navbar-dark green">
         <ul class="navbar-nav me-auto">
-          <?php
-          if (isset($_SESSION['user_username'])) {
+        <?php
+        if (isset($_SESSION['user_username'])) {
             echo "<li class='nav-item'>
-            <a class='nav-link' href='#'>Welcome " . $_SESSION['user_username'] . "</a>
-          </li>";
-          } else {
+                    <a class='nav-link text-dark'><b>Welcome " . htmlspecialchars($_SESSION['user_username']) . "</b></a>
+                  </li>";
+        } else {
             echo "<li class='nav-item'>
-            <a class='nav-link' href='#'>Welcome guest</a>
-          </li>";
-          }
-          if (isset($_SESSION['user_username'])) {
+                    <a class='nav-link text-dark' href='#'><b>Welcome guest</b></a>
+                  </li>";
+        }
+        if (isset($_SESSION['user_username'])) {
             echo "<li class='nav-item'>
-              <a class='nav-link' href='logout.php'>Logout</a>
-            </li>";
-          } else {
+                    <a class='nav-link nav-zoom text-dark' href='./logout.php'><b>Logout</b></a>
+                  </li>";
+        } else {
             echo "<li class='nav-item'>
-              <a class='nav-link' href=user_login.php'>Login</a>
-            </li>";
-          }
-          ?>
+                    <a class='nav-link nav-zoom text-dark' href='./user_login.php'><b>Login</b></a>
+                  </li>";
+        }
+        ?>
         </ul>
       </nav>
 
       <!-- third child -->
-      <div class="bg-light">
-        <h3 class="text-center" style="overflow: hidden;">Course Store</h3>
-        <p class="text-center">Online bookstore for students</p>
+      <div class="light-green">
+        <h3 class="text-center mt-3" style="overflow: hidden;">Print N Pixel</h3>
+        <p class="text-center">Where stories come alive in every format</p>
       </div>
 
       <!-- fourth child -->
       <div class="row flex-grow-1">
-        <div class="col-md-2 sidebar bg-info">
+        <div class="col-md-2 light-green">
           <ul class="navbar-nav text-center">
-            <li class="text-light bg-secondary">
-            <h5 class="profile-header">Your Profile</h5>
+            <li class="text-light green">
+            <h5 class="profile-header green">Your Profile</h5>
             </li>
             <?php
             $username = $_SESSION['user_username'];
@@ -175,27 +177,27 @@ session_start();
             $result_image = mysqli_query($conn, $user_image);
             $row_image = mysqli_fetch_array($result_image);
             $user_image = $row_image['user_image'];
-            echo "<li class='bg-info mt-4 mb-2 img-side' style='overflow:hidden'>
-              <img src='./user_images/$user_image' class='profile-img' alt=''>
+            echo "<li class='light-green mt-4 mb-2 img-side' style='overflow:hidden'>
+              <img src='./user_images/$user_image' class='profile-img borders' alt=''>
             </li>";
             ?>
             <li>
-              <a class="nav-link text-light" href="profile.php"><h6 style="overflow:hidden;">My Orders</h6></a>
+              <a class="nav-link text-dark" href="profile.php"><h6 style="overflow:hidden;">My Orders</h6></a>
             </li>
             <li>
-              <a class="nav-link text-light" href="profile.php?edit_account"><h6 style="overflow:hidden;">Edit Account</h6></a>
+              <a class="nav-link text-dark" href="profile.php?edit_account"><h6 style="overflow:hidden;">Edit Account</h6></a>
             </li>
             <li>
-              <a class="nav-link text-light" href="profile.php?my_orders"><h6 style="overflow:hidden;">Pending Orders</h6></a>
+              <a class="nav-link text-dark" href="profile.php?my_orders"><h6 style="overflow:hidden;">Pending Orders</h6></a>
             </li>
             <li>
-              <a class="nav-link text-light" href="profile.php?paid_orders"><h6 style="overflow:hidden;">Paid Orders</h6></a>
+              <a class="nav-link text-dark" href="profile.php?paid_orders"><h6 style="overflow:hidden;">Paid Orders</h6></a>
             </li>    
             <li>
-              <a class="nav-link text-light" href="profile.php?delete_account"><h6 style="overflow:hidden;">Delete Account</h6></a>
+              <a class="nav-link text-dark" href="profile.php?delete_account"><h6 style="overflow:hidden;">Delete Account</h6></a>
             </li>
             <li>
-              <a class="nav-link text-light" href="logout.php"><h6 style="overflow:hidden;">Logout</h6></a>
+              <a class="nav-link text-dark" href="logout.php"><h6 style="overflow:hidden;">Logout</h6></a>
             </li>
           </ul>
         </div>

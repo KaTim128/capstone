@@ -7,37 +7,51 @@ if (isset($_POST['adminRegistration'])) {
     $admin_password = $_POST['password'];
     $conf_password = $_POST['conf_password'];
     
+    // Initialize a flag to check for validation errors
+    $is_valid = true;
+
     // Error checking
     if (!filter_var($admin_email, FILTER_VALIDATE_EMAIL)) {
         echo "<script>alert('Invalid email format!')</script>";
-        return;
+        $is_valid = false; // Set the flag to false
     } elseif (strlen($admin_password) < 8) {
         echo "<script>alert('Password must be at least 8 characters long!')</script>";
-        return;
+        $is_valid = false; // Set the flag to false
     } elseif ($admin_password !== $conf_password) {
         echo "<script>alert('The confirm password does not match!')</script>";
-        return;
+        $is_valid = false; // Set the flag to false
     }
 
-    // Password hashing
-    $hash_password = password_hash($admin_password, PASSWORD_DEFAULT);
+    // Only proceed if there are no validation errors
+    if ($is_valid) {
+        // Password hashing
+        $hash_password = password_hash($admin_password, PASSWORD_DEFAULT);
 
-    // Check if admin email already exists
-    $select_email_query = "SELECT * FROM admin_table WHERE admin_email='$admin_email'";
-    $email_result = mysqli_query($conn, $select_email_query);
-    if (mysqli_num_rows($email_result) > 0) {
-        echo "<script>alert('Email already exists!')</script>";
-        return;
-    }
+        // Check if admin email already exists
+        $select_email_query = "SELECT * FROM admin_table WHERE admin_email='$admin_email'";
+        $email_result = mysqli_query($conn, $select_email_query);
+        if (mysqli_num_rows($email_result) > 0) {
+            echo "<script>alert('Email already exists!')</script>";
+            $is_valid = false; // Set the flag to false
+        }
 
-    // Insert admin data into the database
-    $insert_query = "INSERT INTO admin_table (admin_name, admin_email, admin_password) VALUES ('$admin_name', '$admin_email', '$hash_password')";
-    $sql_execute = mysqli_query($conn, $insert_query);
-    if ($sql_execute) {
-        echo "<script>alert('Admin registered successfully!')</script>";
-        echo "<script>window.open('adminLogin.php', '_self')</script>";
+        // Insert admin data into the database if still valid
+        if ($is_valid) {
+            $insert_query = "INSERT INTO admin_table (admin_name, admin_email, admin_password) VALUES ('$admin_name', '$admin_email', '$hash_password')";
+            $sql_execute = mysqli_query($conn, $insert_query);
+            if ($sql_execute) {
+                echo "<script>alert('Admin registered successfully!')</script>";
+                echo "<script>window.open('adminLogin.php', '_self')</script>";
+            } else {
+                echo "<script>alert('Registration failed. Please try again.')</script>";
+            }
+        } else {
+            // Redirect back if validation failed
+            echo "<script>window.open('adminRegistration.php', '_self')</script>";
+        }
     } else {
-        echo "<script>alert('Registration failed. Please try again.')</script>";
+        // Redirect back if validation failed
+        echo "<script>window.open('adminRegistration.php', '_self')</script>";
     }
 }
 ?>
@@ -50,32 +64,11 @@ if (isset($_POST['adminRegistration'])) {
     <title>Admin Registration</title>
     <!-- Bootstrap CSS link -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-    <style>
-        body {
-            overflow-x: hidden;
-        }
-
-        /* Adjust spacing between image and form */
-        .form-container {
-            display: flex;
-            align-items: center;
-            gap: 20px; /* Adjusts space between the input and the image */
-        }
-
-        /* Reduce input width */
-        .custom-input {
-            width: 80%; /* Smaller width for the input field */
-            padding: 10px;
-        }
-        
-        .img-logo {
-            max-width: 90%; /* Ensures the logo scales properly */
-        }
-    </style>
+    <link rel="stylesheet" href="admin_style.css">
 </head>
-<body>
-    <div class="container-fluid m-3">
-        <h2 class="text-center mb-5">Admin Registration</h2>
+<body class="front-background">
+    <div class="container-fluid m-3 front-background">
+        <h2 class="text-center my-5">Admin Registration</h2>
         <div class="row d-flex justify-content-center align-items-center form-container">
             <div class="col-lg-5 col-md-5">
                 <img src="../images/logo_new.png" alt="Admin Registration" class="img-fluid img-logo">
@@ -99,8 +92,8 @@ if (isset($_POST['adminRegistration'])) {
                         <input type="password" id="conf_password" name="conf_password" class="form-control custom-input" placeholder="Confirm password" required>
                     </div>
                     <div>
-                        <input type="submit" class="bg-info py-2 px-3 border-0 mb-3" name="adminRegistration" value="Register">
-                        <p class="link-danger">Already have an account? <a href="adminLogin.php">Login</a></p>
+                        <button type="submit" name="adminRegistration" class="btn-style mb-3">Register</button>
+                        <p>Already have an account? <a href="adminLogin.php" class="link-style">Login</a></p>
                     </div>
                 </form>
             </div>

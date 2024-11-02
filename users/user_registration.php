@@ -63,7 +63,7 @@ include('../functions/common_function.php');
                         name="user_contact" required>
                 </div>
                 <input type="submit" value="Register" class="btn btn-register mt-4 mb-2" name="user_register">
-                <p class="mt-2 text-login">
+                <p class="mt-3 text-register text-center">
                     Already have an account? <a href="user_login.php">Login</a>
                 </p>
             </form>
@@ -137,6 +137,7 @@ if (isset($_POST['user_register'])) {
     
         if ($result) {
             echo '<script>document.getElementById("alertContainer").setAttribute("data-alert-message", "Registration successful!"); document.getElementById("alertContainer").setAttribute("data-alert-type", "success");</script>';
+            echo "<script>setTimeout(function() { window.location.href = 'user_login.php'; }, 2000);</script>";
         } else {
             echo '<script>document.getElementById("alertContainer").setAttribute("data-alert-message", "Error during registration. Please try again."); document.getElementById("alertContainer").setAttribute("data-alert-type", "danger");</script>';
         }

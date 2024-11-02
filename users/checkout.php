@@ -14,7 +14,7 @@ session_start();
   <!-- font awesome link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- css file -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
@@ -24,64 +24,90 @@ session_start();
 ?>
 
 <!-- navbar -->
-<div class="container-fluid p-0">
-  <!-- first child -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-    <div class="container-fluid">
-      <img src="../images/logo_new.png" alt="" style="width: 6%; height: 7%; margin-right: 15px; border-radius:5px">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<div class="container-fluid p-0 gradient-background">
+    <!-- first child  -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-color">
+      <div class="container-fluid">
+        <img src="../images/logo_new.png" alt="" style="width: 6%; height: 7%; margin-right: 15px; border-radius:5px">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="../index.php">Products<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="./wishlist.php">Wishlist</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link nav-zoom" href="../index.php">Products</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-zoom" href="./wishlist.php">Wishlist</a>
             </li>
             <?php
             if (isset($_SESSION['user_username'])) {
               echo "<li class='nav-item'>
-                      <a class='nav-link' href='./profile.php'>My Account</a>
+                      <a class='nav-link nav-zoom' href='./profile.php'>My Account</a>
                     </li>";
             } else {
               echo "<li class='nav-item'>
-                      <a class='nav-link' href='./user_registration.php'>Register</a>
+                      <a class='nav-link nav-zoom' href='./user_registration.php'>Register</a>
                     </li>";
             }
-            ?> 
-          <li class="nav-item">
-            <a class="nav-link" href="../contact_page.php">Contact</a>
-          </li>
-        </ul>
+            ?>   
+            <li class="nav-item">
+              <a class="nav-link nav-zoom" href="../contact_page.php">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-zoom" href="../cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><sup><?php cartItem(); ?></sup></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
+            </li>
+          </ul>
         <form class="form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
           <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
           <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
         </form>
-      </div>
-    </nav>
+        </div>
+      </nav>
 
-    <!-- second child -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-      <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Welcome <?php echo $_SESSION['user_username']; ?></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="logout.php">Logout</a>
-          </li>
-      </ul>
-    </nav>
+      <!-- call cart function -->
+      <?php 
+      manageCart(); 
+      displayAlert(); 
+      ?>
+
+      <!-- second child -->
+      <nav class="navbar navbar-expand-lg navbar-dark green">
+        <ul class="navbar-nav me-auto">
+        <?php
+        if (isset($_SESSION['user_username'])) {
+            echo "<li class='nav-item'>
+                    <a class='nav-link text-dark'><b>Welcome " . htmlspecialchars($_SESSION['user_username']) . "</b></a>
+                  </li>";
+        } else {
+            echo "<li class='nav-item'>
+                    <a class='nav-link text-dark' href='#'><b>Welcome guest</b></a>
+                  </li>";
+        }
+        if (isset($_SESSION['user_username'])) {
+            echo "<li class='nav-item'>
+                    <a class='nav-link nav-zoom text-dark' href='./logout.php'><b>Logout</b></a>
+                  </li>";
+        } else {
+            echo "<li class='nav-item'>
+                    <a class='nav-link nav-zoom text-dark' href='./user_login.php'><b>Login</b></a>
+                  </li>";
+        }
+        ?>
+        </ul>
+      </nav>
 
     <!-- third child -->
-    <div class="bg-light">
-      <h3 class="text-center">Course Store - Checkout Page</h3>
-      <p class="text-center">Online bookstore for students</p>
-    </div>
+    <div class="light-green">
+        <h3 class="text-center mt-3" style="overflow: hidden;">Print N Pixel</h3>
+        <p class="text-center">Where stories come alive in every format</p>
+      </div>
 
-<?php } ?> <!-- End of navbar and header content -->
+<?php } ?>
 
 <!-- fourth child -->
 <div class="col-md-12">

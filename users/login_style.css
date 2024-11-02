@@ -84,37 +84,35 @@ label {
   margin: 0; /* Center the input fields */
 }
 
-.btn-login {
+/* Button styling */
+.btn-btns {
+  padding: 10px 100px; /* Match padding of the admin button */
   background-color: #c2d6c2; /* Light green button */
   color: #000; /* Black text */
   border: none;
-  padding: 12px;
-  font-size: 0.9rem;
-  width: 50%; /* Set button width */
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
-  margin: 10px auto; /* Use margin auto to center the button */
+  border-radius: 5px; /* Change border-radius to match admin */
+  cursor: pointer; /* Change cursor to pointer */
+  transition: all 0.3s ease; /* Add transition for hover effect */
+  margin: 10px auto; /* Center the button */
   display: block; /* Make the button a block element to allow margin auto to work */
-  text-align: center; /* Ensure text inside the button is centered */
-}
-
-.btn-login:hover {
-  background-color: #b0c9b0; /* Darker on hover */
-}
-
-.text-register {
   text-align: center;
-  margin-top: 10px;
-  color: #495057;
 }
 
+.btn-btns:hover {
+  background-color: #a8c0a8; /* Darker on hover to match admin */
+  box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+  transform: scale(0.98); /* Slightly scale down on hover */
+}
+
+/* Link styling */
 .text-register a {
-  color: #000; /* Black link */
-  text-decoration: none;
+  color: #000;
+  text-decoration: underline;
+  transition: color 0.3s ease;
 }
 
 .text-register a:hover {
-  color: #333; /* Darker on hover */
+  color: rgb(123, 123, 123);
 }
 
 /* Mobile view adjustments */

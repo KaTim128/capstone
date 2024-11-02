@@ -20,16 +20,16 @@ function getBooks(){
               $price = $row['price'];
               $course_id = $row['course_id'];
               echo "<div class='col-md-4 mb-2'>
-                  <div class='card light-green'>
-                    <img src='admin/bookImages/$image' class='card-img-top' alt='Book Image'>
-                    <div class='card-body'>
-                      <h5 class='card-title' >$book_title</h5>
-                      <p class='card-text'><b>RM$price/-</b></p>
-                      <a href='index.php?cart=$book_id' class='btn btn-info mb-1'>Add to Cart</a>
-                      <a href='bookDetails.php?book_id=$book_id' class='btn btn-secondary mb-1'>Details</a>
-                    </div>
-                  </div>
-                </div>";
+              <div class='card card-background'>
+                <img src='admin/bookImages/$image' class='card-img-top' alt='Book Image'>
+                <div class='card-body'>
+                  <h5 class='card-title'>$book_title</h5>
+                  <p class='card-text'><b>RM$price/-</b></p>
+                  <a href='index.php?cart=$book_id' class='btn btn-style mb-2'>Add to Cart</a>
+                  <a href='bookDetails.php?book_id=$book_id' class='btn btn-style mb-2'>Details</a>
+                </div>
+              </div>
+            </div>";
           }
       }
   }
@@ -55,14 +55,14 @@ function getBooksAndTools() {
       $course_id = $row['course_id'];
       
       echo "<div class='col-md-4 mb-2'>
-              <div class='card'>
-                  <img src='admin/bookImages/$image' class='card-img-top' alt='Book Image'>
-                  <div class='card-body'>
-                      <h5 class='card-title'>$book_title</h5>
-                      <p class='card-text'><b>RM$price/-</b></p>
-                      <a href='index.php?cart=$book_id' class='btn btn-info mb-1'>Add to Cart</a>
-                      <a href='bookDetails.php?book_id=$book_id' class='btn btn-secondary mb-1'>Details</a>
-                  </div>
+              <div class='card card-background'>
+                <img src='admin/bookImages/$image' class='card-img-top' alt='Book Image'>
+                <div class='card-body'>
+                  <h5 class='card-title'>$book_title</h5>
+                  <p class='card-text'><b>RM$price/-</b></p>
+                  <a href='index.php?cart=$book_id' class='btn btn-style mb-2 me-3'>Add to Cart</a>
+                  <a href='bookDetails.php?book_id=$book_id' class='btn btn-style mb-2'>Details</a>
+                </div>
               </div>
             </div>";
   }
@@ -114,13 +114,13 @@ function getUniqueCourses(){
           $price = $row['price'];
           $course_id = $row['course_id'];
           echo "<div class='col-md-4 mb-2'>
-                  <div class='card'>
+                  <div class='card card-background'>
                     <img src='admin/bookImages/$image' class='card-img-top' alt='Book Image'>
                     <div class='card-body'>
                       <h5 class='card-title'>$book_title</h5>
                       <p class='card-text'><b>RM$price/-</b></p>
-                      <a href='index.php?cart=$book_id' class='btn btn-info mb-1'>Add to Cart</a>
-                      <a href='bookDetails.php?book_id=$book_id' class='btn btn-secondary mb-1'>Details</a>
+                      <a href='index.php?cart=$book_id' class='btn btn-style mb-1 me-3'>Add to Cart</a>
+                      <a href='bookDetails.php?book_id=$book_id' class='btn btn-style mb-1'>Details</a>
                     </div>
                   </div>
                 </div>";
@@ -147,13 +147,13 @@ function getUniqueTools(){
           $price = $row['price'];
           $stationery_id = $row['stationery_id'];
           echo "<div class='col-md-4 mb-2'>
-                  <div class='card'>
+                  <div class='card card-background'>
                     <img src='admin/toolImages/$image' class='card-img-top' alt='Tool Image'>
                     <div class='card-body'>
                       <h5 class='card-title '>$tool_title</h5>
                       <p class='card-text'><b>RM$price/-</b></p>
-                      <a href='index.php?cart=$tool_id' class='btn btn-info mb-1'>Add to Cart</a>
-                      <a href='toolDetails.php?tool_id=$tool_id' class='btn btn-secondary mb-1'>Details</a>
+                      <a href='index.php?cart=$tool_id' class='btn btn-style mb-1 me-3'>Add to Cart</a>
+                      <a href='toolDetails.php?tool_id=$tool_id' class='btn btn-style mb-1'>Details</a>
                     </div>
                   </div>
                 </div>";
@@ -171,7 +171,7 @@ function getCourses(){
         $course_title=$row_data['course_title'];
         $course_id=$row_data['course_id'];
         echo "<li class='nav-item'>
-        <a href='index.php?course=$course_id' class='nav-link text-dark'>$course_title</a>
+        <a href='index.php?course=$course_id' class='nav-link nav-zoom text-dark'><b>$course_title</b></a>
         </li>";
       }
     }
@@ -186,7 +186,7 @@ function getStationeries(){
         $stationery_title=$row_data['stationery_title'];
         $stationery_id=$row_data['stationery_id'];
         echo "<li class='nav-item'>
-        <a href='index.php?stationery=$stationery_id' class='nav-link text-dark'>$stationery_title</a>
+        <a href='index.php?stationery=$stationery_id' class='nav-link nav-zoom text-dark'><b>$stationery_title</b></a>
         </li>";
       }
     }
@@ -211,16 +211,12 @@ function getStationeries(){
             width:100%;
           }
           .dark-green {
-          background: linear-gradient(
-            to right,
-            #4c7a3a,
-            #5b9e4c
-          );
+          background: linear-gradient(to right, #336a29, #498428, #80b155);
         }
         </style>
 
         <div class='footer dark-green'>
-          <p class='mt-3'>Website, Designed by Ho Ka Tim © 2024.</p>
+          <p class='mt-3 text-light'><b>Website, Designed by Ho Ka Tim © 2024.</b></p>
         </div>";
     }
     
@@ -262,13 +258,13 @@ function searchProducts() {
           $cart_url = $type === 'book' ? "index.php?cart=b$id" : "index.php?cart=t$id";
 
           echo "<div class='col-md-4 mb-2'>
-                  <div class='card'>
+                  <div class='card card-background'>
                     <img src='admin/{$type}Images/$image' class='card-img-top' alt='Product Image'>
                     <div class='card-body'>
                       <h5 class='card-title'>$title</h5>
                       <p class='card-text'><b>RM$price/-</b></p>
-                      <a href='$cart_url' class='btn btn-info mb-1'>Add to Cart</a>
-                      <a href='$details_url' class='btn btn-secondary mb-1'>Details</a>
+                      <a href='$cart_url' class='btn btn-style mb-1'>Add to Cart</a>
+                      <a href='$details_url' class='btn btn-style mb-1'>Details</a>
                     </div>
                   </div>
                 </div>";
@@ -313,24 +309,24 @@ function viewBookDetails(){
               <div class='col-md-8'>
               <div class='row'>
                 <div class='col-md-12'>
-                    <h2 class='text-info mb-4 mt-4 text'>$book_title</h2>
+                    <h2 class='text-dark mb-4 mt-4 text'>$book_title</h2>
                     <div class='d-flex justify-content-between mb-4'>
                       <h5 class='mb-0 text'>Author: $author</h5>
                       <h5 class='mr-5 mb-4 text'>Price: RM$price/-</h5>
                     </div>
                     <h6 class='mb-5'>$description</h6>
-                    <div class='d-flex'>
-                      <a href='index.php' class='btn btn-info me-2 mr-2 mb-3'>Back</a>
-                      <a href='index.php?cart=$book_id' class='btn btn-info me-2 mr-2 mb-3'>Add to Cart</a>
-                      <form method='post' action='users/wishlist.php' class='me-2 mr-2 mb-3'>
-                        <input type='hidden' name='book_id' value='$book_id_with_prefix'>
-                        <input type='hidden' name='book_title' value='$book_title'>
-                        <input type='hidden' name='book_image' value='$image'>
-                        <input type='hidden' name='book_price' value='$price'>
-                        <input type='submit' class='btn btn-info' name='add_to_wishlist' value='Add to Wishlist'>
-                      </form>
-                      <a href='reviews.php?book_id=b$book_id_for_reviews' class='btn btn-info mb-3'>Reviews</a>
-                    </div>
+                    <div class='d-flex align-items-center'>
+                    <a href='index.php' class='btn btn-details me-2 mb-3 mr-2 btn-style'>Back</a>
+                    <a href='index.php?cart=<?php echo $book_id; ?>' class='btn btn-details me-2 mb-3 mr-2 ml-1 btn-style'>Add to Cart</a>
+                    <form method='post' action='users/wishlist.php' class='me-2 mb-3 ml-1' style='overflow:hidden'>
+                        <input type='hidden' name='book_id' value='<?php echo $book_id_with_prefix; ?>'>
+                        <input type='hidden' name='book_title' value='<?php echo $book_title; ?>'>
+                        <input type='hidden' name='book_image' value='<?php echo $image; ?>'>
+                        <input type='hidden' name='book_price' value='<?php echo $price; ?>'>
+                        <input type='submit' class='btn btn-details btn-style' style='overflow:hidden' name='add_to_wishlist' value='Add to Wishlist'>
+                    </form>
+                    <a href='reviews.php?book_id=b<?php echo $book_id_for_reviews; ?>' class='btn btn-details mb-3 ml-1 btn-style'>Reviews</a>
+                </div>
                 </div>
             </div>
           </div>";
@@ -367,32 +363,32 @@ function viewToolDetails() {
               $tool_id_for_reviews = $row['tool_id']; // Use the actual tool_id from the database
 
               echo "<div class='col-md-4 mb-2'>
-                      <div class='card'>
-                        <img src='admin/toolImages/$image' class='' alt='Tool Image'>
-                      </div>
-                    </div>
-                    
-                    <div class='col-md-8'>
-                      <div class='row mt-4'>
-                        <div class='col-md-12'>
-                            <h2 class='text-info mb-4 mt-4 text'>$tool_title</h2>
-                            <h5 class='mr-5 mb-5 text'>Price: RM$price/-</h5>
-                            <h6 class='mb-5'>$description</h6>
-                            <div class='d-flex'>
-                              <a href='index.php' class='btn btn-info me-2 mr-2 mb-3'>Back</a>
-                              <a href='index.php?cart=$tool_id' class='btn btn-info me-2 mr-2 mb-3'>Add to Cart</a>
-                              <form method='post' action='users/wishlist.php' class='me-2 mr-2 mb-3'>
-                                  <input type='hidden' name='tool_id' value='$tool_id_with_prefix'>
-                                  <input type='hidden' name='tool_title' value='$tool_title'>
-                                  <input type='hidden' name='tool_image' value='$image'>
-                                  <input type='hidden' name='tool_price' value='$price'>
-                                  <input type='submit' class='btn btn-info' name='add_to_wishlist' value='Add to Wishlist'>
-                              </form>
-                              <a href='reviews.php?tool_id=t$tool_id_for_reviews' class='btn btn-info mb-3'>Reviews</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>";
+          <div class='card mt-4'>
+            <img src='admin/toolImages/$image' class='' alt='Tool Image'>
+          </div>
+      </div>
+      
+      <div class='col-md-8'>
+          <div class='row'>
+              <div class='col-md-12'>
+                  <h2 class='text-dark mb-4 mt-4 text'>$tool_title</h2>
+                  <h5 class='mr-5 mb-4 text'>Price: RM$price/-</h5>
+                  <h6 class='mb-5'>$description</h6>
+                  <div class='d-flex align-items-center'>
+                      <a href='index.php' class='btn btn-details me-2 mb-3 mr-2 btn-style'>Back</a>
+                      <a href='index.php?cart=$tool_id' class='btn btn-details me-2 mb-3 mr-2 ml-1 btn-style'>Add to Cart</a>
+                      <form method='post' action='users/wishlist.php' class='me-2 mb-3 ml-1' style='overflow:hidden'>
+                          <input type='hidden' name='tool_id' value='$tool_id_with_prefix'>
+                          <input type='hidden' name='tool_title' value='$tool_title'>
+                          <input type='hidden' name='tool_image' value='$image'>
+                          <input type='hidden' name='tool_price' value='$price'>
+                          <input type='submit' class='btn btn-details btn-style' style='overflow:hidden' name='add_to_wishlist' value='Add to Wishlist'>
+                      </form>
+                      <a href='reviews.php?tool_id=t$tool_id_for_reviews' class='btn btn-details mb-3 ml-1 btn-style'>Reviews</a>
+                  </div>
+              </div>
+          </div>
+      </div>";
           }
       }
   }
