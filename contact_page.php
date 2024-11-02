@@ -154,26 +154,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       <!-- fourth child - Contact Form -->
       <div class="container mb-3">
-          <h3 class="text-center" style="overflow: hidden;">Contact Us</h3>
-          
-          <form action="contact_page.php" method="POST">
-              <div class="form-group">
-                  <label for="name">Name</label>
-                  <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" value="<?php echo htmlspecialchars($name); ?>">
-              </div>
-              <div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" value="<?php echo htmlspecialchars($email); ?>">
-              </div>
-              <div class="form-group">
-                  <label for="message">Message</label>
-                  <textarea class="form-control" id="message" name="message" rows="3" placeholder="Enter your message"><?php echo htmlspecialchars($message); ?></textarea>
-              </div>
-              <div class="d-flex mb-2 justify-content-center">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-          </form>
-      </div>
+        <h3 class="text-center mb-3 mt-1" style="overflow:hidden">Contact Us</h3>
+        
+        <form action="contact_page.php" method="POST" class="contact-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" value="<?php echo htmlspecialchars($name); ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" value="<?php echo htmlspecialchars($email); ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Enter your message" required><?php echo htmlspecialchars($message); ?></textarea>
+            </div>
+            <div class="d-flex mb-2 justify-content-center">
+                <button type="submit" class="btn btn-style">Submit</button>
+            </div>
+        </form>
+    </div>
+
 
       <!-- last child -->
       <?php getFooter(); ?>

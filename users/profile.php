@@ -73,7 +73,7 @@ session_start();
     }
 
     .profile-header {
-    border-radius: 5px;
+    border-radius: 2px;
     background-color: #6c757d; /* Use your preferred color */
     color: white; /* Text color */
     padding: 10px; /* Add some padding */
@@ -82,8 +82,8 @@ session_start();
     }
 
     .table-container {
-            overflow-x: auto; 
-            margin: 20px 0; 
+    overflow-x: auto; 
+    margin: 20px 0; 
     }
 
     .single-green{
@@ -180,10 +180,8 @@ session_start();
       <!-- fourth child -->
       <div class="row flex-grow-1">
         <div class="col-md-2 light-green">
-          <ul class="navbar-nav text-center">
-            <li class="text-light green">
+          <ul class="text-center">
             <h5 class="profile-header green">Your Profile</h5>
-            </li>
             <?php
             $username = $_SESSION['user_username'];
             $user_image = "SELECT * FROM `user` WHERE user_username='$username'";

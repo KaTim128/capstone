@@ -19,7 +19,7 @@ if (isset($_POST['confirm_payment'])) {
     $payment_mode = $_POST['payment_mode'];
 
     // Insert payment details into user_payments table
-    $insert_query = "INSERT INTO `user_payments` (order_id, user_id, invoice_number, amount, payment_mode) VALUES ($order_id, $user_id, '$invoice', $amount, '$payment_mode')";
+    $insert_query = "INSERT INTO `user_payments` (user_id, invoice_number, amount, payment_mode) VALUES ($user_id, '$invoice', $amount, '$payment_mode')";
     $result = mysqli_query($conn, $insert_query);
 
     if ($result) {

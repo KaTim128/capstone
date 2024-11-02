@@ -168,7 +168,6 @@ if (!$retval) {
 
 $sql_confirm_payment = 'CREATE TABLE IF NOT EXISTS user_payments (
     payment_id INT AUTO_INCREMENT PRIMARY KEY,
-    order_id INT NOT NULL,
     user_id INT NOT NULL,
     book_id VARCHAR(2) NULL,
     tool_id VARCHAR(2) NULL,

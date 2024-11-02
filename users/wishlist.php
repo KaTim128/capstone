@@ -211,7 +211,7 @@ if (isset($_SESSION['user_id'])) {
     } else {
         // Display the wishlist if there are items
         echo '<div class="container mt-4">
-                <h3 class="text-center mt-5" style="overflow:hidden">Your Wishlist</h3>
+                <h3 class="text-center" style="overflow:hidden">Your Wishlist</h3>
                 <table class="table table-bordered table-striped center-table mt-4 mb-5">
                     <thead class="green">
                         <tr>

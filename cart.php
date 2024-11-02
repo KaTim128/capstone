@@ -73,7 +73,7 @@ if (isset($_POST['remove_cart'])) {
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- font awesome link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
   <!-- css file -->
   <style>
     th {
@@ -247,7 +247,7 @@ if (isset($_POST['remove_cart'])) {
           ?>
           <table class="table table-bordered table-striped center-table mt-3">
             <thead>
-              <tr>
+              <tr class="green">
                 <th>Product Title</th>
                 <th>Product Image</th>
                 <th>Quantity</th>
@@ -287,7 +287,7 @@ if (isset($_POST['remove_cart'])) {
                     </td>
                     <td><input type="checkbox" name="remove[]" value="b<?php echo $book_id; ?>"></td>
                     <td colspan="2">
-                    <button type="submit" class="btn btn-info px-3 py-1 mx-3 mb-3 border-0" name="update_cart">Update Cart</button>
+                    <button type="submit" class="btn btn-style px-3 py-1 mx-3 mb-3 border-0" name="update_cart">Update Cart</button>
                     <button type="submit" class="btn btn-danger px-3 py-1 mb-3 border-0" name="remove_cart">Remove</button>
                     </td>
                   </tr>
@@ -312,7 +312,7 @@ if (isset($_POST['remove_cart'])) {
                       <td></td>
                       <td><input type="checkbox" name="remove[]" value="t<?php echo $tool_id; ?>"></td>
                       <td colspan="2">
-                      <button type="submit" class="btn btn-info px-3 py-1 mx-3 mb-3 border-0" name="update_cart">Update Cart</button>
+                      <button type="submit" class="btn btn-style px-3 py-1 mx-3 mb-3 border-0" name="update_cart">Update Cart</button>
                       <button type="submit" class="btn btn-danger px-3 py-1 mb-3 border-0" name="remove_cart">Remove</button>
                       </td>
                   </tr>
@@ -332,10 +332,10 @@ if (isset($_POST['remove_cart'])) {
       <!-- total price -->
       <div class="container mb-5">
         <h4 class="mb-3 mt-5" style="overflow: hidden;">Total Price: RM<?php echo $total_price; ?></h4>
-        <a href="index.php" class="btn btn-success mr-2">Continue Shopping</a>
+        <a href="index.php" class="btn btn-style mr-2">Continue Shopping</a>
         
         <?php if($num_of_rows > 0){ ?>
-          <a href="./users/checkout.php" class="btn btn-warning">Checkout</a>
+          <a href="./users/checkout.php" class="btn btn-style">Checkout</a>
         <?php } ?>
       </div>
     </div>
