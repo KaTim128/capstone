@@ -47,6 +47,7 @@ if (isset($_POST['confirm_payment'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../style.css">
     <style>
         .form-outline {
             margin-bottom: 20px; 
@@ -57,32 +58,21 @@ if (isset($_POST['confirm_payment'])) {
             padding: 10px; 
         }
 
-        .btn {
-            background-color: #17a2b8; /* Default button color */
-            color: #ffffff; /* Text color */
-            border: none; /* No border */
-            cursor: pointer; /* Pointer cursor on hover */
-            transition: background-color 0.3s; /* Smooth transition for background color */
-        }
-
-        .btn:hover {
-            background-color: #138496; /* Darker shade for hover effect */
-        }
 
     </style>
 
 </head>
-<body class="bg-secondary">
+<body class="light-green">
     <div class="container my-5">
-        <h1 class="text-center text-light mb-4" style="overflow:hidden">Confirm Payment</h1>
+        <h1 class="text-center text-dark mb-4" style="overflow:hidden">Confirm Payment</h1>
         <form action="" method="post" class="text-center w-50 m-auto">
     <div class="form-outline my-4">
-        <label for="invoice_number" class="text-light">Invoice Number</label>
+        <label for="invoice_number" class="text-dark">Invoice Number</label>
         <input type="text" id="invoice_number" class="form-control w-100 text-center" name="invoice_number" value="<?php echo $invoice_number ?>" readonly>
     </div>
 
     <div class="form-outline my-4">
-        <label for="amount" class="text-light">Amount (RM)</label>
+        <label for="amount" class="text-dark">Amount (RM)</label>
         <input type="text" id="amount" class="form-control w-100 text-center" name="amount" value="<?php echo $amount_due ?>" readonly>
     </div>
 
@@ -97,8 +87,8 @@ if (isset($_POST['confirm_payment'])) {
     </div>
 
     <div class="form-outline text-center" style="margin-top:-12px;">
-    <a href="profile.php" class="btn py-2 px-5 border-0 text-light me-3 mx-2" style="text-decoration: none;">Back</a>
-    <input type="submit" class="btn py-2 px-5 border-0 text-light mx-2" value="Confirm" name="confirm_payment">
+    <a href="profile.php" class="btn py-2 px-5 border-0 text-light btn-style me-3 mx-2" style="text-decoration: none;">Back</a>
+    <input type="submit" class="btn py-2 px-5 border-0 text-light btn-style mx-2" value="Confirm" name="confirm_payment">
     </div>
 
 </form>

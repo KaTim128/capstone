@@ -142,24 +142,53 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
 }
 ?>
 
-<?php
-// Corrected include file name
-include('./database/connection.php');
-include('./functions/common_function.php');
-session_start();
-?>
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ecommerce Website using Php and Mysqli</title>
-  <!-- bootstrap CSS link -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <!-- font awesome link -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- css file -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8" />
+    <title>Review & Rating System in PHP & MySQL using Ajax</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+    .star-light { 
+        color: #ddd; 
+    }
+    .star-warning { 
+        color: #ffcc00; 
+    }
+    .progress-bar {
+        transition: width 0.5s ease, opacity 0.5s ease;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .round-circle {
+        border-radius: 50px;
+        width: 50px; /* Adjust the width to make the image smaller */
+        height: 50px; /* Maintain aspect ratio */
+        object-fit: cover; /* Ensures the image covers the dimensions without distortion */
+    }
+
+    .product-img {
+        border-radius: 10px;
+        width: 50px; /* Adjust the width to make the image smaller */
+        height: 50px; /* Maintain aspect ratio */
+        object-fit: cover; /* Ensures the image covers the dimensions without distortion */
+    }
+    .progress {
+    overflow: hidden; /* Hides overflow for all progress bars */
+}
+    .progress-bar {
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide any overflow content */
+    text-overflow: ellipsis; /* Add ellipsis if content overflows */
+}
+</style>
+
 </head>
 <body>
   <!-- navbar -->
@@ -252,7 +281,7 @@ session_start();
         <div class="card-header d-flex align-items-center">
             <img src="<?php echo $image_path . $product_image; ?>" class="mr-3 product-img" alt="Product Image" style="width: 100px; height: 100px;">
             <div class="flex-grow-1 text-center">
-                <h4>
+                <h4 style="overflow:hidden">
                     Rating: 
                     <span class="text-warning"><?php echo $average_rating; ?></span>
                 </h4>
@@ -289,7 +318,7 @@ session_start();
             </div>
                 <hr/>
                 <?php if ($order_exists && !$review_exists): ?>
-    <h4 class="text-center">Submit Your Review</h4>
+    <h4 class="text-center" style="overflow:hidden">Submit Your Review</h4>
     <form method="post">
         <div class="form-group">
             <label for="rating">Rating</label>
@@ -331,7 +360,7 @@ $reviews_result = mysqli_query($conn, $fetch_reviews);
 
 // Check if there are reviews to display
 if (mysqli_num_rows($reviews_result) > 0) {
-    echo '<h3 class="mt-5 mb-4 text-center">User Reviews</h3>';
+    echo '<h3 class="mt-5 mb-4 text-center" style="overflow:hidden">User Reviews</h3>';
     while ($review = mysqli_fetch_assoc($reviews_result)) {
         // Extract data from the review and user
         $review_text = htmlspecialchars($review['review_text']);
@@ -357,13 +386,11 @@ if (mysqli_num_rows($reviews_result) > 0) {
             echo '<i class="fas fa-star ' . ($i <= $review_rating ? 'star-warning' : 'star-light') . '"></i>';
         }
         echo '</span>';
-        echo '</div>'; // End of review
+        echo '</div>';
     }
 } else {
     echo '<p class="text-muted text-center my-3">No reviews yet.</p>';
 }
-
-
 ?>
         <?php while ($review = mysqli_fetch_assoc($reviews_result)): ?>
             <div class="media mb-4">

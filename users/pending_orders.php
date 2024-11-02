@@ -4,12 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pending Orders</title>
-    <style>
-        .pending-order {
-            background-color: #6c757d; /* Grey background */
-            color: #ffffff; /* Light text color */
-        }
-    </style>
 </head>
 <body>
     <?php
@@ -22,7 +16,7 @@
 
     <h4 class="mt-4 text-center text-success" style="overflow:hidden">Pending Orders</h4>
     <div class="table-container mr-3">
-        <table class="table-bordered mt-2 table text-center">
+        <table class="table-bordered table text-center">
             
                 <?php          
                 // Fetch only pending (incomplete) orders
@@ -34,7 +28,7 @@
                 } else {
                     echo "
                     <table class='table-bordered mt-2 table text-center'>
-                        <thead class='bg-info'>
+                        <thead class='green'>
                             <tr>
                                 <th>S1 no</th>
                                 <th>Product Name</th>
@@ -47,7 +41,7 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody class='bg-secondary text-light'>";
+                        <tbody class='text-dark'>";
                     $number = 1;
                     while ($row_orders = mysqli_fetch_assoc($result_orders)) {
                         $order_id = $row_orders['order_id'];
@@ -100,7 +94,7 @@
                                 <td>$order_status_display</td>";
 
                         if ($order_status_display == 'Incomplete') {
-                            echo "<td><a href='confirm_payment.php?order_id=$order_id' class='text-light'>Confirm</a></td>";
+                            echo "<td><a href='confirm_payment.php?order_id=$order_id' class='ml-3 btn btn-style text-white'>Confirm</a></td>";
                         } else {
                             echo "<td>Paid</td>";
                         }

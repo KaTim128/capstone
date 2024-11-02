@@ -69,7 +69,7 @@ if(isset($_POST['user_login'])){
         <div class="logo-container">
             <img src="../images/logo_new.png" alt="Logo" style="border-radius:10px;">
         </div>
-        <div class="form-container">
+        <div class="form-container border">
             <h2>User Login</h2>
             <div id="alertContainer" class="alert-container" data-alert-message="<?= htmlspecialchars($alert_message) ?>" data-alert-type="<?= $alert_type ?>">
             </div>

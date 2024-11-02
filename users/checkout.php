@@ -24,7 +24,7 @@ session_start();
 ?>
 
 <!-- navbar -->
-<div class="container-fluid p-0 gradient-background">
+  <div class="container-fluid p-0 gradient-background">
     <!-- first child  -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-color">
       <div class="container-fluid">
@@ -51,32 +51,20 @@ session_start();
                       <a class='nav-link nav-zoom' href='./user_registration.php'>Register</a>
                     </li>";
             }
-            ?>   
-            <li class="nav-item">
-              <a class="nav-link nav-zoom" href="../contact_page.php">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-zoom" href="../cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><sup><?php cartItem(); ?></sup></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
-            </li>
-          </ul>
+            ?> 
+          <li class="nav-item">
+            <a class="nav-link nav-zoom" href="../contact_page.php">Contact</a>
+          </li>
+        </ul>
         <form class="form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
           <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
           <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
         </form>
-        </div>
-      </nav>
+      </div>
+    </nav>
 
-      <!-- call cart function -->
-      <?php 
-      manageCart(); 
-      displayAlert(); 
-      ?>
-
-      <!-- second child -->
-      <nav class="navbar navbar-expand-lg navbar-dark green">
+    <!-- second child -->
+    <nav class="navbar navbar-expand-lg navbar-dark green">
         <ul class="navbar-nav me-auto">
         <?php
         if (isset($_SESSION['user_username'])) {
@@ -101,13 +89,13 @@ session_start();
         </ul>
       </nav>
 
-    <!-- third child -->
-    <div class="light-green">
+      <!-- third child -->
+      <div class="light-green">
         <h3 class="text-center mt-3" style="overflow: hidden;">Print N Pixel</h3>
         <p class="text-center">Where stories come alive in every format</p>
       </div>
 
-<?php } ?>
+<?php } ?> <!-- End of navbar and header content -->
 
 <!-- fourth child -->
 <div class="col-md-12">

@@ -316,16 +316,16 @@ function viewBookDetails(){
                     </div>
                     <h6 class='mb-5'>$description</h6>
                     <div class='d-flex align-items-center'>
-                    <a href='index.php' class='btn btn-details me-2 mb-3 mr-2 btn-style'>Back</a>
-                    <a href='index.php?cart=<?php echo $book_id; ?>' class='btn btn-details me-2 mb-3 mr-2 ml-1 btn-style'>Add to Cart</a>
-                    <form method='post' action='users/wishlist.php' class='me-2 mb-3 ml-1' style='overflow:hidden'>
+                    <a href='index.php' class='btn btn-details me-2 mb-3 mx-2 btn-style'>Back</a>
+                    <a href='index.php?cart=<?php echo $book_id; ?>' class='btn btn-details me-2 mb-3 mx-2 ml-1 btn-style'>Add to Cart</a>
+                    <form method='post' action='users/wishlist.php' class='me-2 mb-3 mx-2' style='overflow:hidden'>
                         <input type='hidden' name='book_id' value='<?php echo $book_id_with_prefix; ?>'>
                         <input type='hidden' name='book_title' value='<?php echo $book_title; ?>'>
                         <input type='hidden' name='book_image' value='<?php echo $image; ?>'>
                         <input type='hidden' name='book_price' value='<?php echo $price; ?>'>
                         <input type='submit' class='btn btn-details btn-style' style='overflow:hidden' name='add_to_wishlist' value='Add to Wishlist'>
                     </form>
-                    <a href='reviews.php?book_id=b<?php echo $book_id_for_reviews; ?>' class='btn btn-details mb-3 ml-1 btn-style'>Reviews</a>
+                    <a href='reviews.php?book_id=b$book_id_for_reviews' class='btn btn-details mb-3 ml-1 btn-style'>Reviews</a>
                 </div>
                 </div>
             </div>
@@ -560,7 +560,7 @@ function cartItem() {
             $result_orders_query = mysqli_query($conn, $get_orders);
             $row_count = mysqli_num_rows($result_orders_query);
             if ($row_count > 0) {
-                echo "<h3 class='text-center mt-5 ' style='overflow:hidden'>You have <span class='text-danger'>$row_count </span> pending orders</h3>";
+                echo "<h3 class='text-center mt-5 ' style='overflow:hidden'>You have <span class='text-success'>$row_count </span> pending orders</h3>";
                 echo "<p class='text-center'><a href='profile.php?my_orders' class='text-dark'>Order Details</a></p>";
             } else {
                 echo "<h3 class='text-center mt-5 ' style='overflow:hidden'>You have 0 pending orders</h3>";

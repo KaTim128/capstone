@@ -104,25 +104,61 @@
 }
 
 .card-background {
-  background: linear-gradient(to right, #e6f0dc, #c1e899);
+  background: linear-gradient(to left, #e6f0dc, #bde992);
   border: 1px solid #7ba17b;
 }
 
 .btn-style {
   padding: 10px 20px; /* Adjust padding */
   margin-right: 10px; /* Add right margin for spacing */
-  background: linear-gradient(to right, #336a29, #498428);
+  background: linear-gradient(to right, #5aa131, #8cc25d);
   color: #ffffff; /* White text */
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  text-decoration: none; /* Remove underline */
+  text-decoration: none;
   transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
 }
 
 .btn-style:hover {
-  background: linear-gradient(to right, #4e8c3a, #5aa843);
-  transform: scale(1.05); /* Slightly enlarge on hover */
+  background: linear-gradient(to right, #64b436, #8cc25d);
+  transform: scale(0.95);
+  color: #ffffff;
+}
+
+.btn-danger {
+  padding: 10px 20px; /* Adjust padding */
+  margin-right: 10px; /* Add right margin for spacing */
+  background: linear-gradient(to right, #c12a2a, #e63946);
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+}
+
+.btn-danger:hover {
+  background: linear-gradient(to right, #a82323, #d12e3d);
+  transform: scale(0.95);
+  color: #ffffff;
+}
+
+.btn-grey {
+  padding: 10px 20px; /* Adjust padding */
+  margin-right: 10px; /* Add right margin for spacing */
+  background: linear-gradient(to right, #6c757d, #adb5bd);
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+}
+
+.btn-grey:hover {
+  background: linear-gradient(to right, #5a6268, #868e96);
+  transform: scale(0.95);
   color: #ffffff;
 }
 
@@ -138,5 +174,5 @@
 }
 
 .nav-zoom:hover {
-  transform: scale(0.93); /* Scale down to 95% on hover */
+  transform: scale(0.95); /* Scale down to 95% on hover */
 }

@@ -90,7 +90,7 @@ if (isset($_POST['user_update'])) {
         <div class="form-outline mb-3">
             <input type="text" class="form-control w-50 m-auto" name="user_contact" value="<?php echo htmlspecialchars($user_contact); ?>" placeholder="Contact" required>
         </div>
-        <input type="submit" value="Update" class="bg-info py-2 px-3 border-0" name="user_update">
+        <input type="submit" value="Update" class="btn-style mb-4 py-2 px-3 border-0" name="user_update">
     </form>
 </body>
 </html>

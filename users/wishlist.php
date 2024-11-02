@@ -213,7 +213,7 @@ if (isset($_SESSION['user_id'])) {
         echo '<div class="container mt-4">
                 <h3 class="text-center mt-5" style="overflow:hidden">Your Wishlist</h3>
                 <table class="table table-bordered table-striped center-table mt-4 mb-5">
-                    <thead>
+                    <thead class="green">
                         <tr>
                             <th>Product</th>
                             <th>Title</th>
@@ -238,7 +238,7 @@ if (isset($_SESSION['user_id'])) {
                     <td>$item_title</td>
                     <td>RM$item_price</td>
                     <td class='operations'>
-                        <a href='$details_link' class='btn btn-info'>View Details</a>
+                        <a href='$details_link' class='btn btn-style'>View Details</a>
                         <form method='POST' style='display:inline;'>
                             <input type='hidden' name='wishlist_id' value='{$row['wishlist_id']}'>
                             <button type='submit' name='remove_item' class='btn btn-danger'>Remove</button>

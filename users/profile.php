@@ -25,10 +25,19 @@ session_start();
     }
 
     .profile-img {
-      width: 90%;
-      margin: auto;
-      display: block;
+    width: 80%;
+    margin: auto;
+    display: block;
+    border-radius: 15px; /* Keep this for rounded corners */
+}
+
+@media (max-width: 768px) {
+    .profile-img {
+        width: 50%; /* Adjust width for mobile screens */
+        max-height: 150px; /* Optional: limit max height */
     }
+}
+
 
     .hide-bar {
       overflow: hidden;
@@ -75,6 +84,10 @@ session_start();
     .table-container {
             overflow-x: auto; 
             margin: 20px 0; 
+    }
+
+    .single-green{
+      background-color:#c1e899;
     }
   </style>
   
@@ -177,27 +190,29 @@ session_start();
             $result_image = mysqli_query($conn, $user_image);
             $row_image = mysqli_fetch_array($result_image);
             $user_image = $row_image['user_image'];
-            echo "<li class='light-green mt-4 mb-2 img-side' style='overflow:hidden'>
-              <img src='./user_images/$user_image' class='profile-img borders' alt=''>
+
+            echo "
+            <li>
+              <img src='./user_images/$user_image' class='profile-img mt-3 mb-2' alt=''>
             </li>";
             ?>
             <li>
-              <a class="nav-link text-dark" href="profile.php"><h6 style="overflow:hidden;">My Orders</h6></a>
+              <a class="nav-link nav-zoom text-dark" href="profile.php"><h6 style="overflow:hidden;">My Orders</h6></a>
             </li>
             <li>
-              <a class="nav-link text-dark" href="profile.php?edit_account"><h6 style="overflow:hidden;">Edit Account</h6></a>
+              <a class="nav-link nav-zoom text-dark" href="profile.php?edit_account"><h6 style="overflow:hidden;">Edit Account</h6></a>
             </li>
             <li>
-              <a class="nav-link text-dark" href="profile.php?my_orders"><h6 style="overflow:hidden;">Pending Orders</h6></a>
+              <a class="nav-link nav-zoom text-dark" href="profile.php?my_orders"><h6 style="overflow:hidden;">Pending Orders</h6></a>
             </li>
             <li>
-              <a class="nav-link text-dark" href="profile.php?paid_orders"><h6 style="overflow:hidden;">Paid Orders</h6></a>
+              <a class="nav-link nav-zoom text-dark" href="profile.php?paid_orders"><h6 style="overflow:hidden;">Paid Orders</h6></a>
             </li>    
             <li>
-              <a class="nav-link text-dark" href="profile.php?delete_account"><h6 style="overflow:hidden;">Delete Account</h6></a>
+              <a class="nav-link nav-zoom text-dark" href="profile.php?delete_account"><h6 style="overflow:hidden;">Delete Account</h6></a>
             </li>
             <li>
-              <a class="nav-link text-dark" href="logout.php"><h6 style="overflow:hidden;">Logout</h6></a>
+              <a class="nav-link nav-zoom text-dark" href="logout.php"><h6 style="overflow:hidden;">Logout</h6></a>
             </li>
           </ul>
         </div>
