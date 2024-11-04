@@ -63,9 +63,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <!-- css file -->
   <link rel="stylesheet" href="style.css">
 </head>
+<style>
+  .contact-form-container {
+    margin-top: 65px; /* Adjust the value as needed for more or less space */
+}
+
+</style>
 <body>
-  <!-- navbar -->
-  <div class="container-fluid p-0 gradient-background">
+   <!-- navbar -->
+   <div class="container-fluid p-0 gradient-background">
     <!-- first child  -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-color">
       <div class="container-fluid">
@@ -77,83 +83,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link nav-zoom" href="index.php">Products</span></a>
+              <a class="nav-link nav-zoom text-light" href="index.php">Products</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-zoom" href="./users/wishlist.php">Wishlist</a>
+              <a class="nav-link nav-zoom text-light" href="./users/wishlist.php">Wishlist</a>
             </li>
+            
             <?php
             if (isset($_SESSION['user_username'])) {
               echo "<li class='nav-item'>
-                      <a class='nav-link nav-zoom' href='./users/profile.php'>My Account</a>
+                      <a class='nav-link nav-zoom text-light' href='./users/profile.php'>My Account</a>
                     </li>";
             } else {
               echo "<li class='nav-item'>
-                      <a class='nav-link nav-zoom' href='./users/user_registration.php'>Register</a>
+                      <a class='nav-link nav-zoom text-light' href='./users/user_login.php'>Login</a>
                     </li>";
             }
-            ?>   
+            ?> 
             <li class="nav-item">
-              <a class="nav-link nav-zoom" href="contact_page.php">Contact</a>
+              <a class="nav-link nav-zoom text-light" href="contact_page.php">Contact</a>
+            </li>  
+            <li class="nav-item">
+              <a class="nav-link nav-zoom text-light" href="cart.php">Cart<sup><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php cartItem(); ?></sup></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-zoom" href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><sup><?php cartItem(); ?></sup></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
+              <a class="nav-link text-light" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
             </li>
           </ul>
-        <form class="form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
-          <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
-          <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
-        </form>
+          <form class="form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
+            <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
+            <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
+          </form>
         </div>
       </nav>
 
-      <!-- call cart function -->
-      <?php 
-      manageCart(); 
-      displayAlert(); 
-      ?>
+<!-- Call cart function -->
+<?php 
+manageCart(); 
+// displayAlert(); // Remove or comment out this line if it's not needed
+?>
 
-      <!-- second child -->
-      <nav class="navbar navbar-expand-lg navbar-dark green">
-        <ul class="navbar-nav me-auto">
-        <?php
-        if (isset($_SESSION['user_username'])) {
-            echo "<li class='nav-item'>
-                    <a class='nav-link text-dark'><b>Welcome " . htmlspecialchars($_SESSION['user_username']) . "</b></a>
-                  </li>";
-        } else {
-            echo "<li class='nav-item'>
-                    <a class='nav-link text-dark' href='#'><b>Welcome guest</b></a>
-                  </li>";
-        }
-        if (isset($_SESSION['user_username'])) {
-            echo "<li class='nav-item'>
-                    <a class='nav-link nav-zoom text-dark' href='./users/logout.php'><b>Logout</b></a>
-                  </li>";
-        } else {
-            echo "<li class='nav-item'>
-                    <a class='nav-link nav-zoom text-dark' href='./users/user_login.php'><b>Login</b></a>
-                  </li>";
-        }
-        ?>
-        </ul>
-      </nav>
+<!-- Second child -->
+<ul class="navbar-nav me-auto">
+    <div class="alert-placeholder"></div> <!-- Placeholder for alert -->
+    <div class="text-center"
+         id="alertContainer" 
+         data-alert-message="<?php echo htmlspecialchars($errorMsg ?: $successMsg); ?>" 
+         data-alert-type="<?php echo $errorMsg ? 'danger' : ($successMsg ? 'success' : ''); ?>" 
+         style="position: absolute; width: 100%; display: block;">
+    </div>
+</ul>
 
-      <!-- third child -->
-      <div class="light-green">
-        <h3 class="text-center mt-3" style="overflow: hidden;">Print N Pixel</h3>
-        <p class="text-center">Where stories come alive in every format</p>
-      </div>
-
-      <!-- Alert Container-->
-      <div class="alert-container" id="alertContainer" data-alert-message= "<?php echo htmlspecialchars($errorMsg ?: $successMsg); ?>" data-alert-type="<?php echo $errorMsg ? 'danger' : ($successMsg ? 'success' : ''); ?>">
-      </div>
 
       <!-- fourth child - Contact Form -->
-      <div class="container mb-3">
+      <div class="container mb-3 contact-form-container">
         <h3 class="text-center mb-3 mt-1" style="overflow:hidden">Contact Us</h3>
         
         <form action="contact_page.php" method="POST" class="contact-form">
@@ -175,10 +158,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
     </div>
 
-
+</div>
       <!-- last child -->
       <?php getFooter(); ?>
-    </div>
+    
 
     <!-- bootstrap link-->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

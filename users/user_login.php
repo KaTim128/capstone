@@ -34,10 +34,12 @@ if(isset($_POST['user_login'])){
                 if($row_count_cart == 0){
                     $alert_message = "You have successfully logged in!";
                     $alert_type = 'success';
+                    $_SESSION['user_logged_in'] = true;
                     echo "<script>setTimeout(function(){ window.location.href = 'profile.php'; }, 1000);</script>";
                 } else {
                     $alert_message = "You have successfully logged in! Redirecting to payment.";
                     $alert_type = 'success';
+                    $_SESSION['user_logged_in'] = true;
                     echo "<script>setTimeout(function(){ window.location.href = 'checkout.php'; }, 1000);</script>";
                 }
             } else {

@@ -83,7 +83,7 @@
   background: linear-gradient(
     to right,
     #519c4b,
-    #a7d678
+    #92c85c
   ); /* Gradient from light green to a soft green */
 }
 
@@ -96,7 +96,11 @@
 }
 
 .navbar-color {
-  background: linear-gradient(to right, #336a29, #498428, #80b155);
+  background: linear-gradient(to right, #336a29, #498428, #689d3a);
+}
+
+.navbar-color2 {
+  background: linear-gradient(to right, #336a29, #498428);
 }
 
 .gradient-background {
@@ -104,14 +108,13 @@
 }
 
 .card-background {
-  background: linear-gradient(to left, #e6f0dc, #bde992);
-  border: 1px solid #7ba17b;
+  background-color: rgb(250, 255, 249);
 }
 
 .btn-style {
   padding: 10px 20px; /* Adjust padding */
   margin-right: 10px; /* Add right margin for spacing */
-  background: linear-gradient(to right, #5aa131, #8cc25d);
+  background: linear-gradient(to right, #5ba132, #5ba132);
   color: #ffffff; /* White text */
   border: none;
   border-radius: 5px;
@@ -121,7 +124,7 @@
 }
 
 .btn-style:hover {
-  background: linear-gradient(to right, #64b436, #8cc25d);
+  background: linear-gradient(to right, #5ba132, #66b13a);
   transform: scale(0.95);
   color: #ffffff;
 }
@@ -159,11 +162,15 @@
 .btn-grey:hover {
   background: linear-gradient(to right, #5a6268, #868e96);
   transform: scale(0.95);
-  color: #ffffff;
+  color: #fafafa;
 }
 
-.btn-details {
-  background-color: #649364;
+.light-grey {
+  background-color: rgb(250, 255, 249);
+}
+
+.green-background {
+  background-color: #5aa131;
 }
 .borders {
   border-radius: 15px;

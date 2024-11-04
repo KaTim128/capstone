@@ -1,0 +1,6 @@
+<a href='index.php?cart=<?php echo $book_id; ?>' 
+   onclick='event.preventDefault(); addToCart(<?php echo $book_id; ?>);' 
+   id='addItemButton' 
+   class='btn btn-style mb-2'>
+   Add to Cart
+</a>

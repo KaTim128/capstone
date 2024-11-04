@@ -63,37 +63,6 @@ session_start();
       </div>
     </nav>
 
-    <!-- second child -->
-    <nav class="navbar navbar-expand-lg navbar-dark green">
-        <ul class="navbar-nav me-auto">
-        <?php
-        if (isset($_SESSION['user_username'])) {
-            echo "<li class='nav-item'>
-                    <a class='nav-link text-dark'><b>Welcome " . htmlspecialchars($_SESSION['user_username']) . "</b></a>
-                  </li>";
-        } else {
-            echo "<li class='nav-item'>
-                    <a class='nav-link text-dark' href='#'><b>Welcome guest</b></a>
-                  </li>";
-        }
-        if (isset($_SESSION['user_username'])) {
-            echo "<li class='nav-item'>
-                    <a class='nav-link nav-zoom text-dark' href='./logout.php'><b>Logout</b></a>
-                  </li>";
-        } else {
-            echo "<li class='nav-item'>
-                    <a class='nav-link nav-zoom text-dark' href='./user_login.php'><b>Login</b></a>
-                  </li>";
-        }
-        ?>
-        </ul>
-      </nav>
-
-      <!-- third child -->
-      <div class="light-green">
-        <h3 class="text-center mt-3" style="overflow: hidden;">Print N Pixel</h3>
-        <p class="text-center">Where stories come alive in every format</p>
-      </div>
 
 <?php } ?> <!-- End of navbar and header content -->
 
@@ -109,13 +78,13 @@ session_start();
       ?>
   </div>       
 </div>
-
+<?php getFooter(); ?>
 <?php
 // Display footer only if user is logged in
 if(isset($_SESSION['user_username'])) {
 ?>
   <!-- last child -->
-  <?php getFooter(); ?>
+  
 <?php } ?> <!-- End of footer -->
 
 <!-- bootstrap link-->

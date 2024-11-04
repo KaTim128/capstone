@@ -3,6 +3,7 @@
 include('./database/connection.php');
 include('./functions/common_function.php');
 session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,77 +32,66 @@ session_start();
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link nav-zoom" href="index.php">Products</span></a>
+              <a class="nav-link nav-zoom text-light" href="index.php">Products</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-zoom" href="./users/wishlist.php">Wishlist</a>
+              <a class="nav-link nav-zoom text-light" href="./users/wishlist.php">Wishlist</a>
             </li>
+            
             <?php
             if (isset($_SESSION['user_username'])) {
               echo "<li class='nav-item'>
-                      <a class='nav-link nav-zoom' href='./users/profile.php'>My Account</a>
+                      <a class='nav-link nav-zoom text-light' href='./users/profile.php'>My Account</a>
                     </li>";
             } else {
               echo "<li class='nav-item'>
-                      <a class='nav-link nav-zoom' href='./users/user_registration.php'>Register</a>
+                      <a class='nav-link nav-zoom text-light' href='./users/user_login.php'>Login</a>
                     </li>";
             }
-            ?>   
+            ?> 
             <li class="nav-item">
-              <a class="nav-link nav-zoom" href="contact_page.php">Contact</a>
+              <a class="nav-link nav-zoom text-light" href="contact_page.php">Contact</a>
+            </li>  
+            <li class="nav-item">
+              <a class="nav-link nav-zoom text-light" href="cart.php">Cart<sup><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php cartItem(); ?></sup></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-zoom" href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><sup><?php cartItem(); ?></sup></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
+              <a class="nav-link text-light" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
             </li>
           </ul>
-        <form class="form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
-          <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
-          <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
-        </form>
+          <form class="form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
+            <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
+            <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
+          </form>
         </div>
       </nav>
 
       <!-- call cart function -->
       <?php 
       manageCart(); 
-      displayAlert(); 
+      displayAlert();
+
+      if (isset($_SESSION['cart_alert'])) {
+        $alertMessage = $_SESSION['cart_alert'];
+        unset($_SESSION['cart_alert']); // Clear it after using it
+    } else {
+        $alertMessage = '';
+    }
       ?>
 
       <!-- second child -->
-      <nav class="navbar navbar-expand-lg navbar-dark green">
-        <ul class="navbar-nav me-auto">
-        <?php
-        if (isset($_SESSION['user_username'])) {
-            echo "<li class='nav-item'>
-                    <a class='nav-link text-dark'><b>Welcome " . htmlspecialchars($_SESSION['user_username']) . "</b></a>
-                  </li>";
-        } else {
-            echo "<li class='nav-item'>
-                    <a class='nav-link text-dark' href='#'><b>Welcome guest</b></a>
-                  </li>";
-        }
-        if (isset($_SESSION['user_username'])) {
-            echo "<li class='nav-item'>
-                    <a class='nav-link nav-zoom text-dark' href='./users/logout.php'><b>Logout</b></a>
-                  </li>";
-        } else {
-            echo "<li class='nav-item'>
-                    <a class='nav-link nav-zoom text-dark' href='./users/user_login.php'><b>Login</b></a>
-                  </li>";
-        }
-        ?>
-        </ul>
-      </nav>
 
-      <!-- third child -->
-      <div class="light-green">
-        <h3 class="text-center mt-3" style="overflow: hidden;">Print N Pixel</h3>
-        <p class="text-center">Where stories come alive in every format</p>
-      </div>
+  <ul class="navbar-nav me-auto">
+    <div class="alert-placeholder" style="height: 60px;"></div> <!-- Placeholder for alert -->
+    <div id="alertContainer" class="text-center"
+         data-alert-message="<?php echo htmlspecialchars($alertMessage); ?>" 
+         data-alert-type="success" 
+         style="position: absolute; width: 100%; display: block;"></div>
+  </ul>
 
+
+
+  
       <!-- fourth child -->
       <div class="row px-3">
         <div class="col-md-10">
@@ -118,32 +108,43 @@ session_start();
           <!-- column end -->
         </div>          
 
-        <div class="col-md-2 light-green p-0">
-          <!-- courses to be displayed -->
-          <ul class="navbar-nav me-auto text-center">
-            <li class="nav-item green">
-              <a href="#" class="nav-link text-dark"><h4 style="overflow:hidden;">Courses</h4></a>
-            </li>
-            <?php getCourses(); ?> 
-          </ul>
+        <div class="col-md-2 p-0 light-grey">
+          <!-- Toggle button for Courses -->
+          <button class="btn toggle-btn btn-style w-100 mb-2" type="button" data-toggle="collapse" data-target="#coursesSidebar" aria-expanded="false" aria-controls="coursesSidebar">
+            <i class="fas fa-book" style="color: white;"></i> <span style="color: white;">Browse Courses</span>
+          </button>
 
-          <!-- stationaries to be displayed -->
-          <ul class="navbar-nav me-auto text-center">
-            <li class="nav-item green">
-              <a href="#" class="nav-link text-dark"><h4 style="overflow:hidden;">Stationaries</h4></a>
-            </li>
-            <?php getStationeries(); ?>
-          </ul>
+          <!-- Sidebar content for Courses -->
+          <div id="coursesSidebar" class="collapse">
+            <!-- courses to be displayed -->
+            <ul class="navbar-nav me-auto text-center">
+              <?php getCourses(); ?> 
+            </ul>
+          </div>
+
+          <!-- Toggle button for Stationeries -->
+          <button class="btn toggle-btn btn-style w-100 mb-2" type="button" data-toggle="collapse" data-target="#stationeriesSidebar" aria-expanded="false" aria-controls="stationeriesSidebar">
+            <i class="fas fa-pencil-alt" style="color: white;"></i> <span style="color: white;">Browse Stationeries</span>
+          </button>
+
+          <!-- Sidebar content for Stationeries -->
+          <div id="stationeriesSidebar" class="collapse">
+            <!-- stationaries to be displayed -->
+            <ul class="navbar-nav me-auto text-center">
+              <?php getStationeries(); ?>
+            </ul>
+          </div>
         </div>
+
+        <!-- last child -->
+        <?php getFooter(); ?>
       </div>
 
-      <!-- last child -->
-      <?php getFooter(); ?>
-    </div>
+      <!-- bootstrap link-->
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
 
-    <!-- bootstrap link-->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  </body>
+    </body>
 </html>

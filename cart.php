@@ -158,36 +158,37 @@ if (isset($_POST['remove_cart'])) {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link nav-zoom" href="index.php">Products</span></a>
+              <a class="nav-link nav-zoom text-light" href="index.php">Products</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-zoom" href="./users/wishlist.php">Wishlist</a>
+              <a class="nav-link nav-zoom text-light" href="./users/wishlist.php">Wishlist</a>
             </li>
+            
             <?php
             if (isset($_SESSION['user_username'])) {
               echo "<li class='nav-item'>
-                      <a class='nav-link nav-zoom' href='./users/profile.php'>My Account</a>
+                      <a class='nav-link nav-zoom text-light' href='./users/profile.php'>My Account</a>
                     </li>";
             } else {
               echo "<li class='nav-item'>
-                      <a class='nav-link nav-zoom' href='./users/user_registration.php'>Register</a>
+                      <a class='nav-link nav-zoom text-light' href='./users/user_login.php'>Login</a>
                     </li>";
             }
-            ?>   
+            ?> 
             <li class="nav-item">
-              <a class="nav-link nav-zoom" href="contact_page.php">Contact</a>
+              <a class="nav-link nav-zoom text-light" href="contact_page.php">Contact</a>
+            </li>  
+            <li class="nav-item">
+              <a class="nav-link nav-zoom text-light" href="cart.php">Cart<sup><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php cartItem(); ?></sup></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-zoom" href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><sup><?php cartItem(); ?></sup></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
+              <a class="nav-link text-light" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
             </li>
           </ul>
-        <form class="form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
-          <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
-          <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
-        </form>
+          <form class="form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
+            <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
+            <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
+          </form>
         </div>
       </nav>
 
@@ -198,36 +199,7 @@ if (isset($_POST['remove_cart'])) {
       ?>
 
       <!-- second child -->
-      <nav class="navbar navbar-expand-lg navbar-dark green">
-        <ul class="navbar-nav me-auto">
-        <?php
-        if (isset($_SESSION['user_username'])) {
-            echo "<li class='nav-item'>
-                    <a class='nav-link text-dark'><b>Welcome " . htmlspecialchars($_SESSION['user_username']) . "</b></a>
-                  </li>";
-        } else {
-            echo "<li class='nav-item'>
-                    <a class='nav-link text-dark' href='#'><b>Welcome guest</b></a>
-                  </li>";
-        }
-        if (isset($_SESSION['user_username'])) {
-            echo "<li class='nav-item'>
-                    <a class='nav-link nav-zoom text-dark' href='./users/logout.php'><b>Logout</b></a>
-                  </li>";
-        } else {
-            echo "<li class='nav-item'>
-                    <a class='nav-link nav-zoom text-dark' href='./users/user_login.php'><b>Login</b></a>
-                  </li>";
-        }
-        ?>
-        </ul>
-      </nav>
-
-      <!-- third child -->
-      <div class="light-green">
-        <h3 class="text-center mt-3" style="overflow: hidden;">Print N Pixel</h3>
-        <p class="text-center">Where stories come alive in every format</p>
-      </div>
+      
 
 <h3 class="text-center mt-5" style="overflow:hidden">Your Cart</h3>
 <!-- Cart Table -->

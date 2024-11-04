@@ -150,22 +150,6 @@ if (!$retval) {
     die('Could not create table orders: ' . mysqli_error($conn));
 }
 
-$sql_pend_orders = 'CREATE TABLE IF NOT EXISTS pending_orders (
-    order_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    amount_due INT NOT NULL,
-    invoice_number INT(255) NOT NULL, 
-    book_id VARCHAR(2) NULL,
-    tool_id VARCHAR(2) NULL,
-    order_status VARCHAR(255) NOT NULL
-)';
-
-
-$retval = mysqli_query($conn, $sql_pend_orders);
-if (!$retval) {
-    die('Could not create table pending_orders: ' . mysqli_error($conn));
-}
-
 $sql_confirm_payment = 'CREATE TABLE IF NOT EXISTS user_payments (
     payment_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,

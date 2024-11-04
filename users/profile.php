@@ -92,6 +92,7 @@ session_start();
   </style>
   
 </head>
+
 <body>
   <!-- navbar -->
   <div class="container-fluid p-0 gradient-background">
@@ -106,36 +107,37 @@ session_start();
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link nav-zoom" href="../index.php">Products</span></a>
+              <a class="nav-link nav-zoom text-light" href="../index.php">Products</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-zoom" href="./wishlist.php">Wishlist</a>
+              <a class="nav-link nav-zoom text-light" href="./wishlist.php">Wishlist</a>
             </li>
+            
             <?php
             if (isset($_SESSION['user_username'])) {
               echo "<li class='nav-item'>
-                      <a class='nav-link nav-zoom' href='./profile.php'>My Account</a>
+                      <a class='nav-link nav-zoom text-light' href='./profile.php'>My Account</a>
                     </li>";
             } else {
               echo "<li class='nav-item'>
-                      <a class='nav-link nav-zoom' href='./user_registration.php'>Register</a>
+                      <a class='nav-link nav-zoom text-light' href='./user_login.php'>Login</a>
                     </li>";
             }
-            ?>   
+            ?>
             <li class="nav-item">
-              <a class="nav-link nav-zoom" href="../contact_page.php">Contact</a>
+              <a class="nav-link nav-zoom text-light" href="../contact_page.php">Contact</a>
+            </li>   
+            <li class="nav-item">
+              <a class="nav-link nav-zoom text-light" href="../cart.php">Cart<sup><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php cartItem(); ?></sup></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-zoom" href="../cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><sup><?php cartItem(); ?></sup></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
+              <a class="nav-link text-light" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
             </li>
           </ul>
-        <form class="form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
-          <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
-          <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
-        </form>
+          <form class="form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
+            <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
+            <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
+          </form>
         </div>
       </nav>
 
@@ -146,40 +148,11 @@ session_start();
       ?>
 
       <!-- second child -->
-      <nav class="navbar navbar-expand-lg navbar-dark green">
-        <ul class="navbar-nav me-auto">
-        <?php
-        if (isset($_SESSION['user_username'])) {
-            echo "<li class='nav-item'>
-                    <a class='nav-link text-dark'><b>Welcome " . htmlspecialchars($_SESSION['user_username']) . "</b></a>
-                  </li>";
-        } else {
-            echo "<li class='nav-item'>
-                    <a class='nav-link text-dark' href='#'><b>Welcome guest</b></a>
-                  </li>";
-        }
-        if (isset($_SESSION['user_username'])) {
-            echo "<li class='nav-item'>
-                    <a class='nav-link nav-zoom text-dark' href='./logout.php'><b>Logout</b></a>
-                  </li>";
-        } else {
-            echo "<li class='nav-item'>
-                    <a class='nav-link nav-zoom text-dark' href='./user_login.php'><b>Login</b></a>
-                  </li>";
-        }
-        ?>
-        </ul>
-      </nav>
-
-      <!-- third child -->
-      <div class="light-green">
-        <h3 class="text-center mt-3" style="overflow: hidden;">Print N Pixel</h3>
-        <p class="text-center">Where stories come alive in every format</p>
-      </div>
+      
 
       <!-- fourth child -->
       <div class="row flex-grow-1">
-        <div class="col-md-2 light-green">
+        <div class="col-md-2 light-grey">
           <ul class="text-center">
             <h5 class="profile-header green">Your Profile</h5>
             <?php
@@ -221,13 +194,26 @@ session_start();
         </div>
       </div>
 
-      <!-- last child -->
-      <?php getFooter(); ?>
+      
     </div>
-
+<!-- last child -->
+      <?php getFooter(); ?>
     <!-- bootstrap link-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.bundle.min.js"></script> 
   </body>
 </html>
+<script>
+    // Refresh the page once to ensure cart items are updated after login
+    window.onload = function() {
+        // Check if the user just logged in
+        if (<?php echo isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] ? 'true' : 'false'; ?>) {
+            // Use location.reload() to refresh the page
+            location.reload();
+
+            // Unset the session variable to prevent further reloads
+            <?php unset($_SESSION['user_logged_in']); ?>
+        }
+    };
+</script>
