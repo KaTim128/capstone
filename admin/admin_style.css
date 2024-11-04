@@ -45,28 +45,33 @@ body {
 
 /* Link styling */
 .link-style {
-  color: black;
+  color: white;
   text-decoration: underline;
   transition: color 0.3s ease; /* Smooth hover transition */
 }
 
 .link-style:hover {
-  color: white; /* Turns link white on hover */
+  color: black; /* Turns link white on hover */
 }
 
-/* Button styling */
 .btn-style {
-  padding: 10px 20px;
-  background-color: #c2d6c2;
+  padding: 10px 20px; /* Adjust padding */
+  margin-right: 10px; /* Add right margin for spacing */
+  background: linear-gradient(to right, #5aa131, #8cc25d);
+  color: #ffffff; /* White text */
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
 }
 
-/* Button hover effect */
 .btn-style:hover {
-  background-color: #a8c0a8;
-  box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.2);
-  transform: scale(0.98);
+  background: linear-gradient(to right, #64b436, #8cc25d);
+  transform: scale(0.95);
+  color: #ffffff;
+}
+
+.navbar-color {
+  background: linear-gradient(to right, #336a29, #498428, #80b155);
 }

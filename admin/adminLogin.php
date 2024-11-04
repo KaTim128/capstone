@@ -41,29 +41,29 @@ if (isset($_POST['admin_registration'])) {
     <link rel="stylesheet" href="admin_style.css">
 
 </head>
-<body class="front-background">
+<body class="front-background navbar-color">
     <div class="container-fluid m-3 front-background">
-        <h2 class="text-center my-5">Admin Login</h2>
+        <h2 class="text-center my-5 text-light">Admin Login</h2>
         <div class="row d-flex justify-content-center align-items-center form-container">
             <div class="col-lg-5 col-md-5">
-                <img src="../images/logo_new.png" alt="Admin Registration" class="img-fluid img-logo">
+                <img src="../images/logo_new.png" alt="Admin Registration" class="img-fluid img-logo" style="border-radius:10px;">
             </div>
             <div class="col-lg-4 col-md-5">
                 <form action="" method="post">
                     <div class="form-outline mb-4">
-                        <label for="email" class="form-label">Email</label>
+                        <label for="email" class="form-label text-light">Email</label>
                         <input type="text" id="email" name="email" class="form-control custom-input" placeholder="Enter your email" required>
                     </div>
                     <div class="form-outline mb-4">
-                        <label for="password" class="form-label">Password</label>
+                        <label for="password" class="form-label text-light">Password</label>
                         <input type="password" id="password" name="password" class="form-control custom-input" placeholder="Enter your password" required>
                     </div>
                     <div>
                         <button type="submit" name="admin_registration" class="btn-style mb-3">Login</button>
-                        <p>Don't have an account? <a href="adminRegistration.php" class="link-style"> Register</a></p>
+                        <p class="text-light">Don't have an account? <a href="adminRegistration.php" class="link-style"> Register</a></p>
                     </div>
                     <div>
-                        <p>Leave admin page? <a href="../users/user_login.php" class="link-style"> Back</a></p>
+                        <p class="text-light">Leave admin page? <a href="../users/user_login.php" class="link-style"> Back</a></p>
                     </div>
                 </form>
             </div>

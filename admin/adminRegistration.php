@@ -66,34 +66,34 @@ if (isset($_POST['adminRegistration'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="admin_style.css">
 </head>
-<body class="front-background">
+<body class="front-background navbar-color">
     <div class="container-fluid m-3 front-background">
-        <h2 class="text-center my-5">Admin Registration</h2>
+        <h2 class="text-center my-5 text-light">Admin Registration</h2>
         <div class="row d-flex justify-content-center align-items-center form-container">
             <div class="col-lg-5 col-md-5">
-                <img src="../images/logo_new.png" alt="Admin Registration" class="img-fluid img-logo">
+                <img src="../images/logo_new.png" alt="Admin Registration" class="img-fluid img-logo" style="border-radius:10px;">
             </div>
             <div class="col-lg-4 col-md-5">
                 <form action="" method="post">
                     <div class="form-outline mb-4">
-                        <label for="username" class="form-label">Username</label>
+                        <label for="username" class="form-label text-light">Username</label>
                         <input type="text" id="username" name="username" class="form-control custom-input" placeholder="Enter your username" required>
                     </div>
                     <div class="form-outline mb-4">
-                        <label for="email" class="form-label">Email</label>
+                        <label for="email" class="form-label text-light">Email</label>
                         <input type="email" id="email" name="email" class="form-control custom-input" placeholder="Enter your email" required>
                     </div>
                     <div class="form-outline mb-4">
-                        <label for="password" class="form-label">Password</label>
+                        <label for="password" class="form-label text-light">Password</label>
                         <input type="password" id="password" name="password" class="form-control custom-input" placeholder="Enter your password" required>
                     </div>
                     <div class="form-outline mb-4">
-                        <label for="conf_password" class="form-label">Confirm Password</label>
+                        <label for="conf_password" class="form-label text-light">Confirm Password</label>
                         <input type="password" id="conf_password" name="conf_password" class="form-control custom-input" placeholder="Confirm password" required>
                     </div>
                     <div>
                         <button type="submit" name="adminRegistration" class="btn-style mb-3">Register</button>
-                        <p>Already have an account? <a href="adminLogin.php" class="link-style">Login</a></p>
+                        <p class="text-light">Already have an account? <a href="adminLogin.php" class="link-style">Login</a></p>
                     </div>
                 </form>
             </div>
