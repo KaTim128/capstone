@@ -2,6 +2,7 @@
 include('../database/connection.php');
 include('../functions/common_function.php');
 @session_start();
+$hide_nav_footer = isset($_GET['from']) && $_GET['from'] === 'checkout';
 
 $alert_message = ''; // Initialize an empty message
 $alert_type = ''; // Initialize an empty alert type

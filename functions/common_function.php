@@ -36,63 +36,6 @@ function getBooks(){
 }
 
 
-// getting books and tools
-function getBooksAndTools() {
-  global $conn;
-
-  // Query to select books
-  $select_books_query = "SELECT * FROM `books` ORDER BY RAND() LIMIT 0, 9";
-  $result_books_query = mysqli_query($conn, $select_books_query);
-
-  // Displaying books
-  while ($row = mysqli_fetch_assoc($result_books_query)) {
-      $book_id = $row['book_id'];
-      $book_title = $row['book_title'];
-      $author = $row['author'];
-      $description = $row['description'];
-      $image = $row['image'];
-      $price = $row['price'];
-      $course_id = $row['course_id'];
-      
-      echo "<div class='col-md-4 mb-2'>
-              <div class='card card-background'>
-                <img src='admin/bookImages/$image' class='card-img-top' alt='Book Image'>
-                <div class='card-body'>
-                  <h5 class='card-title'>$book_title</h5>
-                  <p class='card-text'><b>RM$price/-</b></p>
-                  <a href='index.php?cart=$book_id' class='btn btn-style mb-2 me-3'>Add to Cart</a>
-                  <a href='bookDetails.php?book_id=$book_id' class='btn btn-style mb-2'>Details</a>
-                </div>
-              </div>
-            </div>";
-  }
-
-  $select_tools_query = "SELECT * FROM `tools` ORDER BY RAND() LIMIT 0, 9";
-  $result_tools_query = mysqli_query($conn, $select_tools_query);
-
-  // Displaying tools
-  while ($row = mysqli_fetch_assoc($result_tools_query)) {
-      $tool_id = 't' . $row['tool_id'];
-      $tool_title = $row['tool_title'];
-      $tool_description = $row['description'];
-      $tool_image = $row['image'];
-      $tool_price = $row['price'];
-
-      echo "<div class='col-md-4 mb-2'>
-              <div class='card'>
-                  <img src='admin/toolImages/$tool_image' class='card-img-top' alt='Tool Image'>
-                  <div class='card-body'>
-                      <h5 class='card-title'>$tool_title</h5>
-                      <p class='card-text'><b>RM$tool_price/-</b></p>
-                      <a href='index.php?cart=$tool_id' class='btn btn-info mb-1'>Add to Cart</a>
-                      <a href='toolDetails.php?tool_id=$tool_id' class='btn btn-secondary mb-1'>Details</a>
-                  </div>
-              </div>
-            </div>";
-  }
-}
-
-
 // Updated getUniqueCourses function.
 function getUniqueCourses(){
   global $conn;
@@ -420,8 +363,17 @@ function manageCart() {
 
   // Updating guest cart items to the logged-in user ID when user logs in
   if ($user_id > 0) {
-      $update_query = "UPDATE `cart` SET user_id = '$user_id' WHERE user_id = 0";
+      // Move guest cart items to user cart
+      $update_query = "UPDATE cart SET user_id = '$user_id' WHERE user_id = 0";
       mysqli_query($conn, $update_query);
+
+      // After updating, ensure no duplicates are present
+      $deduplication_query = "DELETE c1 FROM cart c1 
+                              INNER JOIN cart c2 
+                              WHERE c1.cart_id > c2.cart_id 
+                              AND ((c1.book_id = c2.book_id AND c1.user_id = '$user_id') 
+                              OR (c1.tool_id = c2.tool_id AND c1.user_id = '$user_id'))";
+      mysqli_query($conn, $deduplication_query);
   }
 
   // Adding items to the cart
@@ -435,9 +387,9 @@ function manageCart() {
       // Check for existing item in the cart based on user_id and product type
       $existing_query = "";
       if ($prefix == 'b') {
-          $existing_query = "SELECT * FROM `cart` WHERE user_id='$user_id' AND book_id='$id'";
+          $existing_query = "SELECT * FROM cart WHERE user_id='$user_id' AND book_id='$id'";
       } elseif ($prefix == 't') {
-          $existing_query = "SELECT * FROM `cart` WHERE user_id='$user_id' AND tool_id='$id'";
+          $existing_query = "SELECT * FROM cart WHERE user_id='$user_id' AND tool_id='$id'";
       }
 
       // Execute the existing query
@@ -449,9 +401,9 @@ function manageCart() {
       } else {
           // Add the item to the cart in the database
           if ($prefix == 'b') {
-              $insert_query = "INSERT INTO `cart` (book_id, user_id) VALUES ('$id', '$user_id')";
+              $insert_query = "INSERT INTO cart (book_id, user_id) VALUES ('$id', '$user_id')";
           } elseif ($prefix == 't') {
-              $insert_query = "INSERT INTO `cart` (tool_id, user_id) VALUES ('$id', '$user_id')";
+              $insert_query = "INSERT INTO cart (tool_id, user_id) VALUES ('$id', '$user_id')";
           }
 
           // Execute the insert query
@@ -481,9 +433,9 @@ function manageCart() {
       $result_query = null;
 
       if ($prefix == 'b') {
-          $result_query = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id='$user_id' AND book_id='$id'");
+          $result_query = mysqli_query($conn, "SELECT * FROM cart WHERE user_id='$user_id' AND book_id='$id'");
       } elseif ($prefix == 't') {
-          $result_query = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id='$user_id' AND tool_id='$id'");
+          $result_query = mysqli_query($conn, "SELECT * FROM cart WHERE user_id='$user_id' AND tool_id='$id'");
       }
 
       // Initialize alert message variable
@@ -499,9 +451,9 @@ function manageCart() {
           $insert_query = "";
 
           if ($prefix == 'b') {
-              $insert_query = "INSERT INTO `cart` (book_id, user_id, ip_address, quantity, booktype) VALUES ('$id', '$user_id', '$ip', 1, '$booktype')";
+              $insert_query = "INSERT INTO cart (book_id, user_id, ip_address, quantity, booktype) VALUES ('$id', '$user_id', '$ip', 1, '$booktype')";
           } elseif ($prefix == 't') {
-              $insert_query = "INSERT INTO `cart` (tool_id, user_id, ip_address, quantity) VALUES ('$id', '$user_id', '$ip', 1)";
+              $insert_query = "INSERT INTO cart (tool_id, user_id, ip_address, quantity) VALUES ('$id', '$user_id', '$ip', 1)";
           }
 
           // Execute the query and set alert message if successful
@@ -530,9 +482,6 @@ if (isset($_SESSION['cart_alert'])) {
 
 
 
-
-
-
 // Function to display alert messages from the session
 function displayAlert() {
     if (isset($_SESSION['alert'])) {
@@ -540,6 +489,7 @@ function displayAlert() {
         unset($_SESSION['alert']); // Clear the alert after displaying it
     }
 }
+
 
 // Function to get cart item numbers
 function cartItem() {
