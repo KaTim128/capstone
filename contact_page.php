@@ -148,7 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p class="text-center">Where stories come alive in every format</p>
       </div>
 
-      <!-- Alert Container - move it here -->
+      <!-- Alert Container-->
       <div class="alert-container" id="alertContainer" data-alert-message= "<?php echo htmlspecialchars($errorMsg ?: $successMsg); ?>" data-alert-type="<?php echo $errorMsg ? 'danger' : ($successMsg ? 'success' : ''); ?>">
       </div>
 

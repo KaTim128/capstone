@@ -26,16 +26,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Show the alert and then fade it out
       $(alertElement)
-        .hide() // Start as hidden
-        .slideDown(300) // Slide down
-        .delay(3000) // Wait for 3 seconds
+        .hide()
+        .slideDown(300)
+        .delay(3000)
         .slideUp(300, () => {
-          // Slide up and remove
           alertElement.remove();
           alertContainer.classList.remove("alert-visible");
         });
     }
   }
 });
-
-

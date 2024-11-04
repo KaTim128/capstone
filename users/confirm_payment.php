@@ -67,12 +67,12 @@ if (isset($_POST['confirm_payment'])) {
         <h1 class="text-center text-dark mb-4" style="overflow:hidden">Confirm Payment</h1>
         <form action="" method="post" class="text-center w-50 m-auto">
     <div class="form-outline my-4">
-        <label for="invoice_number" class="text-dark">Invoice Number</label>
+        <label for="invoice_number" class="text-dark"><b>Invoice Number</b></label>
         <input type="text" id="invoice_number" class="form-control w-100 text-center" name="invoice_number" value="<?php echo $invoice_number ?>" readonly>
     </div>
 
     <div class="form-outline my-4">
-        <label for="amount" class="text-dark">Amount (RM)</label>
+        <label for="amount" class="text-dark"><b>Amount (RM)</b></label>
         <input type="text" id="amount" class="form-control w-100 text-center" name="amount" value="<?php echo $amount_due ?>" readonly>
     </div>
 
@@ -87,8 +87,8 @@ if (isset($_POST['confirm_payment'])) {
     </div>
 
     <div class="form-outline text-center" style="margin-top:-12px;">
-    <a href="profile.php" class="btn py-2 px-5 border-0 text-light btn-style me-3 mx-2" style="text-decoration: none;">Back</a>
-    <input type="submit" class="btn py-2 px-5 border-0 text-light btn-style mx-2" value="Confirm" name="confirm_payment">
+    <a href="profile.php" class="btn py-2 px-5 border-0 text-light btn-style me-3 m-2" style="text-decoration: none;">Back</a>
+    <input type="submit" class="btn py-2 px-5 border-0 text-light btn-style m-2" value="Confirm" name="confirm_payment">
     </div>
 
 </form>

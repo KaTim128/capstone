@@ -273,67 +273,67 @@ function searchProducts() {
 }
 
 
-//view details function
-function viewBookDetails(){
+function viewBookDetails() {
   global $conn;
 
   if (isset($_GET['book_id'])) {
-    if (!isset($_GET['course']) && !isset($_GET['stationery'])) {
-      
-      // Handle book_id with prefix "b"
-      $book_id = $_GET['book_id'];
+      if (!isset($_GET['course']) && !isset($_GET['stationery'])) {
 
-      // Remove prefix "b" to query the database (assuming the database doesn't store the prefix)
-      $actual_book_id = str_replace('b', '', $book_id);
+          // Handle book_id with prefix "b"
+          $book_id = $_GET['book_id'];
 
-      // Fetch book details
-      $select_query = "SELECT * FROM `books` WHERE book_id='$actual_book_id'";
-      $result_query = mysqli_query($conn, $select_query);
+          // Remove prefix "b" to query the database
+          $actual_book_id = str_replace('b', '', $book_id);
 
-      while ($row = mysqli_fetch_assoc($result_query)) {
-        $book_id_with_prefix = 'b' . $row['book_id']; // Use this for the wishlist
-        $book_title = $row['book_title'];
-        $author = $row['author'];
-        $description = $row['description'];
-        $image = $row['image'];
-        $price = $row['price'];
-        // Prepare the correct book_id for the reviews button
-        $book_id_for_reviews = $row['book_id']; // Use the actual book_id from the database
+          // Fetch book details
+          $select_query = "SELECT * FROM `books` WHERE book_id='$actual_book_id'";
+          $result_query = mysqli_query($conn, $select_query);
 
-        echo "<div class='col-md-4 mb-2'>
-                <div class='card mt-4'>
-                  <img src='admin/bookImages/$image' class='' alt='Book Image'>
-                </div>
-              </div>
-              
-              <div class='col-md-8'>
-              <div class='row'>
-                <div class='col-md-12'>
-                    <h2 class='text-dark mb-4 mt-4 text'>$book_title</h2>
-                    <div class='d-flex justify-content-between mb-4'>
-                      <h5 class='mb-0 text'>Author: $author</h5>
-                      <h5 class='mr-5 mb-4 text'>Price: RM$price/-</h5>
+          while ($row = mysqli_fetch_assoc($result_query)) {
+              $book_id_with_prefix = 'b' . $row['book_id']; // Use this for the wishlist
+              $book_title = $row['book_title'];
+              $author = $row['author'];
+              $description = $row['description'];
+              $image = $row['image'];
+              $price = $row['price'];
+              // Prepare the correct book_id for the reviews button
+              $book_id_for_reviews = $row['book_id']; // Use the actual book_id from the database
+
+              echo "<div class='col-md-4 mb-2'>
+                      <div class='card mt-4'>
+                        <img src='admin/bookImages/$image' class='card-img-top' alt='Book Image'>
+                      </div>
                     </div>
-                    <h6 class='mb-5'>$description</h6>
-                    <div class='d-flex align-items-center'>
-                    <a href='index.php' class='btn btn-details me-2 mb-3 mx-2 btn-style'>Back</a>
-                    <a href='index.php?cart=<?php echo $book_id; ?>' class='btn btn-details me-2 mb-3 mx-2 ml-1 btn-style'>Add to Cart</a>
-                    <form method='post' action='users/wishlist.php' class='me-2 mb-3 mx-2' style='overflow:hidden'>
-                        <input type='hidden' name='book_id' value='<?php echo $book_id_with_prefix; ?>'>
-                        <input type='hidden' name='book_title' value='<?php echo $book_title; ?>'>
-                        <input type='hidden' name='book_image' value='<?php echo $image; ?>'>
-                        <input type='hidden' name='book_price' value='<?php echo $price; ?>'>
-                        <input type='submit' class='btn btn-details btn-style' style='overflow:hidden' name='add_to_wishlist' value='Add to Wishlist'>
-                    </form>
-                    <a href='reviews.php?book_id=b$book_id_for_reviews' class='btn btn-details mb-3 ml-1 btn-style'>Reviews</a>
-                </div>
-                </div>
-            </div>
-          </div>";
+                    
+                    <div class='col-md-8'>
+                    <div class='row'>
+                      <div class='col-md-12'>
+                          <h2 class='text-dark mb-4 mt-4' style='overflow:hidden'>$book_title</h2>
+                          <div class='d-flex justify-content-between mb-4'>
+                            <h5 class='mb-0' style='overflow:hidden'>Author: $author</h5>
+                            <h5 class='mr-5 mb-4' style='overflow:hidden'>Price: RM$price/-</h5>
+                          </div>
+                          <h6 class='mb-5'>$description</h6>
+                          <div class='d-flex align-items-center'>
+                          <a href='index.php' class='btn btn-details me-2 mb-3 mx-2 btn-style'>Back</a>
+                          <a href='index.php?cart=$book_id' class='btn btn-details me-2 mb-3 mx-2 btn-style'>Add to Cart</a>
+                          <form method='post' action='users/wishlist.php' class='me-2 mb-3 mx-2' style='overflow:hidden'>
+                              <input type='hidden' name='book_id' value='$book_id_with_prefix'>
+                              <input type='hidden' name='book_title' value='$book_title'>
+                              <input type='hidden' name='book_image' value='$image'>
+                              <input type='hidden' name='book_price' value='$price'>
+                              <input type='submit' class='btn btn-details btn-style' style='overflow:hidden' name='add_to_wishlist' value='Add to Wishlist'>
+                          </form>
+                          <a href='reviews.php?book_id=b$book_id_for_reviews' class='btn btn-details mb-3 ml-1 btn-style'>Reviews</a>
+                      </div>
+                      </div>
+                  </div>
+                </div>";
+          }
       }
-    }
   }
 }
+
 
 
 
