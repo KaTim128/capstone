@@ -194,12 +194,10 @@
 /* Style for the button on hover */
 .btn-outline-light:hover {
   background: linear-gradient(
-    #66b13a,
+    #7acf4a,
     #8ae256,
-    #fff,
-    #8ae256,
-    #66b13a
+    #8ae256
   ); /* Light blue background color on hover */
   color: #000000; /* Change text color on hover, if needed */
-  border-color: #4e872d; /* Change border color on hover */
+  border-color: #ddffc9; /* Change border color on hover */
 }

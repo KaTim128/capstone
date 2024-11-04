@@ -94,59 +94,97 @@ if (isset($_POST['remove_item'])) {
           }
 
           .persistent-alert {
-        margin: 0 auto;
-        width: fit-content;
-        padding: 15px; /* Add padding for better appearance */
-        background-color: #ffeeba; /* Light yellow background color for the alert */
-        color: #856404; /* Dark yellow text color */
-        border-radius: 0.25rem; /* Rounded corners */
-        text-align: center; /* Centered text */
-        display: block; /* Ensure it behaves like a block element */
+            margin: 0 auto;
+            width: fit-content;
+            padding: 15px; /* Add padding for better appearance */
+            background-color: #ffeeba; /* Light yellow background color for the alert */
+            color: #856404; /* Dark yellow text color */
+            border-radius: 0.25rem; /* Rounded corners */
+            text-align: center; /* Centered text */
+            display: block; /* Ensure it behaves like a block element */
+            }
+
+        .form-inline {
+            display: flex;
+            justify-content: flex-end; /* Aligns to the right, adjust as needed */
+            margin: 1rem 0; /* Adjust margin as per your layout */
+        }
+
+        .form-control {
+            width: 500px; /* Width of the search input */
+            padding: 0.375rem 0.75rem; /* Padding inside the input */
+            border: 1px solid #ced4da; /* Border style */
+            border-radius: 0.25rem; /* Rounded corners */
+        }
+
+        .btn {
+            margin-left: 10px; /* Space between the input and button */
         }
     </style>
 </head>
 <body>
     <!-- navbar -->
-    <div class="container-fluid p-0 gradient-background">
-        <nav class="navbar navbar-expand-lg navbar-dark navbar-color">
-            <div class="container-fluid">
-                <img src="../images/logo_new.png" alt="" style="width: 6%; height: 7%; margin-right: 15px; border-radius:5px">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+  <div class="container-fluid p-0 gradient-background">
+    <!-- first child  -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-color">
+      <div class="container-fluid">
+        <img src="../images/logo_new.png" alt="" style="width: 6%; height: 7%; margin-right: 15px; border-radius:5px">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link nav-zoom text-light" href="../index.php">Products</a></li>
-                        <li class="nav-item"><a class="nav-link nav-zoom text-light" href="./wishlist.php">Wishlist</a></li>
-                        <?php
-                        if (isset($_SESSION['user_username'])) {
-                            echo "<li class='nav-item'><a class='nav-link nav-zoom text-light' href='./profile.php'>My Account</a></li>";
-                        } else {
-                            echo "<li class='nav-item'><a class='nav-link nav-zoom text-light' href='./user_login.php'>Login</a></li>";
-                        }
-                        ?>
-                        <li class="nav-item"><a class="nav-link nav-zoom text-light" href="../contact_page.php">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link nav-zoom text-light" href="../cart.php">Cart<sup><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php cartItem(); ?></sup></a></li>
-                        <li class="nav-item"><a class="nav-link text-light" href="#">Total Price: RM<?php totalCartPrice(); ?></a></li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
-                        <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" name="search_data">
-                        <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
-                    </form>
-                </div>
-            </div>
-        </nav>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link nav-zoom text-light" href="../index.php">Products</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-zoom text-light" href="./wishlist.php">Wishlist</a>
+            </li>
+            
+            <?php
+            if (isset($_SESSION['user_username'])) {
+              echo "<li class='nav-item'>
+                      <a class='nav-link nav-zoom text-light' href='./profile.php'>My Account</a>
+                    </li>";
+            } else {
+              echo "<li class='nav-item'>
+                      <a class='nav-link nav-zoom text-light' href='./user_login.php'>Login</a>
+                    </li>";
+            }
+            ?>
+            <li class="nav-item">
+              <a class="nav-link nav-zoom text-light" href="../contact_page.php">Contact</a>
+            </li>   
+            <li class="nav-item">
+              <a class="nav-link nav-zoom text-light" href="../cart.php">Cart<sup><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php cartItem(); ?></sup></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
+            <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
+            <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
+        </form>
+        </div>
+      </nav>
+
+      <!-- call cart function -->
+      <?php 
+      manageCart(); 
+      displayAlert(); 
+      ?>
 
         <!-- Alert Handling -->
         <?php if ($alertMessage): ?>
-    <div class="alert alert-warning alert-dismissible fade show text-center alert-fullwidth" role="alert">
-        <?php echo $alertMessage; ?>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-<?php endif; ?>
+            <div class="alert alert-warning alert-dismissible fade show text-center alert-fullwidth" role="alert">
+                <?php echo $alertMessage; ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php endif; ?>
 
         <!-- Wishlist Content -->
         <div class="container mt-4">
@@ -161,7 +199,7 @@ if (isset($_POST['remove_item'])) {
                 if (mysqli_num_rows($result) == 0) {
                     echo "<div class='persistent-alert text-center mt-4' style='margin: 0 auto; width: fit-content;'>There are no items in the wishlist.</div>";
                 } else {
-                    echo '<h3 class="text-center" style="overflow:hidden; margin-top:20px;">Your Wishlist</h3>
+                    echo '<h3 class="text-center" style="overflow:hidden; margin-top:50px;">Your Wishlist</h3>
                           <table class="table table-bordered table-striped center-table mt-4 mb-5">
                           <thead class="green">
                               <tr>

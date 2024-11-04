@@ -201,7 +201,7 @@ if (isset($_POST['remove_cart'])) {
       <!-- second child -->
       
 
-<h3 class="text-center mt-5" style="overflow:hidden">Your Cart</h3>
+<h3 class="text-center" style="margin-top:69px; overflow:hidden">Your Cart</h3>
 <!-- Cart Table -->
 <div class="container">
   <div class="table-responsive">
