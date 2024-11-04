@@ -27,12 +27,6 @@ if (isset($_POST['confirm_payment'])) {
         $update_orders = "UPDATE `orders` SET order_status='complete' WHERE order_id=$order_id";
         $result_orders = mysqli_query($conn, $update_orders);
 
-        // removing the order from orders table if the update was successful
-        if ($result_orders) {
-            $delete_order = "DELETE FROM `pending_orders` WHERE order_id=$order_id AND invoice_number=$invoice_number";
-            mysqli_query($conn, $delete_order);
-        }
-
         echo "<script>alert('Payment Successful! Thank you for shopping with us!')</script>";
         echo "<script>window.open('profile.php?orders', '_self')</script>"; 
     } 

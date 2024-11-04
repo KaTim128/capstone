@@ -92,6 +92,17 @@ if (isset($_POST['remove_item'])) {
             margin: 0;
             z-index: 1050; /* Make sure it appears above other content */
           }
+
+          .persistent-alert {
+        margin: 0 auto;
+        width: fit-content;
+        padding: 15px; /* Add padding for better appearance */
+        background-color: #ffeeba; /* Light yellow background color for the alert */
+        color: #856404; /* Dark yellow text color */
+        border-radius: 0.25rem; /* Rounded corners */
+        text-align: center; /* Centered text */
+        display: block; /* Ensure it behaves like a block element */
+        }
     </style>
 </head>
 <body>
@@ -148,7 +159,7 @@ if (isset($_POST['remove_item'])) {
 
                 // Check the number of items in the wishlist
                 if (mysqli_num_rows($result) == 0) {
-                    echo "<div class='alert alert-warning text-center my-5' style='margin: 0 auto; width: fit-content;'>There are no items in the wishlist.</div>";
+                    echo "<div class='persistent-alert text-center mt-4' style='margin: 0 auto; width: fit-content;'>There are no items in the wishlist.</div>";
                 } else {
                     echo '<h3 class="text-center" style="overflow:hidden; margin-top:20px;">Your Wishlist</h3>
                           <table class="table table-bordered table-striped center-table mt-4 mb-5">

@@ -183,3 +183,23 @@
 .nav-zoom:hover {
   transform: scale(0.95); /* Scale down to 95% on hover */
 }
+
+.btn-outline-light {
+  color: #fff; /* Text color */
+  background-color: transparent; /* Default background color */
+  border: 1px solid #fff; /* Border color */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+/* Style for the button on hover */
+.btn-outline-light:hover {
+  background: linear-gradient(
+    #66b13a,
+    #8ae256,
+    #fff,
+    #8ae256,
+    #66b13a
+  ); /* Light blue background color on hover */
+  color: #000000; /* Change text color on hover, if needed */
+  border-color: #4e872d; /* Change border color on hover */
+}

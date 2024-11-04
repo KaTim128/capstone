@@ -136,10 +136,10 @@ session_start();
           </div>
         </div>
 
+        
+      </div>
         <!-- last child -->
         <?php getFooter(); ?>
-      </div>
-
       <!-- bootstrap link-->
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
