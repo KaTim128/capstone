@@ -335,7 +335,7 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
             <label for="review">Review:</label>
             <textarea name="review" class="form-control" rows="4" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit Review</button>
+        <button type="submit" class="btn btn-style">Submit Review</button>
     </form>
 <?php else: ?>
     <div class="alert alert-success text-center" role="alert">
