@@ -28,7 +28,7 @@ session_start();
     width: 80%;
     margin: auto;
     display: block;
-    border-radius: 10px; /* Keep this for rounded corners */
+    border-radius: 5px; /* Keep this for rounded corners */
 }
 
 @media (max-width: 768px) {
@@ -193,8 +193,6 @@ session_start();
           orderDetails(); ?>
         </div>
       </div>
-
-      
     </div>
 <!-- last child -->
       <?php getFooter(); ?>

@@ -33,6 +33,7 @@
                             <th>Quantity</th>
                             <th>Amount Due</th>
                             <th>Invoice Number</th>
+                            <th>Payment Mode</th>
                             <th>Payment Date</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -46,6 +47,7 @@
                     $amount_due = $row_orders['amount_due'];
                     $invoice_number = $row_orders['invoice_number'];
                     $order_date = $row_orders['order_date'];
+                    $payment_mode = $row_orders['payment_mode'];
                     $quantity = $row_orders['quantity'];
                     $book_id = $row_orders['book_id'];
                     $tool_id = $row_orders['tool_id'];
@@ -79,13 +81,14 @@
                     }
 
                     // Display order details
-                    echo "<tr class='paid-order '>
+                    echo "<tr class='paid-order'>
                             <td>$number</td>
                             <td>$product_name</td>
                             <td><img src='$image_path' alt='" . htmlspecialchars($product_name) . "' width='50' height='50'></td>
                             <td>$quantity</td>
                             <td>RM$amount_due</td>
                             <td>$invoice_number</td>
+                            <td>$payment_mode</td>
                             <td>$order_date</td>
                             <td>Complete</td>
                             <td>Paid</td>

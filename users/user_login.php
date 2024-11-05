@@ -33,12 +33,12 @@ if(isset($_POST['user_login'])){
                 $row_count_cart = mysqli_num_rows($select_cart);
 
                 if($row_count_cart == 0){
-                    $alert_message = "You have successfully logged in!";
+                    $alert_message = "Login successful!";
                     $alert_type = 'success';
                     $_SESSION['user_logged_in'] = true;
                     echo "<script>setTimeout(function(){ window.location.href = 'profile.php'; }, 1000);</script>";
                 } else {
-                    $alert_message = "You have successfully logged in! Redirecting to payment.";
+                    $alert_message = "Login successful! Redirecting to payment.";
                     $alert_type = 'success';
                     $_SESSION['user_logged_in'] = true;
                     echo "<script>setTimeout(function(){ window.location.href = 'checkout.php'; }, 1000);</script>";
@@ -74,7 +74,7 @@ if(isset($_POST['user_login'])){
         </div>
         <div class="form-container border">
             <h2>User Login</h2>
-            <div id="alertContainer" class="alert-container" data-alert-message="<?= htmlspecialchars($alert_message) ?>" data-alert-type="<?= $alert_type ?>">
+            <div id="alertContainer" class="alert-container text-center" data-alert-message="<?= htmlspecialchars($alert_message) ?>" data-alert-type="<?= $alert_type ?>">
             </div>
             <form action="" method="post">
                 <div class="form-group">

@@ -23,9 +23,9 @@
     </style>
 </head>
 <body>
-    <h3 class="text-center text-success mt-3">All Stationeries</h3>
+    <h4 class="text-center text-success" style="overflow:hidden;">All Stationeries</h4>
     <table class="table table-bordered mt-3">
-        <thead class="bg-info">
+        <thead class="table-color">
             <tr class="text-center">
                 <th>S.No</th>
                 <th>Stationery Title</th>

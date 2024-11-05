@@ -73,7 +73,7 @@ if (isset($_POST['insert_tool'])) {
 </head>
 <body class="bg-light">
     <div class="container">
-        <h1 class="text-center" style="overflow:hidden">Insert Tools</h1>
+        <h4 class="text-center text-success" style="overflow:hidden">Insert Tools</h4>
         <!-- Form -->
         <form action="" method="post" enctype="multipart/form-data" class="form-container">
             <!-- Tool Title -->
@@ -125,7 +125,7 @@ if (isset($_POST['insert_tool'])) {
 
             <!-- Submit Button -->
             <div class="form-outline w-100">
-                <input type="submit" name="insert_tool" class="btn btn-info" value="Insert Tool">
+                <input type="submit" name="insert_tool" class="btn btn-style" value="Insert Tool">
             </div>
         </form>
     </div>

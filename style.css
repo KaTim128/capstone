@@ -204,7 +204,8 @@
 /* Style for the button on hover */
 .btn-outline-light:hover {
   background: linear-gradient(
-    #f1ffe5,
+    to right,
+    #ffffff,
     #ffffff
   ); /* Light blue background color on hover */
   color: #000000; /* Change text color on hover, if needed */

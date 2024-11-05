@@ -33,7 +33,7 @@
     </style>
 </head>
 <body>
-    <h4 class="text-center text-success mt-3">All Books</h4>
+    <h4 class="text-center text-success mt-4">All Books</h4>
     <div class="table-responsive"> <!-- Added this div for scrollable table -->
         <table class="table table-bordered mt-2">
             <?php
@@ -44,7 +44,7 @@
             if ($row_count == 0) {
                 echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There are no books yet.</div>";
             } else {
-                echo "<thead class='bg-info'>
+                echo "<thead class='table-color'>
                         <tr class='text-center'>
                             <th>Book ID</th>
                             <th>Book Title</th>
@@ -74,7 +74,7 @@
                         <td>RM<?php echo $book_price; ?></td>
                         <td>
                             <?php
-                            $get_count = "SELECT * FROM `pending_orders` WHERE book_id=$book_id";
+                            $get_count = "SELECT * FROM `orders` WHERE book_id=$book_id";
                             $result_count = mysqli_query($conn, $get_count);
                             $rows_count = mysqli_num_rows($result_count);
                             echo $rows_count;

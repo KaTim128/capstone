@@ -243,40 +243,8 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
       displayAlert(); 
       ?>
 
-      <!-- second child -->
-      <nav class="navbar navbar-expand-lg navbar-dark green">
-        <ul class="navbar-nav me-auto">
-        <?php
-        if (isset($_SESSION['user_username'])) {
-            echo "<li class='nav-item'>
-                    <a class='nav-link text-dark'><b>Welcome " . htmlspecialchars($_SESSION['user_username']) . "</b></a>
-                  </li>";
-        } else {
-            echo "<li class='nav-item'>
-                    <a class='nav-link text-dark' href='#'><b>Welcome guest</b></a>
-                  </li>";
-        }
-        if (isset($_SESSION['user_username'])) {
-            echo "<li class='nav-item'>
-                    <a class='nav-link nav-zoom text-dark' href='./users/logout.php'><b>Logout</b></a>
-                  </li>";
-        } else {
-            echo "<li class='nav-item'>
-                    <a class='nav-link nav-zoom text-dark' href='./users/user_login.php'><b>Login</b></a>
-                  </li>";
-        }
-        ?>
-        </ul>
-      </nav>
-
-      <!-- third child -->
-      <div class="light-green">
-        <h3 class="text-center mt-3" style="overflow: hidden;">Print N Pixel</h3>
-        <p class="text-center">Where stories come alive in every format</p>
-      </div>
-
       <!-- forth child -->
-      <div class="container">
+      <div class="container mt-5">
         <div class="card">
         <div class="card-header d-flex align-items-center">
             <img src="<?php echo $image_path . $product_image; ?>" class="mr-3 product-img" alt="Product Image" style="width: 100px; height: 100px;">

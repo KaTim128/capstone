@@ -83,7 +83,6 @@ if (isset($_POST['remove_item'])) {
         th { text-align: center; }
         td { text-align: center; }
         .item-img { width: 80px; height: 70px; }
-        .btn { margin-right: 15px; }
         .operations { white-space: nowrap; }
         .alert-fullwidth {
             position: sticky;
@@ -104,26 +103,29 @@ if (isset($_POST['remove_item'])) {
             display: block; /* Ensure it behaves like a block element */
             }
 
-        .form-inline {
-            display: flex;
-            justify-content: flex-end; /* Aligns to the right, adjust as needed */
-            margin: 1rem 0; /* Adjust margin as per your layout */
-        }
 
         .form-control {
-            width: 500px; /* Width of the search input */
+            width: 400px; /* Width of the search input */
             padding: 0.375rem 0.75rem; /* Padding inside the input */
             border: 1px solid #ced4da; /* Border style */
             border-radius: 0.25rem; /* Rounded corners */
         }
 
         .btn {
-            margin-left: 10px; /* Space between the input and button */
+            margin-left: 0px; /* Space between the input and button */
         }
+
+        .form-control {
+    width: 400px; /* Adjust as needed */
+    padding: 0.375rem 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+
     </style>
 </head>
 <body>
-    <!-- navbar -->
+   <!-- navbar -->
   <div class="container-fluid p-0 gradient-background">
     <!-- first child  -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-color">
@@ -163,10 +165,11 @@ if (isset($_POST['remove_item'])) {
               <a class="nav-link text-light" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
-            <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
-            <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
-        </form>
+          <!-- Search Bar -->
+            <form class="form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
+                <input class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search" name="search_data" style="width: 500px;">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit" name="search_data_product">Search</button>
+            </form>
         </div>
       </nav>
 

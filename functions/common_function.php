@@ -570,10 +570,10 @@ function cartItem() {
             $result_orders_query = mysqli_query($conn, $get_orders);
             $row_count = mysqli_num_rows($result_orders_query);
             if ($row_count > 0) {
-                echo "<h3 class='text-center mt-5 ' style='overflow:hidden'>You have <span class='text-success'>$row_count </span> pending orders</h3>";
+                echo "<h3 class='text-center' style='margin-top:100px; overflow:hidden'>You have <span class='text-success'>$row_count </span> pending orders</h3>";
                 echo "<p class='text-center'><a href='profile.php?my_orders' class='text-dark'>Order Details</a></p>";          
               } else {
-                echo "<h3 class='text-center mt-5 ' style='overflow:hidden'>You have 0 pending orders</h3>";
+                echo "<h3 class='text-center' style='margin-top:100px; overflow:hidden'>You have 0 pending orders</h3>";
                 echo "<p class='text-center'><a href='../index.php' class='text-dark'>Explore products</a></p>";
             }
         }

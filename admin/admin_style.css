@@ -57,7 +57,8 @@ body {
 .btn-style {
   padding: 10px 20px; /* Adjust padding */
   margin-right: 10px; /* Add right margin for spacing */
-  background: linear-gradient(to right, #5aa131, #8cc25d);
+  background: linear-gradient(to right, #5ba132, #5ba132);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   color: #ffffff; /* White text */
   border: none;
   border-radius: 5px;
@@ -67,11 +68,19 @@ body {
 }
 
 .btn-style:hover {
-  background: linear-gradient(to right, #64b436, #8cc25d);
+  background: linear-gradient(to right, #5ba132, #66b13a);
   transform: scale(0.95);
   color: #ffffff;
 }
 
-.navbar-color {
-  background: linear-gradient(to right, #336a29, #498428, #80b155);
+.green {
+  background: linear-gradient(to right, #5ba132, #5ba132);
+}
+
+.light-green{
+  background-color:#5aa131
+}
+
+.table-color {
+  background-color: #92c85c;
 }

@@ -8,31 +8,34 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         body {
-            background-color: #f8f9fa; /* Light background for better contrast */
+            background-color: #f8f9fa;
         }
         h3 {
-            margin-top: 20px; /* Add some space above the heading */
+            margin-top: 20px;
+        }
+        .table-container {
+            overflow-x: auto; /* Enables horizontal scrolling */
+            margin-top: 30px;
         }
         .table {
-            margin-top: 30px; /* Add some space above the table */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .table th {
-            background-color: #17a2b8; /* Bootstrap info color */
-            color: white;
+            background-color: #92c85c;
+            color: black;
         }
         .table td {
-            vertical-align: middle; /* Center-align table cells */
+            vertical-align: middle;
         }
         .modal-body {
-            text-align: center; /* Center text in the modal */
+            text-align: center;
         }
     </style>
 </head>
 <body>
-   <h3 class="text-center text-success" style="overflow:hidden">All Payments</h3>
-   <div class="container">
-       <table class="table table-bordered table-striped mt-5">
+   <h4 class="text-center text-success" style="overflow:hidden">All Payments</h4>
+   <div class="container table-container">
+       <table class="table table-bordered table-striped">
            <thead>
                <?php
                $get_payments = "SELECT * FROM `user_payments`";
@@ -55,11 +58,10 @@
                    $number = 0;
                    while ($row_data = mysqli_fetch_assoc($result)) {
                        $payment_id = $row_data['payment_id'];
-                       $order_id = $row_data['order_id'];
                        $amount_due = $row_data['amount'];
                        $invoice_number = $row_data['invoice_number'];
                        $payment_mode = $row_data['payment_mode'];
-                       $payment_date = $row_data['date'];
+                       $payment_date = $row_data['payment_date'];
                        $number++;
                        echo "<tr>
                            <td class='text-center'>$number</td>
@@ -91,7 +93,7 @@
        </div>
    </div>
 
-   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0T7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
    <script>
        let paymentId = null;

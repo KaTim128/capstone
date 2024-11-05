@@ -105,12 +105,29 @@ body {
     margin-bottom: 50px; /* Add some bottom margin to ensure spacing before the footer */
 }
 
+.admin-image {
+    width: 100px; /* Adjust width as needed */
+    height: auto; /* Keeps the aspect ratio */
+}
+
+/* Remove gradient and style from the red logout button */
+.btn-danger {
+    background-color: #dc3545 !important; /* Solid red color */
+    background-image: none !important; /* Removes any gradient */
+    border: none; /* Removes border if needed */
+}
+
+.btn-danger a {
+    color: #ffffff !important; /* Ensures the link text stays white */
+    text-decoration: none;
+}
+
     </style>
 </head>
 <body>
     
         <!-- first child -->
-        <nav class="navbar navbar-expand-lg navbar-light dark-green">
+        <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 
                 <nav class="navbar navbar-expand-lg">
@@ -134,27 +151,30 @@ body {
         </div>
 
         <!-- third child -->
-        <div class="row">
-            <div class="col-md-12 bg-secondary d-flex align-items-center">
-                <div class="my-4 " >
-                    <a href="#"><img src="../images/logo_new.png" alt="" class="admin-image"></a>
-                </div>
-                <div class="panel text-center">
-                <button><a href="adminPanel.php?insertBook" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">Insert Book</a></button>
-                <button><a href="adminPanel.php?viewBook" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">View Books</a></button>
-                <button><a href="adminPanel.php?insertCourse" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">Insert Courses</a></button>
-                <button><a href="adminPanel.php?viewCourse" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">View Courses</a></button>
-                <button><a href="adminPanel.php?insertTool" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">Insert Tool</a></button>
-                <button><a href="adminPanel.php?viewTool" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">View Tools</a></button>
-                <button><a href="adminPanel.php?insertStationery" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">Insert Stationery</a></button>
-                <button><a href="adminPanel.php?viewStationery" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">View Stationery</a></button>
-                <button><a href="adminPanel.php?listOrders" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">All Orders</a></button>
-                <button><a href="adminPanel.php?listPayments" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">All Payments</a></button>
-                <button><a href="adminPanel.php?listUsers" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">List Users</a></button>
-                <button><a href="../users/user_login.php" class="nav-link text-dark green" style="font-weight: bold; text-align: center; display: block;">Logout</a></button>
-                </div>
-            </div>
+<div class="row">
+    <div class="col-12 my-3 light-green d-flex flex-column align-items-center">
+        <!-- Logo Section -->
+        <div class="my-2">
+            <a href="#"><img src="../images/logo_new.png" alt="" class="admin-image img-fluid"></a>
         </div>
+        <!-- Buttons Panel Section -->
+        <div class="panel text-center w-100">
+            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?insertBook" class="nav-link text-dark" style="font-weight: bold;">Insert Book</a></button>
+            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?viewBook" class="nav-link text-dark" style="font-weight: bold;">View Books</a></button>
+            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?insertCourse" class="nav-link text-dark" style="font-weight: bold;">Insert Courses</a></button>
+            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?viewCourse" class="nav-link text-dark" style="font-weight: bold;">View Courses</a></button>
+            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?insertTool" class="nav-link text-dark" style="font-weight: bold;">Insert Tool</a></button>
+            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?viewTool" class="nav-link text-dark" style="font-weight: bold;">View Tools</a></button>
+            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?insertStationery" class="nav-link text-dark" style="font-weight: bold;">Insert Stationery</a></button>
+            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?viewStationery" class="nav-link text-dark" style="font-weight: bold;">View Stationery</a></button>
+            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?listOrders" class="nav-link text-dark" style="font-weight: bold;">All Orders</a></button>
+            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?listPayments" class="nav-link text-dark" style="font-weight: bold;">All Payments</a></button>
+            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?listUsers" class="nav-link text-dark" style="font-weight: bold;">List Users</a></button>
+            <button class="btn btn-danger w-100 mb-2"><a href="../users/user_login.php" class="nav-link text-light" style="font-weight: bold;">Logout</a></button>
+        </div>
+    </div>
+</div>
+
 
         <!-- fourth child -->
         <div class="container my-3">
@@ -226,9 +246,6 @@ body {
                 }        
             ?>
         </div>
-
-        <!-- last child -->
-        <?php getFooter(); ?>
         </div>
     </div>
 

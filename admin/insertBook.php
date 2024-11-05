@@ -79,7 +79,7 @@ if (isset($_POST['insert_book'])) {
 
 <body class="bg-light">
     <div class="container mt-3">
-        <h1 class="text-center" style="overflow:hidden;">Insert Books</h1>
+        <h4 class="text-center text-success" style="overflow:hidden;">Insert Books</h4>
         <!-- Form -->
         <form action="" method="post" enctype="multipart/form-data" class="form-container">
             <!-- Book Title -->
@@ -136,7 +136,7 @@ if (isset($_POST['insert_book'])) {
 
             <!-- Submit Button -->
             <div class="form-outline w-100">
-                <input type="submit" name="insert_book" class="btn btn-info" value="Insert Book">
+                <input type="submit" name="insert_book" class="btn btn-style" value="Insert Book">
             </div>
         </form>
     </div>

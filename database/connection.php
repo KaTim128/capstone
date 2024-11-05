@@ -142,7 +142,8 @@ $sql_orders = 'CREATE TABLE IF NOT EXISTS orders (
     order_status VARCHAR(255) NOT NULL,
     book_id VARCHAR(2) NULL,
     tool_id VARCHAR(2) NULL,
-    quantity INT(11) NOT NULL
+    quantity INT(11) NOT NULL,
+    payment_mode VARCHAR(255) NULL
 )';
 
 $retval = mysqli_query($conn, $sql_orders);

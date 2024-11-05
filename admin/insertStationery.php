@@ -39,18 +39,18 @@ if(isset($_POST['insert_stationery'])){
 </head>
 <body class="bg-light">
     <div class="container">
-        <h2 class="text-center" style="overflow:hidden;">Insert Stationeries</h2>
+        <h4 class="text-center text-success" style="overflow:hidden;">Insert Stationeries</h4>
         <!-- Form -->
         <form action="" method="post" class="mb-4">
             <div class="input-group w-50 m-auto mb-2">
-                <span class="input-group-text bg-info" id="basic-addon1">
+                <span class="input-group-text" id="basic-addon1">
                     <i class="fa-solid fa-receipt"></i>
                 </span>
                 <input type="text" class="form-control" name="stationery_title" placeholder="Insert stationery" aria-label="stationery" aria-describedby="basic-addon1" required>
             </div>
 
             <div class="input-group w-50 m-auto mb-2">
-                <input type="submit" class="btn btn-info" name="insert_stationery" value="Insert stationery">
+                <input type="submit" class="btn btn-style mt-3" name="insert_stationery" value="Insert stationery">
             </div>
 
             

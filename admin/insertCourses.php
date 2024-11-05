@@ -39,19 +39,19 @@ if(isset($_POST['insert_course'])){
     
 </head>
 <body class="bg-light">
-    <div class="container mt-3">
-        <h2 class="text-center" style="overflow:hidden;">Insert Courses</h2>
+    <div class="container mt-4">
+        <h4 class="text-center text-success" style="overflow:hidden;">Insert Courses</h4>
         <!-- Form -->
         <form action="" method="post" class="mb-2">
             <div class="input-group w-50 m-auto mb-2">
-                <span class="input-group-text bg-info" id="basic-addon1">
+                <span class="input-group-text" id="basic-addon1">
                     <i class="fa-solid fa-receipt"></i>
                 </span>
                 <input type="text" class="form-control" name="course_title" placeholder="Insert Courses" aria-label="courses" aria-describedby="basic-addon1" required>
             </div>
 
             <div class="input-group w-50 m-auto">
-                <input type="submit" class="btn btn-info" name="insert_course" value="Insert Courses">
+                <input type="submit" class="btn btn-style mt-3" name="insert_course" value="Insert Courses">
             </div>
         </form>
     </div>

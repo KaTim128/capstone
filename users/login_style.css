@@ -93,7 +93,7 @@ label {
   border-radius: 5px; /* Change border-radius to match admin */
   cursor: pointer; /* Change cursor to pointer */
   transition: all 0.3s ease; /* Add transition for hover effect */
-  margin: 10px auto; /* Center the button */
+  margin: 20px auto; /* Center the button */
   display: block; /* Make the button a block element to allow margin auto to work */
   text-align: center;
 }
@@ -124,9 +124,6 @@ label {
     flex-direction: column; /* Stack vertically on mobile */
     height: auto; /* Allow height to grow as needed */
     max-width: 90%;
-  }
-
-  .logo-container {
     padding: 10px;
   }
 
@@ -139,11 +136,29 @@ label {
 
   .form-container {
     padding: 15px;
-    max-height: 50vh; /* Prevent form from causing overflow */
+    max-width: 90%; /* Allow the form to take up to 90% of the viewport width */
+    margin: 0 auto; /* Center the form container */
+    border-radius: 10px; /* Optional: Add rounded corners */
+    background-color: white; /* Optional: Set a background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for depth */
   }
 
-  .form-container h2 {
-    font-size: 1.5rem;
+  @media (max-width: 600px) {
+    .form-container {
+      padding: 10px; /* Adjust padding for smaller screens */
+    }
+
+    h2 {
+      font-size: 1.5rem; /* Adjust heading size */
+    }
+
+    .form-control {
+      font-size: 1rem; /* Adjust input font size */
+    }
+
+    .btn {
+      width: 100%; /* Make buttons full width */
+    }
   }
 
   .form-control {
@@ -157,19 +172,9 @@ label {
   }
 }
 
-.alert-container {
-  position: fixed; /* Use fixed positioning to stay in view */
-  top: -80px; /* Start off-screen */
-  left: 50%; /* Center horizontally */
-  padding: 15px 20px;
-  transform: translateX(-50%);
-  z-index: 1000; /* High z-index to appear on top of other elements */
-  width: 70%; /* Adjust width as needed */
-  white-space: nowrap; /* Prevent line breaks */
-  overflow: hidden; /* Hides overflow content */
-  transition: top 0.5s ease; /* Smooth slide-down animation */
-  text-align: center; /* Center the alert text */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.alert-container.show {
+  /* Class added via JS to bring alert into view */
+  top: 40px;
 }
 
 .alert-visible {

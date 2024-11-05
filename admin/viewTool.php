@@ -36,7 +36,7 @@
             if ($row_count == 0) {
                 echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There are no tools yet.</div>";
             } else {
-                echo "<thead class='bg-info'>
+                echo "<thead class='table-color'>
                         <tr class='text-center'>
                             <th>Tool ID</th>
                             <th>Tool Title</th>
@@ -66,7 +66,7 @@
                         <td>RM<?php echo $tool_price; ?></td>
                         <td>
                             <?php
-                            $get_count = "SELECT * FROM `pending_orders` WHERE tool_id=$tool_id";
+                            $get_count = "SELECT * FROM `orders` WHERE tool_id=$tool_id";
                             $result_count = mysqli_query($conn, $get_count);
                             $rows_count = mysqli_num_rows($result_count);
                             echo $rows_count;

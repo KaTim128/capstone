@@ -18,8 +18,8 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
         }
         .table th {
-            background-color: #17a2b8; /* Bootstrap info color */
-            color: white;
+            background-color: #92c85c; /* Bootstrap info color */
+            color: black;
         }
         .table td {
             vertical-align: middle; /* Center-align table cells */
@@ -36,9 +36,9 @@
     </style>
 </head>
 <body>
-   <h3 class="text-center text-success" style="overflow:hidden">All Users</h3>
+   <h4 class="text-center text-success" style="overflow:hidden">All Users</h4>
    <div class="container">
-       <table class="table table-bordered table-striped mt-5">
+       <table class="table table-bordered table-striped">
            <thead>
                <?php
                $get_users = "SELECT * FROM `user`";
