@@ -1,8 +1,13 @@
 <?php
+include('../database/connection.php');
+
 if (isset($_GET['edit_account'])) {
-    $user_session_name = $_SESSION['user_username']; //session get the username
+    $user_session_name = $_SESSION['user_username'];
     $select_query = "SELECT * FROM `user` WHERE user_username='$user_session_name'";
     $result_query = mysqli_query($conn, $select_query);
+    if (!$result_query) {
+        die("Query Failed: " . mysqli_error($conn));
+    }
     $row_fetch = mysqli_fetch_assoc($result_query);
     $user_id = $row_fetch['user_id'];
     $user_username = $row_fetch['user_username'];
@@ -12,16 +17,16 @@ if (isset($_GET['edit_account'])) {
     $user_contact = $row_fetch['user_contact'];
 }
 
-$show_alert = false; // Initialize alert flag
-$error_alert = false; // Initialize error alert flag
-$error_message = ''; // Initialize error message
+$show_alert = false;
+$error_alert = false;
+$error_message = '';
 
 if (isset($_POST['user_update'])) {
     $update_id = $user_id;
-    $user_username = $_POST['user_username'];
-    $user_email = $_POST['user_email'];
-    $user_address = $_POST['user_address'];
-    $user_contact = $_POST['user_contact'];
+    $user_username = mysqli_real_escape_string($conn, $_POST['user_username']);
+    $user_email = mysqli_real_escape_string($conn, $_POST['user_email']);
+    $user_address = mysqli_real_escape_string($conn, $_POST['user_address']);
+    $user_contact = mysqli_real_escape_string($conn, $_POST['user_contact']);
 
     if (!empty($_FILES['user_image']['name'])) {
         $user_image = $_FILES['user_image']['name'];
@@ -42,7 +47,9 @@ if (isset($_POST['user_update'])) {
         
         $result_query_update = mysqli_query($conn, $update_data);
         if ($result_query_update) {
-            $show_alert = true; // Set alert flag to true
+            $show_alert = true; 
+        } else {
+            die("Update failed: " . mysqli_error($conn)); // Debugging line
         }
     } else {
         $errors = [];
@@ -53,7 +60,7 @@ if (isset($_POST['user_update'])) {
             $errors[] = "Address must be at least 5 characters long.";
         }
         $error_message = implode('\\n', $errors);
-        $error_alert = true; // Set error alert flag to true
+        $error_alert = true; 
     }
 }
 ?>
@@ -65,64 +72,75 @@ if (isset($_POST['user_update'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Account</title>
     <style>
-    /* Alert bar styling */
-    #alert-bar, #error-alert {
+        /* Alert bar styling */
+        #alert-bar, #error-alert {
     text-align: center;
-    display: none;
-    position: fixed;
-    top: 80; /* Adjusted for better visibility */
-    left: 58%; /* Align to the center horizontally */
-    width: 600px; /* Fixed width for consistency */
+    position: absolute;
+    left: 50%; /* Move the alert bars further to the right */
+    width: 80%; /* Fixed width for consistency */
     padding: 15px;
     font-size: 18px;
     z-index: 1000;
-    transition: top 0.5s ease, opacity 0.5s ease; /* Added opacity transition */
     opacity: 1; /* Default opacity */
-    transform: translateX(-50%); /* Move the element left by half its width */
+    transform: translateX(-50%); /* Center the element horizontally */
+    transition: top 0.5s ease, opacity 0.5s ease; /* Transition effects */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-    #alert-bar {
-        background-color: #d4edda; /* Success color */
-        color: #1e5855;
-    }
-    #error-alert {
-        background-color: #f8d7da; /* Error color */
-        color: #721c24;
-    }
-    .close {
-        cursor: pointer;
-        margin-left: 15px;
-        color: inherit; /* Inherit color from parent */
-        font-weight: bold;
-        overflow: hidden; /* Added overflow hidden */
-        display: inline-block; /* Ensure proper box model behavior */
-        width: 20px; /* Set a fixed width to control overflow */
-        height: 20px; /* Set a fixed height */
-        text-align: center; /* Center text inside the button */
-    }
-    
-    nav {
-        position: fixed; /* Keep the nav fixed at the top */
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: #333; /* Example background color */
-        color: white;
-        padding: 10px;
-        z-index: 2000; /* Higher z-index for nav */
-    }
-</style>
+#alert-bar {
+    background-color: #d4edda; /* Success color */
+    color: #1e5855;
+    top: -100px; /* Initially hidden above the viewport */
+}
 
+#error-alert {
+    background-color: #f8d7da; /* Error color */
+    color: #721c24;
+    top: -100px; /* Initially hidden above the viewport */
+}
+
+#alert-bar.active, #error-alert.active {
+    left: 50%; /* Further to the right */
+    top: 0%; /* Lower position on the screen */ 
+    transform: translateX(-50%); /* Ensure it remains centered horizontally */
+}
+
+
+
+        .close {
+            cursor: pointer;
+            margin-left: 15px;
+            color: inherit; /* Inherit color from parent */
+            font-weight: bold;
+            overflow: hidden; /* Added overflow hidden */
+            display: inline-block; /* Ensure proper box model behavior */
+            width: 20px; /* Set a fixed width to control overflow */
+            height: 20px; /* Set a fixed height */
+            text-align: center; /* Center text inside the button */
+        }
+
+        nav {
+            position: fixed; /* Keep the nav fixed at the top */
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333; /* Example background color */
+            color: white;
+            padding: 10px;
+            z-index: 2000; /* Higher z-index for nav */
+        }
+    </style>
 </head>
 <body>
     <!-- Alert bar for success message -->
-    <div id="alert-bar" <?php if ($show_alert) echo 'style="display: block;"'; ?>>
+    <div id="alert-bar" class="<?php if ($show_alert) echo 'active'; ?>">
         <span>Data updated successfully! Redirecting...</span>
         <span class="close" onclick="removeAlert('alert-bar')">&times;</span>
     </div>
 
     <!-- Error alert for invalid data -->
-    <div id="error-alert" <?php if ($error_alert) echo 'style="display: block;"'; ?>>
+    <div id="error-alert" class="<?php if ($error_alert) echo 'active'; ?>">
         <span><?php echo $error_message; ?></span>
         <span class="close" onclick="removeAlert('error-alert')">&times;</span>
     </div>
@@ -150,39 +168,45 @@ if (isset($_POST['user_update'])) {
     </form>
 
     <script>
-        // Show alert bar on successful update
-        document.addEventListener('DOMContentLoaded', function() {
-            const alertBar = document.getElementById('alert-bar');
-            const errorAlert = document.getElementById('error-alert');
-            if (alertBar.style.display === 'block') {
-                setTimeout(() => {
-                    alertBar.style.transition = "top 0.5s ease, opacity 0.5s ease"; // Ensure transition is applied
-                    alertBar.style.opacity = '0'; // Fade out
-                    setTimeout(() => {
-                        alertBar.style.display = 'none'; // Hide after fade
-                    }, 500); // Wait for the fade to finish
-                }, 3000); // 3 seconds before sliding up
-                setTimeout(() => {
-                    window.location.href = 'logout.php'; // Redirect after alert has slid up
-                }, 4000); // 1 second after alert slides up
-            } else {
-                alertBar.style.display = 'none'; // Reset display style
-            }
-            if (errorAlert.style.display === 'block') {
-                errorAlert.classList.add('slide-down');
-            } else {
-                errorAlert.style.display = 'none'; // Reset display style
-            }
-        });
+    document.addEventListener('DOMContentLoaded', function() {
+        const alertBar = document.getElementById('alert-bar');
+        const errorAlert = document.getElementById('error-alert');
 
-        function removeAlert(alertId) {
-            const alertBar = document.getElementById(alertId);
-            alertBar.style.transition = "top 0.5s ease, opacity 0.5s ease"; // Transition for the closing effect
-            alertBar.style.opacity = '0'; // Fade out
+        // Handle success alert
+        if (alertBar.classList.contains('active')) {
             setTimeout(() => {
-                alertBar.style.display = 'none'; // Hide after fade
-            }, 500); // Wait for the fade to finish
+                alertBar.style.opacity = '0'; // Fade out before sliding up
+                setTimeout(() => {
+                    alertBar.classList.remove('active'); // Slide up
+                    alertBar.style.display = 'none'; // Hide completely
+                }, 500); // Wait for the fade out to finish
+            }, 1000); 
+            setTimeout(() => {
+                window.location.href = 'logout.php'; 
+            }, 2000); 
         }
-    </script>
+
+        // Handle error alert with a timeout
+        if (errorAlert.classList.contains('active')) {
+            setTimeout(() => {
+                errorAlert.style.opacity = '0'; // Fade out before sliding up
+                setTimeout(() => {
+                    errorAlert.classList.remove('active'); // Slide up
+                    errorAlert.style.display = 'none'; // Hide completely
+                }, 500); // Wait for the fade out to finish
+            }, 3000); // Change this duration as needed
+        }
+    });
+
+    function removeAlert(alertId) {
+        const alert = document.getElementById(alertId);
+        alert.style.opacity = '0'; // Fade out
+        setTimeout(() => {
+            alert.classList.remove('active'); // Slide up
+            alert.style.display = 'none'; // Hide completely
+        }, 500); // Wait for fade out to finish
+    }
+</script>
+
 </body>
 </html>

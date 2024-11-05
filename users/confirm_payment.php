@@ -27,11 +27,11 @@ if (isset($_POST['confirm_payment'])) {
         $update_orders = "UPDATE `orders` SET order_status='complete' WHERE order_id=$order_id";
         $result_orders = mysqli_query($conn, $update_orders);
 
-        echo "<script>alert('Payment Successful! Thank you for shopping with us!')</script>";
-        echo "<script>window.open('profile.php?orders', '_self')</script>"; 
+        // Redirect to a confirmation page
+        header("Location: success_payment.php?invoice_number=$invoice");
+        exit();
     } 
 }  
-    
 ?>
 
 <!DOCTYPE html>
@@ -46,51 +46,41 @@ if (isset($_POST['confirm_payment'])) {
         .form-outline {
             margin-bottom: 20px; 
         }
-
         .form-select {
             border-radius: 5px; 
             padding: 10px; 
         }
-
-
     </style>
-
 </head>
-<body class="light-green">
+<body class="">
     <div class="container my-5">
         <h1 class="text-center text-dark mb-4" style="overflow:hidden">Confirm Payment</h1>
         <form action="" method="post" class="text-center w-50 m-auto">
-    <div class="form-outline my-4">
-        <label for="invoice_number" class="text-dark"><b>Invoice Number</b></label>
-        <input type="text" id="invoice_number" class="form-control w-100 text-center" name="invoice_number" value="<?php echo $invoice_number ?>" readonly>
+            <div class="form-outline my-4">
+                <label for="invoice_number" class="text-dark"><b>Invoice Number</b></label>
+                <input type="text" id="invoice_number" class="form-control w-100 text-center" name="invoice_number" value="<?php echo $invoice_number ?>" readonly>
+            </div>
+            <div class="form-outline my-4">
+                <label for="amount" class="text-dark"><b>Amount (RM)</b></label>
+                <input type="text" id="amount" class="form-control w-100 text-center" name="amount" value="<?php echo $amount_due ?>" readonly>
+            </div>
+            <div class="form-outline my-5">
+                <select id="payment_mode" name="payment_mode" class="form-select w-100" style="text-align-last: center; padding-left: 10px; text-indent: 10px;" required>
+                    <option value="" hidden>Select Payment Mode</option>
+                    <option value="UPI">UPI</option>
+                    <option value="Netbanking">Netbanking</option>
+                    <option value="Paypal">Paypal</option>
+                    <option value="Cash on Delivery">Cash on Delivery</option>
+                </select>
+            </div>
+            <div class="form-outline text-center" style="margin-top:-12px;">
+                <a href="profile.php" class="btn py-2 px-5 border-0 text-light btn-style me-3 m-2" style="text-decoration: none;">Back</a>
+                <input type="submit" class="btn py-2 px-5 border-0 text-light btn-style m-2" value="Confirm" name="confirm_payment">
+            </div>
+        </form>
     </div>
-
-    <div class="form-outline my-4">
-        <label for="amount" class="text-dark"><b>Amount (RM)</b></label>
-        <input type="text" id="amount" class="form-control w-100 text-center" name="amount" value="<?php echo $amount_due ?>" readonly>
-    </div>
-
-    <div class="form-outline my-5">
-        <select id="payment_mode" name="payment_mode" class="form-select w-100" style="text-align-last: center; padding-left: 10px; text-indent: 10px;" required>
-            <option value="" hidden>Select Payment Mode</option>
-            <option value="UPI">UPI</option>
-            <option value="Netbanking">Netbanking</option>
-            <option value="Paypal">Paypal</option>
-            <option value="Cash on Delivery">Cash on Delivery</option>
-        </select>
-    </div>
-
-    <div class="form-outline text-center" style="margin-top:-12px;">
-    <a href="profile.php" class="btn py-2 px-5 border-0 text-light btn-style me-3 m-2" style="text-decoration: none;">Back</a>
-    <input type="submit" class="btn py-2 px-5 border-0 text-light btn-style m-2" value="Confirm" name="confirm_payment">
-    </div>
-
-</form>
-
-    </div>
-
-<!-- bootstrap link-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <!-- bootstrap link-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

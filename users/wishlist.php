@@ -201,7 +201,7 @@ if (isset($_POST['remove_item'])) {
                 } else {
                     echo '<h3 class="text-center" style="overflow:hidden; margin-top:50px;">Your Wishlist</h3>
                           <table class="table table-bordered table-striped center-table mt-4 mb-5">
-                          <thead class="green">
+                          <thead class="table-color">
                               <tr>
                                   <th>Product</th>
                                   <th>Title</th>

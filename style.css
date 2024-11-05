@@ -78,6 +78,10 @@
   width: 400px; /* Default width for small screens */
 }
 
+.table-color {
+  background-color: #92c85c;
+}
+
 /*styling color and buttons */
 .green {
   background: linear-gradient(
@@ -115,6 +119,7 @@
   padding: 10px 20px; /* Adjust padding */
   margin-right: 10px; /* Add right margin for spacing */
   background: linear-gradient(to right, #5ba132, #5ba132);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   color: #ffffff; /* White text */
   border: none;
   border-radius: 5px;
@@ -133,6 +138,7 @@
   padding: 10px 20px; /* Adjust padding */
   margin-right: 10px; /* Add right margin for spacing */
   background: linear-gradient(to right, #c12a2a, #e63946);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   color: #ffffff; /* White text */
   border: none;
   border-radius: 5px;
@@ -143,6 +149,7 @@
 
 .btn-danger:hover {
   background: linear-gradient(to right, #a82323, #d12e3d);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transform: scale(0.95);
   color: #ffffff;
 }
@@ -151,6 +158,7 @@
   padding: 10px 20px; /* Adjust padding */
   margin-right: 10px; /* Add right margin for spacing */
   background: linear-gradient(to right, #6c757d, #adb5bd);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   color: #ffffff; /* White text */
   border: none;
   border-radius: 5px;
@@ -161,6 +169,7 @@
 
 .btn-grey:hover {
   background: linear-gradient(to right, #5a6268, #868e96);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transform: scale(0.95);
   color: #fafafa;
 }
@@ -171,6 +180,7 @@
 
 .green-background {
   background-color: #5aa131;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 .borders {
   border-radius: 15px;
@@ -185,7 +195,7 @@
 }
 
 .btn-outline-light {
-  color: #fff; /* Text color */
+  color: #ffffff; /* Text color */
   background-color: transparent; /* Default background color */
   border: 1px solid #fff; /* Border color */
   transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
@@ -194,10 +204,10 @@
 /* Style for the button on hover */
 .btn-outline-light:hover {
   background: linear-gradient(
-    #7acf4a,
-    #8ae256,
-    #8ae256
+    #f1ffe5,
+    #ffffff
   ); /* Light blue background color on hover */
   color: #000000; /* Change text color on hover, if needed */
-  border-color: #ddffc9; /* Change border color on hover */
+  border-color: #336a29; /* Change border color on hover */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }

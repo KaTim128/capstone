@@ -28,7 +28,7 @@
                 } else {
                     echo "
                     <table class='table-bordered mt-2 table text-center'>
-                        <thead class='green'>
+                        <thead class='table-color'>
                             <tr>
                                 <th>S1 no</th>
                                 <th>Product Name</th>

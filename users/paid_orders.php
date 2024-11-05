@@ -25,7 +25,7 @@
                 echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>No paid orders available</div>";
             } else {
                 // If there are orders, show the thead
-                echo "<thead class='green'>
+                echo "<thead class='table-color'>
                         <tr>
                             <th>S1 no</th>
                             <th>Product Name</th>

@@ -62,15 +62,8 @@ while ($row_price = mysqli_fetch_array($result_cart_price)) {
 $empty_cart = "DELETE FROM `cart` WHERE user_id='$user_id'";
 $result_delete = mysqli_query($conn, $empty_cart);
 
-// Display success message and 3-second redirect
-echo "<div style='text-align: center; margin-top: 40px;'>
-        <h2>Orders submitted successfully!</h2>
-        <p>You will be redirected to your profile shortly...</p>
-      </div>";
+// Redirect to success_order.php with invoice number
+header("Location: success_order.php?invoice_number=$invoice_num");
+exit();
 
-echo "<script>
-        setTimeout(function() {
-            window.location.href = 'profile.php';
-        }, 3000);
-      </script>";
 ?>
