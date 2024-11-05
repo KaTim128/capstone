@@ -17,7 +17,7 @@ $status = 'pending';
 
 // Iterate through the cart items
 while ($row_price = mysqli_fetch_array($result_cart_price)) {
-    $quantity = $row_price['quantity'];  // Fetch quantity from the cart
+    $quantity = $row_price['quantity'];
     $book_id = null;
     $tool_id = null;
 
@@ -58,15 +58,19 @@ while ($row_price = mysqli_fetch_array($result_cart_price)) {
     }
 }
 
-// Optionally, if you want to keep a summary order record (e.g., for user reference), you can add that here.
-// But since we are focusing on each product having its own row, this part can be omitted or modified as needed.
-
 // Clear items from the cart
 $empty_cart = "DELETE FROM `cart` WHERE user_id='$user_id'";
 $result_delete = mysqli_query($conn, $empty_cart);
 
-// Confirm submission
-echo "<script>alert('Orders submitted successfully')</script>";
-echo "<script>window.open('profile.php', '_self')</script>";
+// Display success message and 3-second redirect
+echo "<div style='text-align: center; margin-top: 40px;'>
+        <h2>Orders submitted successfully!</h2>
+        <p>You will be redirected to your profile shortly...</p>
+      </div>";
 
+echo "<script>
+        setTimeout(function() {
+            window.location.href = 'profile.php';
+        }, 3000);
+      </script>";
 ?>

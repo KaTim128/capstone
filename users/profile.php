@@ -28,7 +28,7 @@ session_start();
     width: 80%;
     margin: auto;
     display: block;
-    border-radius: 15px; /* Keep this for rounded corners */
+    border-radius: 10px; /* Keep this for rounded corners */
 }
 
 @media (max-width: 768px) {
@@ -154,7 +154,7 @@ session_start();
       <div class="row flex-grow-1">
         <div class="col-md-2 light-grey">
           <ul class="text-center">
-            <h5 class="profile-header green">Your Profile</h5>
+            <h5 class="profile-header green" style="border-radius:0px;">Your Profile</h5>
             <?php
             $username = $_SESSION['user_username'];
             $user_image = "SELECT * FROM `user` WHERE user_username='$username'";
