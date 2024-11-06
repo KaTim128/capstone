@@ -71,7 +71,7 @@ if (isset($_GET['invoice_number'])) {
     <script>
         setTimeout(function() {
             window.location.href = 'profile.php?orders';
-        }, 3000);
+        }, 2000);
     </script>
 </body>
 </html>

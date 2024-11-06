@@ -66,7 +66,7 @@ if (isset($_POST['adminRegistration'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="admin_style.css">
 </head>
-<body class="front-background navbar-color">
+<body class="front-background admin-color">
     <div class="container-fluid m-3 front-background">
         <h2 class="text-center my-5 text-light">Admin Registration</h2>
         <div class="row d-flex justify-content-center align-items-center form-container">

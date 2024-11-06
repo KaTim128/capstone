@@ -46,7 +46,7 @@
     <script>
         setTimeout(function() {
             window.location.href = '../index.php'; // Redirect to main page
-        }, 3000);
+        }, 2000);
     </script>
 </body>
 </html>

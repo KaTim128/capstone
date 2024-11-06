@@ -41,7 +41,7 @@ if (isset($_POST['admin_registration'])) {
     <link rel="stylesheet" href="admin_style.css">
 
 </head>
-<body class="front-background navbar-color">
+<body class="front-background admin-color">
     <div class="container-fluid m-3 front-background">
         <h2 class="text-center my-5 text-light">Admin Login</h2>
         <div class="row d-flex justify-content-center align-items-center form-container">

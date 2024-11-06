@@ -84,3 +84,7 @@ body {
 .table-color {
   background-color: #92c85c;
 }
+
+.admin-color{
+  background: linear-gradient(to right, #336a29, #498428, #689d3a);
+}
