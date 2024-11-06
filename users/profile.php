@@ -25,10 +25,13 @@ session_start();
     }
 
     .profile-img {
-    width: 80%;
+    width: 110px;
+    height:100px;
+    padding: 0px;
     margin: auto;
     display: block;
-    border-radius: 5px; /* Keep this for rounded corners */
+    border: 3px solid #689d3a;
+    border-radius: 50%; /* Keep this for rounded corners */
 }
 
 @media (max-width: 768px) {
