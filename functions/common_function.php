@@ -24,7 +24,7 @@ function getBooks(){
                 <img src='admin/bookImages/$image' class='card-img-top' alt='Book Image'>
                 <div class='card-body'>
                   <h6 class='card-title'>$book_title</h6>
-                  <p class='card-text'><b>RM$price/-</b></p>
+                  <p class='card-text'><b>RM$price/</b><span><b>(Printed)</span></b></p>
                   <a href='index.php?cart=$book_id' class='btn btn-style mb-2'>Add to Cart</a>
                   <a href='bookDetails.php?book_id=$book_id' class='btn btn-style mb-2'>Details</a>
                 </div>
@@ -61,7 +61,7 @@ function getUniqueCourses(){
                     <img src='admin/bookImages/$image' class='card-img-top' alt='Book Image'>
                     <div class='card-body'>
                       <h6 class='card-title'>$book_title</h6>
-                      <p class='card-text'><b>RM$price/-</b></p>
+                      <p class='card-text'><b>RM$price/</b><span><b>(Printed)</span></b></p>
                       <a href='index.php?cart=$book_id' class='btn btn-style mb-1 me-3'>Add to Cart</a>
                       <a href='bookDetails.php?book_id=$book_id' class='btn btn-style mb-1'>Details</a>
                     </div>
@@ -254,7 +254,7 @@ function viewBookDetails() {
                           <h2 class='text-dark mb-4 mt-4' style='overflow:hidden'>$book_title</h2>
                           <div class='d-flex justify-content-between mb-4'>
                             <h5 class='mb-0' style='overflow:hidden'>Author: $author</h5>
-                            <h5 class='mr-5 mb-4' style='overflow:hidden'>Price: RM$price/-</h5>
+                            <h5 class='mr-5 mb-4' style='overflow:hidden'>Price: RM$price/<span>(Printed)</span></h5>
                           </div>
                           <h6 class='mb-5' style='overflow:hidden'>$description</h6>
                           <div class='d-flex align-items-center'>
