@@ -166,7 +166,7 @@ if (isset($_POST['remove_item'])) {
             </li>
           </ul>
           <!-- Search Bar -->
-            <form class="form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
+            <form class="form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
                 <input class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search" name="search_data" style="width: 500px;">
                 <button class="btn btn-outline-light my-2 my-sm-0" type="submit" name="search_data_product">Search</button>
             </form>

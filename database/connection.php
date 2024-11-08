@@ -102,7 +102,7 @@ $sql_cart = 'CREATE TABLE IF NOT EXISTS cart (
     user_id INT NOT NULL,
     book_id INT(10) DEFAULT NULL,
     tool_id INT(10) DEFAULT NULL,
-    ip_address VARCHAR(255),
+    ip_address VARCHAR(255) NOT NULL,
     quantity INT(100) DEFAULT 1,
     booktype ENUM("digital", "printed") DEFAULT NULL,  
     FOREIGN KEY (book_id) REFERENCES books(book_id) ON DELETE CASCADE,
@@ -143,6 +143,7 @@ $sql_orders = 'CREATE TABLE IF NOT EXISTS orders (
     book_id VARCHAR(2) NULL,
     tool_id VARCHAR(2) NULL,
     quantity INT(11) NOT NULL,
+    booktype VARCHAR(255) NULL,
     payment_mode VARCHAR(255) NULL
 )';
 
@@ -154,8 +155,6 @@ if (!$retval) {
 $sql_confirm_payment = 'CREATE TABLE IF NOT EXISTS user_payments (
     payment_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    book_id VARCHAR(2) NULL,
-    tool_id VARCHAR(2) NULL,
     invoice_number INT NOT NULL,
     amount INT NOT NULL,
     payment_mode VARCHAR(255) NOT NULL,

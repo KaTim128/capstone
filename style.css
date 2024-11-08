@@ -8,27 +8,38 @@
 .card-title {
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: normal; /* Allow wrapping to multiple lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical;
 }
 
 .card {
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin: 10px;
+  outline: none;
+  border: none;
 }
 
 .card-img-top {
-  width: 100%;
+  width: 60%; /* Narrower width to resemble a book */
   height: auto;
-  max-height: 330.13px;
+  max-height: 330px; /* Maintain maximum height */
   object-fit: cover;
+  margin: 0 auto; /* Center the image horizontally */
+  display: block; /* Block display to ensure centering */
+  border-radius: 3px; /* Optional: add subtle rounded corners for a book effect */
+  border: none;
+  outline: none;
 }
 
 @media (max-width: 768px) {
   .card-img-top {
-    width: 100%;
+    width: 60%; /* Narrower width to resemble a book */
     height: auto;
     max-height: 330px;
     object-fit: cover;
+    margin: 0 auto; /* Center the image */
+    display: block; /* Ensure it's centered horizontally */
   }
 }
 
@@ -113,6 +124,7 @@
 
 .card-background {
   background-color: rgb(250, 255, 249);
+  border-radius: 10px;
 }
 
 .btn-style {

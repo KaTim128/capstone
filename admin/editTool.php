@@ -64,9 +64,10 @@ if (isset($_GET['editTool'])) {
                     <img src="./toolImages/<?php echo $image ?>" alt="Tool Image" style="width: 80px; height: auto; margin-left: 10px;">
                 </div>
             </div>
+            <!-- Tool Price -->
             <div class="form-outline w-50 m-auto mb-4">
                 <label for="tool_price">Tool Price</label>
-                <input type="text" id="tool_price" value="<?php echo $price ?>" name="tool_price" class="form-control mb-4" placeholder="Tool Price" required="required">
+                <input type="number" id="tool_price" value="<?php echo $price ?>" name="tool_price" class="form-control mb-4" placeholder="Tool Price" step="0.01" required="required">
             </div>
             <div class="w-50 m-auto">
                 <input type="submit" name="edit_tool" value="Update Tool" class="btn btn-info px-3 mb-3">

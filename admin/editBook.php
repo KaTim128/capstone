@@ -72,7 +72,7 @@ if(isset($_GET['editBook'])){
                 <input type="text" id="book_price" value="<?php echo $price ?>" name="book_price" class="form-control mb-4" placeholder="Book Price" required="required">
             </div>
             <div class="w-50 m-auto">
-                <input type="submit" name="edit_book" value="Update Book" class="btn btn-info px-3 mb-3">
+                <input type="submit" name="edit_book" value="Update Book" class="btn btn-style px-3 mb-3">
             </div>
         </form>
     </div>

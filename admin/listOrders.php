@@ -28,8 +28,7 @@
                     <th>Quantity</th>
                     <th>Invoice Number</th>            
                     <th>Order Date</th>
-                    <th>Book ID</th>
-                    <th>Tool ID</th>
+                    <th>Product ID</th>
                     <th>Status</th>
                     <th>Delete</th>
                 </tr>
@@ -52,10 +51,17 @@
                             <td>$amount_due</td>
                             <td>$quantity</td>
                             <td>$invoice_number</td>
-                            <td>$order_date</td>
-                            <td>$book_id</td>
-                            <td>$tool_id</td>
-                            <td>$order_status</td>
+                            <td>$order_date</td>";
+
+                        // Check if book_id or tool_id should be displayed in the Product ID column
+                        if (!empty($book_id)) {
+                            echo "<td>$book_id</td>";
+                        } else {
+                            echo "<td>$tool_id</td>";
+                        }
+
+                        // Continue with the rest of the row
+                        echo "<td>$order_status</td>
                             <td><a href='#' class='text-light' data-toggle='modal' data-target='#deleteModal' onclick='setOrderId($order_id)'><i class='fa-solid fa-trash'></i></a></td>
                         </tr>";
                     }

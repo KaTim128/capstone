@@ -33,6 +33,7 @@
                                 <th>S1 no</th>
                                 <th>Product Name</th>
                                 <th>Image</th>
+                                <th>Type</th>
                                 <th>Quantity</th>
                                 <th>Amount Due</th>
                                 <th>Invoice Number</th>
@@ -46,6 +47,7 @@
                     while ($row_orders = mysqli_fetch_assoc($result_orders)) {
                         $order_id = $row_orders['order_id'];
                         $amount_due = $row_orders['amount_due'];
+                        $booktype = $row_orders['booktype'];
                         $invoice_number = $row_orders['invoice_number'];
                         $order_date = $row_orders['order_date'];
                         $order_status = $row_orders['order_status'];
@@ -87,6 +89,7 @@
                                 <td>$number</td>
                                 <td>$product_name</td>
                                 <td><img src='$image_path' alt='" . htmlspecialchars($product_name) . "' width='50' height='50'></td>
+                                <td>$booktype</td>
                                 <td>$quantity</td>
                                 <td>RM$amount_due</td>
                                 <td>$invoice_number</td>

@@ -60,7 +60,7 @@
                     <h6>Are you sure you would like to delete this Course?</h6>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-style" data-dismiss="modal">No</button>
                     <button type="button" class="btn btn-danger" id="confirmDelete">Yes, Delete</button>
                 </div>
             </div>

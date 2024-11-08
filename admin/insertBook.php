@@ -130,8 +130,8 @@ if (isset($_POST['insert_book'])) {
 
             <!-- Book Price -->
             <div class="form-outline w-100">
-                <label for="price" class="form-label" >Book Price</label>
-                <input type="number" name="price" id="price" class="form-control" placeholder="Enter Book Price" autocomplete="off" required>
+                <label for="price" class="form-label">Book Price</label>
+                <input type="number" name="price" id="price" class="form-control" placeholder="Enter Book Price" autocomplete="off" step="0.01" required>
             </div>
 
             <!-- Submit Button -->

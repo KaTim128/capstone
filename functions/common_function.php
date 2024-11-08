@@ -9,7 +9,7 @@ function getBooks(){
   //when course or tool id is not present in URL
   if(!isset($_GET['course'])){
       if(!isset($_GET['stationery'])){
-          $select_query = "SELECT * FROM `books` order by rand() limit 0,6";
+          $select_query = "SELECT * FROM `books` order by rand() limit 0,8";
           $result_query=mysqli_query($conn,$select_query);
           while ($row = mysqli_fetch_assoc($result_query)) {
               $book_id = 'b' . $row['book_id'];
@@ -19,11 +19,11 @@ function getBooks(){
               $image = $row['image'];
               $price = $row['price'];
               $course_id = $row['course_id'];
-              echo "<div class='col-md-4 mb-2'>
+              echo "<div class='col-md-3 mb-2'>
               <div class='card card-background'>
                 <img src='admin/bookImages/$image' class='card-img-top' alt='Book Image'>
                 <div class='card-body'>
-                  <h5 class='card-title'>$book_title</h5>
+                  <h6 class='card-title'>$book_title</h6>
                   <p class='card-text'><b>RM$price/-</b></p>
                   <a href='index.php?cart=$book_id' class='btn btn-style mb-2'>Add to Cart</a>
                   <a href='bookDetails.php?book_id=$book_id' class='btn btn-style mb-2'>Details</a>
@@ -56,11 +56,11 @@ function getUniqueCourses(){
           $image = $row['image'];
           $price = $row['price'];
           $course_id = $row['course_id'];
-          echo "<div class='col-md-4 mb-2'>
+          echo "<div class='col-md-3 mb-2'>
                   <div class='card card-background'>
                     <img src='admin/bookImages/$image' class='card-img-top' alt='Book Image'>
                     <div class='card-body'>
-                      <h5 class='card-title'>$book_title</h5>
+                      <h6 class='card-title'>$book_title</h6>
                       <p class='card-text'><b>RM$price/-</b></p>
                       <a href='index.php?cart=$book_id' class='btn btn-style mb-1 me-3'>Add to Cart</a>
                       <a href='bookDetails.php?book_id=$book_id' class='btn btn-style mb-1'>Details</a>
@@ -200,11 +200,11 @@ function searchProducts() {
           $details_url = $type === 'book' ? "bookDetails.php?book_id=b$id" : "toolDetails.php?tool_id=t$id";
           $cart_url = $type === 'book' ? "index.php?cart=b$id" : "index.php?cart=t$id";
 
-          echo "<div class='col-md-4 mb-2'>
+          echo "<div class='col-md-3 mb-2'>
                   <div class='card card-background'>
                     <img src='admin/{$type}Images/$image' class='card-img-top' alt='Product Image'>
                     <div class='card-body'>
-                      <h5 class='card-title'>$title</h5>
+                      <h6 class='card-title'>$title</h6>
                       <p class='card-text'><b>RM$price/-</b></p>
                       <a href='$cart_url' class='btn btn-style mb-1'>Add to Cart</a>
                       <a href='$details_url' class='btn btn-style mb-1'>Details</a>
@@ -242,7 +242,7 @@ function viewBookDetails() {
               // Prepare the correct book_id for the reviews button
               $book_id_for_reviews = $row['book_id']; // Use the actual book_id from the database
 
-              echo "<div class='col-md-4 mb-2'>
+              echo "<div class='col-md- mb-2'>
                       <div class='card mt-4'>
                         <img src='admin/bookImages/$image' class='card-img-top' alt='Book Image'>
                       </div>
@@ -256,7 +256,7 @@ function viewBookDetails() {
                             <h5 class='mb-0' style='overflow:hidden'>Author: $author</h5>
                             <h5 class='mr-5 mb-4' style='overflow:hidden'>Price: RM$price/-</h5>
                           </div>
-                          <h6 class='mb-5'>$description</h6>
+                          <h6 class='mb-5' style='overflow:hidden'>$description</h6>
                           <div class='d-flex align-items-center'>
                           <a href='index.php' class='btn btn-details me-2 mb-3 mx-2 btn-style'>Back</a>
                           <a href='index.php?cart=$book_id' class='btn btn-details me-2 mb-3 mx-2 btn-style'>Add to Cart</a>
@@ -305,7 +305,7 @@ function viewToolDetails() {
               // Prepare the correct tool_id for the reviews button
               $tool_id_for_reviews = $row['tool_id']; // Use the actual tool_id from the database
 
-              echo "<div class='col-md-4 mb-2'>
+              echo "<div class='col-md-3 mb-2'>
           <div class='card mt-4'>
             <img src='admin/toolImages/$image' class='' alt='Tool Image'>
           </div>

@@ -39,7 +39,7 @@
                 <label for="course_title" class="form-label">Course Title</label>
                 <input type="text" name="course_title" id="course_title" class="form-control mb-4" value="<?php echo $course_title; ?>" required="required">
             </div>
-            <input type="submit" name="update_course" value="Update Course" class="btn btn-info px-3 mb-3">
+            <input type="submit" name="update_course" value="Update Course" class="btn btn-style px-3 mb-3">
         </form>
     </div>
 </body>

@@ -20,6 +20,7 @@ while ($row_price = mysqli_fetch_array($result_cart_price)) {
     $quantity = $row_price['quantity'];
     $book_id = null;
     $tool_id = null;
+    $booktype = $row_price['booktype'];
 
     // If the item is a book
     if (!empty($row_price['book_id'])) {
@@ -33,8 +34,8 @@ while ($row_price = mysqli_fetch_array($result_cart_price)) {
 
             // Insert book into orders
             $insert_orders_pending = "INSERT INTO `orders` 
-            (user_id, amount_due, invoice_number, order_date, order_status, book_id, quantity) 
-            VALUES ($user_id, $book_price * $quantity, $invoice_num, NOW(), '$status', 'b$book_id', $quantity)";
+            (user_id, amount_due, invoice_number, order_date, order_status, book_id, quantity, booktype) 
+            VALUES ($user_id, $book_price * $quantity, $invoice_num, NOW(), '$status', 'b$book_id', $quantity, '$booktype')";
             $result_pending_query = mysqli_query($conn, $insert_orders_pending);
         }
     }
@@ -51,8 +52,8 @@ while ($row_price = mysqli_fetch_array($result_cart_price)) {
 
             // Insert tool into orders
             $insert_orders_pending = "INSERT INTO `orders` 
-            (user_id, amount_due, invoice_number, order_date, order_status, tool_id, quantity) 
-            VALUES ($user_id, $tool_price * $quantity, $invoice_num, NOW(), '$status', 't$tool_id', $quantity)";
+            (user_id, amount_due, invoice_number, order_date, order_status, tool_id, quantity, booktype) 
+            VALUES ($user_id, $tool_price * $quantity, $invoice_num, NOW(), '$status', 't$tool_id', $quantity, '-')";
             $result_pending_query = mysqli_query($conn, $insert_orders_pending);
         }
     }
