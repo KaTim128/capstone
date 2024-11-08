@@ -89,7 +89,7 @@ function getUniqueTools(){
           $image = $row['image'];
           $price = $row['price'];
           $stationery_id = $row['stationery_id'];
-          echo "<div class='col-md-4 mb-2'>
+          echo "<div class='col-md-3 mb-2'>
                   <div class='card card-background'>
                     <img src='admin/toolImages/$image' class='card-img-top' alt='Tool Image'>
                     <div class='card-body'>

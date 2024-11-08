@@ -91,23 +91,26 @@ if(isset($_GET['editBook'])){
         } else {
             $book_image = $image; 
         }
-            $update_book = "UPDATE `books` 
-                            SET book_title='$book_title', 
-                                author='$book_author', 
-                                description='$book_desc', 
-                                keyword='$book_keywords',                 
-                                course_id='$book_course', 
-                                price='$book_price', 
-                                image='$book_image' 
-                            WHERE book_id='$edit_id'";
+        $update_book = "UPDATE `books` 
+        SET book_title='$book_title', 
+            author='$book_author', 
+            description='$book_desc', 
+            keyword='$book_keywords',                 
+            course_id='$book_course', 
+            price='$book_price', 
+            image='$book_image' 
+        WHERE book_id='$edit_id'";
 
-        if (mysqli_query($conn, $update_book)) {
-            echo "<script>alert('Book details updated successfully!');</script>";
-            echo "<script>window.open('adminPanel.php?viewBook', '_self');</script>";
-            
-        } else {
-            echo "<script>alert('Error updating book details: " . mysqli_error($conn) . "');</script>";
-        }
+// Execute the query
+$result_update = mysqli_query($conn, $update_book);
+
+if ($result_update) {
+echo "<script>alert('Book details updated successfully!');</script>";
+echo "<script>window.open('adminPanel.php?viewBook', '_self');</script>";
+} else {
+echo "<script>alert('Error updating book details: " . mysqli_error($conn) . "');</script>";
+}
+
         }
     ?>   
 </body>

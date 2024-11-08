@@ -21,9 +21,8 @@
 }
 
 .card-img-top {
-  width: 60%; /* Narrower width to resemble a book */
-  height: auto;
-  max-height: 330px; /* Maintain maximum height */
+  width: 70%; /* Narrower width to resemble a book */
+  height: 300px; /* Fixed height for uniformity */
   object-fit: cover;
   margin: 0 auto; /* Center the image horizontally */
   display: block; /* Block display to ensure centering */
@@ -31,6 +30,7 @@
   border: none;
   outline: none;
 }
+
 
 @media (max-width: 768px) {
   .card-img-top {
