@@ -174,9 +174,9 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
     }
 
     .product-img {
-        border-radius: 10px;
-        width: 50px; /* Adjust the width to make the image smaller */
-        height: 50px; /* Maintain aspect ratio */
+        border-radius: 3px;
+        width: 100px; /* Adjust the width to make the image smaller */
+        height: 120px; /* Maintain aspect ratio */
         object-fit: cover; /* Ensures the image covers the dimensions without distortion */
     }
     .progress {
@@ -247,7 +247,7 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
       <div class="container mt-5">
         <div class="card">
         <div class="card-header d-flex align-items-center">
-            <img src="<?php echo $image_path . $product_image; ?>" class="mr-3 product-img" alt="Product Image" style="width: 100px; height: 100px;">
+            <img src="<?php echo $image_path . $product_image; ?>" class="mr-3 product-img" alt="Product Image">
             <div class="flex-grow-1 text-center">
                 <h4 style="overflow:hidden">
                     Rating: 

@@ -82,7 +82,7 @@ if (isset($_POST['remove_item'])) {
     <style>
         th { text-align: center; }
         td { text-align: center; }
-        .item-img { width: 80px; height: 70px; }
+        .item-img { width: 60px; height: 70px; }
         .operations { white-space: nowrap; }
         .alert-fullwidth {
             position: sticky;
@@ -222,29 +222,36 @@ if (isset($_POST['remove_item'])) {
                         $item_price = $row['price'];
 
                         // Adjust the link to point to the appropriate details page
-                        $details_link = $item_type === 'book' ? "../bookDetails.php?book_id=b$item_id" : "../toolDetails.php?tool_id=t$item_id";
+                        $details_link = $item_type === 'book' 
+    ? "../bookDetails.php?book_id=b$item_id" 
+    : "../toolDetails.php?tool_id=t$item_id";
 
-                        echo "<tr>
-                                <td class='item-img'><img src='../admin/toolImages/$item_image' class='item-img'></td>
-                                <td>$item_title</td>
-                                <td>RM$item_price</td>
-                                <td class='operations'>
-                                    <form action='' method='POST'>
-                                        <input type='hidden' name='wishlist_id' value='{$row['wishlist_id']}'>
-                                        <button type='submit' class='btn btn-danger' name='remove_item'>Remove</button>
-                                        <a href='$details_link' class='btn btn-style'>Details</a>
-                                    </form>
-                                </td>
-                              </tr>";
+// Set the image path based on item type
+$image_path = $item_type === 'book' 
+    ? "../admin/bookImages/$item_image" 
+    : "../admin/toolImages/$item_image";
+
+echo "<tr>
+        <td class='item-img'><img src='$image_path' class='item-img'></td>
+                                    <td>$item_title</td>
+                                    <td>RM$item_price</td>
+                                    <td class='operations'>
+                                        <form action='' method='POST'>
+                                            <input type='hidden' name='wishlist_id' value='{$row['wishlist_id']}'>
+                                            <button type='submit' class='btn btn-danger' name='remove_item'>Remove</button>
+                                            <a href='$details_link' class='btn btn-style'>Details</a>
+                                        </form>
+                                    </td>
+                                </tr>";
+                        }
+                        echo '</tbody></table>';
                     }
-                    echo '</tbody></table>';
+                } else {
+                    echo "<div class='alert alert-warning text-center my-5' style='margin: 0 auto; width: fit-content;'>Please log in to view your wishlist.</div>";
                 }
-            } else {
-                echo "<div class='alert alert-warning text-center my-5' style='margin: 0 auto; width: fit-content;'>Please log in to view your wishlist.</div>";
-            }
-            ?>
+                ?>
+            </div>
         </div>
-    </div>
 
     <?php getFooter() ?>
     

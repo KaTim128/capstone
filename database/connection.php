@@ -136,12 +136,12 @@ if (!$retval) {
 $sql_orders = 'CREATE TABLE IF NOT EXISTS orders (
     order_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    amount_due INT(255) NOT NULL,
+    amount_due DECIMAL(10,2) NOT NULL,
     invoice_number INT(255) NOT NULL,   
     order_date TIMESTAMP NOT NULL,
     order_status VARCHAR(255) NOT NULL,
-    book_id VARCHAR(2) NULL,
-    tool_id VARCHAR(2) NULL,
+    book_id VARCHAR(10) NULL,
+    tool_id VARCHAR(10) NULL,
     quantity INT(11) NOT NULL,
     booktype VARCHAR(255) NULL,
     payment_mode VARCHAR(255) NULL
@@ -156,7 +156,7 @@ $sql_confirm_payment = 'CREATE TABLE IF NOT EXISTS user_payments (
     payment_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     invoice_number INT NOT NULL,
-    amount INT NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
     payment_mode VARCHAR(255) NOT NULL,
     payment_date TIMESTAMP NOT NULL
 )';
@@ -210,7 +210,7 @@ if (!$retval) {
 $sql_review = 'CREATE TABLE IF NOT EXISTS reviews (
     review_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    product_id VARCHAR(10) NOT NULL,  -- Use either book_id or tool_id here
+    product_id VARCHAR(10) NOT NULL,
     review_text TEXT NOT NULL,
     rating INT NOT NULL CHECK (rating BETWEEN 1 AND 5),
     review_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP

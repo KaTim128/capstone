@@ -85,8 +85,9 @@ if (isset($_POST['remove_cart'])) {
     }
 
     .cart-img{
-        width:80px;
+        width:60px;
         height:70px;
+        border-radius:3px;
     }
 
     .center-table{
@@ -223,7 +224,7 @@ if (isset($_POST['remove_cart'])) {
                 <th>Product Title</th>
                 <th>Product Image</th>
                 <th>Quantity</th>
-                <th>Total Price</th>
+                <th>Price</th>
                 <th>Type</th>
                 <th>Remove</th>
                 <th colspan="2">Operations</th>
@@ -244,13 +245,17 @@ if (isset($_POST['remove_cart'])) {
                   $book_price = $book['price'];
                   $book_title = $book['book_title'];
                   $book_image = $book['image'];
+                  $booktype = $row['booktype'];
+                  if ($booktype === 'digital') {
+                    $book_price /= 4;
+                }
                   $total_price += $book_price * $quantity;
                   ?>
                   <tr>
                     <td><?php echo $book_title; ?></td>
                     <td><img src="./admin/bookImages/<?php echo $book_image; ?>" alt="" class="cart-img img-fluid"></td>
                     <td><input type="number" name="qty[b<?php echo $book_id; ?>]" value="<?php echo $quantity; ?>" class="form-input w-70" min="1" max="10" oninput="this.value = Math.max(this.value, 1)"></td>
-                    <td>RM<?php echo $book_price * $quantity; ?>/-</td>
+                    <td>RM<?php echo number_format($book_price * $quantity, 2); ?>/-</td>
                     <td>
                         <select name="booktype[b<?php echo $book_id; ?>]">
                             <option value="digital" <?php echo ($row['booktype'] == 'digital') ? 'selected' : ''; ?>>Digital</option>
@@ -280,7 +285,7 @@ if (isset($_POST['remove_cart'])) {
                       <td><?php echo $tool_title; ?></td>
                       <td><img src="./admin/toolImages/<?php echo $tool_image; ?>" alt="" class="cart-img img-fluid"></td>
                       <td><input type="number" name="qty[t<?php echo $tool_id; ?>]" value="<?php echo $quantity; ?>" class="form-input w-70" min="1" max="10" oninput="this.value = Math.max(this.value, 1)"></td>
-                      <td>RM<?php echo $tool_price * $quantity; ?>/-</td>
+                      <td>RM<?php echo number_format($tool_price * $quantity, 2); ?>/-</td>
                       <td></td>
                       <td><input type="checkbox" name="remove[]" value="t<?php echo $tool_id; ?>"></td>
                       <td colspan="2">
@@ -303,7 +308,7 @@ if (isset($_POST['remove_cart'])) {
 
       <!-- total price -->
       <div class="container mb-5">
-        <h4 class="mb-3 mt-5" style="overflow: hidden;">Total Price: RM<?php echo $total_price; ?></h4>
+      <h4 class="mb-3 mt-5" style="overflow: hidden;">Total Price: RM<?php echo number_format($total_price, 2); ?></h4>
         <a href="index.php" class="btn btn-style mr-2">Continue Shopping</a>
         
         <?php if($num_of_rows > 0){ ?>

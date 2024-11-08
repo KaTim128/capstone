@@ -69,7 +69,6 @@ if (isset($_POST['confirm_payment'])) {
                     <option value="" hidden>Select Payment Mode</option>
                     <option value="Touch N Go">Touch N Go</option>
                     <option value="Paypal">Paypal</option>
-                    <option value="Cash on Delivery">Cash on Delivery</option>
                 </select>
             </div>
             <div class="form-outline text-center" style="margin-top:-12px;">

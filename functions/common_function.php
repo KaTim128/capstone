@@ -244,7 +244,7 @@ function viewBookDetails() {
 
               echo "<div class='col-md- mb-2'>
                       <div class='card mt-4'>
-                        <img src='admin/bookImages/$image' class='card-img-top' alt='Book Image'>
+                        <img src='admin/bookImages/$image' class='' style='width:150px; height:190px;' alt='Book Image'>
                       </div>
                     </div>
                     
@@ -307,7 +307,7 @@ function viewToolDetails() {
 
               echo "<div class='col-md-3 mb-2'>
           <div class='card mt-4'>
-            <img src='admin/toolImages/$image' class='' alt='Tool Image'>
+            <img src='admin/toolImages/$image' class='' style='width:150px; height:190px;' alt='Tool Image'>
           </div>
       </div>
       
@@ -316,7 +316,7 @@ function viewToolDetails() {
               <div class='col-md-12'>
                   <h2 class='text-dark mb-4 mt-4 text'>$tool_title</h2>
                   <h5 class='mr-5 mb-4 text'>Price: RM$price/-</h5>
-                  <h6 class='mb-5'>$description</h6>
+                  <h6 class='mb-5' style='overflow:hidden'>$description</h6>
                   <div class='d-flex align-items-center'>
                       <a href='index.php' class='btn btn-details me-2 mb-3 mr-2 btn-style'>Back</a>
                       <a href='index.php?cart=$tool_id' class='btn btn-details me-2 mb-3 mr-2 ml-1 btn-style'>Add to Cart</a>
@@ -541,7 +541,7 @@ function cartItem() {
   
     //Total price calculation
     $total_price = $total_book_price + $total_tool_price;     
-    echo $total_price;
+    echo number_format($total_price, 2);
   }
   
   function orderDetails(){

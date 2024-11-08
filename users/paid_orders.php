@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paid Orders</title>
-</head>
-<body>
 <?php
     $username = $_SESSION['user_username']; 
     $get_user = "SELECT * FROM `user` WHERE user_username='$username'";
@@ -17,8 +9,8 @@
     <div class="table-container mr-3">
         <table class="table-bordered mt-3 table text-center">
             <?php
-            // Fetch only paid (completed) orders
-            $get_order_details = "SELECT * FROM `orders` WHERE user_id=$user_id AND order_status != 'pending'";
+            // Fetch only completed and paid orders
+            $get_order_details = "SELECT * FROM `orders` WHERE user_id=$user_id AND (order_status = 'complete' OR order_status = 'paid')";
             $result_orders = mysqli_query($conn, $get_order_details);
 
             if (mysqli_num_rows($result_orders) == 0) {                
