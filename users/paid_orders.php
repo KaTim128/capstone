@@ -10,7 +10,7 @@
         <table class="table-bordered mt-3 table text-center">
             <?php
             // Fetch only completed and paid orders
-            $get_order_details = "SELECT * FROM `orders` WHERE user_id=$user_id AND (order_status = 'complete' OR order_status = 'paid')";
+            $get_order_details = "SELECT * FROM `orders` WHERE user_id=$user_id AND (order_status = 'complete')";
             $result_orders = mysqli_query($conn, $get_order_details);
 
             if (mysqli_num_rows($result_orders) == 0) {                
@@ -76,18 +76,25 @@
 
                     // Display order details
                     echo "<tr class='paid-order'>
-                            <td>$number</td>
-                            <td>$product_name</td>
-                            <td><img src='$image_path' alt='" . htmlspecialchars($product_name) . "' width='50' height='50'></td>
-                            <td>$booktype</td>
-                            <td>$quantity</td> 
-                            <td>RM$amount_paid</td>
-                            <td>$invoice_number</td>
-                            <td>$payment_mode</td>
-                            <td>$order_date</td>
-                            <td>Complete</td>
-                            <td>Paid</td>
-                          </tr>";
+                    <td>$number</td>
+                    <td>$product_name</td>
+                    <td><img src='$image_path' alt='" . htmlspecialchars($product_name) . "' width='50' height='50'></td>
+                    <td>$booktype</td>
+                    <td>$quantity</td> 
+                    <td>RM$amount_paid</td>
+                    <td>$invoice_number</td>
+                    <td>$payment_mode</td>
+                    <td>$order_date</td>
+                    <td>Complete</td>
+                    <td>";
+                    if (!empty($book_id)) {
+                        echo "<a href='../reviews.php?book_id=b$book_id' class='btn btn-style'>Review</a>";
+                    } elseif (!empty($tool_id)) {
+                        echo "<a href='../reviews.php?tool_id=t$tool_id' class='btn btn-style'>Review</a>";
+                    }
+            echo "</td>
+                  </tr>";
+            
 
                     $number++;
                 }
