@@ -120,26 +120,38 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
 
 $order_check_query = "SELECT * FROM orders 
                       WHERE user_id='$user_id' 
-                      AND (book_id='$product_id' OR tool_id='$product_id') 
+                      AND (book_id='$id' OR tool_id='$id') 
                       AND order_status='complete'";
 $order_check_result = mysqli_query($conn, $order_check_query);
 $order_exists = mysqli_num_rows($order_check_result) > 0;
 
 // Process form submission for reviews
+// Check if the user has already submitted a review for this product
 if (isset($_POST['rating']) && isset($_POST['review'])) {
     $rating = $_POST['rating'];
     $review = mysqli_real_escape_string($conn, $_POST['review']);
 
-    // Insert review into the database for the specific product
-    $sql = "INSERT INTO reviews (user_id, product_id, review_text, rating) 
-            VALUES ('$user_id', '$product_id', '$review', '$rating')";
+    // Check if the review already exists
+    $review_check_query = "SELECT * FROM reviews WHERE user_id='$user_id' AND product_id='$product_id'";
+    $review_check_result = mysqli_query($conn, $review_check_query);
+    $review_exists = mysqli_num_rows($review_check_result) > 0;
 
-    if (mysqli_query($conn, $sql)) {
-        // Redirect to the same page after successful submission
-        header("Location: " . $_SERVER['PHP_SELF'] . "?book_id=" . $product_id); // Assuming book_id is used for redirection
-        exit();
+    if ($review_exists) {
+        // Review already submitted, you can show a message
+        echo "<script>alert('You have already submitted a review for this product.');</script>";
+    } else {
+        // Insert review into the database for the specific product
+        $sql = "INSERT INTO reviews (user_id, product_id, review_text, rating) 
+                VALUES ('$user_id', '$product_id', '$review', '$rating')";
+
+        if (mysqli_query($conn, $sql)) {
+            // Redirect to the same page after successful submission
+            header("Location: " . $_SERVER['PHP_SELF'] . "?book_id=" . $product_id); // Assuming book_id is used for redirection
+            exit();
+        }
     }
 }
+
 ?>
 
 <!DOCTYPE HTML>
