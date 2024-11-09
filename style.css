@@ -31,12 +31,11 @@
   outline: none;
 }
 
-
 @media (max-width: 768px) {
   .card-img-top {
     width: 60%; /* Narrower width to resemble a book */
-    height: auto;
-    max-height: 330px;
+    height: 100%;
+    max-height: 350px;
     object-fit: cover;
     margin: 0 auto; /* Center the image */
     display: block; /* Ensure it's centered horizontally */

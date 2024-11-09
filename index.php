@@ -80,7 +80,6 @@ session_start();
       ?>
 
       <!-- second child -->
-
   <ul class="navbar-nav me-auto">
     <div class="alert-placeholder" style="height: 60px;"></div> <!-- Placeholder for alert -->
     <div id="alertContainer" class="text-center"
@@ -89,9 +88,6 @@ session_start();
          style="position: absolute; width: 100%; display: block;"></div>
   </ul>
 
-
-
-  
       <!-- fourth child -->
       <div class="row px-3">
         <div class="col-md-10">

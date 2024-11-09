@@ -135,8 +135,6 @@ if (isset($_POST['remove_cart'])) {
 </style>
 </head>
 <body>
-  <!-- Alert Container for messages -->
-  <div id="alertContainer" class="text-center" data-alert-message="<?php echo isset($alertMessage) ? htmlspecialchars($alertMessage) : ''; ?>" style="display: none;"></div>
   <!-- navbar -->
   <div class="container-fluid p-0 gradient-background">
     <!-- first child  -->
@@ -316,7 +314,7 @@ if (isset($_POST['remove_cart'])) {
   <?php getFooter(); ?>
 
 <!-- Bootstrap JS and other scripts -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
 </body>
