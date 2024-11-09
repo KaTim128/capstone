@@ -21,7 +21,7 @@ if (isset($_POST['update_cart'])) {
                 // Get book type (only for books)
                 $booktype = isset($_POST['booktype'][$id]) ? $_POST['booktype'][$id] : 'digital'; // Default to 'digital' if not set
                 // Update quantity and book type for books
-                $update_cart = "UPDATE `cart` SET quantity='$quantity', booktype='$booktype' WHERE book_id='$book_id' AND ip_address='$get_ip_add'";
+                $update_cart = "UPDATE cart SET quantity='$quantity', booktype='$booktype' WHERE book_id='$book_id' AND ip_address='$get_ip_add'";
                 mysqli_query($conn, $update_cart);
             }
             // Check if it's a tool by prefix 't'
@@ -29,7 +29,7 @@ if (isset($_POST['update_cart'])) {
                 // Remove 't' prefix to get the actual tool ID
                 $tool_id = substr($id, 1);
                 // Update quantity for tools (tools do not have a booktype)
-                $update_cart = "UPDATE `cart` SET quantity='$quantity' WHERE tool_id='$tool_id' AND ip_address='$get_ip_add'";
+                $update_cart = "UPDATE cart SET quantity='$quantity' WHERE tool_id='$tool_id' AND ip_address='$get_ip_add'";
                 mysqli_query($conn, $update_cart);
             }
         }
@@ -40,27 +40,30 @@ if (isset($_POST['update_cart'])) {
 
 // Handle remove action
 if (isset($_POST['remove_cart'])) {
-    foreach ($_POST['remove'] as $remove_id) {
-        // Check if it's a book by prefix 'b'
-        if (strpos($remove_id, 'b') === 0) {
-            // Remove 'b' prefix to get the actual book ID
-            $book_id = substr($remove_id, 1);
-            // Delete the book from the cart
-            $delete_query = "DELETE FROM `cart` WHERE book_id='$book_id' AND ip_address='$get_ip_add'";
-            mysqli_query($conn, $delete_query);
-        }
-        // Check if it's a tool by prefix 't'
-        elseif (strpos($remove_id, 't') === 0) {
-            // Remove 't' prefix to get the actual tool ID
-            $tool_id = substr($remove_id, 1);
-            // Delete the tool from the cart
-            $delete_query = "DELETE FROM `cart` WHERE tool_id='$tool_id' AND ip_address='$get_ip_add'";
-            mysqli_query($conn, $delete_query);
-        }
-    }
-    // Redirect after deletion
-    echo "<script>window.open('cart.php', '_self');</script>";
+  $remove_id = $_POST['remove_cart'];  // Get the ID of the item to remove
+  // Check if it's a book by prefix 'b'
+  if (strpos($remove_id, 'b') === 0) {
+      // Remove 'b' prefix to get the actual book ID
+      $book_id = substr($remove_id, 1);
+      // Delete the book from the cart
+      $delete_query = "DELETE FROM cart WHERE book_id='$book_id' AND user_id='$user_id'";  // Use user_id for logged in users
+      mysqli_query($conn, $delete_query);
+  }
+  // Check if it's a tool by prefix 't'
+  elseif (strpos($remove_id, 't') === 0) {
+      // Remove 't' prefix to get the actual tool ID
+      $tool_id = substr($remove_id, 1);
+      // Delete the tool from the cart
+      $delete_query = "DELETE FROM cart WHERE tool_id='$tool_id' AND user_id='$user_id'";  // Use user_id for logged in users
+      mysqli_query($conn, $delete_query);
+  }
+
+  // Redirect after deletion
+  echo "<script>window.open('cart.php', '_self');</script>";
 }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -129,23 +132,11 @@ if (isset($_POST['remove_cart'])) {
         font-weight: bold; /* Makes the label bold */
     }
 }
-
-  </style>
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const removeButton = document.querySelector('button[name="remove_cart"]');
-
-    removeButton.addEventListener('click', function(event) {
-      const checkboxes = document.querySelectorAll('input[name="remove[]"]:checked');
-      if (checkboxes.length === 0) {
-        event.preventDefault(); // Prevent form submission
-        alert('Please select at least one item to remove from your cart.');
-      }
-    });
-  });
-</script>
+</style>
 </head>
 <body>
+  <!-- Alert Container for messages -->
+  <div id="alertContainer" class="text-center" data-alert-message="<?php echo isset($alertMessage) ? htmlspecialchars($alertMessage) : ''; ?>" style="display: none;"></div>
   <!-- navbar -->
   <div class="container-fluid p-0 gradient-background">
     <!-- first child  -->
@@ -196,11 +187,17 @@ if (isset($_POST['remove_cart'])) {
       <!-- call cart function -->
       <?php 
       manageCart(); 
-      displayAlert(); 
+      displayAlert();
+      if (isset($alertMessage) && !empty($alertMessage)) {
+        echo "<script>window.onload = function() {
+            document.getElementById('alertContainer').setAttribute('data-alert-message', '{$alertMessage}');
+        };</script>";
+    }
       ?>
 
       <!-- second child -->
-      
+      <div id="alertContainer" class="text-center" data-alert-message="<?php echo htmlspecialchars($alertMessage); ?>" style="display: none;"></div>
+
 
 <h3 class="text-center" style="margin-top:69px; overflow:hidden">Your Cart</h3>
 <!-- Cart Table -->
@@ -209,7 +206,7 @@ if (isset($_POST['remove_cart'])) {
     <form action="cart.php" method="post">
       <?php
       // Get items from cart
-      $cart_query = "SELECT * FROM `cart` WHERE user_id='$user_id'";
+      $cart_query = "SELECT * FROM cart WHERE user_id='$user_id'";
       $result = mysqli_query($conn, $cart_query);
       $num_of_rows = mysqli_num_rows($result);
       if ($num_of_rows == 0) {      
@@ -226,7 +223,6 @@ if (isset($_POST['remove_cart'])) {
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Type</th>
-                <th>Remove</th>
                 <th colspan="2">Operations</th>
               </tr>
             </thead>
@@ -238,7 +234,7 @@ if (isset($_POST['remove_cart'])) {
               $quantity = $row['quantity'];
 
               if (!empty($book_id)) {
-                  $select_books = "SELECT * FROM `books` WHERE book_id='$book_id'";
+                  $select_books = "SELECT * FROM books WHERE book_id='$book_id'";
                   $result_books = mysqli_query($conn, $select_books);
                   $book = mysqli_fetch_array($result_books);
 
@@ -262,17 +258,16 @@ if (isset($_POST['remove_cart'])) {
                             <option value="printed" <?php echo ($row['booktype'] == 'printed') ? 'selected' : ''; ?>>Printed</option>
                         </select>
                     </td>
-                    <td><input type="checkbox" name="remove[]" value="b<?php echo $book_id; ?>"></td>
                     <td colspan="2">
                     <button type="submit" class="btn btn-style px-3 py-1 mx-3 mb-3 border-0" name="update_cart">Update Cart</button>
-                    <button type="submit" class="btn btn-danger px-3 py-1 mb-3 border-0" name="remove_cart">Remove</button>
+                    <button type="submit" class="btn btn-danger px-3 py-1 mb-3 border-0" name="remove_cart" value="b<?php echo $book_id; ?>">Remove</button>
                     </td>
                   </tr>
                   <?php
               }
 
               if (!empty($tool_id)) {
-                  $select_tools = "SELECT * FROM `tools` WHERE tool_id='$tool_id'";
+                  $select_tools = "SELECT * FROM tools WHERE tool_id='$tool_id'";
                   $result_tools = mysqli_query($conn, $select_tools);
                   $tool = mysqli_fetch_array($result_tools);
 
@@ -326,4 +321,3 @@ if (isset($_POST['remove_cart'])) {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
-
