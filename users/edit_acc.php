@@ -57,7 +57,7 @@ if (isset($_POST['user_update'])) {
             $errors[] = "Invalid phone number format. Please enter a valid Malaysian number.";
         }
         if (!$address_valid) {
-            $errors[] = "Address must be at least 5 characters long.";
+            $errors[] = "Must be a valid address.";
         }
         $error_message = implode('\\n', $errors);
         $error_alert = true; 
@@ -145,7 +145,7 @@ if (isset($_POST['user_update'])) {
         <span class="close" onclick="removeAlert('error-alert')">&times;</span>
     </div>
 
-    <h4 class="mt-4 mb-4 text-center text-success" style="overflow:hidden">Edit Account active</h4>
+    <h4 class="mt-4 mb-4 text-center text-success" style="overflow:hidden">Edit Account</h4>
     <form action="" method="post" enctype="multipart/form-data" class="text-center">
         <!-- Form fields -->
         <div class="form-outline mb-4">

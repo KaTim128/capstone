@@ -94,6 +94,7 @@ if (isset($_POST['user_register'])) {
     // Check if passwords match
     if ($user_password !== $conf_user_password) {
         echo '<script>document.getElementById("alertContainer").setAttribute("data-alert-message", "Passwords do not match."); document.getElementById("alertContainer").setAttribute("data-alert-type", "danger");</script>';
+        exit;
     }  
     
     // Improved regex to validate typical street address format

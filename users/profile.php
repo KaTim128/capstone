@@ -36,10 +36,17 @@ session_start();
 
 @media (max-width: 768px) {
     .profile-img {
-        width: 50%; /* Adjust width for mobile screens */
+        width: 10%; /* Adjust width for mobile screens */
+        height: auto; /* Maintain aspect ratio */
         max-height: 150px; /* Optional: limit max height */
+        border-radius: 50%; /* Make the image circular */
+        object-fit: cover; /* Ensure the image fills the circle area */
+        overflow: hidden; /* Hide any overflow for a clean circle */
     }
 }
+
+
+
 
 
     .hide-bar {

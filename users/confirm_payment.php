@@ -67,7 +67,6 @@ if (isset($_POST['confirm_payment'])) {
             <div class="form-outline my-5">
                 <select id="payment_mode" name="payment_mode" class="form-select w-100" style="text-align-last: center; padding-left: 10px; text-indent: 10px;" required>
                     <option value="" hidden>Select Payment Mode</option>
-                    <option value="Touch N Go">Touch N Go</option>
                     <option value="Paypal">Paypal</option>
                 </select>
             </div>

@@ -6,7 +6,6 @@ include(__DIR__ . '/../database/connection.php');
 function getBooks(){
   global $conn;
 
-  //when course or tool id is not present in URL
   if(!isset($_GET['course'])){
       if(!isset($_GET['stationery'])){
           $select_query = "SELECT * FROM `books` order by rand() limit 0,8";
@@ -142,6 +141,7 @@ function getStationeries(){
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow: hidden;
           }
           .main-content {
             flex: 1;
@@ -152,6 +152,7 @@ function getStationeries(){
             padding: 1rem;
             text-align: center;
             width:100%;
+            overflow: hidden;
           }
           .dark-green {
           background: linear-gradient(to right, #5ba132, #5ba132);
@@ -239,39 +240,47 @@ function viewBookDetails() {
               $description = $row['description'];
               $image = $row['image'];
               $price = $row['price'];
+
+              $digital_price = $price / 4;
+
               // Prepare the correct book_id for the reviews button
               $book_id_for_reviews = $row['book_id']; // Use the actual book_id from the database
 
               echo "<div class='col-md- mb-2'>
-                      <div class='card mt-4'>
-                        <img src='admin/bookImages/$image' class='' style='width:150px; height:190px;' alt='Book Image'>
-                      </div>
-                    </div>
-                    
-                    <div class='col-md-8'>
-                    <div class='row'>
-                      <div class='col-md-12'>
-                          <h2 class='text-dark mb-4 mt-4' style='overflow:hidden'>$book_title</h2>
-                          <div class='d-flex justify-content-between mb-4'>
-                            <h5 class='mb-0' style='overflow:hidden'>Author: $author</h5>
-                            <h5 class='mr-5 mb-4' style='overflow:hidden'>Price: RM$price/<span>(Printed)</span></h5>
-                          </div>
-                          <h6 class='mb-5' style='overflow:hidden'>$description</h6>
-                          <div class='d-flex align-items-center'>
-                          <a href='index.php' class='btn btn-details me-2 mb-3 mx-2 btn-style'>Back</a>
-                          <a href='index.php?cart=$book_id' class='btn btn-details me-2 mb-3 mx-2 btn-style'>Add to Cart</a>
-                          <form method='post' action='users/wishlist.php' class='me-2 mb-3 mx-2' style='overflow:hidden'>
-                              <input type='hidden' name='book_id' value='$book_id_with_prefix'>
-                              <input type='hidden' name='book_title' value='$book_title'>
-                              <input type='hidden' name='book_image' value='$image'>
-                              <input type='hidden' name='book_price' value='$price'>
-                              <input type='submit' class='btn btn-details btn-style' style='overflow:hidden' name='add_to_wishlist' value='Add to Wishlist'>
-                          </form>
-                          <a href='reviews.php?book_id=b$book_id_for_reviews' class='btn btn-details mb-3 ml-1 btn-style'>Reviews</a>
-                      </div>
-                      </div>
-                  </div>
-                </div>";
+        <div class='card mt-4'>
+          <img src='admin/bookImages/$image' class='' style='width:150px; height:190px;' alt='Book Image'>
+        </div>
+      </div>
+      
+      <div class='col-md-8'>
+        <div class='row'>
+          <div class='col-md-12'>
+            <h3 class='text-dark mb-4 mt-4' style='overflow:hidden'>$book_title</h3>
+            <div class='mb-4 d-flex justify-content-between align-items-center'>
+              <h5 class='mb-0' style='overflow:hidden'>Author: $author</h5>
+              <div>
+                <h6 class='mb-0' style='overflow:hidden'>RM$price <span>(Printed)</span></h6>
+                <h6 class='mb-0' style='overflow:hidden'>RM$digital_price <span>(Digital)</span></h6>
+              </div>
+            </div>
+            <h6 class='mb-5' style='overflow:hidden'>$description</h6>
+            <div class='d-flex align-items-center'>
+              <a href='index.php' class='btn btn-details me-2 mb-3 mx-2 btn-style'>Back</a>
+              <a href='index.php?cart=$book_id' class='btn btn-details me-2 mb-3 mx-2 btn-style'>Add to Cart</a>
+              <form method='post' action='users/wishlist.php' class='me-2 mb-3 mx-2' style='overflow:hidden'>
+                  <input type='hidden' name='book_id' value='$book_id_with_prefix'>
+                  <input type='hidden' name='book_title' value='$book_title'>
+                  <input type='hidden' name='book_image' value='$image'>
+                  <input type='hidden' name='book_price' value='$price'>
+                  <input type='submit' class='btn btn-details btn-style' style='overflow:hidden' name='add_to_wishlist' value='Add to Wishlist'>
+              </form>
+              <a href='reviews.php?book_id=b$book_id_for_reviews' class='btn btn-details mb-3 ml-1 btn-style'>Reviews</a>
+            </div>
+          </div>
+        </div>
+      </div>";
+
+
           }
       }
   }
@@ -314,8 +323,8 @@ function viewToolDetails() {
       <div class='col-md-8'>
           <div class='row'>
               <div class='col-md-12'>
-                  <h2 class='text-dark mb-4 mt-4 text'>$tool_title</h2>
-                  <h5 class='mr-5 mb-4 text'>Price: RM$price/-</h5>
+                  <h3 class='text-dark mb-5 mt-4 text'>$tool_title</h3>
+                  <h6 class='mr-5 mb-5 text'>Price: RM$price/-</h6>
                   <h6 class='mb-5' style='overflow:hidden'>$description</h6>
                   <div class='d-flex align-items-center'>
                       <a href='index.php' class='btn btn-details me-2 mb-3 mr-2 btn-style'>Back</a>
@@ -397,9 +406,10 @@ function manageCart() {
 
       // Prevent duplication in the user's cart
       if (mysqli_num_rows($result) > 0) {
-          $_SESSION['cart_alert'] = ($prefix == 'b') ? 'This book is already in your cart!' : 'This tool is already in your cart!';
+          $_SESSION['cart_alert'] = ($prefix == 'b') ? 'This book is already in your cart!' : 
+          'This tool is already in your cart!';
       } else {
-          // Add the item to the cart in the database
+          // Adding the item to the cart in the database
           if ($prefix == 'b') {
               $insert_query = "INSERT INTO cart (book_id, user_id) VALUES ('$id', '$user_id')";
           } elseif ($prefix == 't') {
@@ -433,15 +443,16 @@ function manageCart() {
       $result_query = null;
 
       if ($prefix == 'b') {
-          $result_query = mysqli_query($conn, "SELECT * FROM cart WHERE user_id='$user_id' AND book_id='$id'");
+          $result_query = mysqli_query($conn, "SELECT * FROM cart 
+          WHERE user_id='$user_id' AND book_id='$id'");
       } elseif ($prefix == 't') {
-          $result_query = mysqli_query($conn, "SELECT * FROM cart WHERE user_id='$user_id' AND tool_id='$id'");
+          $result_query = mysqli_query($conn, "SELECT * FROM cart 
+          WHERE user_id='$user_id' AND tool_id='$id'");
       }
 
       // Initialize alert message variable
       $alertMessage = '';
-
-      // Check if the item exists and set the alert message accordingly
+      // Checking if the item exists and set the alert message accordingly
       if ($prefix == 'b' && mysqli_num_rows($result_query) > 0) {
           $alertMessage = 'This book is already in your cart!';
       } elseif ($prefix == 't' && mysqli_num_rows($result_query) > 0) {
@@ -449,13 +460,13 @@ function manageCart() {
       } else {
           // Insert the item into the cart with user_id, default or selected booktype, and quantity
           $insert_query = "";
-
           if ($prefix == 'b') {
-              $insert_query = "INSERT INTO cart (book_id, user_id, ip_address, quantity, booktype) VALUES ('$id', '$user_id', '$ip', 1, '$booktype')";
+              $insert_query = "INSERT INTO cart (book_id, user_id, ip_address, 
+              quantity, booktype) VALUES ('$id', '$user_id', '$ip', 1, '$booktype')";
           } elseif ($prefix == 't') {
-              $insert_query = "INSERT INTO cart (tool_id, user_id, ip_address, quantity) VALUES ('$id', '$user_id', '$ip', 1)";
+              $insert_query = "INSERT INTO cart (tool_id, user_id, ip_address,
+               quantity) VALUES ('$id', '$user_id', '$ip', 1)";
           }
-
           // Execute the query and set alert message if successful
           if (!empty($insert_query)) {
               mysqli_query($conn, $insert_query);
@@ -508,16 +519,13 @@ function cartItem() {
     $get_ip_add = getIPAddress();
     $total_book_price = 0;
     $total_tool_price = 0;
-  
     // Run the query to get cart items based on IP address
     $cart_query = "SELECT * FROM `cart` WHERE ip_address='$get_ip_add'";
     $result = mysqli_query($conn, $cart_query);
-  
     // Loop through each item in the cart
     while ($row = mysqli_fetch_array($result)) {
       $book_id = $row['book_id'];
       $tool_id = $row['tool_id'];
-  
       // Get the price of the book from the books table if book_id is present
       if (!empty($book_id)) {
         $select_books = "SELECT price FROM `books` WHERE book_id='$book_id'";
@@ -525,9 +533,7 @@ function cartItem() {
         while ($row_book_price = mysqli_fetch_array($result_books)) {
           $book_price = $row_book_price['price'];
           $total_book_price += $book_price; // Add price to total
-        }
-      }
-  
+        }}
       // Get the price of the tool from the tools table if tool_id is present
       if (!empty($tool_id)) {
         $select_tools = "SELECT price FROM `tools` WHERE tool_id='$tool_id'";
@@ -579,7 +585,5 @@ function cartItem() {
         }
     }
 }
-
-
 
 ?>

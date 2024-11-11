@@ -8,7 +8,6 @@ session_start();
 $name = '';
 $email = '';
 $message = '';
-
 $errorMsg = '';
 $successMsg = '';
 

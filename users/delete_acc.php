@@ -47,8 +47,7 @@ if (isset($_POST['dont_delete'])) {
             color: #00796b; /* Teal color for the heading */
             margin-bottom: 20px;
         }
-        .btn {
-            padding: 10px 20px;
+        .btn {   
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -76,8 +75,8 @@ if (isset($_POST['dont_delete'])) {
         }
         .modal-content {
             background-color: white;
+            padding: 16px;
             margin: 15% auto; /* 15% from the top and centered */
-            padding: 40px;
             border: 1px solid #888;
             width: 80%; /* Could be more or less, depending on screen size */
             max-width: 600px; /* Maximum width */
@@ -91,7 +90,7 @@ if (isset($_POST['dont_delete'])) {
     
         <div class="form-outline">
             <!-- Delete Button with improved styling -->
-            <input type="button" class="btn btn-danger m-4 p-4" 
+            <input type="button" class="btn btn-danger m-4" 
                    value="Delete Account" onclick="openModal()">
         </div>
 

@@ -215,7 +215,7 @@ if (isset($_POST['remove_cart'])) {
           ?>
           <table class="table table-bordered table-striped center-table mt-3">
             <thead>
-              <tr class="green">
+              <tr class="table-color">
                 <th>Product Title</th>
                 <th>Product Image</th>
                 <th>Quantity</th>
@@ -280,10 +280,9 @@ if (isset($_POST['remove_cart'])) {
                       <td><input type="number" name="qty[t<?php echo $tool_id; ?>]" value="<?php echo $quantity; ?>" class="form-input w-70" min="1" max="10" oninput="this.value = Math.max(this.value, 1)"></td>
                       <td>RM<?php echo number_format($tool_price * $quantity, 2); ?>/-</td>
                       <td></td>
-                      <td><input type="checkbox" name="remove[]" value="t<?php echo $tool_id; ?>"></td>
                       <td colspan="2">
                       <button type="submit" class="btn btn-style px-3 py-1 mx-3 mb-3 border-0" name="update_cart">Update Cart</button>
-                      <button type="submit" class="btn btn-danger px-3 py-1 mb-3 border-0" name="remove_cart">Remove</button>
+                      <button type="submit" class="btn btn-danger px-3 py-1 mb-3 border-0" name="remove_cart" value="t<?php echo $tool_id; ?>">Remove</button>
                       </td>
                   </tr>
                   <?php

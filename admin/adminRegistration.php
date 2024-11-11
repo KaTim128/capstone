@@ -28,6 +28,14 @@ if (isset($_POST['adminRegistration'])) {
         $hash_password = password_hash($admin_password, PASSWORD_DEFAULT);
 
         // Check if admin email already exists
+        $select_name_query = "SELECT * FROM admin_table WHERE admin_name='$admin_name'";
+        $name_result = mysqli_query($conn, $select_name_query);
+        if (mysqli_num_rows($name_result) > 0) {
+            echo "<script>alert('Admin name already exists!')</script>";
+            $is_valid = false; // Set the flag to false
+        }
+
+        // Check if admin email already exists
         $select_email_query = "SELECT * FROM admin_table WHERE admin_email='$admin_email'";
         $email_result = mysqli_query($conn, $select_email_query);
         if (mysqli_num_rows($email_result) > 0) {

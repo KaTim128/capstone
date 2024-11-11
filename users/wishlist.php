@@ -200,7 +200,8 @@ if (isset($_POST['remove_item'])) {
 
                 // Check the number of items in the wishlist
                 if (mysqli_num_rows($result) == 0) {
-                    echo "<div class='persistent-alert text-center mt-4' style='margin: 0 auto; width: fit-content;'>There are no items in the wishlist.</div>";
+                    echo "<div class='persistent-alert text-center mt-4' style='margin: 0 auto; width: fit-content;'>
+                    There are no items in the wishlist.</div>";
                 } else {
                     echo '<h3 class="text-center" style="overflow:hidden; margin-top:50px;">Your Wishlist</h3>
                           <table class="table table-bordered table-striped center-table mt-4 mb-5">
@@ -223,13 +224,11 @@ if (isset($_POST['remove_item'])) {
 
                         // Adjust the link to point to the appropriate details page
                         $details_link = $item_type === 'book' 
-    ? "../bookDetails.php?book_id=b$item_id" 
-    : "../toolDetails.php?tool_id=t$item_id";
+    ? "../bookDetails.php?book_id=b$item_id" : "../toolDetails.php?tool_id=t$item_id";
 
 // Set the image path based on item type
 $image_path = $item_type === 'book' 
-    ? "../admin/bookImages/$item_image" 
-    : "../admin/toolImages/$item_image";
+    ? "../admin/bookImages/$item_image" : "../admin/toolImages/$item_image";
 
 echo "<tr>
         <td class='item-img'><img src='$image_path' class='item-img'></td>
