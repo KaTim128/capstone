@@ -148,24 +148,6 @@ label {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for depth */
   }
 
-  @media (max-width: 600px) {
-    .form-container {
-      padding: 10px; /* Adjust padding for smaller screens */
-    }
-
-    h2 {
-      font-size: 1.5rem; /* Adjust heading size */
-    }
-
-    .form-control {
-      font-size: 1rem; /* Adjust input font size */
-    }
-
-    .btn {
-      width: 100%; /* Make buttons full width */
-    }
-  }
-
   .form-control {
     padding: 6px;
     font-size: 0.85rem;
