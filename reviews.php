@@ -14,14 +14,51 @@ if (isset($_GET['book_id'])) {
     exit();
 }
 
-// Initialize user details from the session
-$username = $_SESSION['user_username'];
-$get_user = "SELECT * FROM `user` WHERE user_username='$username'";
-$result = mysqli_query($conn, $get_user);
-$row_fetch = mysqli_fetch_assoc($result);
-$user_id = $row_fetch['user_id'];
-$username = $row_fetch['user_username'];
-$user_image = $row_fetch['user_image'];
+// Initialize user details from the session if 'user_username' exists
+// Initialize user details
+$username = isset($_SESSION['user_username']) ? $_SESSION['user_username'] : null;
+$user_id = null; // Set default value for user_id
+
+if ($username) {
+    $get_user = "SELECT * FROM `user` WHERE user_username='$username'";
+    $result = mysqli_query($conn, $get_user);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row_fetch = mysqli_fetch_assoc($result);
+        $user_id = $row_fetch['user_id'];
+        $username = $row_fetch['user_username'];
+        $user_image = $row_fetch['user_image'];
+    } else {
+        // Handle case where user is not found in the database
+        echo "User not found.";
+        exit();
+    }
+}
+
+// Check if the user has already submitted a review for this product
+if ($user_id) { // Only check if user_id is set
+    $review_check_query = "SELECT * FROM reviews WHERE user_id='$user_id' AND product_id='$product_id'";
+    $review_check_result = mysqli_query($conn, $review_check_query);
+    $review_exists = mysqli_num_rows($review_check_result) > 0;
+} else {
+    $review_exists = false; // No review if no user_id (guest)
+}
+
+// Process form submission for reviews
+if (isset($_POST['rating']) && isset($_POST['review']) && $user_id) {
+    $rating = $_POST['rating'];
+    $review = mysqli_real_escape_string($conn, $_POST['review']);
+
+    // Insert review only if user_id is set
+    $sql = "INSERT INTO reviews (user_id, product_id, review_text, rating) 
+            VALUES ('$user_id', '$product_id', '$review', '$rating')";
+
+    if (mysqli_query($conn, $sql)) {
+        header("Location: " . $_SERVER['PHP_SELF'] . "?book_id=" . $product_id);
+        exit();
+    }
+}
+
 
 // Check if the user has already submitted a review for this product
 $review_check_query = "SELECT * FROM reviews WHERE user_id='$user_id' AND product_id='$product_id'";
@@ -224,11 +261,11 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
             <?php
             if (isset($_SESSION['user_username'])) {
               echo "<li class='nav-item'>
-                      <a class='nav-link nav-zoom' href='./users/profile.php'>My Account</a>
+                      <a class='nav-link nav-zoom text-light' href='./users/profile.php'>My Account</a>
                     </li>";
             } else {
               echo "<li class='nav-item'>
-                      <a class='nav-link nav-zoom' href='./users/user_registration.php'>Register</a>
+                      <a class='nav-link nav-zoom text-light' href='./users/user_login.php'>Login</a>
                     </li>";
             }
             ?>   

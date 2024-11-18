@@ -89,7 +89,7 @@
        <div class="modal-dialog" role="document">
            <div class="modal-content">
                <div class="modal-body">
-                   <h6>Are you sure you would like to delete this user?</h6>
+                   <h6 style="overflow:hidden">Are you sure you would like to delete this user?</h6>
                </div>
                <div class="modal-footer">
                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>

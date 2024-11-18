@@ -170,6 +170,7 @@ body {
             <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?listOrders" class="nav-link text-dark" style="font-weight: bold;">All Orders</a></button>
             <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?listPayments" class="nav-link text-dark" style="font-weight: bold;">All Payments</a></button>
             <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?listUsers" class="nav-link text-dark" style="font-weight: bold;">List Users</a></button>
+            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?listMessages" class="nav-link text-dark" style="font-weight: bold;">User Messages</a></button>
             <button class="btn btn-danger w-100 mb-2"><a href="../users/user_login.php" class="nav-link text-light" style="font-weight: bold;">Logout</a></button>
         </div>
     </div>
@@ -215,6 +216,9 @@ body {
                 if(isset($_GET['listUsers'])){
                     include('listUsers.php');
                 }
+                if(isset($_GET['listMessages'])){
+                    include('listMessages.php');
+                }
             ?>
         </div>
 
@@ -255,8 +259,5 @@ body {
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

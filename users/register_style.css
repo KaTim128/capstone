@@ -1,7 +1,7 @@
 /* Body styling */
 body {
   background: linear-gradient(to right, #336a29, #498428, #80b155);
-  font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif; /* Ensures body text uses sans-serif font */
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -22,6 +22,7 @@ body {
   max-height: 90vh;
   width: 90vw;
   overflow: hidden;
+  font-family: Arial, sans-serif; /* Apply sans-serif font here */
 }
 
 /* Logo container */
@@ -49,6 +50,7 @@ body {
   background-color: #ffffff;
   overflow-y: auto;
   max-height: 100%;
+  font-family: Arial, sans-serif; /* Apply sans-serif font here */
 }
 
 /* Form title styling */
@@ -57,6 +59,7 @@ body {
   text-align: center;
   margin-bottom: 20px; /* Match spacing with login form */
   font-size: 1.7rem; /* Match font size with login form */
+  font-family: Arial, sans-serif; /* Apply sans-serif font to title */
 }
 
 /* Label styling */
@@ -65,22 +68,19 @@ label {
   font-size: 0.85rem;
   display: block;
   margin-bottom: 5px; /* Add space below labels */
+  font-family: Arial, sans-serif; /* Apply sans-serif font here */
 }
 
 /* Form control input styling */
 .form-control {
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.8
-  ); /* Semi-transparent white background for inputs */
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for inputs */
   border: 1px solid #ced4da;
   width: 100%; /* Set width for input fields */
   border-radius: 6px;
   padding: 8px;
   font-size: 0.85rem;
   margin-bottom: 15px; /* Add margin below each input */
+  font-family: Arial, sans-serif; /* Apply sans-serif font here */
 }
 
 /* Submit button styling */
@@ -96,6 +96,7 @@ label {
   display: block; /* Make it a block element for centering */
   text-align: center;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif; /* Apply sans-serif font to button */
 }
 
 .btn-register:hover {
@@ -110,11 +111,13 @@ label {
   margin-top: 10px;
   color: #495057;
   font-size: 0.9rem;
+  font-family: Arial, sans-serif; /* Apply sans-serif font here */
 }
 
 .text-register a {
   color: #000;
   text-decoration: underline;
+  font-family: Arial, sans-serif; /* Apply sans-serif font to the link */
 }
 
 .text-register a:hover {
@@ -158,5 +161,14 @@ label {
 }
 
 .green {
-  background: linear-gradient(to left, #336a29, #498428, #80b155); /* Gradient from a light color to a fresh light green */
+  background: linear-gradient(
+    to left,
+    #336a29,
+    #498428,
+    #80b155
+  ); /* Gradient from a light color to a fresh light green */
+}
+
+.p1 {
+  font-family: Arial, sans-serif;
 }

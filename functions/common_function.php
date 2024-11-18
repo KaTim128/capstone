@@ -514,41 +514,59 @@ function cartItem() {
 }
 
 
-  function totalCartPrice() {
-    global $conn;
-    $get_ip_add = getIPAddress();
-    $total_book_price = 0;
-    $total_tool_price = 0;
-    // Run the query to get cart items based on IP address
-    $cart_query = "SELECT * FROM `cart` WHERE ip_address='$get_ip_add'";
-    $result = mysqli_query($conn, $cart_query);
-    // Loop through each item in the cart
-    while ($row = mysqli_fetch_array($result)) {
+function totalCartPrice() {
+  global $conn;
+  $get_ip_add = getIPAddress();
+  $total_book_price = 0;
+  $total_tool_price = 0;
+
+  // Run the query to get cart items based on IP address
+  $cart_query = "SELECT * FROM `cart` WHERE ip_address='$get_ip_add'";
+  $result = mysqli_query($conn, $cart_query);
+
+  // Loop through each item in the cart
+  while ($row = mysqli_fetch_array($result)) {
       $book_id = $row['book_id'];
       $tool_id = $row['tool_id'];
+      $quantity = $row['quantity'];  // Get the quantity of the item
+      $booktype = $row['booktype'];  // Get the booktype (digital or printed)
+
       // Get the price of the book from the books table if book_id is present
       if (!empty($book_id)) {
-        $select_books = "SELECT price FROM `books` WHERE book_id='$book_id'";
-        $result_books = mysqli_query($conn, $select_books);
-        while ($row_book_price = mysqli_fetch_array($result_books)) {
-          $book_price = $row_book_price['price'];
-          $total_book_price += $book_price; // Add price to total
-        }}
+          $select_books = "SELECT price FROM `books` WHERE book_id='$book_id'";
+          $result_books = mysqli_query($conn, $select_books);
+
+          if ($row_book_price = mysqli_fetch_array($result_books)) {
+              $book_price = $row_book_price['price'];
+              
+              // If the book is digital, reduce the price by a factor of 4
+              if ($booktype === 'digital') {
+                  $book_price /= 4;
+              }
+
+              // Add the total book price based on quantity
+              $total_book_price += $book_price * $quantity;
+          }
+      }
+
       // Get the price of the tool from the tools table if tool_id is present
       if (!empty($tool_id)) {
-        $select_tools = "SELECT price FROM `tools` WHERE tool_id='$tool_id'";
-        $result_tools = mysqli_query($conn, $select_tools);
-        while ($row_tool_price = mysqli_fetch_array($result_tools)) {
-          $tool_price = $row_tool_price['price'];
-          $total_tool_price += $tool_price; // Add price to total
-        }
+          $select_tools = "SELECT price FROM `tools` WHERE tool_id='$tool_id'";
+          $result_tools = mysqli_query($conn, $select_tools);
+
+          if ($row_tool_price = mysqli_fetch_array($result_tools)) {
+              $tool_price = $row_tool_price['price'];
+              // Add the total tool price based on quantity
+              $total_tool_price += $tool_price * $quantity;
+          }
       }
-    }
-  
-    //Total price calculation
-    $total_price = $total_book_price + $total_tool_price;     
-    echo number_format($total_price, 2);
   }
+
+  // Total price calculation
+  $total_price = $total_book_price + $total_tool_price;     
+  echo number_format($total_price, 2);  // Display the total price
+}
+
   
   function orderDetails(){
     global $conn;

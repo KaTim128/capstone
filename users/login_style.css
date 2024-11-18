@@ -1,6 +1,6 @@
 body {
   background: linear-gradient(to right, #336a29, #498428, #80b155);
-  font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif; /* This already sets the default sans-serif font */
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -20,6 +20,7 @@ body {
   max-width: 1000px; /* Set a maximum width for the entire login container */
   margin: auto; /* Center the container horizontally */
   overflow: hidden; /* Hide overflow */
+  font-family: Arial, sans-serif; /* Apply sans-serif font here */
 }
 
 .logo-container {
@@ -47,14 +48,15 @@ body {
   max-height: 100%; /* Prevent overflow */
   width: 400px; /* Set a fixed width for the form container */
   margin: 0 auto; /* Center the form container */
+  font-family: Arial, sans-serif; /* Apply sans-serif font here */
 }
 
 .form-container h2 {
   color: #495057;
   text-align: center;
   margin-bottom: 20px;
-
   font-size: 1.7rem; /* Slightly increase the size */
+  font-family: Arial, sans-serif; /* Apply sans-serif font to the heading */
 }
 
 .form-group {
@@ -66,6 +68,7 @@ label {
   font-size: 0.85rem;
   display: block; /* Ensure labels are block elements for better alignment */
   margin-bottom: 5px; /* Add some space below the label */
+  font-family: Arial, sans-serif; /* Apply sans-serif font to the label */
 }
 
 .form-control {
@@ -82,6 +85,7 @@ label {
   padding: 8px;
   font-size: 0.85rem;
   margin: 0; /* Center the input fields */
+  font-family: Arial, sans-serif; /* Apply sans-serif font to input fields */
 }
 
 /* Button styling */
@@ -96,6 +100,7 @@ label {
   margin: 20px auto; /* Center the button */
   display: block; /* Make the button a block element to allow margin auto to work */
   text-align: center;
+  font-family: Arial, sans-serif; /* Apply sans-serif font to buttons */
 }
 
 .btn-btns:hover {
@@ -104,11 +109,11 @@ label {
   transform: scale(0.98); /* Slightly scale down on hover */
 }
 
-/* Link styling */
 .text-register a {
   color: #000;
   text-decoration: underline;
   transition: color 0.3s ease;
+  font-family: Arial, sans-serif; /* Apply sans-serif font to the link */
 }
 
 .text-register a:hover {
@@ -183,4 +188,8 @@ label {
 
 .border {
   border-radius: 5px;
+}
+
+.p1 {
+  font-family: Arial, sans-serif;
 }

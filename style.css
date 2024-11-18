@@ -12,6 +12,7 @@
   display: -webkit-box;
   -webkit-line-clamp: 2; /* Limit to 2 lines */
   -webkit-box-orient: vertical;
+  font-family: Arial, sans-serif; /* Added */
 }
 
 .card {
@@ -45,6 +46,7 @@
 
 .card-body {
   text-align: center;
+  font-family: Arial, sans-serif; /* Added */
 }
 
 .side {
@@ -64,6 +66,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-family: Arial, sans-serif; /* Added */
 }
 
 .alert-container {
@@ -77,6 +80,7 @@
   transition: opacity 0.5s ease; /* Fade-in/out animation */
   opacity: 0; /* Start with an invisible alert */
   visibility: hidden; /* Start with an invisible alert */
+  font-family: Arial, sans-serif; /* Added */
 }
 
 /* Class to make the alert visible */
@@ -91,6 +95,7 @@
 
 .table-color {
   background-color: #92c85c;
+  font-family: Arial, sans-serif; /* Added */
 }
 
 /*styling color and buttons */
@@ -100,6 +105,7 @@
     #519c4b,
     #92c85c
   ); /* Gradient from light green to a soft green */
+  font-family: Arial, sans-serif; /* Added */
 }
 
 .light-green {
@@ -108,14 +114,17 @@
     #c1e899,
     #e6f0dc
   ); /* Gradient from a light color to a fresh light green */
+  font-family: Arial, sans-serif; /* Added */
 }
 
 .navbar-color {
   background: linear-gradient(to right, #336a29, #498428, #689d3a);
+  font-family: Arial, sans-serif; /* Added */
 }
 
 .navbar-color2 {
   background: linear-gradient(to right, #336a29, #498428);
+  font-family: Arial, sans-serif; /* Added */
 }
 
 .gradient-background {
@@ -125,6 +134,7 @@
 .card-background {
   background-color: rgb(255, 255, 253);
   border-radius: 10px;
+  font-family: Arial, sans-serif; /* Added */
 }
 
 .btn-style {
@@ -138,6 +148,7 @@
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+  font-family: Arial, sans-serif; /* Added */
 }
 
 .btn-style:hover {
@@ -157,6 +168,7 @@
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+  font-family: Arial, sans-serif; /* Added */
 }
 
 .btn-danger:hover {
@@ -177,6 +189,7 @@
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+  font-family: Arial, sans-serif; /* Added */
 }
 
 .btn-grey:hover {
@@ -194,6 +207,7 @@
   background-color: #5aa131;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
 .borders {
   border-radius: 15px;
 }
@@ -211,6 +225,7 @@
   background-color: transparent; /* Default background color */
   border: 1px solid #fff; /* Border color */
   transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+  font-family: Arial, sans-serif; /* Added */
 }
 
 /* Style for the button on hover */
@@ -223,4 +238,8 @@
   color: #000000; /* Change text color on hover, if needed */
   border-color: #336a29; /* Change border color on hover */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.p1 {
+  font-family: Arial, sans-serif;
 }

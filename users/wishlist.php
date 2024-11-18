@@ -122,6 +122,20 @@ if (isset($_POST['remove_item'])) {
     border-radius: 0.25rem;
 }
 
+.box {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  width: 200px;
+  height: 42px;
+  transform: translate(-50%, -50%);
+  text-align: center; 
+  line-height: 27px;
+  overflow: hidden;
+  font-family: sans-serif;
+
+}
+
     </style>
 </head>
 <body>
@@ -246,7 +260,8 @@ echo "<tr>
                         echo '</tbody></table>';
                     }
                 } else {
-                    echo "<div class='alert alert-warning text-center my-5' style='margin: 0 auto; width: fit-content;'>Please log in to view your wishlist.</div>";
+                    echo "<div class='alert-warning text-center my-5 p-2 box' style='position: absolute; z-index: -1; margin: 0 auto; width: fit-content; border-radius:5px;'>Please log in to view your wishlist.</div>";
+
                 }
                 ?>
             </div>

@@ -17,5 +17,4 @@ if (isset($_GET['deleteUsers'])) {
         echo "Connection is null"; 
     }
 }
-
 ?>
