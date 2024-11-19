@@ -29,7 +29,7 @@
                 if ($row_count == 0) {
                     echo "<div class='alert alert-warning text-center mt-5' style='margin: 0 auto; width: fit-content;'>There are no messages yet.</div>";
                 } else {
-                    echo "<tr class='text-center'>
+                    echo "<tr class='text-center table-color text-dark'>
                     <th>S1 no</th>
                     <th>Name</th>
                     <th>Email</th>
@@ -98,7 +98,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success" onclick="sendReply()">Send Reply</button>
+                <button type="button" class="btn btn-style" onclick="sendReply()">Send Reply</button>
             </div>
         </div>
     </div>

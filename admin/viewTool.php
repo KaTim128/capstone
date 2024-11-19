@@ -22,21 +22,41 @@
         th, td {
             width: 150px;
         }
+        /* Add styles for scrollable table */
+        .table-responsive {
+            overflow-x: auto;
+        }
     </style>
 </head>
 <body>
-    <h4 class="text-center text-success">All Tools</h4>
-    <div class="table-responsive mt-2"> <!-- Add this div for responsiveness -->
+    <?php
+        // Display alert message for no tools
+        $alertMessage = ''; // Initialize the alert message variable
+
+        $get_tools = "SELECT * FROM `tools`";
+        $result = mysqli_query($conn, $get_tools);
+        $row_count = mysqli_num_rows($result);
+
+        if ($row_count == 0) {
+            $alertMessage = '<div class="alert alert-warning text-center mt-4" style="margin: 0 auto; width: fit-content;">
+                                There are no tools yet.
+                              </div>';
+        }
+    ?>
+    
+    <!-- Display the alert message -->
+    <div id="alertContainer">
+        <?php echo $alertMessage; ?>
+    </div>
+
+    
+    <div class="table-responsive mt-2">
         <table class="table table-bordered">
             <?php
-            $get_tools = "SELECT * FROM `tools`";
-            $result = mysqli_query($conn, $get_tools);
-            $row_count = mysqli_num_rows($result); // Set the row count
-            
-            if ($row_count == 0) {
-                echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There are no tools yet.</div>";
-            } else {
-                echo "<thead class='table-color'>
+            if ($row_count > 0) {
+                echo "
+                <h4 class='text-center text-success'>All Tools</h4>
+                <thead class='table-color'>
                         <tr class='text-center'>
                             <th>Tool ID</th>
                             <th>Tool Title</th>
@@ -49,7 +69,7 @@
                         </tr>
                       </thead>
                       <tbody class='bg-secondary text-light'>";
-                
+
                 $number = 0;
                 while ($row = mysqli_fetch_assoc($result)) {
                     $tool_id = $row['tool_id'];
@@ -82,14 +102,14 @@
             }
             ?>
         </table>
-    </div> <!-- Close the table-responsive div -->
+    </div>
 
     <!-- Delete Confirmation Modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
-                    <h6>Are you sure you would like to delete this Tool?</h6>
+                    <h6 style="overflow:hidden;">Are you sure you would like to delete this Tool?</h6>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
@@ -100,17 +120,33 @@
     </div>
 
     <script>
+        // Store tool ID for deletion
         let toolId = null;
 
         function setToolId(id) {
             toolId = id; // Store the tool ID when delete button is clicked
         }
 
+        // Handle delete confirmation
         document.getElementById('confirmDelete').addEventListener('click', function() {
             if (toolId) {
-                window.location.href = `adminPanel.php?deleteTool=${toolId}`; // Redirect to delete
+                // Redirect to PHP delete action with the tool_id
+                window.location.href = `adminPanel.php?deleteTool=${toolId}`;
             }
         });
+
+        // Slide-up effect for alert message after 3 seconds
+        window.onload = function () {
+            const alertContainer = document.getElementById("alertContainer");
+
+            if (alertContainer.innerHTML.trim() !== "") {
+                setTimeout(() => {
+                    $(alertContainer).slideUp(600, () => {
+                        alertContainer.innerHTML = ""; // Clear the alert after the slide-up animation
+                    });
+                }, 3000);
+            }
+        };
     </script>
 </body>
 </html>

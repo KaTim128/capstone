@@ -48,7 +48,7 @@
                if ($row_count == 0) {
                 echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There are no users yet.</div>";
                } else {
-                   echo "<tr class='text-center'>
+                   echo "<tr class='text-center table-color text-dark'>
                    <th>S/N</th>
                    <th>Username</th>
                    <th>User Email</th> 

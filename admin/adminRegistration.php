@@ -1,25 +1,43 @@
 <?php
 include('../functions/common_function.php');
 
+// Initialize alert message
+$alertMessage = '';
+
 if (isset($_POST['adminRegistration'])) {
     $admin_name = $_POST['username'];
     $admin_email = $_POST['email'];
     $admin_password = $_POST['password'];
     $conf_password = $_POST['conf_password'];
-    
+
     // Initialize a flag to check for validation errors
     $is_valid = true;
 
     // Error checking
     if (!filter_var($admin_email, FILTER_VALIDATE_EMAIL)) {
-        echo "<script>alert('Invalid email format!')</script>";
-        $is_valid = false; // Set the flag to false
+        $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Invalid email format!
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>';
+        $is_valid = false;
     } elseif (strlen($admin_password) < 8) {
-        echo "<script>alert('Password must be at least 8 characters long!')</script>";
-        $is_valid = false; // Set the flag to false
+        $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Password must be at least 8 characters long.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>';
+        $is_valid = false;
     } elseif ($admin_password !== $conf_password) {
-        echo "<script>alert('The confirm password does not match!')</script>";
-        $is_valid = false; // Set the flag to false
+        $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Password confirmation does not match!
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>';
+        $is_valid = false;
     }
 
     // Only proceed if there are no validation errors
@@ -31,16 +49,26 @@ if (isset($_POST['adminRegistration'])) {
         $select_name_query = "SELECT * FROM admin_table WHERE admin_name='$admin_name'";
         $name_result = mysqli_query($conn, $select_name_query);
         if (mysqli_num_rows($name_result) > 0) {
-            echo "<script>alert('Admin name already exists!')</script>";
-            $is_valid = false; // Set the flag to false
+            $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                Admin name already exists!
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>';
+            $is_valid = false;
         }
 
         // Check if admin email already exists
         $select_email_query = "SELECT * FROM admin_table WHERE admin_email='$admin_email'";
         $email_result = mysqli_query($conn, $select_email_query);
         if (mysqli_num_rows($email_result) > 0) {
-            echo "<script>alert('Email already exists!')</script>";
-            $is_valid = false; // Set the flag to false
+            $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                Email already exists!
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>';
+            $is_valid = false;
         }
 
         // Insert admin data into the database if still valid
@@ -48,18 +76,21 @@ if (isset($_POST['adminRegistration'])) {
             $insert_query = "INSERT INTO admin_table (admin_name, admin_email, admin_password) VALUES ('$admin_name', '$admin_email', '$hash_password')";
             $sql_execute = mysqli_query($conn, $insert_query);
             if ($sql_execute) {
-                echo "<script>alert('Admin registered successfully!')</script>";
-                echo "<script>window.open('adminLogin.php', '_self')</script>";
+                $alertMessage = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    Admin registered successfully!
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>';
             } else {
-                echo "<script>alert('Registration failed. Please try again.')</script>";
+                $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Registration failed. Please try again.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>';
             }
-        } else {
-            // Redirect back if validation failed
-            echo "<script>window.open('adminRegistration.php', '_self')</script>";
         }
-    } else {
-        // Redirect back if validation failed
-        echo "<script>window.open('adminRegistration.php', '_self')</script>";
     }
 }
 ?>
@@ -70,11 +101,18 @@ if (isset($_POST['adminRegistration'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Registration</title>
-    <!-- Bootstrap CSS link -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="admin_style.css">
 </head>
+<style>
+    .alert {
+        text-align: center;
+    }
+</style>
 <body class="front-background admin-color">
+    <div id="alertContainer">
+        <?php echo $alertMessage; ?>
+    </div>
     <div class="container-fluid m-3 front-background">
         <h2 class="text-center my-5 text-light">Admin Registration</h2>
         <div class="row d-flex justify-content-center align-items-center form-container">
@@ -108,9 +146,27 @@ if (isset($_POST['adminRegistration'])) {
         </div>
     </div>
 
-    <!-- Bootstrap JS links -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    window.onload = function () {
+        const alertContainer = document.getElementById("alertContainer");
+
+        // If the alert container has content, make it slide up after 3 seconds
+        if (alertContainer.innerHTML.trim() !== "") {
+            setTimeout(() => {
+                // Slide up the alert
+                $(alertContainer).slideUp(600, () => {
+                    alertContainer.innerHTML = ""; // Clear the alert after the slide-up animation
+                });
+            }, 3000);
+            setTimeout(function() {
+            window.location.href = 'adminLogin.php'; // Redirect to admin login page
+        }, 3000);
+        }  
+    };
+    </script>
 </body>
 </html>

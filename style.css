@@ -5,6 +5,16 @@
   overflow-x: hidden;
 }
 
+body {
+  font-family: Arial, sans-serif; /* Apply sans-serif font */
+}
+
+.card-text,
+.btn,
+.nav-link {
+  font-family: Arial, sans-serif; /* Apply sans-serif font to other text elements */
+}
+
 .card-title {
   overflow: hidden;
   text-overflow: ellipsis;

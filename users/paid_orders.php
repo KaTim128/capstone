@@ -5,9 +5,9 @@
     $row_fetch = mysqli_fetch_assoc($result);
     $user_id = $row_fetch['user_id'];
 ?>
-    <h4 class="mt-4 text-center text-success" style="overflow:hidden">All Paid Orders</h4>
-    <div class="table-container mr-3">
-        <table class="table-bordered mt-3 table text-center">
+    <h4 class=" p1 mt-4 text-center text-success" style="overflow:hidden">All Paid Orders</h4>
+    <div class=" p1 table-container mr-3">
+        <table class=" p1 table-bordered mt-3 table text-center">
             <?php
             // Fetch only completed and paid orders
             $get_order_details = "SELECT * FROM `orders` WHERE user_id=$user_id AND (order_status = 'complete')";

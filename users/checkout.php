@@ -21,28 +21,28 @@ session_start();
 if (isset($_SESSION['user_username'])) {
 ?>
 <!-- Navbar (only for logged-in users) -->
-<div class="container-fluid p-0 gradient-background">
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-color">
-    <div class="container-fluid">
+<div class=" p1 container-fluid p-0 gradient-background">
+  <nav class=" p1 navbar navbar-expand-lg navbar-dark navbar-color">
+    <div class=" p1 container-fluid">
       <img src="../images/logo_new.png" alt="" style="width: 6%; height: 7%; margin-right: 15px; border-radius:5px">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button class=" p1 navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class=" p1 navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item"><a class="nav-link nav-zoom" href="../index.php">Products</a></li>
-          <li class="nav-item"><a class="nav-link nav-zoom" href="./wishlist.php">Wishlist</a></li>
+      <div class=" p1 collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class=" p1 navbar-nav mr-auto">
+          <li class=" p1 nav-item"><a class=" p1 nav-link nav-zoom" href="../index.php">Products</a></li>
+          <li class=" p1 nav-item"><a class=" p1 nav-link nav-zoom" href="./wishlist.php">Wishlist</a></li>
           <?php if (isset($_SESSION['user_username'])): ?>
-            <li class="nav-item"><a class="nav-link nav-zoom" href="./profile.php">My Account</a></li>
+            <li class=" p1 nav-item"><a class=" p1 nav-link nav-zoom" href="./profile.php">My Account</a></li>
           <?php else: ?>
-            <li class="nav-item"><a class="nav-link nav-zoom" href="./user_registration.php">Register</a></li>
+            <li class=" p1 nav-item"><a class=" p1 nav-link nav-zoom" href="./user_registration.php">Register</a></li>
           <?php endif; ?>
-          <li class="nav-item"><a class="nav-link nav-zoom" href="../contact_page.php">Contact</a></li>
+          <li class=" p1 nav-item"><a class=" p1 nav-link nav-zoom" href="../contact_page.php">Contact</a></li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
-          <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" name="search_data">
-          <button class="btn btn-outline-light" type="submit" name="search_data_product">Search</button>
+        <form class=" p1 form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
+          <input class=" p1 form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" name="search_data">
+          <button class=" p1 btn btn-outline-light" type="submit" name="search_data_product">Search</button>
         </form>
       </div>
     </div>
@@ -51,8 +51,8 @@ if (isset($_SESSION['user_username'])) {
 <?php } ?>
 
 <!-- Main Content -->
-<div class="col-md-12">
-  <div class="row">
+<div class=" p1 col-md-12">
+  <div class=" p1 row">
     <?php
     // Redirect guests to the login page
     if (!isset($_SESSION['user_username'])) {

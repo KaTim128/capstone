@@ -253,10 +253,10 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link nav-zoom" href="index.php">Products</span></a>
+              <a class="nav-link nav-zoom text-light" href="index.php">Products</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-zoom" href="./users/wishlist.php">Wishlist</a>
+              <a class="nav-link nav-zoom text-light" href="./users/wishlist.php">Wishlist</a>
             </li>
             <?php
             if (isset($_SESSION['user_username'])) {
@@ -270,13 +270,13 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
             }
             ?>   
             <li class="nav-item">
-              <a class="nav-link nav-zoom" href="contact_page.php">Contact</a>
+              <a class="nav-link nav-zoom text-light" href="contact_page.php">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-zoom" href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><sup><?php cartItem(); ?></sup></a>
+            <a class=" p1 nav-link nav-zoom text-light" href="cart.php">Cart<sup><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php cartItem(); ?></sup></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
+              <a class="nav-link text-light" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
             </li>
           </ul>
         <form class="form-inline my-2 my-lg-0" action="searchProduct.php" method="get">

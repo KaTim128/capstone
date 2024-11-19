@@ -19,25 +19,25 @@ session_start();
 </head>
 <body>
   <!-- navbar -->
-  <div class="container-fluid p-0 gradient-background">
+  <div class=" p1 container-fluid p-0 gradient-background">
     <!-- first child  -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-color">
-      <div class="container-fluid">
+    <nav class=" p1 navbar navbar-expand-lg navbar-dark navbar-color">
+      <div class=" p1 container-fluid">
         <img src="./images/logo_new.png" alt="" style="width: 6%; height: 7%; margin-right: 15px; border-radius:5px">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class=" p1 navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class=" p1 navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="index.php">Products</span></a>
+        <div class=" p1 collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class=" p1 navbar-nav mr-auto">
+            <li class=" p1 nav-item">
+              <a class=" p1 nav-link nav-zoom text-light" href="index.php">Products</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="./users/wishlist.php">Wishlist</a>
+            <li class=" p1 nav-item">
+              <a class=" p1 nav-link nav-zoom text-light" href="./users/wishlist.php">Wishlist</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="contact_page.php">Contact</a>
+            <li class=" p1 nav-item">
+              <a class=" p1 nav-link nav-zoom text-light" href="contact_page.php">Contact</a>
             </li>
             <?php
             if (isset($_SESSION['user_username'])) {
@@ -50,16 +50,16 @@ session_start();
                     </li>";
             }
             ?>   
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="cart.php">Cart<sup><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php cartItem(); ?></sup></a>
+            <li class=" p1 nav-item">
+              <a class=" p1 nav-link nav-zoom text-light" href="cart.php">Cart<sup><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php cartItem(); ?></sup></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
+            <li class=" p1 nav-item">
+              <a class=" p1 nav-link text-light" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
-            <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
-            <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
+          <form class=" p1 form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
+            <input class=" p1 form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
+            <button class=" p1 btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
           </form>
         </div>
       </nav>
@@ -71,19 +71,19 @@ session_start();
       ?>
 
       <!-- second child -->
-      <ul class="navbar-nav me-auto">
-    <div class="alert-placeholder" style="height: 60px;"></div>
-    <div id="alertContainer" class="text-center"
+      <ul class=" p1 navbar-nav me-auto">
+    <div class=" p1 alert-placeholder" style="height: 60px;"></div>
+    <div id="alertContainer" class=" p1 text-center"
          data-alert-message="<?php echo htmlspecialchars($alertMessage); ?>" 
          data-alert-type="success" 
          style="position: absolute; width: 100%; display: block;"></div>
   </ul>
 
 <!-- fourth child -->
-<div class="row px-3">
-  <div class="col-md-10">
+<div class=" p1 row px-3">
+  <div class=" p1 col-md-10">
     <!-- books -->
-    <div class="row">
+    <div class=" p1 row">
 
     <!-- calling fetch function-->
     <?php
@@ -98,29 +98,29 @@ session_start();
 <!-- column end -->
 </div>          
 
-<div class="col-md-2 p-0 light-grey">
+<div class=" p1 col-md-2 p-0 light-grey">
           <!-- Toggle button for Courses -->
-          <button class="btn toggle-btn btn-style w-100 mb-2" type="button" data-toggle="collapse" data-target="#coursesSidebar" aria-expanded="false" aria-controls="coursesSidebar">
+          <button class=" p1 btn toggle-btn btn-style w-100 mb-2" type="button" data-toggle="collapse" data-target="#coursesSidebar" aria-expanded="false" aria-controls="coursesSidebar">
             <i class="fas fa-book" style="color: white;"></i> <span style="color: white;">Browse Courses</span>
           </button>
 
           <!-- Sidebar content for Courses -->
-          <div id="coursesSidebar" class="collapse">
+          <div id="coursesSidebar" class=" p1 collapse">
             <!-- courses to be displayed -->
-            <ul class="navbar-nav me-auto text-center">
+            <ul class=" p1 navbar-nav me-auto text-center">
               <?php getCourses(); ?> 
             </ul>
           </div>
 
           <!-- Toggle button for Stationeries -->
-          <button class="btn toggle-btn btn-style w-100 mb-2" type="button" data-toggle="collapse" data-target="#stationeriesSidebar" aria-expanded="false" aria-controls="stationeriesSidebar">
+          <button class=" p1 btn toggle-btn btn-style w-100 mb-2" type="button" data-toggle="collapse" data-target="#stationeriesSidebar" aria-expanded="false" aria-controls="stationeriesSidebar">
             <i class="fas fa-pencil-alt" style="color: white;"></i> <span style="color: white;">Browse Stationeries</span>
           </button>
 
           <!-- Sidebar content for Stationeries -->
-          <div id="stationeriesSidebar" class="collapse">
+          <div id="stationeriesSidebar" class=" p1 collapse">
             <!-- stationaries to be displayed -->
-            <ul class="navbar-nav me-auto text-center">
+            <ul class=" p1 navbar-nav me-auto text-center">
               <?php getStationeries(); ?>
             </ul>
           </div>

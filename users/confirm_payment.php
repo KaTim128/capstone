@@ -52,27 +52,27 @@ if (isset($_POST['confirm_payment'])) {
         }
     </style>
 </head>
-<body class="">
-    <div class="container my-5">
-        <h1 class="text-center text-dark mb-4" style="overflow:hidden">Confirm Payment</h1>
-        <form action="" method="post" class="text-center w-50 m-auto">
-            <div class="form-outline my-4">
-                <label for="invoice_number" class="text-dark"><b>Invoice Number</b></label>
-                <input type="text" id="invoice_number" class="form-control w-100 text-center" name="invoice_number" value="<?php echo $invoice_number ?>" readonly>
+<body class=" p1 ">
+    <div class=" p1 container my-5">
+        <h1 class=" p1 text-center text-dark mb-4" style="overflow:hidden">Confirm Payment</h1>
+        <form action="" method="post" class=" p1 text-center w-50 m-auto">
+            <div class=" p1 form-outline my-4">
+                <label for="invoice_number" class=" p1 text-dark"><b>Invoice Number</b></label>
+                <input type="text" id="invoice_number" class=" p1 form-control w-100 text-center" name="invoice_number" value="<?php echo $invoice_number ?>" readonly>
             </div>
-            <div class="form-outline my-4">
-                <label for="amount" class="text-dark"><b>Amount (RM)</b></label>
-                <input type="text" id="amount" class="form-control w-100 text-center" name="amount" value="<?php echo $amount_due ?>" readonly>
+            <div class=" p1 form-outline my-4">
+                <label for="amount" class=" p1 text-dark"><b>Amount (RM)</b></label>
+                <input type="text" id="amount" class=" p1 form-control w-100 text-center" name="amount" value="<?php echo $amount_due ?>" readonly>
             </div>
-            <div class="form-outline my-5">
-                <select id="payment_mode" name="payment_mode" class="form-select w-100" style="text-align-last: center; padding-left: 10px; text-indent: 10px;" required>
+            <div class=" p1 form-outline my-5">
+                <select id="payment_mode" name="payment_mode" class=" p1 form-select w-100" style="text-align-last: center; padding-left: 10px; text-indent: 10px;" required>
                     <option value="" hidden>Select Payment Mode</option>
                     <option value="Paypal">Paypal</option>
                 </select>
             </div>
-            <div class="form-outline text-center" style="margin-top:-12px;">
-                <a href="profile.php" class="btn py-2 px-5 border-0 text-light btn-style me-3 m-2" style="text-decoration: none;">Back</a>
-                <input type="submit" class="btn py-2 px-5 border-0 text-light btn-style m-2" value="Confirm" name="confirm_payment">
+            <div class=" p1 form-outline text-center" style="margin-top:-12px;">
+                <a href="profile.php" class=" p1 btn py-2 px-5 border-0 text-light btn-style me-3 m-2" style="text-decoration: none;">Back</a>
+                <input type="submit" class=" p1 btn py-2 px-5 border-0 text-light btn-style m-2" value="Confirm" name="confirm_payment">
             </div>
         </form>
     </div>

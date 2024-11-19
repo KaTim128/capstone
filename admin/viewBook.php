@@ -33,7 +33,6 @@
     </style>
 </head>
 <body>
-    <h4 class="text-center text-success mt-4">All Books</h4>
     <div class="table-responsive"> <!-- Added this div for scrollable table -->
         <table class="table table-bordered mt-2">
             <?php
@@ -44,7 +43,9 @@
             if ($row_count == 0) {
                 echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There are no books yet.</div>";
             } else {
-                echo "<thead class='table-color'>
+                echo "
+                <h4 class='text-center text-success mt-4'>All Books</h4>
+                <thead class='table-color'>
                         <tr class='text-center'>
                             <th>Book ID</th>
                             <th>Book Title</th>
@@ -57,7 +58,7 @@
                         </tr>
                       </thead>
                       <tbody class='bg-secondary text-light'>";
-                
+
                 $number = 0;
                 while ($row = mysqli_fetch_assoc($result)) {
                     $book_id = $row['book_id'];
@@ -97,7 +98,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
-                    <h6>Are you sure you would like to delete this book?</h6>
+                    <h6 style="overflow:hidden;">Are you sure you would like to delete this book?</h6>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>

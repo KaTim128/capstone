@@ -1,6 +1,8 @@
 <?php
 include('../functions/common_function.php');
 
+$alertMessage = ''; // Initialize the alert message variable
+
 if (isset($_POST['admin_registration'])) {
     $admin_email = $_POST['email'];
     $admin_password = $_POST['password'];
@@ -8,10 +10,10 @@ if (isset($_POST['admin_registration'])) {
     // Fetch the admin record based on email
     $select_query = "SELECT * FROM admin_table WHERE admin_email='$admin_email'";
     $result = mysqli_query($conn, $select_query);
-    
+
     if (mysqli_num_rows($result) > 0) {
         $admin_data = mysqli_fetch_assoc($result);
-        
+
         // Verify the password
         if (password_verify($admin_password, $admin_data['admin_password'])) {
             // Password is correct; start session
@@ -19,13 +21,31 @@ if (isset($_POST['admin_registration'])) {
             $_SESSION['admin_name'] = $admin_data['admin_name'];
             $_SESSION['admin_email'] = $admin_email;
             $_SESSION['admin_id'] = $admin_data['admin_id']; // Store admin_id in session
-            header("Location: adminPanel.php");
-            exit();
+
+            // Success alert message
+            $alertMessage = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                Login successful! Redirecting to the admin panel...
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>';
+            // Redirect after success, using JavaScript to avoid direct page load
+            echo "<script>setTimeout(function() { window.location.href = 'adminPanel.php'; }, 3000);</script>";
         } else {
-            echo "<script>alert('Invalid password!')</script>";
+            $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                Invalid password!
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>';
         }
     } else {
-        echo "<script>alert('No account found with this email!')</script>";
+        $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            No account found with this email!
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>';
     }
 }
 ?>
@@ -39,9 +59,18 @@ if (isset($_POST['admin_registration'])) {
     <!-- Bootstrap CSS link -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="admin_style.css">
-
+    <style>
+        /* Center the text in alert messages */
+        .alert {
+            text-align: center;
+        }
+    </style>
 </head>
 <body class="front-background admin-color">
+    <div id="alertContainer">
+        <?php echo $alertMessage; ?>
+    </div>
+
     <div class="container-fluid m-3 front-background">
         <h2 class="text-center my-5 text-light">Admin Login</h2>
         <div class="row d-flex justify-content-center align-items-center form-container">
@@ -74,5 +103,22 @@ if (isset($_POST['admin_registration'])) {
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+
+    <!-- Optional: Slide-up effect on alert message -->
+    <script>
+    window.onload = function () {
+        const alertContainer = document.getElementById("alertContainer");
+
+        // If the alert container has content, make it slide up after 3 seconds
+        if (alertContainer.innerHTML.trim() !== "") {
+            setTimeout(() => {
+                // Slide up the alert
+                $(alertContainer).slideUp(600, () => {
+                    alertContainer.innerHTML = ""; // Clear the alert after the slide-up animation
+                });
+            }, 3000);
+        }
+    };
+    </script>
 </body>
 </html>

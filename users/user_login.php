@@ -68,28 +68,28 @@ if(isset($_POST['user_login'])){
         <link rel="stylesheet" href="login_style.css">
 </head>
 <body>
-    <div class="login-container">
-        <div class="logo-container">
+    <div class=" p1 login-container">
+        <div class=" p1 logo-container">
             <img src="../images/logo_new.png" alt="Logo" style="border-radius:10px;">
         </div>
-        <div class="form-container border">
+        <div class=" p1 form-container border">
             <h2>User Login</h2>
-            <div id="alertContainer" class="alert-container text-center" data-alert-message="<?= htmlspecialchars($alert_message) ?>" data-alert-type="<?= $alert_type ?>">
+            <div id="alertContainer" class=" p1 alert-container text-center" data-alert-message="<?= htmlspecialchars($alert_message) ?>" data-alert-type="<?= $alert_type ?>">
             </div>
             <form action="" method="post">
-                <div class="form-group">
+                <div class=" p1 form-group">
                     <label for="user_email">Email</label>
-                    <input type="email" id="user_email" class="form-control" placeholder="Enter your email" name="user_email" required>
+                    <input type="email" id="user_email" class=" p1 form-control" placeholder="Enter your email" name="user_email" required>
                 </div>
-                <div class="form-group">
+                <div class=" p1 form-group">
                     <label for="user_password">Password</label>
-                    <input type="password" id="user_password" class="form-control" placeholder="Enter your password" name="user_password" required>
+                    <input type="password" id="user_password" class=" p1 form-control" placeholder="Enter your password" name="user_password" required>
                 </div>
-                <input type="submit" value="Login" class="btn btn-btns mt-4 mb-4" name="user_login">
-                <p class="mt-2 text-register text-center">
+                <input type="submit" value="Login" class=" p1 btn btn-btns mt-4 mb-4" name="user_login">
+                <p class=" p1 mt-2 text-register text-center">
                     Login as guest? <a href="../index.php">Click Here</a>
                 </p>
-                <p class="mt-2 text-register text-center">
+                <p class=" p1 mt-2 text-register text-center">
                     Don't have an account? <a href="user_registration.php">Register</a>
                 </p>
             </form>

@@ -136,22 +136,22 @@ if (isset($_POST['remove_cart'])) {
 </head>
 <body>
   <!-- navbar -->
-  <div class="container-fluid p-0 gradient-background">
+  <div class=" p1 container-fluid p-0 gradient-background">
     <!-- first child  -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-color">
-      <div class="container-fluid">
+    <nav class=" p1 navbar navbar-expand-lg navbar-dark navbar-color">
+      <div class=" p1 container-fluid">
         <img src="./images/logo_new.png" alt="" style="width: 6%; height: 7%; margin-right: 15px; border-radius:5px">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class=" p1 navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class=" p1 navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="index.php">Products</span></a>
+        <div class=" p1 collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class=" p1 navbar-nav mr-auto">
+            <li class=" p1 nav-item">
+              <a class=" p1 nav-link nav-zoom text-light" href="index.php">Products</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="./users/wishlist.php">Wishlist</a>
+            <li class=" p1 nav-item">
+              <a class=" p1 nav-link nav-zoom text-light" href="./users/wishlist.php">Wishlist</a>
             </li>
             
             <?php
@@ -165,19 +165,19 @@ if (isset($_POST['remove_cart'])) {
                     </li>";
             }
             ?> 
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="contact_page.php">Contact</a>
+            <li class=" p1 nav-item">
+              <a class=" p1 nav-link nav-zoom text-light" href="contact_page.php">Contact</a>
             </li>  
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="cart.php">Cart<sup><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php cartItem(); ?></sup></a>
+            <li class=" p1 nav-item">
+              <a class=" p1 nav-link nav-zoom text-light" href="cart.php">Cart<sup><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php cartItem(); ?></sup></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
+            <li class=" p1 nav-item">
+              <a class=" p1 nav-link text-light" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
-            <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
-            <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
+          <form class=" p1 form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
+            <input class=" p1 form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
+            <button class=" p1 btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
           </form>
         </div>
       </nav>
@@ -194,13 +194,13 @@ if (isset($_POST['remove_cart'])) {
       ?>
 
       <!-- second child -->
-      <div id="alertContainer" class="text-center" data-alert-message="<?php echo htmlspecialchars($alertMessage); ?>" style="display: none;"></div>
+      <div id="alertContainer" class=" p1 text-center" data-alert-message="<?php echo htmlspecialchars($alertMessage); ?>" style="display: none;"></div>
 
 
-<h3 class="text-center" style="margin-top:69px; overflow:hidden">Your Cart</h3>
+<h3 class=" p1 text-center" style="margin-top:69px; overflow:hidden">Your Cart</h3>
 <!-- Cart Table -->
-<div class="container">
-  <div class="table-responsive">
+<div class=" p1 container">
+  <div class=" p1 table-responsive">
     <form action="cart.php" method="post">
       <?php
       // Get items from cart
@@ -213,9 +213,9 @@ if (isset($_POST['remove_cart'])) {
       } else {
           // Only display the table if there are items in the cart
           ?>
-          <table class="table table-bordered table-striped center-table mt-3">
+          <table class=" p1 table table-bordered table-striped center-table mt-3">
             <thead>
-              <tr class="table-color">
+              <tr class=" p1 table-color">
                 <th>Product Title</th>
                 <th>Product Image</th>
                 <th>Quantity</th>
@@ -247,8 +247,8 @@ if (isset($_POST['remove_cart'])) {
                   ?>
                   <tr>
                     <td><?php echo $book_title; ?></td>
-                    <td><img src="./admin/bookImages/<?php echo $book_image; ?>" alt="" class="cart-img img-fluid"></td>
-                    <td><input type="number" name="qty[b<?php echo $book_id; ?>]" value="<?php echo $quantity; ?>" class="form-input w-70" min="1" max="10" oninput="this.value = Math.max(this.value, 1)"></td>
+                    <td><img src="./admin/bookImages/<?php echo $book_image; ?>" alt="" class=" p1 cart-img img-fluid"></td>
+                    <td><input type="number" name="qty[b<?php echo $book_id; ?>]" value="<?php echo $quantity; ?>" class=" p1 form-input w-70" min="1" max="10" oninput="this.value = Math.max(this.value, 1)"></td>
                     <td>RM<?php echo number_format($book_price * $quantity, 2); ?>/-</td>
                     <td>
                         <select name="booktype[b<?php echo $book_id; ?>]">
@@ -257,8 +257,8 @@ if (isset($_POST['remove_cart'])) {
                         </select>
                     </td>
                     <td colspan="2">
-                    <button type="submit" class="btn btn-style px-3 py-1 mx-3 mb-3 border-0" name="update_cart">Update Cart</button>
-                    <button type="submit" class="btn btn-danger px-3 py-1 mb-3 border-0" name="remove_cart" value="b<?php echo $book_id; ?>">Remove</button>
+                    <button type="submit" class=" p1 btn btn-style px-3 py-1 mx-3 mb-3 border-0" name="update_cart">Update Cart</button>
+                    <button type="submit" class=" p1 btn btn-danger px-3 py-1 mb-3 border-0" name="remove_cart" value="b<?php echo $book_id; ?>">Remove</button>
                     </td>
                   </tr>
                   <?php
@@ -276,13 +276,13 @@ if (isset($_POST['remove_cart'])) {
                   ?>
                   <tr>
                       <td><?php echo $tool_title; ?></td>
-                      <td><img src="./admin/toolImages/<?php echo $tool_image; ?>" alt="" class="cart-img img-fluid"></td>
-                      <td><input type="number" name="qty[t<?php echo $tool_id; ?>]" value="<?php echo $quantity; ?>" class="form-input w-70" min="1" max="10" oninput="this.value = Math.max(this.value, 1)"></td>
+                      <td><img src="./admin/toolImages/<?php echo $tool_image; ?>" alt="" class=" p1 cart-img img-fluid"></td>
+                      <td><input type="number" name="qty[t<?php echo $tool_id; ?>]" value="<?php echo $quantity; ?>" class=" p1 form-input w-70" min="1" max="10" oninput="this.value = Math.max(this.value, 1)"></td>
                       <td>RM<?php echo number_format($tool_price * $quantity, 2); ?>/-</td>
                       <td></td>
                       <td colspan="2">
-                      <button type="submit" class="btn btn-style px-3 py-1 mx-3 mb-3 border-0" name="update_cart">Update Cart</button>
-                      <button type="submit" class="btn btn-danger px-3 py-1 mb-3 border-0" name="remove_cart" value="t<?php echo $tool_id; ?>">Remove</button>
+                      <button type="submit" class=" p1 btn btn-style px-3 py-1 mx-3 mb-3 border-0" name="update_cart">Update Cart</button>
+                      <button type="submit" class=" p1 btn btn-danger px-3 py-1 mb-3 border-0" name="remove_cart" value="t<?php echo $tool_id; ?>">Remove</button>
                       </td>
                   </tr>
                   <?php
@@ -299,12 +299,12 @@ if (isset($_POST['remove_cart'])) {
 </div>
 
       <!-- total price -->
-      <div class="container mb-5">
-      <h4 class="mb-3 mt-5" style="overflow: hidden;">Total Price: RM<?php echo number_format($total_price, 2); ?></h4>
-        <a href="index.php" class="btn btn-style mr-2">Continue Shopping</a>
+      <div class=" p1 container mb-5">
+      <h4 class=" p1 mb-3 mt-5" style="overflow: hidden;">Total Price: RM<?php echo number_format($total_price, 2); ?></h4>
+        <a href="index.php" class=" p1 btn btn-style mr-2">Continue Shopping</a>
         
         <?php if($num_of_rows > 0){ ?>
-          <a href="./users/checkout.php" class="btn btn-style">Checkout</a>
+          <a href="./users/checkout.php" class=" p1 btn btn-style">Checkout</a>
         <?php } ?>
       </div>
     </div>

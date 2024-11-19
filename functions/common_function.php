@@ -18,14 +18,14 @@ function getBooks(){
               $image = $row['image'];
               $price = $row['price'];
               $course_id = $row['course_id'];
-              echo "<div class='col-md-3 mb-2'>
-              <div class='card card-background'>
-                <img src='admin/bookImages/$image' class='card-img-top' alt='Book Image'>
-                <div class='card-body'>
-                  <h6 class='card-title'>$book_title</h6>
-                  <p class='card-text'><b>RM$price/</b><span><b>(Printed)</span></b></p>
-                  <a href='index.php?cart=$book_id' class='btn btn-style mb-2'>Add to Cart</a>
-                  <a href='bookDetails.php?book_id=$book_id' class='btn btn-style mb-2'>Details</a>
+              echo "<div class=' p1 col-md-3 mb-2'>
+              <div class=' p1 card card-background'>
+                <img src='admin/bookImages/$image' class=' p1 card-img-top' alt='Book Image'>
+                <div class=' p1 card-body'>
+                  <h6 class=' p1 card-title'>$book_title</h6>
+                  <p class=' p1 card-text'><b>RM$price/</b><span><b>(Printed)</span></b></p>
+                  <a href='index.php?cart=$book_id' class=' p1 btn btn-style mb-2'>Add to Cart</a>
+                  <a href='bookDetails.php?book_id=$book_id' class=' p1 btn btn-style mb-2'>Details</a>
                 </div>
               </div>
             </div>";
@@ -44,7 +44,7 @@ function getUniqueCourses(){
       $result_query = mysqli_query($conn, $select_query);
       $num_of_rows = mysqli_num_rows($result_query);
       if ($num_of_rows == 0) {
-        echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There is no stock for this course.</div>";
+        echo "<div class=' p1 alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There is no stock for this course.</div>";
     }
     
       while ($row = mysqli_fetch_assoc($result_query)) {
@@ -55,14 +55,14 @@ function getUniqueCourses(){
           $image = $row['image'];
           $price = $row['price'];
           $course_id = $row['course_id'];
-          echo "<div class='col-md-3 mb-2'>
-                  <div class='card card-background'>
-                    <img src='admin/bookImages/$image' class='card-img-top' alt='Book Image'>
-                    <div class='card-body'>
-                      <h6 class='card-title'>$book_title</h6>
-                      <p class='card-text'><b>RM$price/</b><span><b>(Printed)</span></b></p>
-                      <a href='index.php?cart=$book_id' class='btn btn-style mb-1 me-3'>Add to Cart</a>
-                      <a href='bookDetails.php?book_id=$book_id' class='btn btn-style mb-1'>Details</a>
+          echo "<div class=' p1 col-md-3 mb-2'>
+                  <div class=' p1 card card-background'>
+                    <img src='admin/bookImages/$image' class=' p1 card-img-top' alt='Book Image'>
+                    <div class=' p1 card-body'>
+                      <h6 class=' p1 card-title'>$book_title</h6>
+                      <p class=' p1 card-text'><b>RM$price/</b><span><b>(Printed)</span></b></p>
+                      <a href='index.php?cart=$book_id' class=' p1 btn btn-style mb-1 me-3'>Add to Cart</a>
+                      <a href='bookDetails.php?book_id=$book_id' class=' p1 btn btn-style mb-1'>Details</a>
                     </div>
                   </div>
                 </div>";
@@ -79,7 +79,7 @@ function getUniqueTools(){
       $result_query = mysqli_query($conn, $select_query);
       $num_of_rows = mysqli_num_rows($result_query);
       if($num_of_rows == 0){
-        echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There is no stock for this stationary.</div>";
+        echo "<div class=' p1 alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There is no stock for this stationary.</div>";
       }
       while ($row = mysqli_fetch_assoc($result_query)) {
           $tool_id = 't' . $row['tool_id'];
@@ -88,14 +88,14 @@ function getUniqueTools(){
           $image = $row['image'];
           $price = $row['price'];
           $stationery_id = $row['stationery_id'];
-          echo "<div class='col-md-3 mb-2'>
-                  <div class='card card-background'>
-                    <img src='admin/toolImages/$image' class='card-img-top' alt='Tool Image'>
-                    <div class='card-body'>
-                      <h5 class='card-title '>$tool_title</h5>
-                      <p class='card-text'><b>RM$price/-</b></p>
-                      <a href='index.php?cart=$tool_id' class='btn btn-style mb-1 me-3'>Add to Cart</a>
-                      <a href='toolDetails.php?tool_id=$tool_id' class='btn btn-style mb-1'>Details</a>
+          echo "<div class=' p1 col-md-3 mb-2'>
+                  <div class=' p1 card card-background'>
+                    <img src='admin/toolImages/$image' class=' p1 card-img-top' alt='Tool Image'>
+                    <div class=' p1 card-body'>
+                      <h5 class=' p1 card-title p1'>$tool_title</h5>
+                      <p class=' p1 card-text p1'><b>RM$price/-</b></p>
+                      <a href='index.php?cart=$tool_id' class=' p1 p1 btn btn-style mb-1 me-3'>Add to Cart</a>
+                      <a href='toolDetails.php?tool_id=$tool_id' class=' p1 p1 btn btn-style mb-1'>Details</a>
                     </div>
                   </div>
                 </div>";
@@ -112,8 +112,8 @@ function getCourses(){
       while($row_data=mysqli_fetch_assoc($result_courses)){
         $course_title=$row_data['course_title'];
         $course_id=$row_data['course_id'];
-        echo "<li class='nav-item'>
-        <a href='index.php?course=$course_id' class='nav-link nav-zoom text-dark'><b>$course_title</b></a>
+        echo "<li class=' p1 nav-item p1'>
+        <a href='index.php?course=$course_id' class=' p1 p1 nav-link nav-zoom text-dark'><b>$course_title</b></a>
         </li>";
       }
     }
@@ -127,8 +127,8 @@ function getStationeries(){
       while($row_data=mysqli_fetch_assoc($result_stationaries)){
         $stationery_title=$row_data['stationery_title'];
         $stationery_id=$row_data['stationery_id'];
-        echo "<li class='nav-item'>
-        <a href='index.php?stationery=$stationery_id' class='nav-link nav-zoom text-dark'><b>$stationery_title</b></a>
+        echo "<li class=' p1 p1 nav-item'>
+        <a href='index.php?stationery=$stationery_id' class=' p1 p1 nav-link nav-zoom text-dark'><b>$stationery_title</b></a>
         </li>";
       }
     }
@@ -159,8 +159,8 @@ function getStationeries(){
         }
         </style>
 
-        <div class='footer dark-green'>
-          <p class='mt-3 text-light'><b>Website, Designed by Ho Ka Tim © 2024.</b></p>
+        <div class=' p1 footer dark-green'>
+          <p class=' p1 p1 mt-3 text-light'><b>Website, Designed by Ho Ka Tim © 2024.</b></p>
         </div>";
     }
     
@@ -186,7 +186,7 @@ function searchProducts() {
 
       // If no products are found
       if ($num_of_rows == 0) {
-          echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>Product searched is not found.</div>";
+          echo "<div class=' p1 alert alert-warning text-center mt-4 p1' style='margin: 0 auto; width: fit-content;'>Product searched is not found.</div>";
       }
 
       // Display results from both books and tools
@@ -201,14 +201,14 @@ function searchProducts() {
           $details_url = $type === 'book' ? "bookDetails.php?book_id=b$id" : "toolDetails.php?tool_id=t$id";
           $cart_url = $type === 'book' ? "index.php?cart=b$id" : "index.php?cart=t$id";
 
-          echo "<div class='col-md-3 mb-2'>
-                  <div class='card card-background'>
-                    <img src='admin/{$type}Images/$image' class='card-img-top' alt='Product Image'>
-                    <div class='card-body'>
-                      <h6 class='card-title'>$title</h6>
-                      <p class='card-text'><b>RM$price/-</b></p>
-                      <a href='$cart_url' class='btn btn-style mb-1'>Add to Cart</a>
-                      <a href='$details_url' class='btn btn-style mb-1'>Details</a>
+          echo "<div class=' p1 col-md-3 mb-2'>
+                  <div class=' p1 card card-background'>
+                    <img src='admin/{$type}Images/$image' class=' p1 card-img-top' alt='Product Image'>
+                    <div class=' p1 card-body'>
+                      <h6 class=' p1 card-title p1'>$title</h6>
+                      <p class=' p1 card-text p1'><b>RM$price/-</b></p>
+                      <a href='$cart_url' class=' p1 p1 btn btn-style mb-1'>Add to Cart</a>
+                      <a href='$details_url' class=' p1 p1 btn btn-style mb-1'>Details</a>
                     </div>
                   </div>
                 </div>";
@@ -241,40 +241,40 @@ function viewBookDetails() {
               $image = $row['image'];
               $price = $row['price'];
 
-              $digital_price = $price / 4;
+              $digital_price = $price / 3;
 
               // Prepare the correct book_id for the reviews button
               $book_id_for_reviews = $row['book_id']; // Use the actual book_id from the database
 
-              echo "<div class='col-md- mb-2'>
-        <div class='card mt-4'>
-          <img src='admin/bookImages/$image' class='' style='width:150px; height:190px;' alt='Book Image'>
+              echo "<div class=' p1 col-md- mb-2'>
+        <div class=' p1 card mt-4'>
+          <img src='admin/bookImages/$image' class=' p1 ' style='width:150px; height:190px;' alt='Book Image'>
         </div>
       </div>
       
-      <div class='col-md-8'>
-        <div class='row'>
-          <div class='col-md-12'>
-            <h3 class='text-dark mb-4 mt-4' style='overflow:hidden'>$book_title</h3>
-            <div class='mb-4 d-flex justify-content-between align-items-center'>
-              <h5 class='mb-0' style='overflow:hidden'>Author: $author</h5>
+      <div class=' p1 col-md-8'>
+        <div class=' p1 row'>
+          <div class=' p1 col-md-12'>
+            <h3 class=' p1 text-dark mb-4 mt-4' style='overflow:hidden'>$book_title</h3>
+            <div class=' p1 mb-4 d-flex justify-content-between align-items-center'>
+              <h5 class=' p1 mb-0' style='overflow:hidden'>Author: $author</h5>
               <div>
-                <h6 class='mb-0' style='overflow:hidden'>RM$price <span>(Printed)</span></h6>
-                <h6 class='mb-0' style='overflow:hidden'>RM$digital_price <span>(Digital)</span></h6>
+                <h6 class=' p1 mb-0' style='overflow:hidden'>RM$price <span>(Printed)</span></h6>
+                <h6 class=' p1 mb-0' style='overflow:hidden'>RM$digital_price <span>(Digital)</span></h6>
               </div>
             </div>
-            <h6 class='mb-5' style='overflow:hidden'>$description</h6>
-            <div class='d-flex align-items-center'>
-              <a href='index.php' class='btn btn-details me-2 mb-3 mx-2 btn-style'>Back</a>
-              <a href='index.php?cart=$book_id' class='btn btn-details me-2 mb-3 mx-2 btn-style'>Add to Cart</a>
-              <form method='post' action='users/wishlist.php' class='me-2 mb-3 mx-2' style='overflow:hidden'>
+            <h6 class=' p1 mb-5' style='overflow:hidden'>$description</h6>
+            <div class=' p1 d-flex align-items-center'>
+              <a href='index.php' class=' p1 btn btn-details me-2 mb-3 mx-2 btn-style'>Back</a>
+              <a href='index.php?cart=$book_id' class=' p1 btn btn-details me-2 mb-3 mx-2 btn-style'>Add to Cart</a>
+              <form method='post' action='users/wishlist.php' class=' p1 me-2 mb-3 mx-2' style='overflow:hidden'>
                   <input type='hidden' name='book_id' value='$book_id_with_prefix'>
                   <input type='hidden' name='book_title' value='$book_title'>
                   <input type='hidden' name='book_image' value='$image'>
                   <input type='hidden' name='book_price' value='$price'>
-                  <input type='submit' class='btn btn-details btn-style' style='overflow:hidden' name='add_to_wishlist' value='Add to Wishlist'>
+                  <input type='submit' class=' p1 btn btn-details btn-style' style='overflow:hidden' name='add_to_wishlist' value='Add to Wishlist'>
               </form>
-              <a href='reviews.php?book_id=b$book_id_for_reviews' class='btn btn-details mb-3 ml-1 btn-style'>Reviews</a>
+              <a href='reviews.php?book_id=b$book_id_for_reviews' class=' p1 btn btn-details mb-3 ml-1 btn-style'>Reviews</a>
             </div>
           </div>
         </div>
@@ -314,29 +314,29 @@ function viewToolDetails() {
               // Prepare the correct tool_id for the reviews button
               $tool_id_for_reviews = $row['tool_id']; // Use the actual tool_id from the database
 
-              echo "<div class='col-md-3 mb-2'>
-          <div class='card mt-4'>
-            <img src='admin/toolImages/$image' class='' style='width:150px; height:190px;' alt='Tool Image'>
+              echo "<div class=' p1 col-md-3 mb-2'>
+          <div class=' p1 card mt-4'>
+            <img src='admin/toolImages/$image' class=' p1 ' style='width:150px; height:190px;' alt='Tool Image'>
           </div>
       </div>
       
-      <div class='col-md-8'>
-          <div class='row'>
-              <div class='col-md-12'>
-                  <h3 class='text-dark mb-5 mt-4 text'>$tool_title</h3>
-                  <h6 class='mr-5 mb-5 text'>Price: RM$price/-</h6>
-                  <h6 class='mb-5' style='overflow:hidden'>$description</h6>
-                  <div class='d-flex align-items-center'>
-                      <a href='index.php' class='btn btn-details me-2 mb-3 mr-2 btn-style'>Back</a>
-                      <a href='index.php?cart=$tool_id' class='btn btn-details me-2 mb-3 mr-2 ml-1 btn-style'>Add to Cart</a>
-                      <form method='post' action='users/wishlist.php' class='me-2 mb-3 ml-1' style='overflow:hidden'>
+      <div class=' p1 col-md-8'>
+          <div class=' p1 row'>
+              <div class=' p1 col-md-12'>
+                  <h3 class=' p1 text-dark mb-5 mt-4 text'>$tool_title</h3>
+                  <h6 class=' p1 mr-5 mb-5 text'>Price: RM$price/-</h6>
+                  <h6 class=' p1 mb-5' style='overflow:hidden'>$description</h6>
+                  <div class=' p1 d-flex align-items-center'>
+                      <a href='index.php' class=' p1 btn btn-details me-2 mb-3 mr-2 btn-style'>Back</a>
+                      <a href='index.php?cart=$tool_id' class=' p1 btn btn-details me-2 mb-3 mr-2 ml-1 btn-style'>Add to Cart</a>
+                      <form method='post' action='users/wishlist.php' class=' p1 me-2 mb-3 ml-1' style='overflow:hidden'>
                           <input type='hidden' name='tool_id' value='$tool_id_with_prefix'>
                           <input type='hidden' name='tool_title' value='$tool_title'>
                           <input type='hidden' name='tool_image' value='$image'>
                           <input type='hidden' name='tool_price' value='$price'>
-                          <input type='submit' class='btn btn-details btn-style' style='overflow:hidden' name='add_to_wishlist' value='Add to Wishlist'>
+                          <input type='submit' class=' p1 btn btn-details btn-style' style='overflow:hidden' name='add_to_wishlist' value='Add to Wishlist'>
                       </form>
-                      <a href='reviews.php?tool_id=t$tool_id_for_reviews' class='btn btn-details mb-3 ml-1 btn-style'>Reviews</a>
+                      <a href='reviews.php?tool_id=t$tool_id_for_reviews' class=' p1 btn btn-details mb-3 ml-1 btn-style'>Reviews</a>
                   </div>
               </div>
           </div>
@@ -487,7 +487,7 @@ function manageCart() {
 
 // On your page load, display the alert message if it exists
 if (isset($_SESSION['cart_alert'])) {
-  echo "<div class='alert'>" . $_SESSION['cart_alert'] . "</div>";
+  echo "<div class=' p1 alert'>" . $_SESSION['cart_alert'] . "</div>";
   unset($_SESSION['cart_alert']); // Clear the alert after displaying it
 }
 
@@ -594,11 +594,11 @@ function totalCartPrice() {
             $result_orders_query = mysqli_query($conn, $get_orders);
             $row_count = mysqli_num_rows($result_orders_query);
             if ($row_count > 0) {
-                echo "<h3 class='text-center' style='margin-top:100px; overflow:hidden'>You have <span class='text-success'>$row_count </span> pending orders</h3>";
-                echo "<p class='text-center'><a href='profile.php?my_orders' class='text-dark'>Order Details</a></p>";          
+                echo "<h3 class=' p1 text-center' style='margin-top:100px; overflow:hidden'>You have <span class=' p1 text-success'>$row_count </span> pending orders</h3>";
+                echo "<p class=' p1 text-center'><a href='profile.php?my_orders' class=' p1 text-dark'>Order Details</a></p>";          
               } else {
-                echo "<h3 class='text-center' style='margin-top:100px; overflow:hidden'>You have 0 pending orders</h3>";
-                echo "<p class='text-center'><a href='../index.php' class='text-dark'>Explore products</a></p>";
+                echo "<h3 class=' p1 text-center' style='margin-top:100px; overflow:hidden'>You have 0 pending orders</h3>";
+                echo "<p class=' p1 text-center'><a href='../index.php' class=' p1 text-dark'>Explore products</a></p>";
             }
         }
     }

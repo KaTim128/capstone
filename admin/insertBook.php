@@ -1,6 +1,8 @@
 <?php
 include('../database/connection.php');
 
+$alertMessage = ''; // Initialize the alert message variable
+
 if (isset($_POST['insert_book'])) {
     $book_title = $_POST['book_title'];
     $author = $_POST['author'];
@@ -12,13 +14,16 @@ if (isset($_POST['insert_book'])) {
 
     // Accessing images
     $image = $_FILES['image']['name'];
-    // Accessing image temp name
     $temp_image = $_FILES['image']['tmp_name'];
 
     // Checking empty conditions
     if ($book_title == '' || $author == '' || $description == '' || $keyword == '' || $book_course == '' || $price == '' || $image == '') {
-        echo "<script>alert('Please fill in all the available fields')</script>";
-        exit();
+        $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Please fill in all the available fields!
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>';
     } else {
         // Move image into folder
         move_uploaded_file($temp_image, "./bookImages/$image");
@@ -29,10 +34,21 @@ if (isset($_POST['insert_book'])) {
         $result_query = mysqli_query($conn, $insert_book);
 
         if ($result_query) {
-            echo "<script>alert('Successfully added the book!')</script>";
+            // Success alert message
+            $alertMessage = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                Successfully added the book!
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>';
         } else {
-            echo "<script>alert('Failed to add the book')</script>";
-            // Optionally, you can also output the MySQL error for debugging
+            $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                Failed to add the book. Please try again later.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>';
+            // Optionally, output the MySQL error for debugging
             echo mysqli_error($conn);
         }
     }
@@ -57,6 +73,7 @@ if (isset($_POST['insert_book'])) {
         body {
             overflow: hidden;
         }
+
         .form-container {
             border: 1px solid #ccc;
             border-radius: 8px;
@@ -66,18 +83,29 @@ if (isset($_POST['insert_book'])) {
             flex-direction: column;
             justify-content: center;
         }
+
         .form-outline {
             margin-bottom: 1.5rem;
         }
+
         .btn-info {
             background-color: #17a2b8;
             border: none;
+        }
+
+        /* Center the text in alert messages */
+        .alert {
+            text-align: center;
         }
     </style>
 
 </head>
 
 <body class="bg-light">
+    <div id="alertContainer">
+        <?php echo $alertMessage; ?>
+    </div>
+
     <div class="container mt-3">
         <h4 class="text-center text-success" style="overflow:hidden;">Insert Books</h4>
         <!-- Form -->
@@ -142,9 +170,27 @@ if (isset($_POST['insert_book'])) {
     </div>
 
     <!-- Bootstrap JS links -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> <!-- Full version of jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+
+    <!-- Optional: Slide-up effect on alert message -->
+    <script>
+        window.onload = function () {
+        const alertContainer = document.getElementById("alertContainer");
+
+        // If the alert container has content, make it slide up after 3 seconds
+        if (alertContainer.innerHTML.trim() !== "") {
+            setTimeout(() => {
+                // Slide up the alert
+                $(alertContainer).slideUp(600, () => {
+                    alertContainer.innerHTML = ""; // Clear the alert after the slide-up animation
+                });
+            }, 3000);
+        }
+    };
+</script>
+
 </body>
 
 </html>

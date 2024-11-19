@@ -14,9 +14,9 @@
     $user_id = $row_fetch['user_id'];
     ?>
 
-    <h4 class="mt-4 text-center text-success" style="overflow:hidden">Pending Orders</h4>
-    <div class="table-container mr-3">
-        <table class="table-bordered table text-center">
+    <h4 class=" p1 mt-4 text-center text-success" style="overflow:hidden">Pending Orders</h4>
+    <div class=" p1 table-container mr-3">
+        <table class=" p1 table-bordered table text-center">
             
                 <?php          
                 // Fetch only pending (incomplete) orders

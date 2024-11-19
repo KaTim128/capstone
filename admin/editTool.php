@@ -17,6 +17,52 @@ if (isset($_GET['editTool'])) {
     $row_stationery = mysqli_fetch_assoc($result_stationeries);
     $stationery_title = $row_stationery['stationery_title'];
 }
+
+$alertMessage = ''; // Initialize alert message
+
+if (isset($_POST['edit_tool'])) {
+    $tool_title = $_POST['tool_title'];
+    $tool_desc = $_POST['tool_desc'];
+    $tool_keywords = $_POST['tool_keywords'];
+    $tools = $_POST['tools'];
+    $tool_price = $_POST['tool_price'];
+    $tool_image = $_FILES['tool_image']['name'];
+    $temp_image = $_FILES['tool_image']['tmp_name'];
+
+    if (!empty($tool_image)) {
+        move_uploaded_file($temp_image, "./toolImages/$tool_image");
+    } else {
+        $tool_image = $image;
+    }
+
+    $update_tool = "UPDATE `tools` 
+                    SET tool_title='$tool_title', 
+                        description='$tool_desc', 
+                        keyword='$tool_keywords', 
+                        stationery_id='$tools', 
+                        price='$tool_price', 
+                        image='$tool_image' 
+                    WHERE tool_id='$edit_id'";
+
+    if (mysqli_query($conn, $update_tool)) {
+        // Success alert message
+        $alertMessage = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                            Tool details updated successfully!
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>';
+        echo "<script>setTimeout(function(){ window.open('adminPanel.php?viewTool', '_self'); }, 2000);</script>";
+    } else {
+        // Error alert message
+        $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong> Error updating tool details: ' . mysqli_error($conn) . '
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>';
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -25,9 +71,21 @@ if (isset($_GET['editTool'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Tool</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+<style>
+.alert {
+    text-align: center;
+}
+</style>
 <body>
-    <div class="container mt-1">
+
+    <!-- Alert Message -->
+    <div id="alertContainer">
+        <?php echo $alertMessage; ?>
+    </div>
+
+    <div class="container mt-3">
         <h1 class="text-center mb-4" style="overflow:hidden;">Edit Tool</h1>
         <form action="" method="post" enctype="multipart/form-data">
             <div class="form-outline w-50 m-auto mb-4">
@@ -61,7 +119,7 @@ if (isset($_GET['editTool'])) {
                 <label for="tool_image">Tool Image</label>
                 <div class="d-flex align-items-center mb-4">
                     <input type="file" id="tool_image" name="tool_image" class="form-control" style="flex-grow: 1;">
-                    <img src="./toolImages/<?php echo $image ?>" alt="Tool Image" style="width: 80px; height: auto; margin-left: 10px;">
+                    <img src="./toolImages/<?php echo $image ?>" alt="Tool Image" style="width: 40px; height: auto; margin-left: 10px;">
                 </div>
             </div>
             <!-- Tool Price -->
@@ -70,44 +128,14 @@ if (isset($_GET['editTool'])) {
                 <input type="number" id="tool_price" value="<?php echo $price ?>" name="tool_price" class="form-control mb-4" placeholder="Tool Price" step="0.01" required="required">
             </div>
             <div class="w-50 m-auto">
-                <input type="submit" name="edit_tool" value="Update Tool" class="btn btn-info px-3 mb-3">
+                <input type="submit" name="edit_tool" value="Update Tool" class="btn btn-style px-3 mb-3">
             </div>
         </form>
     </div>
 
-    <?php
-    if (isset($_POST['edit_tool'])) {
-        $tool_title = $_POST['tool_title'];
-        $tool_desc = $_POST['tool_desc'];
-        $tool_keywords = $_POST['tool_keywords'];
-        $tools = $_POST['tools'];
-        $tool_price = $_POST['tool_price'];
-        $tool_image = $_FILES['tool_image']['name'];
-        $temp_image = $_FILES['tool_image']['tmp_name'];
-
-        if (!empty($tool_image)) {
-            move_uploaded_file($temp_image, "./toolImages/$tool_image");
-        } else {
-            $tool_image = $image;
-        }
-
-        $update_tool = "UPDATE `tools` 
-                        SET tool_title='$tool_title', 
-                            description='$tool_desc', 
-                            keyword='$tool_keywords', 
-                            stationery_id='$tools', 
-                            price='$tool_price', 
-                            image='$tool_image' 
-                        WHERE tool_id='$edit_id'";
-
-        if (mysqli_query($conn, $update_tool)) {
-            echo "<script>alert('Tool details updated successfully!');</script>"; 
-            echo "<script>window.open('adminPanel.php?viewTool', '_self');</script>";     
-                  
-        } else {
-            echo "<script>alert('Error updating tool details: " . mysqli_error($conn) . "');</script>";
-        }
-    }
-    ?>
+    <!-- Bootstrap JS links -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -11,33 +11,37 @@
         h3 {
             overflow: hidden;
         }
+
+        
     </style>
 </head>
 <body>
     <h4 class="text-center text-success mt-4" style="overflow:hidden;">All Courses</h4>
     <table class="table table-bordered mt-3">
         <thead class="table-color">
-            <tr class="text-center">
-                <th>S.No</th>
-                <th>Course Title</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
+            
         </thead>
         <tbody class="bg-secondary text-light">
             <?php
                 $select_courses = "SELECT * FROM `courses`";
                 $result = mysqli_query($conn, $select_courses);
                 $row_count = mysqli_num_rows($result); // Get row count
-
+                $number = 0;
                 if ($row_count == 0) {
-                    echo "<tr><td colspan='4' class='text-center'>No courses available.</td></tr>";
-                } else {
-                    $number = 0;
+                    echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There are no courses yet.</div>";
+                   } else {
+                    echo"<tr class='text-center table-color text-dark'>
+                    <th>S.No</th>
+                    <th>Course Title</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    </tr>";
+                    
                     while ($row = mysqli_fetch_assoc($result)) {
                         $course_id = $row['course_id'];
                         $course_title = $row['course_title'];
                         $number++;
+                    
             ?>
             <tr class="text-center">
                 <td><?php echo $number; ?></td>
@@ -57,10 +61,10 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
-                    <h6>Are you sure you would like to delete this Course?</h6>
+                    <h6 style="overflow:hidden">Are you sure you would like to delete this Course?</h6>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-style" data-dismiss="modal">No</button>
+                <div class="modal-footer" >
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                     <button type="button" class="btn btn-danger" id="confirmDelete">Yes, Delete</button>
                 </div>
             </div>

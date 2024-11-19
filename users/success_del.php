@@ -36,8 +36,8 @@
         }
     </style>
 </head>
-<body class="green">
-    <div class="confirmation-message">
+<body class=" p1 green">
+    <div class=" p1 confirmation-message">
         <h2>Account Deleted Successfully!</h2>
         <p>Your account has been successfully deleted.</p>
         <p>You will be redirected to the main page shortly...</p>

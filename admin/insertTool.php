@@ -1,6 +1,8 @@
 <?php
 include('../database/connection.php');
 
+$alertMessage = ''; // Initialize alert message
+
 if (isset($_POST['insert_tool'])) {
     $tool_title = $_POST['tool_title'];
     $description = $_POST['description'];
@@ -9,15 +11,18 @@ if (isset($_POST['insert_tool'])) {
     $price = $_POST['price'];
     $status = 'true';
 
-    // Accessing images
+    // Accessing image
     $image = $_FILES['image']['name'];
-    // Accessing image temp name
     $temp_image = $_FILES['image']['tmp_name'];
 
     // Checking empty conditions
     if ($tool_title == '' || $description == '' || $keyword == '' || $tool_stationery == '' || $price == '' || $image == '') {
-        echo "<script>alert('Please fill in all the available fields')</script>";
-        exit();
+        $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Please fill in all the available fields!
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>';
     } else {
         // Move image into folder
         move_uploaded_file($temp_image, "./toolImages/$image");
@@ -28,10 +33,21 @@ if (isset($_POST['insert_tool'])) {
         $result_query = mysqli_query($conn, $insert_tool);
 
         if ($result_query) {
-            echo "<script>alert('Successfully added the tool!')</script>";
+            $alertMessage = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                Successfully added the tool!
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>';
         } else {
-            echo "<script>alert('Failed to add the tool')</script>";
-            echo mysqli_error($conn); // Debugging info (optional)
+            $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                Failed to add the tool. Please try again later.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>';
+            // Optionally, output the MySQL error for debugging
+            echo mysqli_error($conn);
         }
     }
 }
@@ -69,11 +85,20 @@ if (isset($_POST['insert_tool'])) {
             background-color: #17a2b8;
             border: none;
         }
+
+        .alert {
+            text-align: center;
+        }
+        
     </style>
 </head>
-<body class="bg-light">
+<body class="bg-light" >
+    <div id="alertContainer">
+        <?php echo $alertMessage; ?>
+    </div>
+
     <div class="container">
-        <h4 class="text-center text-success" style="overflow:hidden">Insert Tools</h4>
+        <h4 class="text-center text-success" style="overflow:hidden;">Insert Tools</h4>
         <!-- Form -->
         <form action="" method="post" enctype="multipart/form-data" class="form-container">
             <!-- Tool Title -->
@@ -120,7 +145,7 @@ if (isset($_POST['insert_tool'])) {
             <!-- Tool Price -->
             <div class="form-outline w-100">
                 <label for="price" class="form-label">Tool Price</label>
-                <input type="number" name="price" id="price" class="form-control" placeholder="Enter Tool Price" autocomplete="off"  step="0.01" required>
+                <input type="number" name="price" id="price" class="form-control" placeholder="Enter Tool Price" autocomplete="off" step="0.01" required>
             </div>
 
             <!-- Submit Button -->
@@ -131,8 +156,24 @@ if (isset($_POST['insert_tool'])) {
     </div>
 
     <!-- Bootstrap JS links -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script> <!-- Full version of jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS for slide-up effect -->
+    <script>
+    $(document).ready(function () {
+        const alertContainer = $("#alertContainer");
+
+        if (alertContainer.html().trim() !== "") {
+            setTimeout(() => {
+                // Slide up the alert and remove it from the DOM after animation
+                alertContainer.slideUp(600, function () {
+                    alertContainer.remove();
+                });
+            }, 3000); // 3 seconds delay
+        }
+    });
+    </script>
 </body>
 </html>

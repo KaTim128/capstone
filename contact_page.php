@@ -70,22 +70,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 <body>
    <!-- navbar -->
-   <div class="container-fluid p-0 gradient-background">
+   <div class=" p1 container-fluid p-0 gradient-background">
     <!-- first child  -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-color">
-      <div class="container-fluid">
+    <nav class=" p1 navbar navbar-expand-lg navbar-dark navbar-color">
+      <div class=" p1 container-fluid">
         <img src="./images/logo_new.png" alt="" style="width: 6%; height: 7%; margin-right: 15px; border-radius:5px">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class=" p1 navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class=" p1 navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="index.php">Products</span></a>
+        <div class=" p1 collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class=" p1 navbar-nav mr-auto">
+            <li class=" p1 nav-item">
+              <a class=" p1 nav-link nav-zoom text-light" href="index.php">Products</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="./users/wishlist.php">Wishlist</a>
+            <li class=" p1 nav-item">
+              <a class=" p1 nav-link nav-zoom text-light" href="./users/wishlist.php">Wishlist</a>
             </li>
             
             <?php
@@ -99,19 +99,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </li>";
             }
             ?> 
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="contact_page.php">Contact</a>
+            <li class=" p1 nav-item">
+              <a class=" p1 nav-link nav-zoom text-light" href="contact_page.php">Contact</a>
             </li>  
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="cart.php">Cart<sup><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php cartItem(); ?></sup></a>
+            <li class=" p1 nav-item">
+              <a class=" p1 nav-link nav-zoom text-light" href="cart.php">Cart<sup><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php cartItem(); ?></sup></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
+            <li class=" p1 nav-item">
+              <a class=" p1 nav-link text-light" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
-            <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
-            <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
+          <form class=" p1 form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
+            <input class=" p1 form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
+            <button class=" p1 btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
           </form>
         </div>
       </nav>
@@ -123,9 +123,9 @@ manageCart();
 ?>
 
 <!-- Second child -->
-<ul class="navbar-nav me-auto">
-    <div class="alert-placeholder"></div> <!-- Placeholder for alert -->
-    <div class="text-center"
+<ul class=" p1 navbar-nav me-auto">
+    <div class=" p1 alert-placeholder"></div> <!-- Placeholder for alert -->
+    <div class=" p1 text-center"
          id="alertContainer" 
          data-alert-message="<?php echo htmlspecialchars($errorMsg ?: $successMsg); ?>" 
          data-alert-type="<?php echo $errorMsg ? 'danger' : ($successMsg ? 'success' : ''); ?>" 
@@ -135,24 +135,24 @@ manageCart();
 
 
       <!-- fourth child - Contact Form -->
-      <div class="container mb-3 contact-form-container">
-        <h3 class="text-center mb-3 mt-1" style="overflow:hidden">Contact Us</h3>
+      <div class=" p1 container mb-3 contact-form-container">
+        <h3 class=" p1 text-center mb-3 mt-1" style="overflow:hidden">Contact Us</h3>
         
-        <form action="contact_page.php" method="POST" class="contact-form">
-            <div class="form-group">
+        <form action="contact_page.php" method="POST" class=" p1 contact-form">
+            <div class=" p1 form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" value="<?php echo htmlspecialchars($name); ?>" required>
+                <input type="text" class=" p1 form-control" id="name" name="name" placeholder="Enter your name" value="<?php echo htmlspecialchars($name); ?>" required>
             </div>
-            <div class="form-group">
+            <div class=" p1 form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" value="<?php echo htmlspecialchars($email); ?>" required>
+                <input type="email" class=" p1 form-control" id="email" name="email" placeholder="Enter your email" value="<?php echo htmlspecialchars($email); ?>" required>
             </div>
-            <div class="form-group">
+            <div class=" p1 form-group">
                 <label for="message">Message</label>
-                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Enter your message" required><?php echo htmlspecialchars($message); ?></textarea>
+                <textarea class=" p1 form-control" id="message" name="message" rows="5" placeholder="Enter your message" required><?php echo htmlspecialchars($message); ?></textarea>
             </div>
-            <div class="d-flex mb-2 justify-content-center">
-                <button type="submit" class="btn btn-style">Submit</button>
+            <div class=" p1 d-flex mb-2 justify-content-center">
+                <button type="submit" class=" p1 btn btn-style">Submit</button>
             </div>
         </form>
     </div>

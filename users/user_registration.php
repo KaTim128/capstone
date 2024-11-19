@@ -20,50 +20,50 @@ include('../functions/common_function.php');
 </head>
 
 <body>
-    <div class="registration-container">
-        <div class="logo-container">
+    <div class=" p1 registration-container">
+        <div class=" p1 logo-container">
             <img src="../images/logo_new.png" alt="Logo" style="border-radius:10px;">
         </div>
-        <div class="form-container">
+        <div class=" p1 form-container">
             <h3>New User Registration</h3>
             <div id="alertContainer"></div>
             <form action="" method="post" enctype="multipart/form-data">
-                <div class="form-group">
+                <div class=" p1 form-group">
                     <label for="user_username">Username</label>
-                    <input type="text" id="user_username" class="form-control" placeholder="Enter your username"
+                    <input type="text" id="user_username" class=" p1 form-control" placeholder="Enter your username"
                         name="user_username" required>
                 </div>
-                <div class="form-group">
+                <div class=" p1 form-group">
                     <label for="user_email">Email</label>
-                    <input type="email" id="user_email" class="form-control" placeholder="Enter your email"
+                    <input type="email" id="user_email" class=" p1 form-control" placeholder="Enter your email"
                         name="user_email" required>
                 </div>
-                <div class="form-group">
+                <div class=" p1 form-group">
                     <label for="user_image">Image</label>
-                    <input type="file" id="user_image" class="form-control" name="user_image" required>
+                    <input type="file" id="user_image" class=" p1 form-control" name="user_image" required>
                 </div>
-                <div class="form-group">
+                <div class=" p1 form-group">
                     <label for="user_password">Password</label>
-                    <input type="password" id="user_password" class="form-control" placeholder="Enter your password"
+                    <input type="password" id="user_password" class=" p1 form-control" placeholder="Enter your password"
                         name="user_password" required>
                 </div>
-                <div class="form-group">
+                <div class=" p1 form-group">
                     <label for="conf_user_password">Confirm Password</label>
-                    <input type="password" id="conf_user_password" class="form-control"
+                    <input type="password" id="conf_user_password" class=" p1 form-control"
                         placeholder="Confirm your password" name="conf_user_password" required>
                 </div>
-                <div class="form-group">
+                <div class=" p1 form-group">
                     <label for="user_address">Address</label>
-                    <input type="text" id="user_address" class="form-control" placeholder="Enter your address"
+                    <input type="text" id="user_address" class=" p1 form-control" placeholder="Enter your address"
                         name="user_address" required>
                 </div>
-                <div class="form-group">
+                <div class=" p1 form-group">
                     <label for="user_contact">Contact</label>
-                    <input type="text" id="user_contact" class="form-control" placeholder="Enter your mobile number"
+                    <input type="text" id="user_contact" class=" p1 form-control" placeholder="Enter your mobile number"
                         name="user_contact" required>
                 </div>
-                <input type="submit" value="Register" class="btn btn-register mt-4 mb-2" name="user_register">
-                <p class="mt-3 text-register text-center">
+                <input type="submit" value="Register" class=" p1 btn btn-register mt-4 mb-2" name="user_register">
+                <p class=" p1 mt-3 text-register text-center">
                     Already have an account? <a href="user_login.php">Login</a>
                 </p>
             </form>
