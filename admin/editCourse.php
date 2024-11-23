@@ -20,16 +20,16 @@ if (isset($_POST['update_course'])) {
     $update_query = "UPDATE `courses` SET course_title = '$new_course_title' WHERE course_id = $edit_course";
 
     if (mysqli_query($conn, $update_query)) {
-        $alertMessage = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        $alertMessage = '<div class="p1 alert alert-success alert-dismissible fade show" role="alert">
                             Course title updated successfully!
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <button type="button" class="p1 close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>';
     } else {
-        $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        $alertMessage = '<div class="p1 alert alert-danger alert-dismissible fade show" role="alert">
                             Error updating course title.
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <button type="button" class="p1 close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>';
@@ -68,20 +68,20 @@ if (isset($_POST['update_course'])) {
             text-align: center;
         }
 </style>
-<body class="bg-light">
-    <div class="container mt-4">
+<body class="p1 bg-light">
+    <div class="p1 container mt-4">
         <!-- Display alert message if any -->
         <div id="alertContainer">
             <?php echo $alertMessage; ?>
         </div>
 
-        <h1 class="text-center mb-4" style="overflow:hidden;">Edit Course</h1>
-        <form action="" method="post" class="text-center">
-            <div class="form-outline text-center w-50 m-auto">
-                <label for="course_title" class="form-label">Course Title</label>
-                <input type="text" name="course_title" id="course_title" class="form-control mb-4" value="<?php echo $course_title; ?>" required="required">
+        <h3 class="p1 text-center mb-4 text-success" style="overflow:hidden;">Edit Course</h3>
+        <form action="" method="post" class="p1 text-center">
+            <div class="p1 form-outline text-center w-50 m-auto">
+                <label for="course_title" class="p1 form-label">Course Title</label>
+                <input type="text" name="course_title" id="course_title" class="p1 form-control mb-4" value="<?php echo $course_title; ?>" required="required">
             </div>
-            <input type="submit" name="update_course" value="Update Course" class="btn btn-style px-3 mb-3">
+            <input type="submit" name="update_course" value="Update Course" class="p1 btn btn-style px-3 mb-3">
         </form>
     </div>
 </body>

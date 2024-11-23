@@ -38,7 +38,7 @@
         $row_count = mysqli_num_rows($result);
 
         if ($row_count == 0) {
-            $alertMessage = '<div class="alert alert-warning text-center mt-4" style="margin: 0 auto; width: fit-content;">
+            $alertMessage = '<div class="p1 alert alert-warning text-center mt-4" style="margin: 0 auto; width: fit-content;">
                                 There are no tools yet.
                               </div>';
         }
@@ -50,22 +50,22 @@
     </div>
 
     
-    <div class="table-responsive mt-2">
-        <table class="table table-bordered">
+    <div class="p1 table-responsive mt-2">
+        <table class="p1 table table-bordered">
             <?php
             if ($row_count > 0) {
                 echo "
                 <h4 class='text-center text-success'>All Tools</h4>
                 <thead class='table-color'>
                         <tr class='text-center'>
-                            <th>Tool ID</th>
-                            <th>Tool Title</th>
-                            <th>Tool Image</th>
-                            <th>Tool Price</th>
-                            <th>Total Sold</th>
-                            <th>Status</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th class='p1'>Tool ID</th>
+                            <th class='p1'>Tool Title</th>
+                            <th class='p1'>Tool Image</th>
+                            <th class='p1'>Tool Price</th>
+                            <th class='p1'>Total Sold</th>
+                            <th class='p1'>Status</th>
+                            <th class='p1'>Edit</th>
+                            <th class='p1'>Delete</th>
                         </tr>
                       </thead>
                       <tbody class='bg-secondary text-light'>";
@@ -94,7 +94,7 @@
                         </td>
                         <td><?php echo $tool_status; ?></td>
                         <td><a href='adminPanel.php?editTool=<?php echo $tool_id ?>' class='text-light'><i class='fa-solid fa-pen-to-square'></i></a></td>
-                        <td><a href="#" class="text-light" data-toggle="modal" data-target="#deleteModal" onclick="setToolId(<?php echo $tool_id; ?>)"><i class='fa-solid fa-trash'></i></a></td>
+                        <td><a href="#" class="p1 text-light" data-toggle="modal" data-target="#deleteModal" onclick="setToolId(<?php echo $tool_id; ?>)"><i class='fa-solid fa-trash'></i></a></td>
                     </tr>
                     <?php
                 }
@@ -105,15 +105,15 @@
     </div>
 
     <!-- Delete Confirmation Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
+    <div class="p1 modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="p1 modal-dialog" role="document">
+            <div class="p1 modal-content">
+                <div class="p1 modal-body">
                     <h6 style="overflow:hidden;">Are you sure you would like to delete this Tool?</h6>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    <button type="button" class="btn btn-danger" id="confirmDelete">Yes, Delete</button>
+                <div class="p1 modal-footer">
+                    <button type="button" class="p1 btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="button" class="p1 btn btn-danger" id="confirmDelete">Yes, Delete</button>
                 </div>
             </div>
         </div>

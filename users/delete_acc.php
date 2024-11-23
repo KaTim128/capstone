@@ -32,7 +32,7 @@ if (isset($_POST['dont_delete'])) {
             height: 100vh;
             margin: 0;
             background-color: #e0f7fa; /* Light cyan background */
-            font-family: 'Arial', sans-serif;
+            font-family: "Fredericka the Great", "cursive";
         }
         .form-container {
             text-align: center;

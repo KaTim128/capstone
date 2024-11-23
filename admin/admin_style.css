@@ -2,7 +2,7 @@
 body {
   overflow-x: hidden;
   background: #7ba17b; /* Consistent background color for both pages */
-  font-family: Arial, sans-serif; /* Apply sans-serif font to the body */
+  font-family: "Fredericka the Great", "cursive";/* Apply sans-serif font to the body */
 }
 
 /* Input fields */
@@ -10,7 +10,7 @@ body {
   width: 80%; /* Reduced width */
   padding: 10px;
   border-radius: 5px; /* Rounded corners */
-  font-family: Arial, sans-serif; /* Apply sans-serif font to input fields */
+  font-family: "Fredericka the Great", "cursive";/* Apply sans-serif font to input fields */
 }
 
 /* Logo styling */
@@ -18,7 +18,7 @@ body {
   display: flex;
   align-items: center;
   gap: 20px;
-  font-family: Arial, sans-serif; /* Apply sans-serif font here */
+  font-family: "Fredericka the Great", "cursive";
 }
 
 /* Image styling for consistent placement and size */
@@ -51,7 +51,7 @@ body {
   color: white;
   text-decoration: underline;
   transition: color 0.3s ease; /* Smooth hover transition */
-  font-family: Arial, sans-serif; /* Apply sans-serif font here */
+  font-family: "Fredericka the Great", "cursive";
 }
 
 .link-style:hover {
@@ -70,7 +70,7 @@ body {
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
-  font-family: Arial, sans-serif; /* Apply sans-serif font here */
+  font-family: "Fredericka the Great", "cursive";
 }
 
 .btn-style:hover {
@@ -98,5 +98,5 @@ body {
 
 /* Paragraph styling */
 .p1 {
-  font-family: Arial, sans-serif; /* Apply sans-serif font to paragraphs */
+  font-family: "Fredericka the Great", "cursive";
 }

@@ -12,9 +12,9 @@ if (isset($_POST['insert_course'])) {
     $number = mysqli_num_rows($result_select);
 
     if ($number > 0) {
-        $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        $alertMessage = '<div class="p1 alert alert-danger alert-dismissible fade show" role="alert">
                             This course is already present in the database.
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <button type="button" class="p1 close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>';
@@ -24,16 +24,16 @@ if (isset($_POST['insert_course'])) {
         $result = mysqli_query($conn, $insert_query);
 
         if ($result) {
-            $alertMessage = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            $alertMessage = '<div class="p1 alert alert-success alert-dismissible fade show" role="alert">
                                 Course has been inserted successfully!
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <button type="button" class="p1 close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>';
         } else {
-            $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            $alertMessage = '<div class="p1 alert alert-danger alert-dismissible fade show" role="alert">
                                 Failed to insert course.
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <button type="button" class="p1 close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>';
@@ -75,25 +75,25 @@ if (isset($_POST['insert_course'])) {
             text-align: center;
         }
 </style>
-<body class="bg-light">
-    <div class="container mt-4">
+<body class="p1 bg-light">
+    <div class="p1 container mt-4">
         <!-- Display alert message if any -->
         <div id="alertContainer">
             <?php echo $alertMessage; ?>
         </div>
 
-        <h4 class="text-center text-success" style="overflow:hidden;">Insert Courses</h4>
+        <h4 class="p1 text-center text-success" style="overflow:hidden;">Insert Courses</h4>
         <!-- Form -->
-        <form action="" method="post" class="mb-2">
-            <div class="input-group w-50 m-auto mb-2">
-                <span class="input-group-text" id="basic-addon1">
-                    <i class="fa-solid fa-receipt"></i>
+        <form action="" method="post" class="p1 mb-2">
+            <div class="p1 input-group w-50 m-auto mb-2">
+                <span class="p1 input-group-text" id="basic-addon1">
+                    <i class="p1 fa-solid fa-receipt"></i>
                 </span>
-                <input type="text" class="form-control" name="course_title" placeholder="Insert Courses" aria-label="courses" aria-describedby="basic-addon1" required>
+                <input type="text" class="p1 form-control" name="course_title" placeholder="Insert Courses" aria-label="courses" aria-describedby="basic-addon1" required>
             </div>
 
-            <div class="input-group w-50 m-auto">
-                <input type="submit" class="btn btn-style mt-3" name="insert_course" value="Insert Courses">
+            <div class="p1 input-group w-50 m-auto">
+                <input type="submit" class="p1 btn btn-style mt-3" name="insert_course" value="Insert Courses">
             </div>
         </form>
     </div>

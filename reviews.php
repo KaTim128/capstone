@@ -241,47 +241,47 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
 </head>
 <body>
   <!-- navbar -->
-  <div class="container-fluid p-0 gradient-background">
+  <div class="p1 container-fluid p-0 gradient-background">
     <!-- first child  -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-color">
-      <div class="container-fluid">
+    <nav class="p1 navbar navbar-expand-lg navbar-dark navbar-color">
+      <div class="p1 container-fluid">
         <img src="./images/logo_new.png" alt="" style="width: 6%; height: 7%; margin-right: 15px; border-radius:5px">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class="p1 navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="p1 navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="index.php">Products</span></a>
+        <div class="p1 collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="p1 navbar-nav mr-auto">
+            <li class="p1 nav-item">
+              <a class="p1 nav-link nav-zoom text-light" href="index.php">Products</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="./users/wishlist.php">Wishlist</a>
+            <li class="p1 nav-item">
+              <a class="p1 nav-link nav-zoom text-light" href="./users/wishlist.php">Wishlist</a>
             </li>
             <?php
             if (isset($_SESSION['user_username'])) {
               echo "<li class='nav-item'>
-                      <a class='nav-link nav-zoom text-light' href='./users/profile.php'>My Account</a>
+                      <a class='p1 nav-link nav-zoom text-light' href='./users/profile.php'>My Account</a>
                     </li>";
             } else {
               echo "<li class='nav-item'>
-                      <a class='nav-link nav-zoom text-light' href='./users/user_login.php'>Login</a>
+                      <a class='p1 nav-link nav-zoom text-light' href='./users/user_login.php'>Login</a>
                     </li>";
             }
             ?>   
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="contact_page.php">Contact</a>
+            <li class="p1 nav-item">
+              <a class="p1 nav-link nav-zoom text-light" href="contact_page.php">Contact</a>
             </li>
-            <li class="nav-item">
-            <a class=" p1 nav-link nav-zoom text-light" href="cart.php">Cart<sup><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php cartItem(); ?></sup></a>
+            <li class="p1 nav-item">
+            <a class="p1 nav-link nav-zoom text-light" href="cart.php">Cart<sup><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php cartItem(); ?></sup></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
+            <li class="p1 nav-item">
+              <a class="p1 nav-link text-light" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
             </li>
           </ul>
-        <form class="form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
-          <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
-          <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
+        <form class="p1 form-inline my-2 my-lg-0" action="searchProduct.php" method="get">
+          <input class="p1 form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
+          <button class="p1 btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
         </form>
         </div>
       </nav>
@@ -293,53 +293,53 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
       ?>
 
       <!-- forth child -->
-      <div class="container mt-5">
-        <div class="card">
-        <div class="card-header d-flex align-items-center">
-            <img src="<?php echo $image_path . $product_image; ?>" class="mr-3 product-img" alt="Product Image">
-            <div class="flex-grow-1 text-center">
+      <div class="p1 container mt-5">
+        <div class="p1 card">
+        <div class="p1 card-header d-flex align-items-center">
+            <img src="<?php echo $image_path . $product_image; ?>" class="p1 mr-3 product-img" alt="Product Image">
+            <div class="p1 flex-grow-1 text-center">
                 <h4 style="overflow:hidden">
                     Rating: 
-                    <span class="text-warning"><?php echo $average_rating; ?></span>
+                    <span class="p1 text-warning"><?php echo $average_rating; ?></span>
                 </h4>
-                <div class="mb-2">
-                    <span class="text-warning">
+                <div class="p1 mb-2">
+                    <span class="p1 text-warning">
                         <?php for ($i = 1; $i <= 5; $i++): ?>
                             <i class="fas fa-star <?php echo $i <= $average_rating ? 'star-warning' : 'star-light'; ?>"></i>
                         <?php endfor; ?>
                     </span>
                 </div>
-                <span class="float-center"><?php echo $total_review; ?> Reviews</span>
+                <span class="p1 float-center"><?php echo $total_review; ?> Reviews</span>
             </div>
         </div>
 
 
-            <div class="card-body">
-            <div class="progress">
-            <div class="progress-bar bg-warning" style="width: <?php echo $one_star_progress; ?>%; opacity: <?php echo $one_star_progress > 0 ? 0.2 : 0; ?>" role="progressbar" aria-valuenow="<?php echo $one_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
+            <div class="p1 card-body">
+            <div class="p1 progress">
+            <div class="p1 progress-bar bg-warning" style="width: <?php echo $one_star_progress; ?>%; opacity: <?php echo $one_star_progress > 0 ? 0.2 : 0; ?>" role="progressbar" aria-valuenow="<?php echo $one_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
                 <?php echo $total_one_star_review; ?> (1 Star)
             </div>
-            <div class="progress-bar bg-warning" style="width: <?php echo $two_star_progress; ?>%; opacity: <?php echo $two_star_progress > 0 ? 0.4 : 0; ?>" role="progressbar" aria-valuenow="<?php echo $two_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
+            <div class="p1 progress-bar bg-warning" style="width: <?php echo $two_star_progress; ?>%; opacity: <?php echo $two_star_progress > 0 ? 0.4 : 0; ?>" role="progressbar" aria-valuenow="<?php echo $two_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
                 <?php echo $total_two_star_review; ?> (2 Star)
             </div>
-            <div class="progress-bar bg-warning" style="width: <?php echo $three_star_progress; ?>%; opacity: <?php echo $three_star_progress > 0 ? 0.6 : 0; ?>" role="progressbar" aria-valuenow="<?php echo $three_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
+            <div class="p1 progress-bar bg-warning" style="width: <?php echo $three_star_progress; ?>%; opacity: <?php echo $three_star_progress > 0 ? 0.6 : 0; ?>" role="progressbar" aria-valuenow="<?php echo $three_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
                 <?php echo $total_three_star_review; ?> (3 Star)
             </div>
-            <div class="progress-bar bg-warning" style="width: <?php echo $four_star_progress; ?>%; opacity: <?php echo $four_star_progress > 0 ? 0.8 : 0; ?>" role="progressbar" aria-valuenow="<?php echo $four_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
+            <div class="p1 progress-bar bg-warning" style="width: <?php echo $four_star_progress; ?>%; opacity: <?php echo $four_star_progress > 0 ? 0.8 : 0; ?>" role="progressbar" aria-valuenow="<?php echo $four_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
                 <?php echo $total_four_star_review; ?> (4 Star)
             </div>
             
-            <div class="progress-bar bg-warning" style="width: <?php echo $five_star_progress; ?>%; opacity: <?php echo $five_star_progress > 0 ? 1 : 0; ?>" role="progressbar" aria-valuenow="<?php echo $five_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
+            <div class="p1 progress-bar bg-warning" style="width: <?php echo $five_star_progress; ?>%; opacity: <?php echo $five_star_progress > 0 ? 1 : 0; ?>" role="progressbar" aria-valuenow="<?php echo $five_star_progress; ?>" aria-valuemin="0" aria-valuemax="100">
                 <?php echo $total_five_star_review; ?> (5 Star)
             </div>
             </div>
                 <hr/>
                 <?php if ($order_exists && !$review_exists): ?>
-    <h4 class="text-center" style="overflow:hidden">Submit Your Review</h4>
+    <h4 class="p1 text-center" style="overflow:hidden">Submit Your Review</h4>
     <form method="post">
-        <div class="form-group">
+        <div class="p1 form-group">
             <label for="rating">Rating</label>
-            <select name="rating" class="form-control" required>
+            <select name="rating" class="p1 form-control" required>
                 <option value="">Select Rating</option>
                 <option value="5">5 Star</option>
                 <option value="4">4 Star</option>
@@ -348,14 +348,14 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
                 <option value="1">1 Star</option>
             </select>
         </div>
-        <div class="form-group">
+        <div class="p1 form-group">
             <label for="review">Review:</label>
-            <textarea name="review" class="form-control" rows="4" required></textarea>
+            <textarea name="review" class="p1 form-control" rows="4" required></textarea>
         </div>
-        <button type="submit" class="btn btn-style">Submit Review</button>
+        <button type="submit" class="p1 btn btn-style">Submit Review</button>
     </form>
 <?php else: ?>
-    <div class="alert alert-success text-center" role="alert">
+    <div class="p1 alert alert-success text-center" role="alert">
         <?php if (!$order_exists): ?>
             You need to complete a purchase before leaving a review.
         <?php elseif ($review_exists): ?>
@@ -377,7 +377,7 @@ $reviews_result = mysqli_query($conn, $fetch_reviews);
 
 // Check if there are reviews to display
 if (mysqli_num_rows($reviews_result) > 0) {
-    echo '<h3 class="mt-5 mb-4 text-center" style="overflow:hidden">User Reviews</h3>';
+    echo '<h3 class="p1 mt-5 mb-4 text-center" style="overflow:hidden">User Reviews</h3>';
     while ($review = mysqli_fetch_assoc($reviews_result)) {
         // Extract data from the review and user
         $review_text = htmlspecialchars($review['review_text']);
@@ -387,18 +387,18 @@ if (mysqli_num_rows($reviews_result) > 0) {
         $review_user_name = htmlspecialchars($review['user_username']);
 
         // Display review
-        echo '<div class="review p-3 mb-3 border rounded shadow-sm">';
-        echo '<div class="d-flex align-items-center mb-2">';
-        echo '<img src="users/user_images/' . $review_user_image . '" class="rounded-circle mr-2" alt="User Image" width="50" height="50">';
+        echo '<div class="p1 review p-3 mb-3 border rounded shadow-sm">';
+        echo '<div class="p1 d-flex align-items-center mb-2">';
+        echo '<img src="users/user_images/' . $review_user_image . '" class="p1 rounded-circle mr-2" alt="User Image" width="50" height="50">';
         echo '<div>';
-        echo '<strong class="font-weight-bold">' . $review_user_name . '</strong>';
-        echo '<span class="text-muted d-block">' . $review_date . '</span>';
+        echo '<strong class="p1 font-weight-bold">' . $review_user_name . '</strong>';
+        echo '<span class="p1 text-muted d-block">' . $review_date . '</span>';
         echo '</div>';
         echo '</div>'; // End of user info
-        echo '<p class="mb-2">' . $review_text . '</p>';
+        echo '<p class="p1 mb-2">' . $review_text . '</p>';
 
         // Display star rating
-        echo '<span class="text-warning">';
+        echo '<span class="p1 text-warning">';
         for ($i = 1; $i <= 5; $i++) {
             echo '<i class="fas fa-star ' . ($i <= $review_rating ? 'star-warning' : 'star-light') . '"></i>';
         }
@@ -406,17 +406,17 @@ if (mysqli_num_rows($reviews_result) > 0) {
         echo '</div>';
     }
 } else {
-    echo '<p class="text-muted text-center my-3">No reviews yet.</p>';
+    echo '<p class="p1 text-muted text-center my-3">No reviews yet.</p>';
 }
 ?>
         <?php while ($review = mysqli_fetch_assoc($reviews_result)): ?>
-            <div class="media mb-4">
-            <img src="users/user_images/<?php echo $user_image ?>" class="mr-3 round-circle" alt="User Image">
-                <div class="media-body">
-                    <h5 class="mt-0"><?php echo "$username"?> 
-                        <small class="text-muted"><?php echo date('F j, Y', strtotime($review['review_date'])); ?></small>
+            <div class="p1 media mb-4">
+            <img src="users/user_images/<?php echo $user_image ?>" class="p1 mr-3 round-circle" alt="User Image">
+                <div class="p1 media-body">
+                    <h5 class="p1 mt-0"><?php echo "$username"?> 
+                        <small class="p1 text-muted"><?php echo date('F j, Y', strtotime($review['review_date'])); ?></small>
                     </h5>
-                    <span class="text-warning">
+                    <span class="p1 text-warning">
                         <?php for ($i = 1; $i <= $review['rating']; $i++): ?>
                             <i class="fas fa-star star-warning"></i>
                         <?php endfor; ?>

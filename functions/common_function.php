@@ -18,12 +18,13 @@ function getBooks(){
               $image = $row['image'];
               $price = $row['price'];
               $course_id = $row['course_id'];
+              $digital_price = number_format($price / 3, 2);
               echo "<div class=' p1 col-md-3 mb-2'>
               <div class=' p1 card card-background'>
                 <img src='admin/bookImages/$image' class=' p1 card-img-top' alt='Book Image'>
                 <div class=' p1 card-body'>
-                  <h6 class=' p1 card-title'>$book_title</h6>
-                  <p class=' p1 card-text'><b>RM$price/</b><span><b>(Printed)</span></b></p>
+                  <h6 class=' p1 card-title'><b>$book_title</b></h6>
+                  <p class=' p1 card-text'>RM$digital_price/<span>(Digital)</span></p>
                   <a href='index.php?cart=$book_id' class=' p1 btn btn-style mb-2'>Add to Cart</a>
                   <a href='bookDetails.php?book_id=$book_id' class=' p1 btn btn-style mb-2'>Details</a>
                 </div>
@@ -45,8 +46,7 @@ function getUniqueCourses(){
       $num_of_rows = mysqli_num_rows($result_query);
       if ($num_of_rows == 0) {
         echo "<div class=' p1 alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There is no stock for this course.</div>";
-    }
-    
+    }   
       while ($row = mysqli_fetch_assoc($result_query)) {
           $book_id = 'b' . $row['book_id'];
           $book_title = $row['book_title'];
@@ -55,12 +55,13 @@ function getUniqueCourses(){
           $image = $row['image'];
           $price = $row['price'];
           $course_id = $row['course_id'];
+          $digital_price = number_format($price / 3, 2);
           echo "<div class=' p1 col-md-3 mb-2'>
                   <div class=' p1 card card-background'>
                     <img src='admin/bookImages/$image' class=' p1 card-img-top' alt='Book Image'>
                     <div class=' p1 card-body'>
-                      <h6 class=' p1 card-title'>$book_title</h6>
-                      <p class=' p1 card-text'><b>RM$price/</b><span><b>(Printed)</span></b></p>
+                      <h6 class=' p1 card-title'><b>$book_title</b></h6>
+                      <p class=' p1 card-text'>RM$digital_price/<span>(Digital)</span></p>
                       <a href='index.php?cart=$book_id' class=' p1 btn btn-style mb-1 me-3'>Add to Cart</a>
                       <a href='bookDetails.php?book_id=$book_id' class=' p1 btn btn-style mb-1'>Details</a>
                     </div>
@@ -92,8 +93,8 @@ function getUniqueTools(){
                   <div class=' p1 card card-background'>
                     <img src='admin/toolImages/$image' class=' p1 card-img-top' alt='Tool Image'>
                     <div class=' p1 card-body'>
-                      <h5 class=' p1 card-title p1'>$tool_title</h5>
-                      <p class=' p1 card-text p1'><b>RM$price/-</b></p>
+                      <h5 class=' p1 card-title p1'><b>$tool_title</b></h5>
+                      <p class=' p1 card-text p1'>RM$price/-</p>
                       <a href='index.php?cart=$tool_id' class=' p1 p1 btn btn-style mb-1 me-3'>Add to Cart</a>
                       <a href='toolDetails.php?tool_id=$tool_id' class=' p1 p1 btn btn-style mb-1'>Details</a>
                     </div>
@@ -159,8 +160,8 @@ function getStationeries(){
         }
         </style>
 
-        <div class=' p1 footer dark-green'>
-          <p class=' p1 p1 mt-3 text-light'><b>Website, Designed by Ho Ka Tim © 2024.</b></p>
+        <div class='p1 footer dark-green'>
+          <p class='p1 mt-3 text-light'><b>Website, Designed by Ho Ka Tim © 2024.</b></p>
         </div>";
     }
     
@@ -196,7 +197,7 @@ function searchProducts() {
           $price = $row['price'];
           $image = $row['image'];
           $type = $row['type']; // Either 'book' or 'tool'
-
+          $digital_price = number_format($price / 3, 2);
           // Depending on the product type, create the correct URL for details
           $details_url = $type === 'book' ? "bookDetails.php?book_id=b$id" : "toolDetails.php?tool_id=t$id";
           $cart_url = $type === 'book' ? "index.php?cart=b$id" : "index.php?cart=t$id";
@@ -205,8 +206,8 @@ function searchProducts() {
                   <div class=' p1 card card-background'>
                     <img src='admin/{$type}Images/$image' class=' p1 card-img-top' alt='Product Image'>
                     <div class=' p1 card-body'>
-                      <h6 class=' p1 card-title p1'>$title</h6>
-                      <p class=' p1 card-text p1'><b>RM$price/-</b></p>
+                      <h6 class=' p1 card-title p1'><b>$title</b></h6>
+                      <p class=' p1 card-text'>RM$digital_price/<span>(Digital)</span></p>
                       <a href='$cart_url' class=' p1 p1 btn btn-style mb-1'>Add to Cart</a>
                       <a href='$details_url' class=' p1 p1 btn btn-style mb-1'>Details</a>
                     </div>
@@ -241,7 +242,7 @@ function viewBookDetails() {
               $image = $row['image'];
               $price = $row['price'];
 
-              $digital_price = $price / 3;
+              $digital_price = number_format($price / 3, 2);
 
               // Prepare the correct book_id for the reviews button
               $book_id_for_reviews = $row['book_id']; // Use the actual book_id from the database
@@ -255,7 +256,7 @@ function viewBookDetails() {
       <div class=' p1 col-md-8'>
         <div class=' p1 row'>
           <div class=' p1 col-md-12'>
-            <h3 class=' p1 text-dark mb-4 mt-4' style='overflow:hidden'>$book_title</h3>
+            <h3 class=' p1 text-dark mb-4 mt-4' style='overflow:hidden'><b>$book_title</b></h3>
             <div class=' p1 mb-4 d-flex justify-content-between align-items-center'>
               <h5 class=' p1 mb-0' style='overflow:hidden'>Author: $author</h5>
               <div>
@@ -266,7 +267,7 @@ function viewBookDetails() {
             <h6 class=' p1 mb-5' style='overflow:hidden'>$description</h6>
             <div class=' p1 d-flex align-items-center'>
               <a href='index.php' class=' p1 btn btn-details me-2 mb-3 mx-2 btn-style'>Back</a>
-              <a href='index.php?cart=$book_id' class=' p1 btn btn-details me-2 mb-3 mx-2 btn-style'>Add to Cart</a>
+              <a href='index.php?cart=$book_id' class='p1 btn btn-details me-2 mb-3 mx-2 btn-style'>Add to Cart</a>
               <form method='post' action='users/wishlist.php' class=' p1 me-2 mb-3 mx-2' style='overflow:hidden'>
                   <input type='hidden' name='book_id' value='$book_id_with_prefix'>
                   <input type='hidden' name='book_title' value='$book_title'>
@@ -323,7 +324,7 @@ function viewToolDetails() {
       <div class=' p1 col-md-8'>
           <div class=' p1 row'>
               <div class=' p1 col-md-12'>
-                  <h3 class=' p1 text-dark mb-5 mt-4 text'>$tool_title</h3>
+                  <h3 class=' p1 text-dark mb-5 mt-4 text'><b>$tool_title</b></h3>
                   <h6 class=' p1 mr-5 mb-5 text'>Price: RM$price/-</h6>
                   <h6 class=' p1 mb-5' style='overflow:hidden'>$description</h6>
                   <div class=' p1 d-flex align-items-center'>
@@ -539,9 +540,9 @@ function totalCartPrice() {
           if ($row_book_price = mysqli_fetch_array($result_books)) {
               $book_price = $row_book_price['price'];
               
-              // If the book is digital, reduce the price by a factor of 4
+              // If the book is digital, reduce the price by a factor of 3
               if ($booktype === 'digital') {
-                  $book_price /= 4;
+                  $book_price /= 3;
               }
 
               // Add the total book price based on quantity

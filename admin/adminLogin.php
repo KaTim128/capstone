@@ -23,7 +23,7 @@ if (isset($_POST['admin_registration'])) {
             $_SESSION['admin_id'] = $admin_data['admin_id']; // Store admin_id in session
 
             // Success alert message
-            $alertMessage = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            $alertMessage = '<div class="p1 alert alert-success alert-dismissible fade show" role="alert">
                                 Login successful! Redirecting to the admin panel...
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -32,7 +32,7 @@ if (isset($_POST['admin_registration'])) {
             // Redirect after success, using JavaScript to avoid direct page load
             echo "<script>setTimeout(function() { window.location.href = 'adminPanel.php'; }, 3000);</script>";
         } else {
-            $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            $alertMessage = '<div class="p1 alert alert-danger alert-dismissible fade show" role="alert">
                                 Invalid password!
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -55,7 +55,7 @@ if (isset($_POST['admin_registration'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
+    <title class="p1">Admin Login</title>
     <!-- Bootstrap CSS link -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="admin_style.css">
@@ -80,19 +80,19 @@ if (isset($_POST['admin_registration'])) {
             <div class="col-lg-4 col-md-5">
                 <form action="" method="post">
                     <div class="form-outline mb-4">
-                        <label for="email" class="form-label text-light">Email</label>
-                        <input type="text" id="email" name="email" class="form-control custom-input" placeholder="Enter your email" required>
+                        <label for="email" class="p1 form-label text-light">Email</label>
+                        <input type="text" id="email" name="email" class="p1 form-control custom-input" placeholder="Enter your email" required>
                     </div>
                     <div class="form-outline mb-4">
-                        <label for="password" class="form-label text-light">Password</label>
-                        <input type="password" id="password" name="password" class="form-control custom-input" placeholder="Enter your password" required>
+                        <label for="password" class="p1 form-label text-light">Password</label>
+                        <input type="password" id="password" name="password" class="p1 form-control custom-input" placeholder="Enter your password" required>
                     </div>
                     <div>
-                        <button type="submit" name="admin_registration" class="btn-style mb-3">Login</button>
-                        <p class="text-light">Don't have an account? <a href="adminRegistration.php" class="link-style"> Register</a></p>
+                        <button type="submit" name="admin_registration" class="btn-style mb-3 p1">Login</button>
+                        <p class="p1 text-light">Don't have an account? <a href="adminRegistration.php" class="link-style p1"> Register</a></p>
                     </div>
                     <div>
-                        <p class="text-light">Leave admin page? <a href="../users/user_login.php" class="link-style"> Back</a></p>
+                        <p class="p1 text-light">Leave admin page? <a href="../users/user_login.php" class="link-style p1"> Back</a></p>
                     </div>
                 </form>
             </div>

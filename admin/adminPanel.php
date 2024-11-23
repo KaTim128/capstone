@@ -61,13 +61,23 @@ session_start();
         }
 
         .panel button {
-            background-color: #74b05c; 
-            border: none; 
-            border-radius: 5px;
-            padding: 5px; 
-            margin-left: -3px;
-            margin-right: 2px;
-        }
+    background: linear-gradient(to right, #5ba132, #5ba132); /* Default green */
+    border: none;
+    border-radius: 5px;
+    padding: 10px; /* Increased padding for better UX */
+    margin: 5px;
+    font-family: "Fredericka the Great", "cursive"; /* Retaining your font */
+    color: white;
+    font-weight: bold;
+    transition: 0.3s ease, transform 0.2s ease; /* Smooth transition for hover */
+}
+
+/* Hover effect for all buttons */
+.panel button:hover {
+    background:linear-gradient(to right, #5ba132, #66b13a);;
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    cursor: pointer; /* Changes cursor to pointer */
+}
 
         .panel a {
             color: white;
@@ -78,18 +88,7 @@ session_start();
             text-align: center;
         }
 
-        .panel button:hover {
-            background-color: #4a7439; 
-        }
-
-        .footer {
-    position: relative; /* Change from absolute to relative */
-    clear: both;
-    width: 100%;
-    padding: 10px 0;
-    background-color: #f8f9fa; /* Adjust as needed */
-    text-align: center;
-}
+        
 
 body {
     display: flex;
@@ -110,29 +109,33 @@ body {
     height: auto; /* Keeps the aspect ratio */
 }
 
-/* Remove gradient and style from the red logout button */
+/* Red Logout Button */
 .btn-danger {
-    background-color: #dc3545 !important; /* Solid red color */
-    background-image: none !important; /* Removes any gradient */
-    border: none; /* Removes border if needed */
+    background-color: #dc3545 !important; /* Solid red */
+    background-image: none !important; /* Removes gradient */
+    border: none;
+    color: white; /* Ensure white text */
 }
 
-.btn-danger a {
-    color: #ffffff !important; /* Ensures the link text stays white */
-    text-decoration: none;
+.btn-danger:hover {
+    background-color: #a71d2a !important; /* Darker red on hover */
+    transform: scale(1.05); /* Slight zoom effect */
 }
 
+.p1 {
+  font-family: "Fredericka the Great", "cursive";
+}
     </style>
 </head>
 <body>
     
         <!-- first child -->
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container-fluid">
+        <nav class="p1 navbar navbar-expand-lg navbar-light">
+            <div class="p1 container-fluid">
                 
-                <nav class="navbar navbar-expand-lg">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
+                <nav class="p1 navbar navbar-expand-lg">
+                    <ul class="p1 navbar-nav">
+                        <li class="p1 nav-item">
                             <?php
                         if (isset($_SESSION['user_username'])) {
                             echo "<li class='nav-item'>
@@ -146,39 +149,39 @@ body {
         </nav>
 
         <!-- second child -->
-        <div class="bg-light">
-            <h3 class="text-center p-2 mt-2">Manage Details</h3>
+        <div class="p1 bg-light">
+            <h3 class="p1 text-center p-2 mt-2">Manage Details</h3>
         </div>
 
         <!-- third child -->
-<div class="row">
-    <div class="col-12 my-3 light-green d-flex flex-column align-items-center">
+<div class="p1 row">
+    <div class="p1 col-12 my-3 light-green d-flex flex-column align-items-center">
         <!-- Logo Section -->
-        <div class="my-2">
-            <a href="#"><img src="../images/logo_new.png" alt="" class="admin-image img-fluid"></a>
+        <div class="p1 my-2">
+            <a href="#"><img src="../images/logo_new.png" alt="" class="p1 admin-image img-fluid"></a>
         </div>
         <!-- Buttons Panel Section -->
-        <div class="panel text-center w-100">
-            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?insertBook" class="nav-link text-dark" style="font-weight: bold;">Insert Book</a></button>
-            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?viewBook" class="nav-link text-dark" style="font-weight: bold;">View Books</a></button>
-            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?insertCourse" class="nav-link text-dark" style="font-weight: bold;">Insert Courses</a></button>
-            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?viewCourse" class="nav-link text-dark" style="font-weight: bold;">View Courses</a></button>
-            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?insertTool" class="nav-link text-dark" style="font-weight: bold;">Insert Tool</a></button>
-            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?viewTool" class="nav-link text-dark" style="font-weight: bold;">View Tools</a></button>
-            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?insertStationery" class="nav-link text-dark" style="font-weight: bold;">Insert Stationery</a></button>
-            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?viewStationery" class="nav-link text-dark" style="font-weight: bold;">View Stationery</a></button>
-            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?listOrders" class="nav-link text-dark" style="font-weight: bold;">All Orders</a></button>
-            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?listPayments" class="nav-link text-dark" style="font-weight: bold;">All Payments</a></button>
-            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?listUsers" class="nav-link text-dark" style="font-weight: bold;">List Users</a></button>
-            <button class="btn btn-light w-100 mb-2"><a href="adminPanel.php?listMessages" class="nav-link text-dark" style="font-weight: bold;">User Messages</a></button>
-            <button class="btn btn-danger w-100 mb-2"><a href="../users/user_login.php" class="nav-link text-light" style="font-weight: bold;">Logout</a></button>
+        <div class="p1 panel text-center w-100">
+            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?insertBook" class="p1 nav-link text-light" style="font-weight: bold;">Insert Book</a></button>
+            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?viewBook" class="p1 nav-link text-light" style="font-weight: bold;">View Books</a></button>
+            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?insertCourse" class="p1 nav-link text-light" style="font-weight: bold;">Insert Courses</a></button>
+            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?viewCourse" class="p1 nav-link text-light" style="font-weight: bold;">View Courses</a></button>
+            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?insertTool" class="p1 nav-link text-light" style="font-weight: bold;">Insert Tool</a></button>
+            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?viewTool" class="p1 nav-link text-light" style="font-weight: bold;">View Tools</a></button>
+            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?insertStationery" class="p1 nav-link text-light" style="font-weight: bold;">Insert Stationery</a></button>
+            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?viewStationery" class="p1 nav-link text-light" style="font-weight: bold;">View Stationery</a></button>
+            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?listOrders" class="p1 nav-link text-light" style="font-weight: bold;">All Orders</a></button>
+            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?listPayments" class="p1 nav-link text-light" style="font-weight: bold;">All Payments</a></button>
+            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?listUsers" class="p1 nav-link text-light" style="font-weight: bold;">List Users</a></button>
+            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?listMessages" class="p1 nav-link text-light" style="font-weight: bold;">User Messages</a></button>
+            <button class="p1 btn btn-danger w-100 mb-2"><a href="./adminLogin.php" class="p1 nav-link text-light" style="font-weight: bold;">Logout</a></button>
         </div>
     </div>
 </div>
 
 
         <!-- fourth child -->
-        <div class="container my-3">
+        <div class="p1 container my-3">
             <?php
                 if(isset($_GET['insertBook'])){
                     include('insertBook.php');
@@ -222,7 +225,7 @@ body {
             ?>
         </div>
 
-        <div class="container my-3">
+        <div class="p1 container my-3">
             <?php
                 if(isset($_GET['insertTool'])){
                     include('insertTool.php');

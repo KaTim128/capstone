@@ -13,7 +13,7 @@
             height: 100vh;
             margin: 0;
             background-color: #e0f7fa; /* Light cyan background */
-            font-family: 'Arial', sans-serif;
+            font-family: "Fredericka the Great", "cursive";
         }
         .confirmation-message {
             text-align: center;
@@ -38,9 +38,9 @@
 </head>
 <body class=" p1 green">
     <div class=" p1 confirmation-message">
-        <h2>Account Deleted Successfully!</h2>
-        <p>Your account has been successfully deleted.</p>
-        <p>You will be redirected to the main page shortly...</p>
+        <h2 class="p1">Account Deleted Successfully!</h2>
+        <p class="p1">Your account has been successfully deleted.</p>
+        <p class="p1">You will be redirected to the main page shortly...</p>
     </div>
 
     <script>

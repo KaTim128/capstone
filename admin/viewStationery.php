@@ -1,46 +1,3 @@
-<?php
-include('../database/connection.php');
-
-// Initialize alert message variable
-$alertMessage = '';
-
-// Check if a deletion has been triggered
-if (isset($_GET['deleteStationery'])) {
-    $stationery_id_to_delete = $_GET['deleteStationery'];
-
-    // Attempt to delete the selected stationery
-    $delete_query = "DELETE FROM `stationery` WHERE stationery_id = $stationery_id_to_delete";
-    if (mysqli_query($conn, $delete_query)) {
-        // Store success message in session
-        $_SESSION['alertMessage'] = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <strong>Success!</strong> Stationery deleted successfully!
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>';
-    } else {
-        // Store error message in session
-        $_SESSION['alertMessage'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <strong>Error!</strong> There was an issue deleting the stationery.
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>';
-    }
-
-    // Redirect to the same page to avoid re-triggering the delete on page reload
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit();
-}
-
-// Check if an alert message is set in the session
-if (isset($_SESSION['alertMessage'])) {
-    $alertMessage = $_SESSION['alertMessage'];
-    // Clear the alert message from the session after displaying it
-    unset($_SESSION['alertMessage']);
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,62 +22,61 @@ if (isset($_SESSION['alertMessage'])) {
         }
     </style>
 </head>
-<body>
-    <div class="container mt-4">
-        <!-- Display alert message if any -->
-        <div id="alertContainer">
-            <?php echo $alertMessage; ?>
-        </div>
+<body>  
+    <?php
+    // Display an alert if no stationery is available
+    $select_stationery = "SELECT * FROM `stationery`";
+    $result = mysqli_query($conn, $select_stationery);
+    $row_count = mysqli_num_rows($result); // Get row count
+    
+    if ($row_count == 0) {
+        echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>No stationery available.</div>";
+    }
+    ?>
 
-        <h4 class="text-center text-success" style="overflow:hidden;">All Stationeries</h4>
-        <table class="table table-bordered mt-3">
-            <thead class="table-color">
-                <tr class="text-center table-color text-dark">
-                    <th>S.No</th>
-                    <th>Stationery Title</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody class="bg-secondary text-light">
-                <?php
-                    $select_stationery = "SELECT * FROM `stationery`";
-                    $result = mysqli_query($conn, $select_stationery);
-                    $row_count = mysqli_num_rows($result); // Get row count
+    <table class="p1 table table-bordered mt-3">
+        <thead class="p1 table-color">
+        </thead>
+        <tbody class="p1 bg-secondary text-light">
+            <?php
+                if ($row_count > 0) {
                     $number = 0;
-
-                    if ($row_count == 0) {
-                        echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There are no stationeries yet.</div>";
-                    } else {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            $stationery_id = $row['stationery_id'];
-                            $stationery_title = $row['stationery_title'];
-                            $number++;
-                ?>
-                <tr class="text-center">
-                    <td><?php echo $number; ?></td>
-                    <td><?php echo $stationery_title; ?></td>
-                    <td><a href='adminPanel.php?editStationery=<?php echo $stationery_id; ?>' class='text-light'><i class='fa-solid fa-pen-to-square'></i></a></td>
-                    <td><a href="#" class="text-light" data-toggle="modal" data-target="#deleteModal" onclick="setStationeryId(<?php echo $stationery_id; ?>)"><i class='fa-solid fa-trash'></i></a></td>
-                </tr>
-                <?php
-                        }
+                    echo "
+                    <h4 class='text-center text-success mt-4' style='overflow:hidden;'>All Stationeries</h4>
+                    <tr class='table-color text-center'>
+                    <th class='p1 text-dark'>S.No</th>
+                    <th class='p1 text-dark'>Stationery Title</th>
+                    <th class='p1 text-dark'>Edit</th>
+                    <th class='p1 text-dark'>Delete</th>
+                    </tr>";
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $stationery_id = $row['stationery_id'];
+                        $stationery_title = $row['stationery_title'];
+                        $number++;
+            ?>
+            <tr class="p1 text-center">
+                <td><?php echo $number; ?></td>
+                <td><?php echo $stationery_title; ?></td>
+                <td><a href='adminPanel.php?editStationery=<?php echo $stationery_id; ?>' class='text-light'><i class='fa-solid fa-pen-to-square'></i></a></td>
+                <td><a href="#" class="p1 text-light" data-toggle="modal" data-target="#deleteModal" onclick="setStationeryId(<?php echo $stationery_id; ?>)"><i class='fa-solid fa-trash'></i></a></td>
+            </tr>
+            <?php
                     }
-                ?>
-            </tbody>
-        </table>
+                }
+            ?>
+        </tbody>
+    </table>
 
-        <!-- Delete Confirmation Modal -->
-        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <h6 style="overflow:hidden">Are you sure you would like to delete this Stationery?</h6>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                        <button type="button" class="btn btn-danger" id="confirmDelete">Yes, Delete</button>
-                    </div>
+    <!-- Delete Confirmation Modal -->
+    <div class="p1 modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="p1 modal-dialog" role="document">
+            <div class="p1 modal-content">
+                <div class="p1 modal-body">
+                    <h6 style="overflow:hidden">Are you sure you would like to delete this Stationery?</h6>
+                </div>
+                <div class="p1 modal-footer">
+                    <button type="button" class="p1 btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="button" class="p1 btn btn-danger" id="confirmDelete">Yes, Delete</button>
                 </div>
             </div>
         </div>

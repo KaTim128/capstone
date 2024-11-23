@@ -15,12 +15,12 @@
     </style>
 </head>
 <body>
-    <h4 class="text-center text-success" style="overflow:hidden">All Messages</h4>
+    <h4 class="p1 text-center text-success" style="overflow:hidden">All Messages</h4>
 
     <!-- Table container with horizontal scroll -->
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead class="table-color">
+    <div class="p1 table-responsive">
+        <table class="p1 table table-bordered">
+            <thead class="p1 table-color">
                 <?php
                 $get_msgs = "SELECT * FROM `contacts`";
                 $result = mysqli_query($conn, $get_msgs) or die("Query Failed: " . mysqli_error($conn));
@@ -30,11 +30,11 @@
                     echo "<div class='alert alert-warning text-center mt-5' style='margin: 0 auto; width: fit-content;'>There are no messages yet.</div>";
                 } else {
                     echo "<tr class='text-center table-color text-dark'>
-                    <th>S1 no</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Reply</th>
-                    <th>Delete</th>
+                    <th class='p1'>S1 no</th>
+                    <th class='p1'>Name</th>
+                    <th class='p1'>Email</th>
+                    <th class='p1'>Reply</th>
+                    <th class='p1'>Delete</th>
                 </tr>
                 </thead>
                 <tbody class='bg-secondary text-light text-center'>";
@@ -47,13 +47,13 @@
                         $message = $row_data['message'];
                         $number++;
                         echo "<tr>
-                            <td>$number</td>
-                            <td>$name</td>
-                            <td>$email</td>
-                            <td>$message</td>
+                            <td class='p1'>$number</td>
+                            <td class='p1'>$name</td>
+                            <td class='p1'>$email</td>
+                            <td class='p1'>$message</td>
                             <td class='action-buttons'>
-                                <button class='btn btn-style' data-toggle='modal' data-target='#replyModal' onclick='setReplyDetails($contact_id, \"$email\")'>Reply</button>
-                                <button class='btn btn-danger' data-toggle='modal' data-target='#deleteModal' onclick='setContactId($contact_id)'>Delete</button>
+                                <button class='p1 btn btn-style' data-toggle='modal' data-target='#replyModal' onclick='setReplyDetails($contact_id, \"$email\")'>Reply</button>
+                                <button class='p1 btn btn-danger' data-toggle='modal' data-target='#deleteModal' onclick='setContactId($contact_id)'>Delete</button>
                             </td>   
                         </tr>";
                     }
@@ -64,41 +64,41 @@
         </div>
 
     <!-- Delete Confirmation Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
+    <div class="p1 modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="p1 modal-dialog" role="document">
+            <div class="p1 modal-content">
+                <div class="p1 modal-body">
                     <h6 style="overflow:hidden;">Are you sure you would like to delete this message?</h6>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    <button type="button" class="btn btn-danger" id="confirmDeleteOrder" onclick="deleteMessage()">Yes, Delete</button>
+                <div class="p1 modal-footer">
+                    <button type="button" class="p1 btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="button" class="p1 btn btn-danger" id="confirmDeleteOrder" onclick="deleteMessage()">Yes, Delete</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Reply Modal -->
-<div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="replyModalLabel">Reply to User</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<div class="p1 modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
+    <div class="p1 modal-dialog" role="document">
+        <div class="p1 modal-content">
+            <div class="p1 modal-header">
+                <h5 class="p1 modal-title" id="replyModalLabel">Reply to User</h5>
+                <button type="button" class="p1 close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="p1 modal-body">
                 <input type="hidden" name="contact_id" id="reply_contact_id">
                 <input type="hidden" name="email" id="reply_email">
-                <div class="form-group">
+                <div class="p1 form-group">
                     <label for="replyMessage">Message</label>
-                    <textarea class="form-control" name="replyMessage" id="replyMessage" rows="4" required></textarea>
+                    <textarea class="p1 form-control" name="replyMessage" id="replyMessage" rows="4" required></textarea>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-style" onclick="sendReply()">Send Reply</button>
+            <div class="p1 modal-footer">
+                <button type="button" class="p1 btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="p1 btn btn-style" onclick="sendReply()">Send Reply</button>
             </div>
         </div>
     </div>

@@ -16,12 +16,12 @@
     </style>
 </head>
 <body>
-    <h4 class="text-center text-success mt-4" style="overflow:hidden;">All Courses</h4>
-    <table class="table table-bordered mt-3">
-        <thead class="table-color">
+    <h4 class="p1 text-center text-success mt-4" style="overflow:hidden;">All Courses</h4>
+    <table class="p1 table table-bordered mt-3">
+        <thead class="p1 table-color">
             
         </thead>
-        <tbody class="bg-secondary text-light">
+        <tbody class="p1 bg-secondary text-light">
             <?php
                 $select_courses = "SELECT * FROM `courses`";
                 $result = mysqli_query($conn, $select_courses);
@@ -31,10 +31,10 @@
                     echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There are no courses yet.</div>";
                    } else {
                     echo"<tr class='text-center table-color text-dark'>
-                    <th>S.No</th>
-                    <th>Course Title</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th class='p1'>S.No</th>
+                    <th class='p1'>Course Title</th>
+                    <th class='p1'>Edit</th>
+                    <th class='p1'>Delete</th>
                     </tr>";
                     
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -43,11 +43,11 @@
                         $number++;
                     
             ?>
-            <tr class="text-center">
+            <tr class="p1 text-center">
                 <td><?php echo $number; ?></td>
                 <td><?php echo $course_title; ?></td>
                 <td><a href='adminPanel.php?editCourse=<?php echo $course_id ?>' class='text-light'><i class='fa-solid fa-pen-to-square'></i></a></td>
-                <td><a href="#" class="text-light" data-toggle="modal" data-target="#deleteModal" onclick="setCourseId(<?php echo $course_id; ?>)"><i class='fa-solid fa-trash'></i></a></td>
+                <td><a href="#" class="p1 text-light" data-toggle="modal" data-target="#deleteModal" onclick="setCourseId(<?php echo $course_id; ?>)"><i class='fa-solid fa-trash'></i></a></td>
             </tr>
             <?php
                     }
@@ -57,15 +57,15 @@
     </table>
 
     <!-- Delete Confirmation Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
+    <div class="p1 modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="p1 modal-dialog" role="document">
+            <div class="p1 modal-content">
+                <div class="p1 modal-body">
                     <h6 style="overflow:hidden">Are you sure you would like to delete this Course?</h6>
                 </div>
-                <div class="modal-footer" >
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    <button type="button" class="btn btn-danger" id="confirmDelete">Yes, Delete</button>
+                <div class="p1 modal-footer" >
+                    <button type="button" class="p1 btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="button" class="p1 btn btn-danger" id="confirmDelete">Yes, Delete</button>
                 </div>
             </div>
         </div>

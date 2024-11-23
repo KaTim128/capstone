@@ -33,8 +33,8 @@
     </style>
 </head>
 <body>
-    <div class="table-responsive"> <!-- Added this div for scrollable table -->
-        <table class="table table-bordered mt-2">
+    <div class="p1 table-responsive"> <!-- Added this div for scrollable table -->
+        <table class="p1 table table-bordered mt-2">
             <?php
             $get_books = "SELECT * FROM `books`";
             $result = mysqli_query($conn, $get_books);
@@ -47,14 +47,14 @@
                 <h4 class='text-center text-success mt-4'>All Books</h4>
                 <thead class='table-color'>
                         <tr class='text-center'>
-                            <th>Book ID</th>
-                            <th>Book Title</th>
-                            <th>Book Image</th>
-                            <th>Book Price</th>
-                            <th>Total Sold</th>
-                            <th>Status</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th class='p1'>Book ID</th>
+                            <th class='p1'>Book Title</th>
+                            <th class='p1'>Book Image</th>
+                            <th class='p1'>Book Price</th>
+                            <th class='p1'>Total Sold</th>
+                            <th class='p1'>Status</th>
+                            <th class='p1'>Edit</th>
+                            <th class='p1'>Delete</th>
                         </tr>
                       </thead>
                       <tbody class='bg-secondary text-light'>";
@@ -83,7 +83,7 @@
                         </td>
                         <td><?php echo $book_status; ?></td>
                         <td><a href='adminPanel.php?editBook=<?php echo $book_id ?>' class='text-light'><i class='fa-solid fa-pen-to-square'></i></a></td>
-                        <td><a href="#" class="text-light" data-toggle="modal" data-target="#deleteModal" onclick="setBookId(<?php echo $book_id; ?>)"><i class='fa-solid fa-trash'></i></a></td>
+                        <td><a href="#" class="p1 text-light" data-toggle="modal" data-target="#deleteModal" onclick="setBookId(<?php echo $book_id; ?>)"><i class='fa-solid fa-trash'></i></a></td>
                     </tr>
                     <?php
                 }
@@ -94,15 +94,15 @@
     </div> <!-- End of the scrollable table div -->
 
     <!-- Delete Confirmation Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
+    <div class="p1 modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="p1 modal-dialog" role="document">
+            <div class="p1 modal-content">
+                <div class="p1 modal-body">
                     <h6 style="overflow:hidden;">Are you sure you would like to delete this book?</h6>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    <button type="button" class="btn btn-danger" id="confirmDeleteBook">Yes, Delete</button>
+                <div class="p1 modal-footer">
+                    <button type="button" class="p1 btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="button" class="p1 btn btn-danger" id="confirmDeleteBook">Yes, Delete</button>
                 </div>
             </div>
         </div>

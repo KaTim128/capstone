@@ -48,18 +48,18 @@ if (isset($_POST['edit_book'])) {
 
     if (mysqli_query($conn, $update_book)) {
         // Success alert message
-        $alertMessage = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        $alertMessage = '<div class="p1 alert alert-success alert-dismissible fade show" role="alert">
                             Book details updated successfully!
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <button type="button" class="p1 close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>';
         echo "<script>setTimeout(function(){ window.open('adminPanel.php?viewBook', '_self'); }, 2000);</script>";
     } else {
         // Error alert message
-        $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        $alertMessage = '<div class="p1 alert alert-danger alert-dismissible fade show" role="alert">
                             <strong>Error!</strong> Error updating book details: ' . mysqli_error($conn) . '
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <button type="button" class="p1 close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>';
@@ -88,28 +88,28 @@ if (isset($_POST['edit_book'])) {
         <?php echo $alertMessage; ?>
     </div>
 
-    <div class="container mt-3">
-        <h1 class="text-center mb-4" style="overflow:hidden;">Edit Book</h1>
+    <div class="p1 container mt-3">
+        <h1 class="p1 text-center mb-4" style="overflow:hidden;">Edit Book</h1>
         <form action="" method="post" enctype="multipart/form-data">
-            <div class="form-outline w-50 m-auto mb-4">
+            <div class="p1 form-outline w-50 m-auto mb-4">
                 <label for="book_title">Book Title</label>
-                <input type="text" id="book_title" value="<?php echo $book_title ?>" name="book_title" class="form-control mb-4" placeholder="Book Title" required="required">
+                <input type="text" id="book_title" value="<?php echo $book_title ?>" name="book_title" class="p1 form-control mb-4" placeholder="Book Title" required="required">
             </div>
-            <div class="form-outline w-50 m-auto mb-4">
+            <div class="p1 form-outline w-50 m-auto mb-4">
                 <label for="book_author">Book Author</label>
-                <input type="text" id="book_author" value="<?php echo $author ?>" name="book_author" class="form-control mb-4" placeholder="Book Author" required="required">
+                <input type="text" id="book_author" value="<?php echo $author ?>" name="book_author" class="p1 form-control mb-4" placeholder="Book Author" required="required">
             </div>
-            <div class="form-outline w-50 m-auto mb-4">
+            <div class="p1 form-outline w-50 m-auto mb-4">
                 <label for="book_desc">Book Description</label>
-                <input type="text" id="book_desc" value="<?php echo $description ?>" name="book_desc" class="form-control mb-4" placeholder="Book Description" required="required">
+                <input type="text" id="book_desc" value="<?php echo $description ?>" name="book_desc" class="p1 form-control mb-4" placeholder="Book Description" required="required">
             </div>
-            <div class="form-outline w-50 m-auto mb-4">
+            <div class="p1 form-outline w-50 m-auto mb-4">
                 <label for="book_keywords">Book Keywords</label>
-                <input type="text" id="book_keywords" value="<?php echo $keyword ?>" name="book_keywords" class="form-control mb-4" placeholder="Book Keywords" required="required">
+                <input type="text" id="book_keywords" value="<?php echo $keyword ?>" name="book_keywords" class="p1 form-control mb-4" placeholder="Book Keywords" required="required">
             </div>
-            <div class="form-outline w-50 m-auto mb-4">
+            <div class="p1 form-outline w-50 m-auto mb-4">
                 <label for="book_course">Course</label>
-                <select name="book_course" id="book_course" class="form-control mb-4" required>
+                <select name="book_course" id="book_course" class="p1 form-control mb-4" required>
                     <option value="<?php echo $course_id; ?>"><?php echo $course_title; ?></option>
                     <?php
                     $select_course_all = "SELECT * FROM `courses`";
@@ -122,19 +122,19 @@ if (isset($_POST['edit_book'])) {
                     ?>
                 </select>
             </div>
-            <div class="form-outline w-50 m-auto mb-4">
+            <div class="p1 form-outline w-50 m-auto mb-4">
                 <label for="book_image">Book Image</label>
-                <div class="d-flex align-items-center mb-4">
-                    <input type="file" id="book_image" name="book_image" class="form-control" placeholder="image" style="flex-grow: 1;">
+                <div class="p1 d-flex align-items-center mb-4">
+                    <input type="file" id="book_image" name="book_image" class="p1 form-control" placeholder="image" style="flex-grow: 1;">
                     <img src="./bookImages/<?php echo $image ?>" alt="Book Image" style="width: 40px; height: auto; margin-left: 10px;">
                 </div>
             </div>
-            <div class="form-outline w-50 m-auto mb-4">
+            <div class="p1 form-outline w-50 m-auto mb-4">
                 <label for="book_price">Book Price</label>
-                <input type="text" id="book_price" value="<?php echo $price ?>" name="book_price" class="form-control mb-4" placeholder="Book Price" required="required">
+                <input type="text" id="book_price" value="<?php echo $price ?>" name="book_price" class="p1 form-control mb-4" placeholder="Book Price" required="required">
             </div>
-            <div class="w-50 m-auto">
-                <input type="submit" name="edit_book" value="Update Book" class="btn btn-style px-3 mb-3">
+            <div class="p1 w-50 m-auto">
+                <input type="submit" name="edit_book" value="Update Book" class="p1 btn btn-style px-3 mb-3">
             </div>
         </form>
     </div>

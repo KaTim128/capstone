@@ -17,9 +17,9 @@ if (isset($_POST['insert_tool'])) {
 
     // Checking empty conditions
     if ($tool_title == '' || $description == '' || $keyword == '' || $tool_stationery == '' || $price == '' || $image == '') {
-        $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        $alertMessage = '<div class="p1 alert alert-danger alert-dismissible fade show" role="alert">
                             Please fill in all the available fields!
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <button type="button" class="p1 close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>';
@@ -33,16 +33,16 @@ if (isset($_POST['insert_tool'])) {
         $result_query = mysqli_query($conn, $insert_tool);
 
         if ($result_query) {
-            $alertMessage = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            $alertMessage = '<div class="p1 alert alert-success alert-dismissible fade show" role="alert">
                                 Successfully added the tool!
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <button type="button" class="p1 close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>';
         } else {
-            $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            $alertMessage = '<div class="p1 alert alert-danger alert-dismissible fade show" role="alert">
                                 Failed to add the tool. Please try again later.
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <button type="button" class="p1 close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>';
@@ -92,37 +92,37 @@ if (isset($_POST['insert_tool'])) {
         
     </style>
 </head>
-<body class="bg-light" >
+<body class="p1 bg-light" >
     <div id="alertContainer">
         <?php echo $alertMessage; ?>
     </div>
 
-    <div class="container">
-        <h4 class="text-center text-success" style="overflow:hidden;">Insert Tools</h4>
+    <div class="p1 container">
+        <h4 class="p1 text-center text-success" style="overflow:hidden;">Insert Tools</h4>
         <!-- Form -->
-        <form action="" method="post" enctype="multipart/form-data" class="form-container">
+        <form action="" method="post" enctype="multipart/form-data" class="p1 form-container">
             <!-- Tool Title -->
-            <div class="form-outline w-100">
-                <label for="tool_title" class="form-label">Tool Title</label>
-                <input type="text" name="tool_title" id="tool_title" class="form-control" placeholder="Enter Tool Title" autocomplete="off" required>
+            <div class="p1 form-outline w-100">
+                <label for="tool_title" class="p1 form-label">Tool Title</label>
+                <input type="text" name="tool_title" id="tool_title" class="p1 form-control" placeholder="Enter Tool Title" autocomplete="off" required>
             </div>
 
             <!-- Tool Description -->
-            <div class="form-outline w-100">
-                <label for="description" class="form-label">Tool Description</label>
-                <textarea name="description" id="description" class="form-control" placeholder="Enter Description" required></textarea>
+            <div class="p1 form-outline w-100">
+                <label for="description" class="p1 form-label">Tool Description</label>
+                <textarea name="description" id="description" class="p1 form-control" placeholder="Enter Description" required></textarea>
             </div>
 
             <!-- Tool Keywords -->
-            <div class="form-outline w-100">
-                <label for="keyword" class="form-label">Tool Keywords</label>
-                <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Enter Tool Keyword" autocomplete="off" required>
+            <div class="p1 form-outline w-100">
+                <label for="keyword" class="p1 form-label">Tool Keywords</label>
+                <input type="text" name="keyword" id="keyword" class="p1 form-control" placeholder="Enter Tool Keyword" autocomplete="off" required>
             </div>
 
             <!-- Tool Category -->
-            <div class="form-outline w-100">
-                <label for="tool_stationery" class="form-label">Select a Stationery</label>
-                <select name="tool_stationery" id="tool_stationery" class="form-control" required>
+            <div class="p1 form-outline w-100">
+                <label for="tool_stationery" class="p1 form-label">Select a Stationery</label>
+                <select name="tool_stationery" id="tool_stationery" class="p1 form-control" required>
                     <option value="">Select a stationery</option>
                     <?php
                     $select_stationaries = "SELECT * FROM `stationery`";
@@ -137,20 +137,20 @@ if (isset($_POST['insert_tool'])) {
             </div>
 
             <!-- Tool Image -->
-            <div class="form-outline w-100">
-                <label for="image" class="form-label">Tool Image</label>
-                <input type="file" name="image" id="image" class="form-control" required>
+            <div class="p1 form-outline w-100">
+                <label for="image" class="p1 form-label">Tool Image</label>
+                <input type="file" name="image" id="image" class="p1 form-control" required>
             </div>
 
             <!-- Tool Price -->
-            <div class="form-outline w-100">
-                <label for="price" class="form-label">Tool Price</label>
-                <input type="number" name="price" id="price" class="form-control" placeholder="Enter Tool Price" autocomplete="off" step="0.01" required>
+            <div class="p1 form-outline w-100">
+                <label for="price" class="p1 form-label">Tool Price</label>
+                <input type="number" name="price" id="price" class="p1 form-control" placeholder="Enter Tool Price" autocomplete="off" step="0.01" required>
             </div>
 
             <!-- Submit Button -->
-            <div class="form-outline w-100">
-                <input type="submit" name="insert_tool" class="btn btn-style" value="Insert Tool">
+            <div class="p1 form-outline w-100">
+                <input type="submit" name="insert_tool" class="p1 btn btn-style" value="Insert Tool">
             </div>
         </form>
     </div>

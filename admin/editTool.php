@@ -46,18 +46,18 @@ if (isset($_POST['edit_tool'])) {
 
     if (mysqli_query($conn, $update_tool)) {
         // Success alert message
-        $alertMessage = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        $alertMessage = '<div class="p1 alert alert-success alert-dismissible fade show" role="alert">
                             Tool details updated successfully!
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <button type="button" class="p1 close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>';
         echo "<script>setTimeout(function(){ window.open('adminPanel.php?viewTool', '_self'); }, 2000);</script>";
     } else {
         // Error alert message
-        $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        $alertMessage = '<div class="p1 alert alert-danger alert-dismissible fade show" role="alert">
                             <strong>Error!</strong> Error updating tool details: ' . mysqli_error($conn) . '
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <button type="button" class="p1 close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>';
@@ -85,24 +85,24 @@ if (isset($_POST['edit_tool'])) {
         <?php echo $alertMessage; ?>
     </div>
 
-    <div class="container mt-3">
-        <h1 class="text-center mb-4" style="overflow:hidden;">Edit Tool</h1>
+    <div class="p1 container mt-3">
+        <h1 class="p1 text-center mb-4" style="overflow:hidden;">Edit Tool</h1>
         <form action="" method="post" enctype="multipart/form-data">
-            <div class="form-outline w-50 m-auto mb-4">
+            <div class="p1 form-outline w-50 m-auto mb-4">
                 <label for="tool_title">Tool Title</label>
-                <input type="text" id="tool_title" value="<?php echo $tool_title ?>" name="tool_title" class="form-control mb-4" placeholder="Tool Title" required="required">
+                <input type="text" id="tool_title" value="<?php echo $tool_title ?>" name="tool_title" class="p1 form-control mb-4" placeholder="Tool Title" required="required">
             </div>
-            <div class="form-outline w-50 m-auto mb-4">
+            <div class="p1 form-outline w-50 m-auto mb-4">
                 <label for="tool_desc">Tool Description</label>
-                <input type="text" id="tool_desc" value="<?php echo $description ?>" name="tool_desc" class="form-control mb-4" placeholder="Tool Description" required="required">
+                <input type="text" id="tool_desc" value="<?php echo $description ?>" name="tool_desc" class="p1 form-control mb-4" placeholder="Tool Description" required="required">
             </div>
-            <div class="form-outline w-50 m-auto mb-4">
+            <div class="p1 form-outline w-50 m-auto mb-4">
                 <label for="tool_keywords">Tool Keywords</label>
-                <input type="text" id="tool_keywords" value="<?php echo $keyword ?>" name="tool_keywords" class="form-control mb-4" placeholder="Tool Keywords" required="required">
+                <input type="text" id="tool_keywords" value="<?php echo $keyword ?>" name="tool_keywords" class="p1 form-control mb-4" placeholder="Tool Keywords" required="required">
             </div>
-            <div class="form-outline w-50 m-auto mb-4">
+            <div class="p1 form-outline w-50 m-auto mb-4">
                 <label for="tools">Stationery</label>
-                <select name="tools" id="tools" class="form-control mb-4" required>
+                <select name="tools" id="tools" class="p1 form-control mb-4" required>
                     <option value="<?php echo $stationery_id; ?>"><?php echo $stationery_title; ?></option>
                     <?php
                     $select_stationery_all = "SELECT * FROM `stationery`";
@@ -115,20 +115,20 @@ if (isset($_POST['edit_tool'])) {
                     ?>
                 </select>
             </div>
-            <div class="form-outline w-50 m-auto mb-4">
+            <div class="p1 form-outline w-50 m-auto mb-4">
                 <label for="tool_image">Tool Image</label>
-                <div class="d-flex align-items-center mb-4">
-                    <input type="file" id="tool_image" name="tool_image" class="form-control" style="flex-grow: 1;">
-                    <img src="./toolImages/<?php echo $image ?>" alt="Tool Image" style="width: 40px; height: auto; margin-left: 10px;">
+                <div class="p1 d-flex align-items-center mb-4">
+                    <input type="file" id="tool_image" name="tool_image" class="p1 form-control" style="flex-grow: 1;">
+                    <img src="./toolImages/<?php echo $image ?>" alt="Tool Image" style="width: 40px; height: auto; margin-left:10px;">
                 </div>
             </div>
             <!-- Tool Price -->
-            <div class="form-outline w-50 m-auto mb-4">
+            <div class="p1 form-outline w-50 m-auto mb-4">
                 <label for="tool_price">Tool Price</label>
-                <input type="number" id="tool_price" value="<?php echo $price ?>" name="tool_price" class="form-control mb-4" placeholder="Tool Price" step="0.01" required="required">
+                <input type="number" id="tool_price" value="<?php echo $price ?>" name="tool_price" class="p1 form-control mb-4" placeholder="Tool Price" step="0.01" required="required">
             </div>
-            <div class="w-50 m-auto">
-                <input type="submit" name="edit_tool" value="Update Tool" class="btn btn-style px-3 mb-3">
+            <div class="p1 w-50 m-auto">
+                <input type="submit" name="edit_tool" value="Update Tool" class="p1 btn btn-style px-3 mb-3">
             </div>
         </form>
     </div>

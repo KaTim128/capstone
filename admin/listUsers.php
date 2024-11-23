@@ -36,9 +36,9 @@
     </style>
 </head>
 <body>
-   <h4 class="text-center text-success" style="overflow:hidden">All Users</h4>
-   <div class="container">
-       <table class="table table-bordered table-striped">
+   <h4 class="p1 text-center text-success" style="overflow:hidden">All Users</h4>
+   <div class="p1 container">
+       <table class="p1 table table-bordered table-striped">
            <thead>
                <?php
                $get_users = "SELECT * FROM `user`";
@@ -49,13 +49,13 @@
                 echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There are no users yet.</div>";
                } else {
                    echo "<tr class='text-center table-color text-dark'>
-                   <th>S/N</th>
-                   <th>Username</th>
-                   <th>User Email</th> 
-                   <th>User Image</th>           
-                   <th>User Address</th>
-                   <th>User Mobile</th>
-                   <th>Delete</th>
+                   <th class='p1'>S/N</th>
+                   <th class='p1'>Username</th>
+                   <th class='p1'>User Email</th> 
+                   <th class='p1'>User Image</th>           
+                   <th class='p1'>User Address</th>
+                   <th class='p1'>User Mobile</th>
+                   <th class='p1'>Delete</th>
                </tr>
                </thead>
                <tbody class='bg-secondary text-light'>";
@@ -69,13 +69,13 @@
                        $contact = $row_data['user_contact'];
                        $number++;
                        echo "<tr>
-                           <td class='text-center'>$number</td>
-                           <td class='text-center'>$username</td>
-                           <td class='text-center'>$email</td>
-                           <td class='text-center'><img src='../users/user_images/$image' alt='$username' class='user-image'/></td> 
-                           <td class='text-center'>$address</td>
-                           <td class='text-center'>$contact</td>
-                           <td class='text-center'><a href='#' class='text-light' data-toggle='modal' data-target='#deleteModal' onclick='setUserId($user_id)'><i class='fa-solid fa-trash'></i></a></td>
+                           <td class='text-center p1'>$number</td>
+                           <td class='text-center p1'>$username</td>
+                           <td class='text-center p1'>$email</td>
+                           <td class='text-center p1'><img src='../users/user_images/$image' alt='$username' class='user-image'/></td> 
+                           <td class='text-center p1'>$address</td>
+                           <td class='text-center p1'>$contact</td>
+                           <td class='text-center p1'><a href='#' class='text-light' data-toggle='modal' data-target='#deleteModal' onclick='setUserId($user_id)'><i class='fa-solid fa-trash'></i></a></td>
                        </tr>";
                    }
                }
@@ -85,15 +85,15 @@
    </div> 
 
    <!-- Delete Confirmation Modal -->
-   <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-       <div class="modal-dialog" role="document">
-           <div class="modal-content">
-               <div class="modal-body">
+   <div class="p1 modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+       <div class="p1 modal-dialog" role="document">
+           <div class="p1 modal-content">
+               <div class="p1 modal-body">
                    <h6 style="overflow:hidden">Are you sure you would like to delete this user?</h6>
                </div>
-               <div class="modal-footer">
-                   <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                   <button type="button" class="btn btn-danger" id="confirmDeleteUser">Yes, Delete</button>
+               <div class="p1 modal-footer">
+                   <button type="button" class="p1 btn btn-secondary" data-dismiss="modal">No</button>
+                   <button type="button" class="p1 btn btn-danger" id="confirmDeleteUser">Yes, Delete</button>
                </div>
            </div>
        </div>

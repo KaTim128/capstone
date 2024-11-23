@@ -18,9 +18,9 @@ if (isset($_POST['insert_book'])) {
 
     // Checking empty conditions
     if ($book_title == '' || $author == '' || $description == '' || $keyword == '' || $book_course == '' || $price == '' || $image == '') {
-        $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        $alertMessage = '<div class="p1 alert alert-danger alert-dismissible fade show" role="alert">
                             Please fill in all the available fields!
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <button type="button" class="p1 close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>';
@@ -35,16 +35,16 @@ if (isset($_POST['insert_book'])) {
 
         if ($result_query) {
             // Success alert message
-            $alertMessage = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            $alertMessage = '<div class="p1 alert alert-success alert-dismissible fade show" role="alert">
                                 Successfully added the book!
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <button type="button" class="p1 close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>';
         } else {
-            $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            $alertMessage = '<div class="p1 alert alert-danger alert-dismissible fade show" role="alert">
                                 Failed to add the book. Please try again later.
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <button type="button" class="p1 close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>';
@@ -101,42 +101,42 @@ if (isset($_POST['insert_book'])) {
 
 </head>
 
-<body class="bg-light">
+<body class="p1 bg-light">
     <div id="alertContainer">
         <?php echo $alertMessage; ?>
     </div>
 
-    <div class="container mt-3">
-        <h4 class="text-center text-success" style="overflow:hidden;">Insert Books</h4>
+    <div class="p1 container mt-3">
+        <h4 class="p1 text-center text-success" style="overflow:hidden;">Insert Books</h4>
         <!-- Form -->
-        <form action="" method="post" enctype="multipart/form-data" class="form-container">
+        <form action="" method="post" enctype="multipart/form-data" class="p1 form-container">
             <!-- Book Title -->
-            <div class="form-outline w-100">
-                <label for="book_title" class="form-label">Book Title</label>
-                <input type="text" name="book_title" id="book_title" class="form-control" placeholder="Enter Book Title" autocomplete="off" required>
+            <div class="p1 form-outline w-100">
+                <label for="book_title" class="p1 form-label">Book Title</label>
+                <input type="text" name="book_title" id="book_title" class="p1 form-control" placeholder="Enter Book Title" autocomplete="off" required>
             </div>
 
-            <div class="form-outline w-100">
-                <label for="author" class="form-label">Book Author</label>
-                <input type="text" name="author" id="author" class="form-control" placeholder="Enter Book Author" autocomplete="off" required>
+            <div class="p1 form-outline w-100">
+                <label for="author" class="p1 form-label">Book Author</label>
+                <input type="text" name="author" id="author" class="p1 form-control" placeholder="Enter Book Author" autocomplete="off" required>
             </div>
 
             <!-- Book Description -->
-            <div class="form-outline w-100">
-                <label for="description" class="form-label">Book Description</label>
-                <textarea name="description" id="description" class="form-control" placeholder="Enter Description" required></textarea>
+            <div class="p1 form-outline w-100">
+                <label for="description" class="p1 form-label">Book Description</label>
+                <textarea name="description" id="description" class="p1 form-control" placeholder="Enter Description" required></textarea>
             </div>
 
             <!-- Book Keywords -->
-            <div class="form-outline w-100">
-                <label for="keyword" class="form-label">Book Keywords</label>
-                <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Enter Book Keyword" autocomplete="off" required>
+            <div class="p1 form-outline w-100">
+                <label for="keyword" class="p1 form-label">Book Keywords</label>
+                <input type="text" name="keyword" id="keyword" class="p1 form-control" placeholder="Enter Book Keyword" autocomplete="off" required>
             </div>
 
             <!-- Book Courses -->
-            <div class="form-outline w-100">
-                <label for="book_course" class="form-label">Select a Course</label>
-                <select name="book_course" id="book_course" class="form-control" required>
+            <div class="p1 form-outline w-100">
+                <label for="book_course" class="p1 form-label">Select a Course</label>
+                <select name="book_course" id="book_course" class="p1 form-control" required>
                     <option value="">Select a Course</option>
                     <?php
                     $select_courses = "SELECT * FROM `courses`";
@@ -151,20 +151,20 @@ if (isset($_POST['insert_book'])) {
             </div>
 
             <!-- Book Image -->
-            <div class="form-outline w-100">
-                <label for="image" class="form-label">Book Image</label>
-                <input type="file" name="image" id="image" class="form-control" required>
+            <div class="p1 form-outline w-100">
+                <label for="image" class="p1 form-label">Book Image</label>
+                <input type="file" name="image" id="image" class="p1 form-control" required>
             </div>
 
             <!-- Book Price -->
-            <div class="form-outline w-100">
-                <label for="price" class="form-label">Book Price</label>
-                <input type="number" name="price" id="price" class="form-control" placeholder="Enter Book Price" autocomplete="off" step="0.01" required>
+            <div class="p1 form-outline w-100">
+                <label for="price" class="p1 form-label">Book Price</label>
+                <input type="number" name="price" id="price" class="p1 form-control" placeholder="Enter Book Price" autocomplete="off" step="0.01" required>
             </div>
 
             <!-- Submit Button -->
-            <div class="form-outline w-100">
-                <input type="submit" name="insert_book" class="btn btn-style" value="Insert Book">
+            <div class="p1 form-outline w-100">
+                <input type="submit" name="insert_book" class="p1 btn btn-style" value="Insert Book">
             </div>
         </form>
     </div>

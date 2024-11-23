@@ -20,17 +20,16 @@ if (isset($_POST['update_stationery'])) {
     $update_query = "UPDATE `stationery` SET stationery_title = '$new_stationery_title' WHERE stationery_id = $edit_stationery";
 
     if (mysqli_query($conn, $update_query)) {
-        $alertMessage = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>Success!</strong> Stationery title updated successfully!
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        $alertMessage = '<div class="p1 alert alert-success alert-dismissible fade show" role="alert">
+                            Stationery title updated successfully!
+                            <button type="button" class="p1 close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>';
-        echo "<script>window.open('adminPanel.php?viewStationery', '_self');</script>";
     } else {
-        $alertMessage = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>Error!</strong> Error updating stationery title.
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        $alertMessage = '<div class="p1 alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong> There was an error updating the stationery title.
+                            <button type="button" class="p1 close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>';
@@ -64,20 +63,25 @@ if (isset($_POST['update_stationery'])) {
         });
     </script>
 </head>
-<body class="bg-light">
-    <div class="container mt-4">
+<style>
+    .alert {
+        text-align: center;
+    }
+</style>
+<body class="p1 bg-light">
+    <div class="p1 container mt-4">
         <!-- Display alert message if any -->
         <div id="alertContainer">
             <?php echo $alertMessage; ?>
         </div>
 
-        <h1 class="text-center mb-4" style="overflow:hidden;">Edit Stationery</h1>
-        <form action="" method="post" class="text-center">
-            <div class="form-outline text-center w-50 m-auto">
-                <label for="stationery_title" class="form-label">Stationery Title</label>
-                <input type="text" name="stationery_title" id="stationery_title" class="form-control mb-4" value="<?php echo $stationery_title; ?>" required="required">
+        <h3 class="p1 text-center mb-4 text-success" style="overflow:hidden;">Edit Stationery</h3>
+        <form action="" method="post" class="p1 text-center">
+            <div class="p1 form-outline text-center w-50 m-auto">
+                <label for="stationery_title" class="p1 form-label">Stationery Title</label>
+                <input type="text" name="stationery_title" id="stationery_title" class="p1 form-control mb-4" value="<?php echo $stationery_title; ?>" required="required">
             </div>
-            <input type="submit" name="update_stationery" value="Update Stationery" class="btn btn-style px-3 mb-3">
+            <input type="submit" name="update_stationery" value="Update Stationery" class="p1 btn btn-style px-3 mb-3">
         </form>
     </div>
 </body>

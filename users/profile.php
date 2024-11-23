@@ -105,48 +105,48 @@ session_start();
 
 <body>
   <!-- navbar -->
-  <div class="container-fluid p-0 gradient-background">
+  <div class="p1 container-fluid p-0 gradient-background">
     <!-- first child  -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-color">
-      <div class="container-fluid">
+    <nav class="p1 navbar navbar-expand-lg navbar-dark navbar-color">
+      <div class="p1 container-fluid">
         <img src="../images/logo_new.png" alt="" style="width: 6%; height: 7%; margin-right: 15px; border-radius:5px">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class="p1 navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="p1 navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="../index.php">Products</span></a>
+        <div class="p1 collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="p1 navbar-nav mr-auto">
+            <li class="p1 nav-item">
+              <a class="p1 nav-link nav-zoom text-light" href="../index.php">Products</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="./wishlist.php">Wishlist</a>
+            <li class="p1 nav-item">
+              <a class="p1 nav-link nav-zoom text-light" href="./wishlist.php">Wishlist</a>
             </li>
             
             <?php
             if (isset($_SESSION['user_username'])) {
               echo "<li class='nav-item'>
-                      <a class='nav-link nav-zoom text-light' href='./profile.php'>My Account</a>
+                      <a class='p1 nav-link nav-zoom text-light' href='./profile.php'>My Account</a>
                     </li>";
             } else {
               echo "<li class='nav-item'>
-                      <a class='nav-link nav-zoom text-light' href='./user_login.php'>Login</a>
+                      <a class='p1 nav-link nav-zoom text-light' href='./user_login.php'>Login</a>
                     </li>";
             }
             ?>
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="../contact_page.php">Contact</a>
+            <li class="p1 nav-item">
+              <a class="p1 nav-link nav-zoom text-light" href="../contact_page.php">Contact</a>
             </li>   
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="../cart.php">Cart<sup><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php cartItem(); ?></sup></a>
+            <li class="p1 nav-item">
+              <a class="p1 nav-link nav-zoom text-light" href="../cart.php">Cart<sup><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php cartItem(); ?></sup></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
+            <li class="p1 nav-item">
+              <a class="p1 nav-link text-light" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
-            <input class="form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
-            <button class="btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
+          <form class="p1 form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
+            <input class="p1 form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" aria-label="Search" name="search_data">
+            <button class="p1 btn btn-outline-light my-2 my-sm-0" value="Search" type="submit" name="search_data_product">Search</button>
           </form>
         </div>
       </nav>
@@ -161,10 +161,10 @@ session_start();
       
 
       <!-- fourth child -->
-      <div class="row flex-grow-1">
-        <div class="col-md-2 light-grey">
-          <ul class="text-center">
-            <h5 class="profile-header green" style="border-radius:0px;">Your Profile</h5>
+      <div class="p1 row flex-grow-1">
+        <div class="p1 col-md-2 light-grey">
+          <ul class="p1 text-center">
+            <h5 class="p1 profile-header green" style="border-radius:0px;">Your Profile</h5>
             <?php
             $username = $_SESSION['user_username'];
             $user_image = "SELECT * FROM `user` WHERE user_username='$username'";
@@ -178,26 +178,26 @@ session_start();
             </li>";
             ?>
             <li>
-              <a class="nav-link nav-zoom text-dark" href="profile.php"><h6 style="overflow:hidden;">My Orders</h6></a>
+              <a class="p1 nav-link nav-zoom text-dark" href="profile.php"><h6 style="overflow:hidden;">My Orders</h6></a>
             </li>
             <li>
-              <a class="nav-link nav-zoom text-dark" href="profile.php?edit_account"><h6 style="overflow:hidden;">Edit Account</h6></a>
+              <a class="p1 nav-link nav-zoom text-dark" href="profile.php?edit_account"><h6 style="overflow:hidden;">Edit Account</h6></a>
             </li>
             <li>
-              <a class="nav-link nav-zoom text-dark" href="profile.php?my_orders"><h6 style="overflow:hidden;">Pending Orders</h6></a>
+              <a class="p1 nav-link nav-zoom text-dark" href="profile.php?my_orders"><h6 style="overflow:hidden;">Pending Orders</h6></a>
             </li>
             <li>
-              <a class="nav-link nav-zoom text-dark" href="profile.php?paid_orders"><h6 style="overflow:hidden;">Paid Orders</h6></a>
+              <a class="p1 nav-link nav-zoom text-dark" href="profile.php?paid_orders"><h6 style="overflow:hidden;">Paid Orders</h6></a>
             </li>    
             <li>
-              <a class="nav-link nav-zoom text-dark" href="profile.php?delete_account"><h6 style="overflow:hidden;">Delete Account</h6></a>
+              <a class="p1 nav-link nav-zoom text-dark" href="profile.php?delete_account"><h6 style="overflow:hidden;">Delete Account</h6></a>
             </li>
             <li>
-              <a class="nav-link nav-zoom text-dark" href="logout.php"><h6 style="overflow:hidden;">Logout</h6></a>
+              <a class="p1 nav-link nav-zoom text-dark" href="logout.php"><h6 style="overflow:hidden;">Logout</h6></a>
             </li>
           </ul>
         </div>
-        <div class="col-md-10">
+        <div class="p1 col-md-10">
           
           <?php 
           orderDetails(); ?>

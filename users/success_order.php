@@ -23,7 +23,7 @@ if (isset($_GET['invoice_number'])) {
             height: 100vh;
             margin: 0;
             background-color: #e0f7fa; /* Light cyan background */
-            font-family: 'Arial', sans-serif;
+            font-family: "Fredericka the Great", "cursive";
         }
         .confirmation-message {
             text-align: center;
@@ -63,9 +63,9 @@ if (isset($_GET['invoice_number'])) {
 </head>
 <body class="green">
     <div class="confirmation-message">
-        <h2>Order Submitted Successfully!</h2>
-        <p>Your invoice number is: <strong><?php echo $invoice_number; ?></strong></p>
-        <p>You will be redirected to your profile shortly...</p>
+        <h2 class="p1">Order Submitted Successfully!</h2>
+        <p class="p1">Your invoice number is: <strong><?php echo $invoice_number; ?></strong></p>
+        <p class="p1">You will be redirected to your profile shortly...</p>
     </div>
 
     <script>

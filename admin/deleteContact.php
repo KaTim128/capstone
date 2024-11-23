@@ -9,7 +9,6 @@ if (isset($_GET['deleteContact'])) {
     $result_msg = mysqli_query($conn, $delete_query);
 
     if ($result_msg) {
-        // Optional: Display a JavaScript alert, if needed
         echo "<script>alert('Message deleted successfully!');</script>";
 
         // Redirect to adminPanel.php?listMessages

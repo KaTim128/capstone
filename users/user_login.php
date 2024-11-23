@@ -73,16 +73,16 @@ if(isset($_POST['user_login'])){
             <img src="../images/logo_new.png" alt="Logo" style="border-radius:10px;">
         </div>
         <div class=" p1 form-container border">
-            <h2>User Login</h2>
+            <h2 class="p1">User Login</h2>
             <div id="alertContainer" class=" p1 alert-container text-center" data-alert-message="<?= htmlspecialchars($alert_message) ?>" data-alert-type="<?= $alert_type ?>">
             </div>
             <form action="" method="post">
                 <div class=" p1 form-group">
-                    <label for="user_email">Email</label>
+                    <label for="user_email" class="p1">Email</label>
                     <input type="email" id="user_email" class=" p1 form-control" placeholder="Enter your email" name="user_email" required>
                 </div>
                 <div class=" p1 form-group">
-                    <label for="user_password">Password</label>
+                    <label for="user_password" class="p1">Password</label>
                     <input type="password" id="user_password" class=" p1 form-control" placeholder="Enter your password" name="user_password" required>
                 </div>
                 <input type="submit" value="Login" class=" p1 btn btn-btns mt-4 mb-4" name="user_login">

@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <h4 class="text-center text-success" style="overflow:hidden">All Orders</h4>
+    <h4 class="p1 text-center text-success" style="overflow:hidden">All Orders</h4>
 
     <!-- Table container with horizontal scroll -->
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead class="table-color">
+    <div class="p1 table-responsive">
+        <table class="p1 table table-bordered">
+            <thead class="p1 table-color">
                 <?php
                 $get_orders = "SELECT * FROM `orders`";
                 $result = mysqli_query($conn, $get_orders);
@@ -23,14 +23,14 @@
                     echo "<div class='alert alert-warning text-center mt-5' style='margin: 0 auto; width: fit-content;'>There are no orders yet.</div>";
                 } else {
                     echo "<tr class='text-center'>
-                    <th>S1 no</th>
-                    <th>Due Amount</th>
-                    <th>Quantity</th>
-                    <th>Invoice Number</th>            
-                    <th>Order Date</th>
-                    <th>Product ID</th>
-                    <th>Status</th>
-                    <th>Delete</th>
+                    <th class='p1'>S1 no</th>
+                    <th class='p1'>Due Amount</th>
+                    <th class='p1'>Quantity</th>
+                    <th class='p1'>Invoice Number</th>            
+                    <th class='p1'>Order Date</th>
+                    <th class='p1'>Product ID</th>
+                    <th class='p1'>Status</th>
+                    <th class='p1'>Delete</th>
                 </tr>
                 </thead>
                 <tbody class='bg-secondary text-light text-center'>";
@@ -47,11 +47,11 @@
                         $order_status = $row_data['order_status'];
                         $number++;
                         echo "<tr>
-                            <td>$number</td>
-                            <td>$amount_due</td>
-                            <td>$quantity</td>
-                            <td>$invoice_number</td>
-                            <td>$order_date</td>";
+                            <td class='p1'>$number</td>
+                            <td class='p1'>$amount_due</td>
+                            <td class='p1'>$quantity</td>
+                            <td class='p1'>$invoice_number</td>
+                            <td class='p1'>$order_date</td>";
 
                         // Check if book_id or tool_id should be displayed in the Product ID column
                         if (!empty($book_id)) {
@@ -72,15 +72,15 @@
     </div> <!-- End of table-responsive div -->
 
     <!-- Delete Confirmation Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
+    <div class="p1 modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="p1 modal-dialog" role="document">
+            <div class="p1 modal-content">
+                <div class="p1 modal-body">
                     <h6 style="overflow:hidden;">Are you sure you would like to delete this order?</h6>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    <button type="button" class="btn btn-danger" id="confirmDeleteOrder">Yes, Delete</button>
+                <div class="p1 modal-footer">
+                    <button type="button" class="p1 btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="button" class="p1 btn btn-danger" id="confirmDeleteOrder">Yes, Delete</button>
                 </div>
             </div>
         </div>

@@ -42,11 +42,11 @@ session_start();
             <?php
             if (isset($_SESSION['user_username'])) {
               echo "<li class='nav-item'>
-                      <a class='nav-link nav-zoom text-light' href='./users/profile.php'>My Account</a>
+                      <a class='p1 nav-link nav-zoom text-light' href='./users/profile.php'>My Account</a>
                     </li>";
             } else {
               echo "<li class='nav-item'>
-                      <a class='nav-link nav-zoom text-light' href='./users/user_login.php'>Login</a>
+                      <a class='p1 nav-link nav-zoom text-light' href='./users/user_login.php'>Login</a>
                     </li>";
             }
             ?>   

@@ -140,49 +140,49 @@ if (isset($_POST['remove_item'])) {
 </head>
 <body>
    <!-- navbar -->
-  <div class="container-fluid p-0 gradient-background">
+  <div class="p1 container-fluid p-0 gradient-background">
     <!-- first child  -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-color">
-      <div class="container-fluid">
+    <nav class="p1 navbar navbar-expand-lg navbar-dark navbar-color">
+      <div class="p1 container-fluid">
         <img src="../images/logo_new.png" alt="" style="width: 6%; height: 7%; margin-right: 15px; border-radius:5px">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class="p1 navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="p1 navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="../index.php">Products</span></a>
+        <div class="p1 collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="p1 navbar-nav mr-auto">
+            <li class="p1 nav-item">
+              <a class="p1 nav-link nav-zoom text-light" href="../index.php">Products</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="./wishlist.php">Wishlist</a>
+            <li class="p1 nav-item">
+              <a class="p1 nav-link nav-zoom text-light" href="./wishlist.php">Wishlist</a>
             </li>
             
             <?php
             if (isset($_SESSION['user_username'])) {
-              echo "<li class='nav-item'>
-                      <a class='nav-link nav-zoom text-light' href='./profile.php'>My Account</a>
+              echo "<li class='p1 nav-item'>
+                      <a class='p1 nav-link nav-zoom text-light' href='./profile.php'>My Account</a>
                     </li>";
             } else {
-              echo "<li class='nav-item'>
-                      <a class='nav-link nav-zoom text-light' href='./user_login.php'>Login</a>
+              echo "<li class='p1 nav-item'>
+                      <a class='p1 nav-link nav-zoom text-light' href='./user_login.php'>Login</a>
                     </li>";
             }
             ?>
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="../contact_page.php">Contact</a>
+            <li class="p1 nav-item">
+              <a class="p1 nav-link nav-zoom text-light" href="../contact_page.php">Contact</a>
             </li>   
-            <li class="nav-item">
-              <a class="nav-link nav-zoom text-light" href="../cart.php">Cart<sup><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php cartItem(); ?></sup></a>
+            <li class="p1 nav-item">
+              <a class="p1 nav-link nav-zoom text-light" href="../cart.php">Cart<sup><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php cartItem(); ?></sup></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
+            <li class="p1 nav-item">
+              <a class="p1 nav-link text-light" href="#">Total Price: RM<?php totalCartPrice(); ?></a>
             </li>
           </ul>
           <!-- Search Bar -->
-            <form class="form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
-                <input class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search" name="search_data" style="width: 500px;">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit" name="search_data_product">Search</button>
+            <form class="p1 form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
+                <input class="p1 form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search" name="search_data" style="width: 500px;">
+                <button class="p1 btn btn-outline-light my-2 my-sm-0" type="submit" name="search_data_product">Search</button>
             </form>
         </div>
       </nav>
@@ -195,16 +195,16 @@ if (isset($_POST['remove_item'])) {
 
         <!-- Alert Handling -->
         <?php if ($alertMessage): ?>
-            <div class="alert alert-warning alert-dismissible fade show text-center alert-fullwidth" role="alert">
+            <div class="p1 alert alert-warning alert-dismissible fade show text-center alert-fullwidth" role="alert">
                 <?php echo $alertMessage; ?>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <button type="button" class="p1 close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
         <?php endif; ?>
 
         <!-- Wishlist Content -->
-        <div class="container mt-4">
+        <div class="p1 container mt-4">
             <?php
             // Get items from wishlist for the logged-in user
             if (isset($_SESSION['user_id'])) {
@@ -214,12 +214,12 @@ if (isset($_POST['remove_item'])) {
 
                 // Check the number of items in the wishlist
                 if (mysqli_num_rows($result) == 0) {
-                    echo "<div class='persistent-alert text-center mt-4' style='margin: 0 auto; width: fit-content;'>
+                    echo "<div class='p1 persistent-alert text-center mt-4' style='margin: 0 auto; width: fit-content;'>
                     There are no items in the wishlist.</div>";
                 } else {
-                    echo '<h3 class="text-center" style="overflow:hidden; margin-top:50px;">Your Wishlist</h3>
-                          <table class="table table-bordered table-striped center-table mt-4 mb-5">
-                          <thead class="table-color">
+                    echo '<h3 class="p1 text-center" style="overflow:hidden; margin-top:50px;">Your Wishlist</h3>
+                          <table class="p1 table table-bordered table-striped center-table mt-4 mb-5">
+                          <thead class="p1 table-color">
                               <tr>
                                   <th>Product</th>
                                   <th>Title</th>
@@ -245,14 +245,14 @@ $image_path = $item_type === 'book'
     ? "../admin/bookImages/$item_image" : "../admin/toolImages/$item_image";
 
 echo "<tr>
-        <td class='item-img'><img src='$image_path' class='item-img'></td>
+        <td class='p1 item-img'><img src='$image_path' class='p1 item-img'></td>
                                     <td>$item_title</td>
                                     <td>RM$item_price</td>
-                                    <td class='operations'>
+                                    <td class='p1 operations'>
                                         <form action='' method='POST'>
                                             <input type='hidden' name='wishlist_id' value='{$row['wishlist_id']}'>
-                                            <button type='submit' class='btn btn-danger' name='remove_item'>Remove</button>
-                                            <a href='$details_link' class='btn btn-style'>Details</a>
+                                            <button type='submit' class='p1 btn btn-danger' name='remove_item'>Remove</button>
+                                            <a href='$details_link' class='p1 btn btn-style'>Details</a>
                                         </form>
                                     </td>
                                 </tr>";
@@ -260,7 +260,7 @@ echo "<tr>
                         echo '</tbody></table>';
                     }
                 } else {
-                    echo "<div class='alert-warning text-center my-5 p-2 box' style='position: absolute; z-index: -1; margin: 0 auto; width: fit-content; border-radius:5px;'>Please log in to view your wishlist.</div>";
+                    echo "<div class='p1 alert-warning text-center my-5 p-2 box' style='position: absolute; z-index: -1; margin: 0 auto; width: fit-content; border-radius:5px;'>Please log in to view your wishlist.</div>";
 
                 }
                 ?>

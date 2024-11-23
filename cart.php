@@ -157,11 +157,11 @@ if (isset($_POST['remove_cart'])) {
             <?php
             if (isset($_SESSION['user_username'])) {
               echo "<li class='nav-item'>
-                      <a class='nav-link nav-zoom text-light' href='./users/profile.php'>My Account</a>
+                      <a class='p1 nav-link nav-zoom text-light' href='./users/profile.php'>My Account</a>
                     </li>";
             } else {
               echo "<li class='nav-item'>
-                      <a class='nav-link nav-zoom text-light' href='./users/user_login.php'>Login</a>
+                      <a class='p1 nav-link nav-zoom text-light' href='./users/user_login.php'>Login</a>
                     </li>";
             }
             ?> 
@@ -241,7 +241,7 @@ if (isset($_POST['remove_cart'])) {
                   $book_image = $book['image'];
                   $booktype = $row['booktype'];
                   if ($booktype === 'digital') {
-                    $book_price /= 4;
+                    $book_price /= 3;
                 }
                   $total_price += $book_price * $quantity;
                   ?>

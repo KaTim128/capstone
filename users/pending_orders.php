@@ -30,16 +30,16 @@
                     <table class='table-bordered mt-2 table text-center'>
                         <thead class='table-color'>
                             <tr>
-                                <th>S1 no</th>
-                                <th>Product Name</th>
-                                <th>Image</th>
-                                <th>Type</th>
-                                <th>Quantity</th>
-                                <th>Amount Due</th>
-                                <th>Invoice Number</th>
-                                <th>Order Date</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th class='p1'>S1 no</th>
+                                <th class='p1'>Product Name</th>
+                                <th class='p1'>Image</th>
+                                <th class='p1'>Type</th>
+                                <th class='p1'>Quantity</th>
+                                <th class='p1'>Amount Due</th>
+                                <th class='p1'>Invoice Number</th>
+                                <th class='p1'>Order Date</th>
+                                <th class='p1'>Status</th>
+                                <th class='p1'>Action</th>
                             </tr>
                         </thead>
                         <tbody class='text-dark'>";
@@ -97,7 +97,7 @@
                                 <td>$order_status_display</td>";
 
                         if ($order_status_display == 'Incomplete') {
-                            echo "<td><a href='confirm_payment.php?order_id=$order_id' class='ml-3 btn btn-style text-white'>Confirm</a></td>";
+                            echo "<td><a href='confirm_payment.php?order_id=$order_id' class='p1 ml-3 btn btn-style text-white'>Confirm</a></td>";
                         } else {
                             echo "<td>Paid</td>";
                         }

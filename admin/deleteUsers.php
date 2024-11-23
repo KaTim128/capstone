@@ -8,7 +8,6 @@ if (isset($_GET['deleteUsers'])) {
         $result = mysqli_query($conn, $delete_query);
         
         if ($result) {
-            echo "<script>alert('User deleted successfully');</script>";
             echo "<script>window.location.href='adminPanel.php?listUsers';</script>";
         } else {
             echo "<script>alert('Failed to delete user');</script>";
