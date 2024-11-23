@@ -116,7 +116,7 @@ if (isset($_POST['admin_registration'])) {
                 $(alertContainer).slideUp(600, () => {
                     alertContainer.innerHTML = ""; // Clear the alert after the slide-up animation
                 });
-            }, 3000);
+            }, 2000);
         }
     };
     </script>
