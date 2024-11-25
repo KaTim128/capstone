@@ -65,7 +65,7 @@
                        $number++;
                        echo "<tr>
                            <td class='p1 text-center'>$number</td>
-                           <td class='p1 text-center'>$amount_due</td>
+                           <td class='p1 text-center'>RM$amount_due</td>
                            <td class='p1 text-center'>$invoice_number</td> 
                            <td class='p1 text-center'>$payment_mode</td>
                            <td class='p1 text-center'>$payment_date</td>

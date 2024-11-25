@@ -24,7 +24,7 @@ function getBooks(){
                 <img src='admin/bookImages/$image' class=' p1 card-img-top' alt='Book Image'>
                 <div class=' p1 card-body'>
                   <h6 class=' p1 card-title'><b>$book_title</b></h6>
-                  <p class=' p1 card-text'>RM$digital_price/<span>(Digital)</span></p>
+                  <p class=' p1 card-text'>RM$digital_price/<span>(Digital)/10%</span></p>
                   <a href='index.php?cart=$book_id' class=' p1 btn btn-style mb-2'>Add to Cart</a>
                   <a href='bookDetails.php?book_id=$book_id' class=' p1 btn btn-style mb-2'>Details</a>
                 </div>

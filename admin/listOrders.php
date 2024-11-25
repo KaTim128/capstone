@@ -48,7 +48,7 @@
                         $number++;
                         echo "<tr>
                             <td class='p1'>$number</td>
-                            <td class='p1'>$amount_due</td>
+                            <td class='p1'>RM$amount_due</td>
                             <td class='p1'>$quantity</td>
                             <td class='p1'>$invoice_number</td>
                             <td class='p1'>$order_date</td>";
