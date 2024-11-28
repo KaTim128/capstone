@@ -29,7 +29,7 @@
                 if ($row_count == 0) {
                     echo "<div class='alert alert-warning text-center mt-5' style='margin: 0 auto; width: fit-content;'>There are no messages yet.</div>";
                 } else {
-                    echo "<tr class='text-center table-color text-dark'>
+                    echo "<tr class='text-center table-color text-light'>
                     <th class='p1'>S1 no</th>
                     <th class='p1'>Name</th>
                     <th class='p1'>Email</th>

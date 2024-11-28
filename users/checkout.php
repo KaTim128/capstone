@@ -14,6 +14,38 @@ session_start();
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../style.css">
 </head>
+<style>
+  
+@media (max-width: 767px) {
+    .form-inline {
+        display: flex;
+        flex-direction: column; 
+        align-items: stretch; 
+    }
+
+    .form-control {
+        width: 100%; 
+        margin-bottom: 10px; /
+    }
+
+    .btn {
+        width: 20%; 
+    }
+}
+
+@media (min-width: 768px) {
+    .form-inline {
+        display: flex;
+        flex-direction: row; /* Keep the elements side-by-side on larger screens */
+        align-items: center;
+    }
+
+    .form-control {
+        width: 500px; /* Keep the search input width as is for larger screens */
+    }
+}
+
+</style>
 <body>
 
 <?php
@@ -40,9 +72,9 @@ if (isset($_SESSION['user_username'])) {
           <?php endif; ?>
           <li class=" p1 nav-item"><a class=" p1 nav-link nav-zoom" href="../contact_page.php">Contact</a></li>
         </ul>
-        <form class=" p1 form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
-          <input class=" p1 form-control mr-sm-3" style="width:500px;" type="search" placeholder="Search" name="search_data">
-          <button class=" p1 btn btn-outline-light" type="submit" name="search_data_product">Search</button>
+        <form class="p1 form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
+            <input class="p1 form-control" type="search" style="width:500px;" placeholder="Search" name="search_data">
+            <button class="p1 btn btn-outline-light" type="submit" name="search_data_product">Search</button>
         </form>
       </div>
     </div>

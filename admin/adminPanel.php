@@ -61,22 +61,25 @@ session_start();
         }
 
         .panel button {
-    background: linear-gradient(to right, #5ba132, #5ba132); /* Default green */
-    border: none;
-    border-radius: 5px;
-    padding: 10px; /* Increased padding for better UX */
-    margin: 5px;
-    font-family: "Fredericka the Great", "cursive"; /* Retaining your font */
-    color: white;
-    font-weight: bold;
-    transition: 0.3s ease, transform 0.2s ease; /* Smooth transition for hover */
+            padding: 10px 20px; /* Adjust padding */
+  margin-right: 10px; /* Add right margin for spacing */
+  background: linear-gradient(to right, #013220, #013220, #013220);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  color: rgb(255, 255, 255);
+  outline: 2px solid #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+  font-family: "Open Sans", sans-serif;
 }
 
 /* Hover effect for all buttons */
 .panel button:hover {
-    background:linear-gradient(to right, #5ba132, #66b13a);;
-    transform: scale(1.05); /* Slight zoom effect on hover */
-    cursor: pointer; /* Changes cursor to pointer */
+    background: linear-gradient(to right, #013b26, #01452c);
+  transform: scale(0.95);
+  color: #000000;
 }
 
         .panel a {
@@ -111,7 +114,7 @@ body {
 
 /* Red Logout Button */
 .btn-danger {
-    background-color: #dc3545 !important; /* Solid red */
+    background-color: #8B0000 !important; /* Solid red */
     background-image: none !important; /* Removes gradient */
     border: none;
     color: white; /* Ensure white text */
@@ -123,7 +126,7 @@ body {
 }
 
 .p1 {
-  font-family: "Fredericka the Great", "cursive";
+    font-family: "Open Sans", sans-serif;
 }
     </style>
 </head>

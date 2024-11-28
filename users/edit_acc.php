@@ -156,7 +156,7 @@ if (isset($_POST['user_update'])) {
         </div>
         <div class="form-outline d-flex w-50 m-auto">
             <input type="file" class="form-control m-auto image-bar" name="user_image">
-            <img src="./user_images/<?php echo htmlspecialchars($user_image); ?>" alt="" class="edit-img" style="border-radius:20px">
+            <img src="./user_images/<?php echo htmlspecialchars($user_image); ?>" alt="" class="edit-img" style="border-radius:10px">
         </div>
         <div class="form-outline mb-4 mt-3">
             <input type="text" class="form-control w-50 m-auto" name="user_address" value="<?php echo htmlspecialchars($user_address); ?>" placeholder="Address" required>

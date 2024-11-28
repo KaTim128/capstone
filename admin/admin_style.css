@@ -1,8 +1,8 @@
 /* General styling */
 body {
   overflow-x: hidden;
-  background: #7ba17b; /* Consistent background color for both pages */
-  font-family: "Fredericka the Great", "cursive";/* Apply sans-serif font to the body */
+  background: #013220, #013220; /* Consistent background color for both pages */
+  font-family: "Open Sans", sans-serif; /* Apply sans-serif font to the body */
 }
 
 /* Input fields */
@@ -10,7 +10,7 @@ body {
   width: 80%; /* Reduced width */
   padding: 10px;
   border-radius: 5px; /* Rounded corners */
-  font-family: "Fredericka the Great", "cursive";/* Apply sans-serif font to input fields */
+  font-family: "Open Sans", sans-serif; /* Apply sans-serif font to input fields */
 }
 
 /* Logo styling */
@@ -18,7 +18,7 @@ body {
   display: flex;
   align-items: center;
   gap: 20px;
-  font-family: "Fredericka the Great", "cursive";
+  font-family: "Open Sans", sans-serif;
 }
 
 /* Image styling for consistent placement and size */
@@ -51,7 +51,7 @@ body {
   color: white;
   text-decoration: underline;
   transition: color 0.3s ease; /* Smooth hover transition */
-  font-family: "Fredericka the Great", "cursive";
+  font-family: "Open Sans", sans-serif;
 }
 
 .link-style:hover {
@@ -62,26 +62,27 @@ body {
 .btn-style {
   padding: 10px 20px; /* Adjust padding */
   margin-right: 10px; /* Add right margin for spacing */
-  background: linear-gradient(to right, #5ba132, #5ba132);
+  background: linear-gradient(to right, #013b26, #01452c);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  color: #ffffff; /* White text */
+  color: rgb(255, 255, 255);
+  outline: 2px solid #ffffff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
-  font-family: "Fredericka the Great", "cursive";
+  font-family: "Open Sans", sans-serif;
 }
 
 .btn-style:hover {
-  background: linear-gradient(to right, #5ba132, #66b13a);
+  background: linear-gradient(to right, #ffffff, #ffffff);
   transform: scale(0.95);
-  color: #ffffff;
+  color: #000000;
 }
 
 /* Background colors */
 .green {
-  background: linear-gradient(to right, #5ba132, #5ba132);
+  background: linear-gradient(to right, #013220, #013220);
 }
 
 .light-green {
@@ -93,10 +94,10 @@ body {
 }
 
 .admin-color {
-  background: linear-gradient(to right, #336a29, #498428, #689d3a);
+  background: linear-gradient(to right, #013220, #013220, #013220);
 }
 
 /* Paragraph styling */
 .p1 {
-  font-family: "Fredericka the Great", "cursive";
+  font-family: "Open Sans", sans-serif;
 }

@@ -24,7 +24,7 @@ function getBooks(){
                 <img src='admin/bookImages/$image' class=' p1 card-img-top' alt='Book Image'>
                 <div class=' p1 card-body'>
                   <h6 class=' p1 card-title'><b>$book_title</b></h6>
-                  <p class=' p1 card-text'>RM$digital_price/<span>(Digital)/10%</span></p>
+                  <p class=' p1 card-text'>RM$digital_price/<span>(Digital)</span></p>
                   <a href='index.php?cart=$book_id' class=' p1 btn btn-style mb-2'>Add to Cart</a>
                   <a href='bookDetails.php?book_id=$book_id' class=' p1 btn btn-style mb-2'>Details</a>
                 </div>
@@ -149,14 +149,14 @@ function getStationeries(){
           }
           .footer {
             margin-top: auto;
-            background-color: #17a2b8;
+            background-color: #013220;
             padding: 1rem;
             text-align: center;
             width:100%;
             overflow: hidden;
           }
           .dark-green {
-          background: linear-gradient(to right, #5ba132, #5ba132);
+          background: linear-gradient(to right, #013220, #013220);
         }
         </style>
 
@@ -265,23 +265,44 @@ function viewBookDetails() {
               </div>
             </div>
             <h6 class=' p1 mb-5' style='overflow:hidden'>$description</h6>
-            <div class=' p1 d-flex align-items-center'>
-              <a href='index.php' class=' p1 btn btn-details me-2 mb-3 mx-2 btn-style'>Back</a>
+            <!-- Desktop Layout -->
+            <div class='d-lg-flex align-items-center d-none'>
+              <a href='index.php' class='p1 btn btn-details me-2 mb-3 mx-2 btn-style'>Back</a>
               <a href='index.php?cart=$book_id' class='p1 btn btn-details me-2 mb-3 mx-2 btn-style'>Add to Cart</a>
-              <form method='post' action='users/wishlist.php' class=' p1 me-2 mb-3 mx-2' style='overflow:hidden'>
+              <form method='post' action='users/wishlist.php' class='p1 me-2 mb-3 mx-2' style='overflow:hidden'>
+                <input type='hidden' name='book_id' value='$book_id_with_prefix'>
+                <input type='hidden' name='book_title' value='$book_title'>
+                <input type='hidden' name='book_image' value='$image'>
+                <input type='hidden' name='book_price' value='$price'>
+                <input type='submit' class='p1 btn btn-details btn-style' style='overflow:hidden' name='add_to_wishlist' value='Add to Wishlist'>
+              </form>
+              <a href='reviews.php?book_id=b$book_id_for_reviews' class='p1 btn btn-details mb-3 ml-1 btn-style'>Reviews</a>
+            </div>
+
+            <!-- Mobile Layout -->
+            <div class='d-lg-none row gy-2'>
+              <div class='col-12'>
+                <a href='index.php' class='btn btn-details btn-style w-50 mb-2'>Back</a>
+              </div>
+              <div class='col-12'>
+                <a href='index.php?cart=$book_id' class='btn btn-details btn-style w-50 mb-2'>Add to Cart</a>
+              </div>
+              <div class='col-12'>
+                <form method='post' action='users/wishlist.php' class='w-50 mb-2'>
                   <input type='hidden' name='book_id' value='$book_id_with_prefix'>
                   <input type='hidden' name='book_title' value='$book_title'>
                   <input type='hidden' name='book_image' value='$image'>
                   <input type='hidden' name='book_price' value='$price'>
-                  <input type='submit' class=' p1 btn btn-details btn-style' style='overflow:hidden' name='add_to_wishlist' value='Add to Wishlist'>
-              </form>
-              <a href='reviews.php?book_id=b$book_id_for_reviews' class=' p1 btn btn-details mb-3 ml-1 btn-style'>Reviews</a>
+                  <input type='submit' class='btn btn-details btn-style w-100' name='add_to_wishlist' value='Add to Wishlist'>
+                </form>
+              </div>
+              <div class='col-12'>
+                <a href='reviews.php?book_id=b$book_id_for_reviews' class='btn btn-details btn-style w-50 mb-4'>Reviews</a>
+              </div>
             </div>
           </div>
         </div>
       </div>";
-
-
           }
       }
   }
@@ -299,7 +320,7 @@ function viewToolDetails() {
           // Handle tool_id with prefix "t"
           $tool_id = $_GET['tool_id'];
 
-          // Remove prefix "t" to query the database (assuming the database doesn't store the prefix)
+          // Remove prefix "t" to query the database
           $actual_tool_id = str_replace('t', '', $tool_id);
 
           // Fetch tool details
@@ -315,37 +336,62 @@ function viewToolDetails() {
               // Prepare the correct tool_id for the reviews button
               $tool_id_for_reviews = $row['tool_id']; // Use the actual tool_id from the database
 
-              echo "<div class=' p1 col-md-3 mb-2'>
-          <div class=' p1 card mt-4'>
-            <img src='admin/toolImages/$image' class=' p1 ' style='width:150px; height:190px;' alt='Tool Image'>
-          </div>
-      </div>
-      
-      <div class=' p1 col-md-8'>
-          <div class=' p1 row'>
-              <div class=' p1 col-md-12'>
-                  <h3 class=' p1 text-dark mb-5 mt-4 text'><b>$tool_title</b></h3>
-                  <h6 class=' p1 mr-5 mb-5 text'>Price: RM$price/-</h6>
-                  <h6 class=' p1 mb-5' style='overflow:hidden'>$description</h6>
-                  <div class=' p1 d-flex align-items-center'>
-                      <a href='index.php' class=' p1 btn btn-details me-2 mb-3 mr-2 btn-style'>Back</a>
-                      <a href='index.php?cart=$tool_id' class=' p1 btn btn-details me-2 mb-3 mr-2 ml-1 btn-style'>Add to Cart</a>
-                      <form method='post' action='users/wishlist.php' class=' p1 me-2 mb-3 ml-1' style='overflow:hidden'>
-                          <input type='hidden' name='tool_id' value='$tool_id_with_prefix'>
-                          <input type='hidden' name='tool_title' value='$tool_title'>
-                          <input type='hidden' name='tool_image' value='$image'>
-                          <input type='hidden' name='tool_price' value='$price'>
-                          <input type='submit' class=' p1 btn btn-details btn-style' style='overflow:hidden' name='add_to_wishlist' value='Add to Wishlist'>
-                      </form>
-                      <a href='reviews.php?tool_id=t$tool_id_for_reviews' class=' p1 btn btn-details mb-3 ml-1 btn-style'>Reviews</a>
-                  </div>
-              </div>
-          </div>
-      </div>";
+              echo "<div class='p1 col-md-3 mb-2'>
+        <div class='p1 card mt-4'>
+          <img src='admin/toolImages/$image' class='p1' style='width:150px; height:190px;' alt='Tool Image'>
+        </div>
+    </div>
+    
+    <div class='p1 col-md-8'>
+        <div class='p1 row'>
+            <div class='p1 col-md-12'>
+                <h3 class='p1 text-dark mb-5 mt-4 text'><b>$tool_title</b></h3>
+                <h6 class='p1 mr-5 mb-5 text'>Price: RM$price/-</h6>
+                <h6 class='p1 mb-5' style='overflow:hidden'>$description</h6>
+
+                <!-- Desktop Layout -->
+                <div class='d-lg-flex align-items-center d-none'>
+                    <a href='index.php' class='p1 btn btn-details me-2 mb-3 mr-2 btn-style'>Back</a>
+                    <a href='index.php?cart=$tool_id' class='p1 btn btn-details me-2 mb-3 mr-2 ml-1 btn-style'>Add to Cart</a>
+                    <form method='post' action='users/wishlist.php' class='p1 me-2 mb-3 ml-1' style='overflow:hidden'>
+                        <input type='hidden' name='tool_id' value='$tool_id_with_prefix'>
+                        <input type='hidden' name='tool_title' value='$tool_title'>
+                        <input type='hidden' name='tool_image' value='$image'>
+                        <input type='hidden' name='tool_price' value='$price'>
+                        <input type='submit' class='p1 btn btn-details btn-style' style='overflow:hidden' name='add_to_wishlist' value='Add to Wishlist'>
+                    </form>
+                    <a href='reviews.php?tool_id=t$tool_id_for_reviews' class='p1 btn btn-details mb-3 ml-1 btn-style'>Reviews</a>
+                </div>
+
+                <!-- Mobile Layout -->
+                <div class='d-lg-none row gy-2'>
+                    <div class='col-12'>
+                        <a href='index.php' class='btn btn-details btn-style w-50 mb-2'>Back</a>
+                    </div>
+                    <div class='col-12'>
+                        <a href='index.php?cart=$tool_id' class='btn btn-details btn-style w-50 mb-2'>Add to Cart</a>
+                    </div>
+                    <div class='col-12'>
+                        <form method='post' action='users/wishlist.php' class='w-50 mb-2'>
+                            <input type='hidden' name='tool_id' value='$tool_id_with_prefix'>
+                            <input type='hidden' name='tool_title' value='$tool_title'>
+                            <input type='hidden' name='tool_image' value='$image'>
+                            <input type='hidden' name='tool_price' value='$price'>
+                            <input type='submit' class='btn btn-details btn-style w-100' name='add_to_wishlist' value='Add to Wishlist'>
+                        </form>
+                    </div>
+                    <div class='col-12'>
+                        <a href='reviews.php?tool_id=t$tool_id_for_reviews' class='btn btn-details btn-style w-50 mb-4'>Reviews</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>";
           }
       }
   }
 }
+
 
 //get ip function
 function getIPAddress() {  

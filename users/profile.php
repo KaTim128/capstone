@@ -25,29 +25,25 @@ session_start();
     }
 
     .profile-img {
-    width: 110px;
-    height:100px;
+    width: 130px;
+    height:125px;
     padding: 0px;
     margin: auto;
     display: block;
-    border: 3px solid #689d3a;
+    border: 3px solid #013220;
     border-radius: 50%; /* Keep this for rounded corners */
 }
 
 @media (max-width: 768px) {
     .profile-img {
-        width: 10%; /* Adjust width for mobile screens */
+        width: 20%; /* Adjust width for mobile screens */
         height: auto; /* Maintain aspect ratio */
-        max-height: 150px; /* Optional: limit max height */
+        max-height: 90px; /* Optional: limit max height */
         border-radius: 50%; /* Make the image circular */
         object-fit: cover; /* Ensure the image fills the circle area */
         overflow: hidden; /* Hide any overflow for a clean circle */
     }
 }
-
-
-
-
 
     .hide-bar {
       overflow: hidden;
@@ -97,7 +93,7 @@ session_start();
     }
 
     .single-green{
-      background-color:#c1e899;
+      background-color:#013220;
     }
   </style>
   
@@ -164,7 +160,7 @@ session_start();
       <div class="p1 row flex-grow-1">
         <div class="p1 col-md-2 light-grey">
           <ul class="p1 text-center">
-            <h5 class="p1 profile-header green" style="border-radius:0px;">Your Profile</h5>
+            
             <?php
             $username = $_SESSION['user_username'];
             $user_image = "SELECT * FROM `user` WHERE user_username='$username'";
@@ -173,7 +169,7 @@ session_start();
             $user_image = $row_image['user_image'];
 
             echo "
-            <li>
+            <li class='mt-4 mb-3'>
               <img src='./user_images/$user_image' class='profile-img mt-3 mb-2' alt=''>
             </li>";
             ?>

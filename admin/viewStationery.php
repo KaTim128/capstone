@@ -23,7 +23,7 @@
     </style>
 </head>
 <body>  
-    <?php
+<?php
     // Display an alert if no stationery is available
     $select_stationery = "SELECT * FROM `stationery`";
     $result = mysqli_query($conn, $select_stationery);
@@ -32,40 +32,42 @@
     if ($row_count == 0) {
         echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>No stationery available.</div>";
     }
-    ?>
+?>
 
-    <table class="p1 table table-bordered mt-3">
-        <thead class="p1 table-color">
-        </thead>
-        <tbody class="p1 bg-secondary text-light">
-            <?php
-                if ($row_count > 0) {
-                    $number = 0;
-                    echo "
-                    <h4 class='text-center text-success mt-4' style='overflow:hidden;'>All Stationeries</h4>
-                    <tr class='table-color text-center'>
-                    <th class='p1 text-dark'>S.No</th>
-                    <th class='p1 text-dark'>Stationery Title</th>
-                    <th class='p1 text-dark'>Edit</th>
-                    <th class='p1 text-dark'>Delete</th>
-                    </tr>";
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $stationery_id = $row['stationery_id'];
-                        $stationery_title = $row['stationery_title'];
-                        $number++;
-            ?>
+<h4 class="p1 text-center text-success mt-4" style="overflow:hidden;">All Stationeries</h4>
+<table class="p1 table table-bordered mt-3">
+    <thead class="p1 table-color">
+        <!-- Header row -->
+        <tr class="text-center table-color text-dark">
+            <th class="p1">S.No</th>
+            <th class="p1">Stationery Title</th>
+            <th class="p1">Edit</th>
+            <th class="p1">Delete</th>
+        </tr>
+    </thead>
+    <tbody class="p1 bg-secondary text-light">
+        <?php
+            if ($row_count == 0) {
+                echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There are no stationeries yet.</div>";
+            } else {
+                $number = 0;
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $stationery_id = $row['stationery_id'];
+                    $stationery_title = $row['stationery_title'];
+                    $number++;
+        ?>
             <tr class="p1 text-center">
                 <td><?php echo $number; ?></td>
                 <td><?php echo $stationery_title; ?></td>
                 <td><a href='adminPanel.php?editStationery=<?php echo $stationery_id; ?>' class='text-light'><i class='fa-solid fa-pen-to-square'></i></a></td>
                 <td><a href="#" class="p1 text-light" data-toggle="modal" data-target="#deleteModal" onclick="setStationeryId(<?php echo $stationery_id; ?>)"><i class='fa-solid fa-trash'></i></a></td>
             </tr>
-            <?php
-                    }
+        <?php
                 }
-            ?>
-        </tbody>
-    </table>
+            }
+        ?>
+    </tbody>
+</table>
 
     <!-- Delete Confirmation Modal -->
     <div class="p1 modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">

@@ -32,7 +32,7 @@ if (isset($_POST['dont_delete'])) {
             height: 100vh;
             margin: 0;
             background-color: #e0f7fa; /* Light cyan background */
-            font-family: "Fredericka the Great", "cursive";
+            font-family: "Open Sans", sans-serif;
         }
         .form-container {
             text-align: center;
@@ -54,12 +54,12 @@ if (isset($_POST['dont_delete'])) {
             font-size: 1em;
         }
         .btn-danger {
-            background-color: #d32f2f; /* Red for delete */
+            background-color: #8B0000; /* Red for delete */
             color: white;
         }
         .btn-grey {
             background-color: #e0e0e0; /* Grey for don't delete */
-            color: black;
+            color: white;
         }
         /* Modal styles */
         .modal {
@@ -90,7 +90,7 @@ if (isset($_POST['dont_delete'])) {
     
         <div class="form-outline">
             <!-- Delete Button with improved styling -->
-            <input type="button" class="btn btn-danger m-4" 
+            <input type="button" class="btn btn-danger m-4 p-3" 
                    value="Delete Account" onclick="openModal()">
         </div>
 

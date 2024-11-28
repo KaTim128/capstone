@@ -122,19 +122,30 @@ if (isset($_POST['remove_item'])) {
     border-radius: 0.25rem;
 }
 
-.box {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  width: 200px;
-  height: 42px;
-  transform: translate(-50%, -50%);
-  text-align: center; 
-  line-height: 27px;
-  overflow: hidden;
-  font-family: sans-serif;
+    .box {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: 200px;
+    height: 42px;
+    transform: translate(-50%, -50%);
+    text-align: center; 
+    line-height: 27px;
+    overflow: hidden;
+    font-family: sans-serif;
 
-}
+    }
+
+    .table-container {
+        width: 100%;
+        overflow-x: auto; /* Allow horizontal scrolling */
+        -webkit-overflow-scrolling: touch; /* Improve scrolling on iOS */
+    }
+
+    table {
+        width: 100%;
+        table-layout: auto; /* Adjust column width based on content */
+    }
 
     </style>
 </head>
@@ -218,6 +229,7 @@ if (isset($_POST['remove_item'])) {
                     There are no items in the wishlist.</div>";
                 } else {
                     echo '<h3 class="p1 text-center" style="overflow:hidden; margin-top:50px;">Your Wishlist</h3>
+                          <div class="table-container">
                           <table class="p1 table table-bordered table-striped center-table mt-4 mb-5">
                           <thead class="p1 table-color">
                               <tr>
@@ -257,7 +269,7 @@ echo "<tr>
                                     </td>
                                 </tr>";
                         }
-                        echo '</tbody></table>';
+                        echo '</tbody></table></div>';
                     }
                 } else {
                     echo "<div class='p1 alert-warning text-center my-5 p-2 box' style='position: absolute; z-index: -1; margin: 0 auto; width: fit-content; border-radius:5px;'>Please log in to view your wishlist.</div>";

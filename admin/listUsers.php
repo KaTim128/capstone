@@ -38,6 +38,7 @@
 <body>
    <h4 class="p1 text-center text-success" style="overflow:hidden">All Users</h4>
    <div class="p1 container">
+   <div style="overflow-x: auto; white-space: nowrap;">
        <table class="p1 table table-bordered table-striped">
            <thead>
                <?php
@@ -83,7 +84,7 @@
            </tbody>
        </table>
    </div> 
-
+   </div> 
    <!-- Delete Confirmation Modal -->
    <div class="p1 modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
        <div class="p1 modal-dialog" role="document">
