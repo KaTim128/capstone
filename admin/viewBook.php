@@ -44,7 +44,7 @@
                 echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There are no books yet.</div>";
             } else {
                 echo "
-                <h4 class='text-center text-success mt-4'>All Books</h4>
+                <h4 class='text-center  mt-4'>All Books</h4>
                 <thead class='table-color'>
                         <tr class='text-center'>
                             <th class='p1'>Book ID</th>

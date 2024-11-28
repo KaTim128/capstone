@@ -134,38 +134,111 @@ function getStationeries(){
       }
     }
 
-    function getFooter(){
+    function getFooter() {
       global $conn;
       echo "
-        <style>
-          body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            overflow: hidden;
-          }
-          .main-content {
-            flex: 1;
-          }
-          .footer {
-            margin-top: auto;
-            background-color: #013220;
-            padding: 1rem;
-            text-align: center;
-            width:100%;
-            overflow: hidden;
-          }
-          .dark-green {
-          background: linear-gradient(to right, #013220, #013220);
-        }
-        </style>
-
-        <div class='p1 footer dark-green'>
-          <p class='p1 mt-3 text-light'><b>Website, Designed by Ho Ka Tim © 2024.</b></p>
-        </div>";
-    }
-    
-
+          <style>
+              /* General Styles */
+              body {
+                  display: flex;
+                  flex-direction: column;
+                  min-height: 100vh;
+              }
+              .main-content {
+                  flex: 1;
+              }
+              .footer {
+                  margin-top: auto;
+                  background-color: #013220;
+                  padding: 1rem;
+                  text-align: center;
+                  width: 100%;
+              }
+  
+              /* Horizontal Footer (Desktop) */
+              .footer-horizontal {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  padding: 1rem;
+                  flex-wrap: wrap;
+              }
+  
+              /* Vertical Footer (Mobile) */
+              .footer-vertical {
+                  display: none;
+                  flex-direction: column;
+                  text-align: center;
+              }
+  
+              /* Mobile Styles */
+              @media (max-width: 991px) {
+                  .footer-horizontal {
+                      display: none !important; /* Ensure desktop footer is hidden */
+                  }
+                  .footer-vertical {
+                      display: flex;
+                  }
+              }
+          </style>
+  
+          <footer class='p1 footer'>
+              <!-- Desktop Footer -->
+              <div class='footer-horizontal d-flex flex-column align-items-center text-light'>
+                  <p class='mb-0'>Website, Designed by Ho Ka Tim © 2024.</p>
+              </div>
+  
+              <!-- Mobile Footer -->
+              <div class='footer-vertical text-light'>
+                  <ul class='navbar-nav'>
+                      <li class='nav-item'>
+                          <a class='nav-link text-light' href='index.php'>Products</a>
+                      </li>
+                      <li class='nav-item'>
+                          <a class='nav-link text-light' href='./users/wishlist.php'>Wishlist</a>
+                      </li>";
+  
+                      // PHP to check if user is logged in
+                      if (isset($_SESSION['user_username'])) {
+                          echo "
+                          <li class='nav-item'>
+                              <a class='nav-link nav-zoom text-light' href='./users/profile.php'>My Account</a>
+                          </li>";
+                      } else {
+                          echo "
+                          <li class='nav-item'>
+                              <a class='nav-link nav-zoom text-light' href='./users/user_login.php'>Login</a>
+                          </li>";
+                      }
+  
+                      echo "
+                      <li class='nav-item'>
+                          <a class='nav-link nav-zoom text-light' href='contact_page.php'>Contact</a>
+                      </li>
+                      <li class='nav-item'>
+                          <a class='nav-link nav-zoom text-light' href='../capstone/cart.php'>Cart
+                              <sup><i class='fa fa-shopping-cart' aria-hidden='true'></i>"; 
+                              cartItem(); 
+                              echo "</sup>
+                          </a>
+                      </li>
+                      <li class='nav-item'>
+                          <a class='nav-link text-light' href='#'>Total Price: RM"; 
+                          totalCartPrice(); 
+                          echo "</a>
+                      </li>
+                  </ul>
+  
+                  <!-- Search form -->
+                  <form class='p1 form-inline my-2 my-lg-0 d-flex justify-content-center' action='../capstone/searchProduct.php' method='get'>
+                      <input class='p1 form-control mr-sm-3' style='width: 90%;' type='search' placeholder='Search' aria-label='Search' name='search_data'>
+                      <button class='p1 btn btn-outline-light my-2 my-sm-0 mt-3' value='Search' type='submit' name='search_data_product'>Search</button>
+                  </form>
+              </div>
+          </footer>
+      ";
+  }
+  
 
 function searchProducts() {
   global $conn;
@@ -641,10 +714,10 @@ function totalCartPrice() {
             $result_orders_query = mysqli_query($conn, $get_orders);
             $row_count = mysqli_num_rows($result_orders_query);
             if ($row_count > 0) {
-                echo "<h3 class=' p1 text-center' style='margin-top:100px; overflow:hidden'>You have <span class=' p1 text-success'>$row_count </span> pending orders</h3>";
+                echo "<h3 class=' p1 text-center mt-5' style='margin-top:100px; overflow:hidden'>You have <span class=' p1 text-success'>$row_count </span> pending orders</h3>";
                 echo "<p class=' p1 text-center'><a href='profile.php?my_orders' class=' p1 text-dark'>Order Details</a></p>";          
               } else {
-                echo "<h3 class=' p1 text-center' style='margin-top:100px; overflow:hidden'>You have 0 pending orders</h3>";
+                echo "<h3 class=' p1 text-center mt-5' style='margin-top:100px; overflow:hidden'>You have 0 pending orders</h3>";
                 echo "<p class=' p1 text-center'><a href='../index.php' class=' p1 text-dark'>Explore products</a></p>";
             }
         }

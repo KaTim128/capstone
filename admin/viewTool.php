@@ -55,7 +55,7 @@
             <?php
             if ($row_count > 0) {
                 echo "
-                <h4 class='text-center text-success'>All Tools</h4>
+                <h4 class='text-center '>All Tools</h4>
                 <thead class='table-color'>
                         <tr class='text-center'>
                             <th class='p1'>Tool ID</th>

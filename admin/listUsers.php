@@ -17,10 +17,6 @@
             margin-top: 30px; /* Add some space above the table */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
         }
-        .table th {
-            background-color: #92c85c; /* Bootstrap info color */
-            color: black;
-        }
         .table td {
             vertical-align: middle; /* Center-align table cells */
         }
@@ -36,7 +32,7 @@
     </style>
 </head>
 <body>
-   <h4 class="p1 text-center text-success" style="overflow:hidden">All Users</h4>
+   <h4 class="p1 text-center " style="overflow:hidden">All Users</h4>
    <div class="p1 container">
    <div style="overflow-x: auto; white-space: nowrap;">
        <table class="p1 table table-bordered table-striped">
@@ -49,7 +45,7 @@
                if ($row_count == 0) {
                 echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There are no users yet.</div>";
                } else {
-                   echo "<tr class='text-center table-color text-dark'>
+                   echo "<tr class='text-center table-color text-light'>
                    <th class='p1'>S/N</th>
                    <th class='p1'>Username</th>
                    <th class='p1'>User Email</th> 

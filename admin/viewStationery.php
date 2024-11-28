@@ -34,11 +34,11 @@
     }
 ?>
 
-<h4 class="p1 text-center text-success mt-4" style="overflow:hidden;">All Stationeries</h4>
+<h4 class="p1 text-center  mt-4" style="overflow:hidden;">All Stationeries</h4>
 <table class="p1 table table-bordered mt-3">
     <thead class="p1 table-color">
         <!-- Header row -->
-        <tr class="text-center table-color text-dark">
+        <tr class="text-center table-color text-light">
             <th class="p1">S.No</th>
             <th class="p1">Stationery Title</th>
             <th class="p1">Edit</th>

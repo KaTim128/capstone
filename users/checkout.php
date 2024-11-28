@@ -73,7 +73,7 @@ if (isset($_SESSION['user_username'])) {
           <li class=" p1 nav-item"><a class=" p1 nav-link nav-zoom" href="../contact_page.php">Contact</a></li>
         </ul>
         <form class="p1 form-inline my-2 my-lg-0" action="../searchProduct.php" method="get">
-            <input class="p1 form-control" type="search" style="width:500px;" placeholder="Search" name="search_data">
+            <input class="p1 form-control mr-3" type="search" style="width:500px;" placeholder="Search" name="search_data">
             <button class="p1 btn btn-outline-light" type="submit" name="search_data_product">Search</button>
         </form>
       </div>

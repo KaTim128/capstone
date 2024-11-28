@@ -75,7 +75,7 @@ if (isset($_POST['update_stationery'])) {
             <?php echo $alertMessage; ?>
         </div>
 
-        <h3 class="p1 text-center mb-4 text-success" style="overflow:hidden;">Edit Stationery</h3>
+        <h3 class="p1 text-center mb-4 " style="overflow:hidden;">Edit Stationery</h3>
         <form action="" method="post" class="p1 text-center">
             <div class="p1 form-outline text-center w-50 m-auto">
                 <label for="stationery_title" class="p1 form-label">Stationery Title</label>

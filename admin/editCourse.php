@@ -75,7 +75,7 @@ if (isset($_POST['update_course'])) {
             <?php echo $alertMessage; ?>
         </div>
 
-        <h3 class="p1 text-center mb-4 text-success" style="overflow:hidden;">Edit Course</h3>
+        <h3 class="p1 text-center mb-4 " style="overflow:hidden;">Edit Course</h3>
         <form action="" method="post" class="p1 text-center">
             <div class="p1 form-outline text-center w-50 m-auto">
                 <label for="course_title" class="p1 form-label">Course Title</label>

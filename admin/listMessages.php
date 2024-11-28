@@ -15,7 +15,7 @@
     </style>
 </head>
 <body>
-    <h4 class="p1 text-center text-success" style="overflow:hidden">All Messages</h4>
+    <h4 class="p1 text-center " style="overflow:hidden">All Messages</h4>
 
     <!-- Table container with horizontal scroll -->
     <div class="p1 table-responsive">

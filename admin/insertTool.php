@@ -98,7 +98,7 @@ if (isset($_POST['insert_tool'])) {
     </div>
 
     <div class="p1 container">
-        <h4 class="p1 text-center text-success" style="overflow:hidden;">Insert Tools</h4>
+        <h4 class="p1 text-center " style="overflow:hidden;">Insert Tools</h4>
         <!-- Form -->
         <form action="" method="post" enctype="multipart/form-data" class="p1 form-container">
             <!-- Tool Title -->

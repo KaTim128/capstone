@@ -20,10 +20,6 @@
         .table {
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .table th {
-            background-color: #92c85c;
-            color: black;
-        }
         .table td {
             vertical-align: middle;
         }
@@ -33,7 +29,7 @@
     </style>
 </head>
 <body>
-   <h4 class="p1 text-center text-success" style="overflow:hidden">All Payments</h4>
+   <h4 class="p1 text-center " style="overflow:hidden">All Payments</h4>
    <div class="p1 container table-container">
        <table class="p1 table table-bordered table-striped">
            <thead>
@@ -45,7 +41,7 @@
                if ($row_count == 0) {
                 echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There are no payments yet.</div>";
                } else {
-                   echo "<tr class='text-center'>
+                   echo "<tr class='text-center text-light table-color'>
                    <th class='p1'>S/N</th>
                    <th class='p1'>Amount</th>
                    <th class='p1'>Invoice Number</th> 

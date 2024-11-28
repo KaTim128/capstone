@@ -107,7 +107,7 @@ if (isset($_POST['insert_book'])) {
     </div>
 
     <div class="p1 container mt-3">
-        <h4 class="p1 text-center text-success" style="overflow:hidden;">Insert Books</h4>
+        <h4 class="p1 text-center " style="overflow:hidden;">Insert Books</h4>
         <!-- Form -->
         <form action="" method="post" enctype="multipart/form-data" class="p1 form-container">
             <!-- Book Title -->

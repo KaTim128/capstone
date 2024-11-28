@@ -36,8 +36,7 @@ session_start();
             </li>
             <li class=" p1 nav-item">
               <a class=" p1 nav-link nav-zoom text-light" href="./users/wishlist.php">Wishlist</a>
-            </li>
-            
+            </li>         
             <?php
             if (isset($_SESSION['user_username'])) {
               echo "<li class='nav-item'>

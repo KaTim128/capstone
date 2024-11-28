@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <h4 class="p1 text-center text-success" style="overflow:hidden">All Orders</h4>
+    <h4 class="p1 text-center " style="overflow:hidden">All Orders</h4>
 
     <!-- Table container with horizontal scroll -->
     <div class="p1 table-responsive">

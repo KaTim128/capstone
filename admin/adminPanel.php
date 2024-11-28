@@ -31,56 +31,57 @@ session_start();
         }
 
         .panel {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 15px; 
-            width: 100%;
-            box-sizing: border-box;
-            margin: 5 auto;
-            padding: 5px 15px;
-            margin-bottom: 5px;
-            margin-right:10px;
-        }
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Default: 4 columns */
+    gap: 10px; /* Space between buttons */
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px 15px;
+    margin-bottom: 5px;
+}
 
-        /* Media query for mobile devices */
-        @media (max-width: 768px) {
-            .panel {
-                grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
-            }
-        }
+/* For tablets and smaller devices */
+@media (max-width: 768px) {
+    .panel {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets and small screens */
+        
+    }
+}
 
-        @media (max-width: 420px) {
-            .panel {
-                grid-template-columns: 1fr; /* 1 column on small screens */
-                padding: 5px; /* Adjust padding for smaller screens */
-            }
-            .btn-responsive {
-                font-size: 14px; /* Maintain readability on smaller screens */
-                padding: 10px; /* Padding for buttons */
-            }
-        }
+/* For very small devices like phones */
+@media (max-width: 576px) {
+    .panel {
+        grid-template-columns: repeat(2, 1fr); /* Still 2 columns */
+        gap: 5px; /* Reduce gap */
+    }
+    .btn-responsive {
+        font-size: 14px; /* Maintain readability */
+        padding: 5px; /* Adjust padding for smaller buttons */
+    }
+}
+
 
         .panel button {
-            padding: 10px 20px; /* Adjust padding */
-  margin-right: 10px; /* Add right margin for spacing */
-  background: linear-gradient(to right, #013220, #013220, #013220);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  color: rgb(255, 255, 255);
-  outline: 2px solid #ffffff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
-  font-family: "Open Sans", sans-serif;
-}
+            padding: 6px 10px; /* Adjust padding */
+            margin-right: 5px; /* Add right margin for spacing */
+            background: linear-gradient(to right, #013220, #013220, #013220);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            color: rgb(255, 255, 255);
+            outline: 2px solid #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+            font-family: "Open Sans", sans-serif;
+            }
 
-/* Hover effect for all buttons */
-.panel button:hover {
-    background: linear-gradient(to right, #013b26, #01452c);
-  transform: scale(0.95);
-  color: #000000;
-}
+        /* Hover effect for all buttons */
+        .panel button:hover {
+            background: linear-gradient(to right, #013b26, #01452c);
+        transform: scale(0.95);
+        color: #000000;
+        }
 
         .panel a {
             color: white;
@@ -165,19 +166,19 @@ body {
         </div>
         <!-- Buttons Panel Section -->
         <div class="p1 panel text-center w-100">
-            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?insertBook" class="p1 nav-link text-light" style="font-weight: bold;">Insert Book</a></button>
-            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?viewBook" class="p1 nav-link text-light" style="font-weight: bold;">View Books</a></button>
-            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?insertCourse" class="p1 nav-link text-light" style="font-weight: bold;">Insert Courses</a></button>
-            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?viewCourse" class="p1 nav-link text-light" style="font-weight: bold;">View Courses</a></button>
-            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?insertTool" class="p1 nav-link text-light" style="font-weight: bold;">Insert Tool</a></button>
-            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?viewTool" class="p1 nav-link text-light" style="font-weight: bold;">View Tools</a></button>
-            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?insertStationery" class="p1 nav-link text-light" style="font-weight: bold;">Insert Stationery</a></button>
-            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?viewStationery" class="p1 nav-link text-light" style="font-weight: bold;">View Stationery</a></button>
-            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?listOrders" class="p1 nav-link text-light" style="font-weight: bold;">All Orders</a></button>
-            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?listPayments" class="p1 nav-link text-light" style="font-weight: bold;">All Payments</a></button>
-            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?listUsers" class="p1 nav-link text-light" style="font-weight: bold;">List Users</a></button>
-            <button class="p1 btn btn-light w-100 mb-2"><a href="adminPanel.php?listMessages" class="p1 nav-link text-light" style="font-weight: bold;">User Messages</a></button>
-            <button class="p1 btn btn-danger w-100 mb-2"><a href="./adminLogin.php" class="p1 nav-link text-light" style="font-weight: bold;">Logout</a></button>
+            <button class="p1 btn btn-light btn-responsive mb-2"><a href="adminPanel.php?insertBook" class="p1 nav-link text-light" style="font-weight: bold;">Insert Book</a></button>
+            <button class="p1 btn btn-light btn-responsive mb-2"><a href="adminPanel.php?viewBook" class="p1 nav-link text-light" style="font-weight: bold;">View Books</a></button>
+            <button class="p1 btn btn-light btn-responsive mb-2"><a href="adminPanel.php?insertCourse" class="p1 nav-link text-light" style="font-weight: bold;">Insert Courses</a></button>
+            <button class="p1 btn btn-light btn-responsive mb-2"><a href="adminPanel.php?viewCourse" class="p1 nav-link text-light" style="font-weight: bold;">View Courses</a></button>
+            <button class="p1 btn btn-light btn-responsive mb-2"><a href="adminPanel.php?insertTool" class="p1 nav-link text-light" style="font-weight: bold;">Insert Tool</a></button>
+            <button class="p1 btn btn-light btn-responsive mb-2"><a href="adminPanel.php?viewTool" class="p1 nav-link text-light" style="font-weight: bold;">View Tools</a></button>
+            <button class="p1 btn btn-light btn-responsive mb-2"><a href="adminPanel.php?insertStationery" class="p1 nav-link text-light" style="font-weight: bold;">Insert Stationery</a></button>
+            <button class="p1 btn btn-light btn-responsive mb-2"><a href="adminPanel.php?viewStationery" class="p1 nav-link text-light" style="font-weight: bold;">View Stationery</a></button>
+            <button class="p1 btn btn-light btn-responsive mb-2"><a href="adminPanel.php?listOrders" class="p1 nav-link text-light" style="font-weight: bold;">All Orders</a></button>
+            <button class="p1 btn btn-light btn-responsive mb-2"><a href="adminPanel.php?listPayments" class="p1 nav-link text-light" style="font-weight: bold;">All Payments</a></button>
+            <button class="p1 btn btn-light btn-responsive mb-2"><a href="adminPanel.php?listUsers" class="p1 nav-link text-light" style="font-weight: bold;">List Users</a></button>
+            <button class="p1 btn btn-light btn-responsive mb-2"><a href="adminPanel.php?listMessages" class="p1 nav-link text-light" style="font-weight: bold;">User Messages</a></button>
+            <button class="p1 btn btn-danger btn-responsive mb-2"><a href="./adminLogin.php" class="p1 nav-link text-light" style="font-weight: bold;">Logout</a></button>
         </div>
     </div>
 </div>

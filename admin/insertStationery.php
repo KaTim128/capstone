@@ -80,13 +80,10 @@ if (isset($_POST['insert_stationery'])) {
         <!-- Display alert message if any -->
             <?php echo $alertMessage; ?>
 
-        <h4 class="p1 text-center text-success" style="overflow:hidden;">Insert Stationeries</h4>
+        <h4 class="p1 text-center " style="overflow:hidden;">Insert Stationeries</h4>
         <!-- Form -->
         <form action="" method="post" class="p1 mb-4">
             <div class="p1 input-group w-50 m-auto mb-2">
-                <span class="p1 input-group-text" id="basic-addon1">
-                    <i class="p1 fa-solid fa-receipt"></i>
-                </span>
                 <input type="text" class="p1 form-control" name="stationery_title" placeholder="Insert stationery" aria-label="stationery" aria-describedby="basic-addon1" required>
             </div>
 

@@ -16,7 +16,7 @@
     </style>
 </head>
 <body>
-    <h4 class="p1 text-center text-success mt-4" style="overflow:hidden;">All Courses</h4>
+    <h4 class="p1 text-center  mt-4" style="overflow:hidden;">All Courses</h4>
     <table class="p1 table table-bordered mt-3">
         <thead class="p1 table-color">
             
@@ -30,7 +30,7 @@
                 if ($row_count == 0) {
                     echo "<div class='alert alert-warning text-center mt-4' style='margin: 0 auto; width: fit-content;'>There are no courses yet.</div>";
                    } else {
-                    echo"<tr class='text-center table-color text-dark'>
+                    echo"<tr class='text-center table-color text-light'>
                     <th class='p1'>S.No</th>
                     <th class='p1'>Course Title</th>
                     <th class='p1'>Edit</th>
