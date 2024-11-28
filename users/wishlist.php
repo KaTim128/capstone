@@ -272,7 +272,7 @@ echo "<tr>
                         echo '</tbody></table></div>';
                     }
                 } else {
-                    echo "<div class='p1 alert-warning text-center my-5 p-2 box' style='position: absolute; z-index: -1; margin: 0 auto; width: fit-content; border-radius:5px;'>Please log in to view your wishlist.</div>";
+                    echo "<div class='p1 alert-warning text-center my-3 p-2 box' style='position: absolute; z-index: -1; margin: 0 auto; width: fit-content; border-radius:5px;'>Please log in to view your wishlist.</div>";
 
                 }
                 ?>
