@@ -26,6 +26,7 @@ if (isset($_POST['update_stationery'])) {
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>';
+                        echo "<script>setTimeout(function(){ window.open('adminPanel.php?viewStationery', '_self'); }, 2000);</script>";
     } else {
         $alertMessage = '<div class="p1 alert alert-danger alert-dismissible fade show" role="alert">
                             <strong>Error!</strong> There was an error updating the stationery title.

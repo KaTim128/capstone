@@ -195,7 +195,8 @@ if (isset($_POST['rating']) && isset($_POST['review'])) {
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Review & Rating System in PHP & MySQL using Ajax</title>
+    <title>Print N Pixel</title>
+    <link rel="icon" type="image/png" href="./images/logo_new.png">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>

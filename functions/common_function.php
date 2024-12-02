@@ -156,30 +156,34 @@ function getStationeries(){
               }
   
               /* Horizontal Footer (Desktop) */
+          .footer-horizontal {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 1rem;
+              flex-wrap: wrap;
+              visibility: visible; /* Ensure it's visible on desktop */
+          }
+
+          /* Vertical Footer (Mobile) */
+          .footer-vertical {
+              display: none;
+              flex-direction: column;
+              text-align: center;
+              visibility: hidden; /* Hidden by default */
+          }
+
+          /* Mobile Styles */
+          @media (max-width: 991px) {
               .footer-horizontal {
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                  padding: 1rem;
-                  flex-wrap: wrap;
+                  display: none !important; /* Hide desktop footer */
+                  visibility: hidden;
               }
-  
-              /* Vertical Footer (Mobile) */
               .footer-vertical {
-                  display: none;
-                  flex-direction: column;
-                  text-align: center;
+                  display: flex !important; /* Show mobile footer */
+                  visibility: visible;
               }
-  
-              /* Mobile Styles */
-              @media (max-width: 991px) {
-                  .footer-horizontal {
-                      display: none !important; /* Ensure desktop footer is hidden */
-                  }
-                  .footer-vertical {
-                      display: flex;
-                  }
-              }
+          }
           </style>
   
           <footer class='p1 footer'>
@@ -189,34 +193,34 @@ function getStationeries(){
               </div>
   
               <!-- Mobile Footer -->
-              <div class='footer-vertical text-light'>
+              <div class='footer-vertical text-light mb-3'>
                   <ul class='navbar-nav'>
                       <li class='nav-item'>
-                          <a class='nav-link text-light' href='index.php'>Products</a>
+                          <a class='nav-link text-light' href='../index.php'>Products</a>
                       </li>
                       <li class='nav-item'>
-                          <a class='nav-link text-light' href='./users/wishlist.php'>Wishlist</a>
+                          <a class='nav-link text-light' href='../users/wishlist.php'>Wishlist</a>
                       </li>";
   
                       // PHP to check if user is logged in
                       if (isset($_SESSION['user_username'])) {
                           echo "
                           <li class='nav-item'>
-                              <a class='nav-link nav-zoom text-light' href='./users/profile.php'>My Account</a>
+                              <a class='nav-link nav-zoom text-light' href='../users/profile.php'>My Account</a>
                           </li>";
                       } else {
                           echo "
                           <li class='nav-item'>
-                              <a class='nav-link nav-zoom text-light' href='./users/user_login.php'>Login</a>
+                              <a class='nav-link nav-zoom text-light' href='../users/user_login.php'>Login</a>
                           </li>";
                       }
   
                       echo "
                       <li class='nav-item'>
-                          <a class='nav-link nav-zoom text-light' href='contact_page.php'>Contact</a>
+                          <a class='nav-link nav-zoom text-light' href='../contact_page.php'>Contact</a>
                       </li>
                       <li class='nav-item'>
-                          <a class='nav-link nav-zoom text-light' href='../capstone/cart.php'>Cart
+                          <a class='nav-link nav-zoom text-light' href='../cart.php'>Cart
                               <sup><i class='fa fa-shopping-cart' aria-hidden='true'></i>"; 
                               cartItem(); 
                               echo "</sup>
@@ -230,7 +234,7 @@ function getStationeries(){
                   </ul>
   
                   <!-- Search form -->
-                  <form class='p1 form-inline my-2 my-lg-0 d-flex justify-content-center' action='../capstone/searchProduct.php' method='get'>
+                  <form class='p1 form-inline my-2 my-lg-0 d-flex justify-content-center' action='../searchProduct.php' method='get'>
                       <input class='p1 form-control mr-sm-3' style='width: 90%;' type='search' placeholder='Search' aria-label='Search' name='search_data'>
                       <button class='p1 btn btn-outline-light my-2 my-sm-0 mt-3' value='Search' type='submit' name='search_data_product'>Search</button>
                   </form>
@@ -260,7 +264,7 @@ function searchProducts() {
 
       // If no products are found
       if ($num_of_rows == 0) {
-          echo "<div class=' p1 alert alert-warning text-center mt-4 p1' style='margin: 0 auto; width: fit-content;'>Product searched is not found.</div>";
+          echo "<div class=' p1 alert alert-warning text-center my-4 p1' style='margin: 0 auto; width: fit-content;'>Product searched is not found.</div>";
       }
 
       // Display results from both books and tools

@@ -22,7 +22,7 @@ if (isset($_POST['dont_delete'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Account</title>
+    <title>Print N Pixel</title>
     <link rel="stylesheet" href="../style.css"> <!-- Include your CSS file -->
     <style>
         body {

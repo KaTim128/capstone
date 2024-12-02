@@ -26,6 +26,7 @@ if (isset($_POST['update_course'])) {
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>';
+                        echo "<script>setTimeout(function(){ window.open('adminPanel.php?viewCourse', '_self'); }, 2000);</script>";
     } else {
         $alertMessage = '<div class="p1 alert alert-danger alert-dismissible fade show" role="alert">
                             Error updating course title.
