@@ -1,14 +1,3 @@
-<?php require("script.php") ?>
-<?php 
-if(isset($_POST['submit'])){
-      if(empty($_POST['email']) || empty($_POST['subject']) || empty($_POST['message'])){
-         $response = "All fields are required";
-      }else{
-         $response = sendMail($_POST['email'], $_POST['subject'], $_POST['message']);
-      }
-   }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,45 +89,18 @@ if(isset($_POST['submit'])){
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" method="post" enctype="multipart/form-data">
-
-  <!-- Form Information Section -->
-  <div class="info">
-    Send an email to yourself
-  </div>
-
-  <!-- Email Input -->
-  <div class="form-group">
-    <label for="email">Enter your email</label>
-    <input type="email" name="email" id="email" value="" required>
-  </div>
-
-  <!-- Subject Input -->
-  <div class="form-group">
-    <label for="subject">Enter a subject</label>
-    <input type="text" name="subject" id="subject" value="" required>
-  </div>
-
-  <!-- Message Textarea -->
-  <div class="form-group">
-    <label for="message">Enter your message</label>
-    <textarea name="message" id="message" required></textarea>
-  </div>
-
-  <!-- Submit Button -->
-  <button type="submit" name="submit">Submit</button>
-  <?php
-      if(@$response == "success"){
-         ?>
-            <p class="success">Email send successfully</p>
-         <?php
-      }else{
-         ?>
-            <p class="error"><?php echo @$response; ?></p>
-         <?php
-      }
-   ?>
-</form>
+            <div class="p1 modal-body">
+                <input type="hidden" name="contact_id" id="reply_contact_id">
+                <input type="hidden" name="email" id="reply_email">
+                <div class="p1 form-group">
+                    <label for="replyMessage">Message</label>
+                    <textarea class="p1 form-control" name="replyMessage" id="replyMessage" rows="4" required></textarea>
+                </div>
+            </div>
+            <div class="p1 modal-footer">
+                <button type="button" class="p1 btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="p1 btn btn-style" onclick="sendReply()">Send Reply</button>
+            </div>
         </div>
     </div>
 </div>
