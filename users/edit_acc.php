@@ -71,7 +71,7 @@ if (isset($_POST['user_update'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Print N Pixel</title>
-    <link rel="icon" type="image/png" href="./images/logo_new.png">
+    <link rel="icon" type="image/png" href="../images/logo_new.png">
     <style>
         /* Alert bar styling */
         #alert-bar, #error-alert {
