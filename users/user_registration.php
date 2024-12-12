@@ -98,7 +98,7 @@ if (isset($_POST['user_register'])) {
         exit;
     }  
     
-    // Improved regex to validate typical street address format
+    // Validate typical street address format
     $address_regex = '/^[\s\S]{5,}$/';
     
     if (!preg_match($address_regex, $user_address)) {
