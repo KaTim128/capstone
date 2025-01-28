@@ -67,7 +67,6 @@ session_start();
       </nav>
 
       <!-- call cart function -->
-      <!-- call cart function -->
       <?php 
       manageCart(); 
       displayAlert();

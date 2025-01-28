@@ -385,15 +385,11 @@ function viewBookDetails() {
   }
 }
 
-
-
-
 function viewToolDetails() {
   global $conn;
 
   if (isset($_GET['tool_id'])) {
-      if (!isset($_GET['books'])) {
-          
+      if (!isset($_GET['books'])) {         
           // Handle tool_id with prefix "t"
           $tool_id = $_GET['tool_id'];
 
@@ -514,8 +510,8 @@ function manageCart() {
       $product_id = $_POST['product_id']; // Assuming you are passing the product ID
 
       // Determine if the product is a book or a tool
-      $prefix = substr($product_id, 0, 1);
-      $id = intval(substr($product_id, 1));
+      $prefix = substr($product_id, 0, 1); // getting the prefix b or t
+      $id = intval(substr($product_id, 1)); //getting the id
 
       // Check for existing item in the cart based on user_id and product type
       $existing_query = "";
@@ -609,7 +605,7 @@ function manageCart() {
   }
 }
 
-// On your page load, display the alert message if it exists
+// On the page load, display the alert message if it exists
 if (isset($_SESSION['cart_alert'])) {
   echo "<div class=' p1 alert'>" . $_SESSION['cart_alert'] . "</div>";
   unset($_SESSION['cart_alert']); // Clear the alert after displaying it
@@ -727,5 +723,4 @@ function totalCartPrice() {
         }
     }
 }
-
 ?>

@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <style>
   .contact-form-container {
-    margin-top: 65px; /* Adjust the value as needed for more or less space */
+    margin-top: 65px;
 }
 
 </style>
@@ -120,7 +120,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- Call cart function -->
 <?php 
 manageCart(); 
-// displayAlert(); // Remove or comment out this line if it's not needed
 ?>
 
 <!-- Second child -->
